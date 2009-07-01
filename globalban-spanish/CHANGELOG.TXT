@@ -1,0 +1,64 @@
+Changelog:
+
+    * 01/25/2008 - v3.3
+          o Threading removed. Replaced with wget and requires your webserver to be able to send rcon commands to your servers.
+          o Banlist now hides expired bans to normal users, admins can still see all bans.
+          o Top menu changed in preparation for new features in 3.4.
+          o gb_externalBanUser has been modified. It now accepts either the admin's ingame userid, or the admin's steam id.
+          o Admins can be enabled or disabled.
+          o Mouseover explainations added to most admin functions (green ticks and red x's).
+          o Admins can now disable their own bans.
+
+    * 12/21/2007 - v3.2
+          o Admin list, ban lengths, and ban reasons automatically retrieved from web server on script load and map change. No longer required to click "Save to Server" for these 3. "Save Configuration" is still a requirement.
+          o Server List page improved. Server status (online/offline) is now shown with an icon and mouseover. Player information now show as well. Known bug that connect time shows incorrectly.
+          o Installer improved drastically and designed to look like the "Configuration" page. Super user is now created during install process.
+          o RCON password is now ALWAYS required whenever updating a server. RCON password is also masked and requires the current password to change it.
+          o Sample GlobalBan.cfg file and class.Config.php files added incase these files do not get created due to permission issues or firewall issues.
+          o Ban history is now viewable to admins when viewing an individual ban.
+          o Some minor display fixes on various pages.
+
+    * 11/17/2007 - v3.1
+          o Threading in GlobalBan ES script improved to fix odd delays.
+          o New way to define ban lengths. Ban lengths can be in minutes, hours, days, weeks, or months. All done through web.
+          o New Configuration page added to web. Saving the configuration will automatically generate the GlobalBan.cfg file on all CSS servers. No need to touch the CSS server to configure!
+          o Other minor bugs fixed.
+
+    * 11/04/2007 - v3.0
+          o GlobalBan es script converted to python for Eventscripts 2.0!
+          o clan_db script merged into GlobalBan, no longer need clan_db.
+          o Mattie's system plugin no longer needed due to added functionality in ES2.0.
+          o The webpage database/tables and configurations can now be done by executing install.php after placing the pages on your webserver. Execute upgrade.php if you are upgrading from GlobalBan 2.2.
+
+    * 10/12/2007 - v2.2
+          o GlobalBan es script updated with a debug variable.
+          o SMF Integration is in!
+          o Previous ban offense are now logged and the number of offenses is displayed!
+          o Ban list compressed with much data moved to a popup.
+          o Ban lists can now be saved as an XML file and XML file ban lists from 2.2+ sites can be imported to your site!
+
+    * 09/01/2007 - v2.1
+          o GlobalBan es script updated to allow for external scripts to integrate and use the ban function.
+
+    * 07/22/2007 - v2.0
+          o Demo management (uploading and banning)
+          o IP ban management
+          o Search bans by steam id or name
+          o Uploading of admin list and ban reason list to all servers with a press of a button.
+          o Better data handling and serveral bug fixes that dealt with funny/reserved characters.
+
+    * 06/29/2007 - v1.3
+          o Fixed php bug in processWebBanUpdate.php.
+          o Added search function on banList page to allow searching by either partial steam id or partial name.
+          o Only web pages updated, back up your config/class.Config.php file before over-writing all files.
+          o Files touched: banlist.php, processWebBanUpdate.php, include/database/class.BanQueries.php, css/banned.css
+
+    * 06/18/2007 - v1.2
+          o Fixed html bug on newuser.php page.
+          o Added "add admin" to manage admins for super-users. All that is required is a name and steam id. If the user wishes to login to the webpage, then the super-admin will need to update that user's email and then click "reset password" for that user and they will be good to go.
+          o Better paging for banlist page.
+
+    * 05/30/2007 - v1.1
+          o Webpages updated to fix banlist page v1.1 - backup/save config/class.Config.php before overwriting all files
+
+    * 05/28/2007 - Initial Release v1.0

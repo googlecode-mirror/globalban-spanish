@@ -1,0 +1,15 @@
+"clanMembers"
+{
+   "STEAM_0:1:00000000"
+   {
+      "name"      "admin1"
+      "member"    "1"
+      "admin"     "1"
+   }
+   "STEAM_0:1:1111111"
+   {
+      "name"      "admin2"
+      "member"    "1"
+      "admin"     "0"
+   }
+}

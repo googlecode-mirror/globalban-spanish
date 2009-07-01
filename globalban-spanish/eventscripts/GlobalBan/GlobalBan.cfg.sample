@@ -1,0 +1,13 @@
+serverId 1
+
+websiteAddy "http://yourdomain.com/banned/"
+
+banAppealMessage "You are banned. Appeal at yourdomain.com"
+
+hash "yoursecrethash"
+
+teachAdmins 0
+
+clanName "Your clan name"
+
+allowAdminBanning 1

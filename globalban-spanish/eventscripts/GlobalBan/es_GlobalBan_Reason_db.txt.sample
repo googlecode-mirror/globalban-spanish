@@ -1,0 +1,68 @@
+GlobalBan_Reason
+{
+	"2"
+	{
+	  "reasonId"       "2"
+	  "reasonText"     "Aimbot"
+	}
+	"3"
+	{
+	  "reasonId"       "3"
+	  "reasonText"     "Wallhacking"
+	}
+	"4"
+	{
+	  "reasonId"       "4"
+	  "reasonText"     "Aimbot and Wallhacking"
+	}
+	"5"
+	{
+	  "reasonId"       "5"
+	  "reasonText"     "No Recoil"
+	}
+	"6"
+	{
+	  "reasonId"       "6"
+	  "reasonText"     "Speed Hacking"
+	}
+  "7"
+	{
+	  "reasonId"       "7"
+	  "reasonText"     "Bad Behaviour (language/attitude/rude)"
+	}
+	"8"
+	{
+	  "reasonId"       "8"
+	  "reasonText"     "Mic Spamming"
+	}
+	"9"
+	{
+	  "reasonId"       "9"
+	  "reasonText"     "Nade Spamming"
+	}
+	"10"
+	{
+	  "reasonId"       "10"
+	  "reasonText"     "Offensive Spray"
+	}
+	"11"
+	{
+	  "reasonId"       "11"
+	  "reasonText"     "Advertising other servers"
+	}
+	"12"
+	{
+	  "reasonId"       "12"
+	  "reasonText"     "Clan recruitment"
+	}
+	"13"
+	{
+	  "reasonId"       "13"
+	  "reasonText"     "Ghosting"
+	}
+	"14"
+	{
+	  "reasonId"       "14"
+	  "reasonText"     "Not doing objective (Camping)"
+	}
+}

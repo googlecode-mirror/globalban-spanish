@@ -1,0 +1,57 @@
+"GlobalBan_Length"
+{
+	"1"
+	{
+		"length"		"0"
+		"timeScale"		"minutes"
+		"readable"		"Forever"
+	}
+	"2"
+	{
+		"length"		"5"
+		"timeScale"		"minutes"
+		"readable"		"5 minutes"
+	}
+	"3"
+	{
+		"length"		"1"
+		"timeScale"		"hours"
+		"readable"		"1 hour"
+	}
+	"4"
+	{
+		"length"		"6"
+		"timeScale"		"hours"
+		"readable"		"6 hours"
+	}
+	"5"
+	{
+		"length"		"1"
+		"timeScale"		"days"
+		"readable"		"1 day"
+	}
+	"6"
+	{
+		"length"		"1"
+		"timeScale"		"weeks"
+		"readable"		"1 week"
+	}
+	"7"
+	{
+		"length"		"2"
+		"timeScale"		"weeks"
+		"readable"		"2 weeks"
+	}
+	"8"
+	{
+		"length"		"1"
+		"timeScale"		"months"
+		"readable"		"1 month"
+	}
+	"9"
+	{
+		"length"		"6"
+		"timeScale"		"months"
+		"readable"		"6 months"
+	}
+}

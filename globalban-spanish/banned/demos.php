@@ -1,0 +1,538 @@
+<?php
+/*
+    This file is part of GlobalBan.
+
+    Written by Stefan Jonasson <soynuts@unbuinc.net>
+    Copyright 2008 Stefan Jonasson
+    
+    GlobalBan is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    GlobalBan is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with GlobalBan.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+include_once(ROOTDIR."/include/database/class.ServerQueries.php");
+include_once(ROOTDIR."/include/database/class.BanQueries.php");
+include_once(ROOTDIR."/include/database/class.ReasonQueries.php");
+include_once(ROOTDIR."/include/database/class.DemoQueries.php");
+include_once(ROOTDIR."/include/database/class.UserQueries.php");
+include_once(ROOTDIR."/include/objects/class.Demo.php");
+
+// Page gets (for range and sorts and other things)
+$startRange = $_GET['sr']; // Start Range
+$sortBy = $_GET['sc']; // Column to sort by
+$sortDirection = $_GET['sd']; // Direction to sort by
+$searchText = $_POST['searchText']; // Search text
+
+if(!isset($_POST['searchText'])) {
+  $searchText = $_GET['searchText'];
+}
+
+if(empty($startRange)) {
+  $startRange = 0;
+}
+if(empty($sortBy)) {
+  $sortBy = "add_date";
+}
+if(empty($sortDirection)) {
+  $sortDirection = "DESC";
+}
+
+// Initialize Objects
+$serverQueries = new ServerQueries();
+$reasonQueries = new ReasonQueries();
+$demoQueries = new DemoQueries();
+
+// Submit button was pushed
+if($_POST['submitDemo']) {
+  $filename = $_FILES['file']['name']; // Get the name of the file
+  $tempName = $_FILES['file']['tmp_name']; // Temp name of when it is uploaded
+  $fileType = $_FILES['userfile']['type'];
+
+  // We check for multiple page types as apache may be configured to support them
+  $filename = str_replace(".php", "", $filename);
+  $filename = str_replace(".jsp", "", $filename);
+  $filename = str_replace(".asp", "", $filename);
+  $extension = substr($filename, strlen($filename)-3, strlen($filename));
+  $allowedExtensions = array("dem", "zip", "rar");
+  if(in_array($extension, $allowedExtensions)) {
+      if(uploadFile($filename, $tempName, $config, $demoQueries)) {
+      $success = "success";
+    } else {
+      $success = "error";
+    }
+  } else {
+    $success = "ext not allowed";
+  }
+  
+}
+
+// Demo delete process
+if($banManager || $fullPower) {
+  // A ban manager or full power admin executed a demo delete
+  if($_GET['process'] == "delete") {
+    if($_GET['demoId'] != null || $_GET['demoId'] != "") {
+      $demoDeleted = $demoQueries->deleteDemo(ROOTDIR."/".$config->demoRootDir."/", $_GET['demoId']);
+    }
+  }
+}
+
+// Get the list of servers
+$serverList = $serverQueries->getServers();
+
+// List of Reasons
+$banReasons = $reasonQueries->getReasonList();
+
+// Get the total number of demos
+$demoCount = $demoQueries->getNumberOfDemos($searchText);
+
+// Get Demos
+$demoList = $demoQueries->getDemoList($startRange, $demoCount, $sortBy, $sortDirection, $searchText);
+
+$userQueries = new UserQueries();
+
+if($config->enableSmfIntegration) {
+  $username = $user_info['username'];
+} else {
+  $username = $_SESSION['name'];
+}
+
+$user = $userQueries->getUserInfo($username);
+?>
+
+<script type="text/javascript">
+function formVerify() {
+  var errorFound = false;
+
+  // Validate Steam ID
+  var regex = /^STEAM_[01]:[01]:\d{0,10}$/;
+  var steamId = document.getElementById("steamdId").value;
+  if(!steamId.match(regex)) {
+    document.getElementById("steamIdError").style.display = "";
+    errorFound = true;
+  } else {
+    document.getElementById("steamIdError").style.display = "none";
+  }
+  
+  var offenderName = document.getElementById("offenderName").value;
+  if(offenderName == "" || offenderName == null) {
+    errorFound = true;
+    document.getElementById("offenderNameError").style.display = "";
+  } else {
+    document.getElementById("offenderNameError").style.display = "none";
+  }
+  var file = document.getElementById("file").value;
+  if(file == "" || file == null) {
+    errorFound = true;
+    document.getElementById("fileError").style.display = "";
+  } else {
+    document.getElementById("fileError").style.display = "none";
+    // We have a file, now check the extension (can only be dem, zip, or rar)
+    var fileExt = file.substring(file.length-3, file.length);
+    fileExt = fileExt.toLowerCase();
+    if(fileExt != "dem" && fileExt != "zip" && fileExt != "rar") {
+      errorFound = true;
+      document.getElementById("fileExtError").style.display = "";
+    } else {
+      document.getElementById("fileExtError").style.display = "none";
+    }
+  }
+  
+  // We have an error, do not submit the form
+  if(errorFound) {
+    return false;
+  }
+
+  return true;
+}
+</script>
+<?php
+// Display a message if the upload was successful
+if($success == "success") {
+?>
+<h5><?=$filename?> successfully uploaded! <?=$fileType?></h5>
+<?php
+} // end success if
+else if($success == "error"){
+?>
+<h5>File upload ERROR!!  This may be due to a duplicate demo name.</h5>
+<?php
+} else if($success == "ext not allowed") {
+?>
+<h5>File upload ERROR!!  Only .dem, .zip, and .rar files allowed.</h5>
+<?php
+}// end success else
+
+if($demoDeleted != "" || $demoDelete != null) {
+?>
+<h5><?=$demoDeleted?> successfully deleted!</h5>
+<?php
+}
+?>
+<div class="tborder">
+  <div id="tableHead">
+    <div><b>Upload Demo</b</div>
+  </div>
+  <form action="index.php?page=demos" onsubmit="return formVerify();" method="POST" enctype="multipart/form-data">
+  <table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
+  <tr>
+    <td class="rowColor1" width="1%" nowrap>Steam ID:</td>
+    <td class="rowColor1"><input name="steamId" id="steamdId" type="text" value="" size="40"  maxLength="40"/> (must be in <b>STEAM_X:X:XXXXXX</b> format)
+    &nbsp;&nbsp;<font id="steamIdError" color='red' style="display:none;">Steam ID not in vaild format</font></td>
+  </tr>
+  <tr>
+    <td class="rowColor2" width="1%" nowrap>Offender:</td>
+    <td class="rowColor2"><input name="offenderName" id="offenderName" type="text" value="" size="40" maxLength="40"/>
+    &nbsp;&nbsp;<font id="offenderNameError" color='red' style="display:none;">Please enter the offender's name.</font></td>
+  </tr>
+  <tr>
+    <td class="rowColor1" width="1%" nowrap>Your Name:</td>
+    <td class="rowColor1"><input name="uploaderName" id="uploaderName" type="text" value="" size="40" maxLength="40"/> (not required)</td>
+  </tr>
+  <tr>
+    <td class="rowColor2" width="1%" nowrap>Your Steam ID:</td>
+    <td class="rowColor2"><input name="uploaderSteamId" id="uploaderSteamId" type="text" value="<?=$user->getSteamId()?>" size="40" maxLength="40"/> (not required)</td>
+  </tr>
+  <tr>
+    <td class="rowColor1" width="1%" nowrap>Server:</td>
+    <td class="rowColor1">
+      <select name="serverId">
+      <?php
+      if(count($serverList > 0)) {
+        foreach($serverList as $server) {
+          ?><option value="<?=$server->getId()?>"><?=$server->getName()?></option><?php
+        }
+      } else {
+      ?><option value="-1">No Servers</option><?php
+      }
+      ?>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td class="rowColor2" width="1%" nowrap>Reason:</td>
+    <td class="rowColor2">
+      <select name="reasonId">
+      <?php
+      if(count($banReasons > 0)) {
+        foreach($banReasons as $reason) {
+          ?><option value="<?=$reason->getId()?>"><?=$reason->getReason()?></option><?php
+        }
+      } else {
+      ?><option value="0">Breaking Server Rules</option><?php
+      }
+      ?>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td class="rowColor1" width="1%" nowrap>File:</td>
+    <td class="rowColor1">
+      <input type="hidden" name="MAX_FILE_SIZE" value="<?=($config->demoSizeLimit)*1000000?>" />
+      <input id="file" name="file" size="40" type="file" />
+      &nbsp;&nbsp;<font id="fileError" color='red' style="display:none;">Please select a file.</font>
+      <font id="fileExtError" color='red' style="display:none;">Incorrect file type.</font>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="rowColor2"><input type="submit" name="submitDemo" value="Submit Demo"> <b>This may take some time for a large file.</b></td>
+  </tr>
+  </table>
+  </form>
+</div>
+
+<h5>*NOTE: You may only upload .dem, .zip, or .rar files (<?=$config->demoSizeLimit?>MB max).  Your name/steam id is only used for history reasons (it will never be shown publicly).</h5>
+<br/>
+
+<?php
+if(count($demoList) > 0) {
+?>
+
+  <div id="search" align="right">
+    <form action="" method="post">
+    <input name="searchText" id="searchText" type="text" value="" size="40" maxLength="40"/>
+    <input type="submit" value="Search">
+    </form>
+  </div>
+  
+  <div class="tborder">
+    <div id="tableHead">
+      <div><b>Demo List showing demos <?=($startRange+1)?> to <?=$demoQueries->getEndRange()?> of <?=$demoCount?></b></div>
+      <div>
+        <?php pageLinks($config, $startRange, $demoCount, $sortDirection, $sortBy); ?>
+      </div>
+    </div>
+
+    <div>
+    <table id="demosTable" class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
+
+    <tr>
+      <th class="colColor1" width="1%" nowrap>
+        <a href="index.php?page=demos&sc=d.steam_id&sd=ASC&sr=<?=$startRange?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
+        Steam ID
+        <a href="index.php?page=demos&sc=d.steam_id&sd=DESC&sr=<?=$startRange?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a>
+      </th>
+      <th class="colColor2" width="1%" nowrap>
+        <a href="index.php?page=demos&sc=d.offender_name&sd=ASC&sr=<?=$startRange?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
+        Offender
+        <a href="index.php?page=demos&sc=d.offender_name&sd=DESC&sr=<?=$startRange?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a>
+      </th>
+      <th class="colColor1" width="1%" nowrap>
+        <a href="index.php?page=demos&sc=d.demo_name&sd=ASC&sr=<?=$startRange?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
+        Demo Name
+        <a href="index.php?page=demos&sc=d.demo_name&sd=DESC&sr=<?=$startRange?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a>
+      </th>
+      <th class="colColor2" width="1%" nowrap>
+        <a href="index.php?page=demos&sc=add_date&sd=ASC&sr=<?=$startRange?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
+        Add Date
+        <a href="index.php?page=demos&sc=add_date&sd=DESC&sr=<?=$startRange?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a>
+      </th>
+      <th class="colColor1">
+        <a href="index.php?page=demos&sc=d.reason_id&sd=ASC&sr=<?=$startRange?>"><img src="images/arrow_up.png"/></a>
+        Demo Reason
+        <a href="index.php?page=demos&sc=d.reason_id&sd=DESC&sr=<?=$startRange?>"><img src="images/arrow_down.png"/></a>
+      </th>
+      <th class="colColor2">
+        <a href="index.php?page=demos&sc=d.server_id&sd=ASC&sr=<?=$startRange?>"><img src="images/arrow_up.png"/></a>
+        Server of Demo
+        <a href="index.php?page=demos&sc=d.server_id&sd=DESC&sr=<?=$startRange?>"><img src="images/arrow_down.png"/></a>
+      </th>
+      <th class="colColor1" width="1%" nowrap>
+        <a href="index.php?page=demos&sc=banned&sd=ASC&sr=<?=$startRange?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
+        Banned
+        <a href="index.php?page=demos&sc=banned&sd=DESC&sr=<?=$startRange?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a>
+      </th>
+      <?php
+      if($banManager || $fullPower) {
+        ?><th class="colColor1" width="1%" nowrap>Add</th>
+        <th class="colColor2" width="1%" nowrap>Delete</th><?php
+      }
+      ?>
+    </tr>
+    <?php
+    // Loop through banned users and display them
+    foreach($demoList as $demo) {
+      ?>
+      <tr>
+        <td class="colColor1" nowrap><?=$demo->getSteamId()?></td>
+        <td class="colColor2" nowrap><?=$demo->getOffenderName()?></td>
+        <td class="colColor1" nowrap><a href="<?=$config->demoRootDir."/".$demo->getDemoName()?>"><?=$demo->getDemoName()?></a></td>
+        <td class="colColor2" nowrap><?=$demo->getAddDate()?></td>
+        <td class="colColor1"><?=$demo->getReason()?></td>
+        <td class="colColor2"><?=$demo->getServer()?></td>
+        <td id="banned:<?=$demo->getDemoId()?>" class="colColor1" width="1%" nowrap>
+        <?php
+          // Non ban managers can only look
+          if($demo->isBanned()) {
+            ?><img src="images/tick.png"/><?php
+          } else {
+            ?><img src="images/cross.png"/><?php
+          }
+          // Add to banlist and Delete demo column
+          if($banManager || $fullPower) {
+            if(!$demo->isBanned()) { ?>
+            <td class="colColor1"><a href="index.php?page=addBan&steamId=<?=$demo->getSteamId()?>&bannedName=<?=$demo->getOffenderName()?>&reasonId=<?=$demo->getReasonId()?>&serverId=<?=$demo->getServerId()?>" style="cursor:pointer;" onmouseover="Tip('Click to ban the user', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('demosTable'));">
+            <img src="images/database_add.png"/></td>
+            <?php } else { ?>
+            <td class="colColor1"></td>
+            <?php } ?>
+            <td class="colColor2"><a href="index.php?page=demos&process=delete&demoId=<?=$demo->getDemoId()?>" style="cursor:pointer;" onmouseover="Tip('Click to delete this demo', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('demosTable'));">
+            <img src="images/trash-full.png"/></a></td>
+            <?php
+          }
+        ?>
+        </td>
+      </tr>
+      <?php
+    } // End for loop
+
+    ?>
+    </table>
+    </div>
+
+    <div id="tableBottom">
+      <div>
+        <?php pageLinks($config, $startRange, $demoCount, $sortDirection, $sortBy); ?>
+      </div>
+    </div>
+  </div>
+  
+<?php
+} // End demolist count if
+?>
+
+</body>
+</html>
+<?php
+function uploadFile($filename, $tempName, $config, $demoQueries) {
+
+  $steamId = $_POST['steamId'];
+  $offenderName = $_POST['offenderName'];
+  $uploaderName = $_POST['uploaderName'];
+  $uploaderSteamId = $_POST['uploaderSteamId'];
+  $reasonId = $_POST['reasonId'];
+  $serverId = $_POST['serverId'];
+
+  $i=1;
+  $start = strlen($filename)-4;
+  $end = strlen($filename)-1;
+  $demoName = substr($filename, 0, $start); // Get the file name minus extension
+  $ext = substr($filename, $start, $end); // Get the file extension
+  
+  // Append a number to the end of the demo name to make it unique
+  while($demoQueries->doesDemoNameExist($filename)) {
+    $filename = $demoName.$i.$ext;
+    $i++;
+  }
+  // Check to see if the demo name exists in the database
+  // TODO: If it exists... create a new demo name...
+  if(!$demoQueries->doesDemoNameExist($filename)) {
+
+    // Upload and add to db
+    if(move_uploaded_file($tempName, ROOTDIR."/".$config->demoRootDir."/".$filename."")){
+      $demoQueries->addDemo($steamId, $filename, $offenderName, $uploaderName, $uploaderSteamId, $reasonId, $serverId);
+
+      /*
+      // FUTURE IMPLEMENTATION
+      // Allow uploaders to ban assuming they have enough "credit"
+      if($config->numDemosToBan > 0) {
+        // First find out how many bans there are because of demos submitted by the user
+        
+        // If it is equal to or greater than numDemosToBan, add the ban right away
+        
+        // Send an email if a ban was added
+        if($config->sendEmails) {
+          // Email
+          $subject = "Ban Added from demo upload by ".$uploaderName;
+
+          $body = "<html><body>";
+          $body .= "The following ban has been added by ";
+          if($member) {
+            $body .= "a Member and MUST be reviewed.";
+          } else {
+            $body .= "an Admin.";
+          }
+          $body .= "\n\n";
+
+          // Use this to build the URL link (replace processWebBanUpdate with updateBan)
+          $url = "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+          str_replace("processWebBanUpdate", "updateBan", "$url");
+
+          $body .= "\n\n";
+          $body .= "Click on the following link to review the newly added ban: <a href='".$url."&banId=".$banId."'>New Ban</a>";
+          $body .= "<p>".$nameOfBanned." (".$steamId.") was banned from all servers.</p>";
+          $body .= "</body></html>";
+
+          $banManagerEmails = $config->banManagerEmails;
+          for($i=0; $i<count($banManagerEmails); $i++) {
+
+            // To send HTML mail, the Content-type header must be set
+            $headers  = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type: text/html; charset=utf-8" . "\r\n";
+            // Additional headers
+            $headers .= "From: ".$config->siteName." Ban Management <".$config->emailFromHeader.">" . "\r\n";
+
+            // Send an email message to those that wish to recieve a notice of a newly added ban
+            mail($banManagerEmails[$i], $subject, $body, $headers);
+        }
+      }
+      */
+      if($config->sendDemoEmails) {
+        // Email
+        $subject = "New Demo Uploaded";
+
+        $body = "<html><body>";
+
+        // Use this to build the URL link
+        $url = "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+
+        $body .= "Click on the following link to review the newly added demo of <a href='".$url."&searchText=".$steamId."'>".$offenderName." (".$steamId.")</a>";
+        $body .= "</body></html>";
+
+        $banManagerEmails = $config->banManagerEmails;
+        for($i=0; $i<count($banManagerEmails); $i++) {
+
+          // To send HTML mail, the Content-type header must be set
+          $headers  = "MIME-Version: 1.0" . "\r\n";
+          $headers .= "Content-type: text/html; charset=utf-8" . "\r\n";
+          // Additional headers
+          $headers .= "From: ".$config->siteName." Ban Management <".$config->emailFromHeader.">" . "\r\n";
+
+          // Send an email message to those that wish to recieve a notice of a newly added ban
+          mail($banManagerEmails[$i], $subject, $body, $headers);
+      }
+      return true;
+      } else {
+        return false;
+      }
+    }
+  }
+  return false;
+}
+
+function pageLinks($config, $startRange, $banCount, $sortDirection, $sortBy) {
+  if($config->bansPerPage > 0) {
+
+    $y=0;
+    $page = 1; // Starting page
+    $currentPage = ($startRange/$config->bansPerPage)+1; // Page we are currently on
+
+    // Show previous button
+    if($currentPage != 1) {
+    ?><a href="index.php?page=demos&sr=<?=($startRange-$config->bansPerPage)?>&sd=<?=$sortDirection?>&sc=<?=$sortBy?>">&lt;&lt;Previous</a> <?php
+    }
+
+    // Show Middle Links
+    $eitherside = (($config->maxPageLinks+1) * $config->bansPerPage);
+    if($startRange+1 > $eitherside) {
+      // Show first page
+      if($currentPage == $page) {
+        ?><a href="index.php?page=demos&sr=<?=$y?>&sd=<?=$sortDirection?>&sc=<?=$sortBy?>"><b>[<?=$page?>]</b></a> <?php
+      } else {
+        ?><a href="index.php?page=demos&sr=<?=$y?>&sd=<?=$sortDirection?>&sc=<?=$sortBy?>"><?=$page?></a> <?php
+      }
+      ?> ... <?php
+    }
+
+    while($y<$banCount) {
+      if(($y > ($startRange - $eitherside)) && ($y < ($startRange + $eitherside))) {
+        if($currentPage == $page) {
+          ?><a href="index.php?page=demos&sr=<?=$y?>&sd=<?=$sortDirection?>&sc=<?=$sortBy?>"><b>[<?=$page?>]</b></a> <?php
+        } else {
+          ?><a href="index.php?page=demos&sr=<?=$y?>&sd=<?=$sortDirection?>&sc=<?=$sortBy?>"><?=$page?></a> <?php
+        }
+      }
+      $page++;
+      $y+=$config->bansPerPage;
+      $lastPage = $y;
+    }
+    if(($startRange+$eitherside)<$banCount) {
+      ?> ... <?php
+
+      // Undo last iteration for showing last page
+      $page--;
+      $y-=$config->bansPerPage;
+
+      // Show last page
+      if($y == $lastPage && ($startRange+$eitherside)<$banCount) {
+        ?><a href="index.php?page=demos&sr=<?=$y?>&sd=<?=$sortDirection?>&sc=<?=$sortBy?>"><b>[<?=$page?>]</b></a> <?php
+      } else {
+        ?><a href="index.php?page=demos&sr=<?=$y?>&sd=<?=$sortDirection?>&sc=<?=$sortBy?>"><?=$page?></a> <?php
+      }
+    }
+
+    // Show next button
+    if(($page-1 > ($startRange/$config->bansPerPage)+1 || $currentPage == 1) && $banCount > $config->bansPerPage) {
+    ?><a href="index.php?page=demos&sr=<?=($startRange+$config->bansPerPage)?>&sd=<?=$sortDirection?>&sc=<?=$sortBy?>"> Next&gt;&gt;</a> <?php
+    }
+  }
+}
+?>
