@@ -160,10 +160,10 @@ if(isset($_POST['submit'])) {
   }
   
   // ---------------------------------------------------------------------------
-  // UPGRADE FROM 3.4 TO ANY 3.5+ VERSION
+  // UPGRADE FROM 3.4 TO ANY Odonel.1 VERSION
   // ---------------------------------------------------------------------------
-  if($upgradeVersion == "34to35") {
-    // Do nothing
+  if($upgradeVersion == "34toOdonel.1") {
+    $installAndUpgrade->upgradeThreePointFourToOdonelPointOne();
   }
   
   $complete = true;
@@ -198,7 +198,7 @@ if(!$complete) {
                   <option value="32to33">3.2 to 3.3</option>
                   <option value="32to34">3.2 to 3.4</option>
                   <option value="33to34">3.3 to 3.4</option>
-                  <option value="34to35" selected>3.4 to 3.5</option>
+                  <option value="34toOdonel.1" selected>3.4 to Odonel.1</option>
                 </select>
   <input type="submit" name="submit" value="Upgrade!">
 </form>

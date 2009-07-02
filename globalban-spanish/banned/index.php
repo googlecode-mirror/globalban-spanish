@@ -23,6 +23,7 @@ define("ROOTDIR", dirname(__FILE__)); // Global Constant of root directory
 
 // ############################# INCLUDES #####################################
 require_once(ROOTDIR."/config/class.Config.php");
+require_once(ROOTDIR."/config/class.ConfigOdonel.php");
 require_once(ROOTDIR."/include/database/class.Database.php");
 require_once(ROOTDIR."/include/php4functions.php");
 // ############################################################################
@@ -30,8 +31,9 @@ require_once(ROOTDIR."/include/php4functions.php");
 // ############################### INIT #######################################
 $db = new Database(); // Just about every page makes a database call
 $config = new Config(); // All configuration variables are contained in this object
+$configOdonel = new ConfigOdonel(); // All configuration variables are contained in this object
 $version = "v3.4.1";
-$copyright = "Developed by <a href='mailto:soynuts@unbuinc.net'>Soynuts</a> of <a href='http://unbuinc.net'>UNBU Inc.</a> &copy;2007-2008";
+$copyright = "Developed by <a href='mailto:soynuts@unbuinc.net'>Soynuts</a> of <a href='http://unbuinc.net'>UNBU Inc.</a> &copy;2007-2008 Translate/Edit Odonel";
 // ############################################################################
 
 // Page to access

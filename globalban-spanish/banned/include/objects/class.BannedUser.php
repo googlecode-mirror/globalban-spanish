@@ -49,7 +49,10 @@ class BannedUser {
 	var $demoCount;
 	var $comments;
 	var $offenses;
+    var $kickcounter;
 	
+
+
 	var $badNameQueries;
 	
 	// Default Constructor (PHP 5)
@@ -165,7 +168,10 @@ class BannedUser {
   function getOffenses() {
     return $this->offenses;
   }
-	
+
+  function getKickCounter() {
+    return $this->kickcounter;
+  }
 	/************************************************************************
 	Mutator Methods
 	************************************************************************/
@@ -255,6 +261,9 @@ class BannedUser {
   
   function setOffenses($offenses) {
     $this->offenses = $offenses;
+  }
+  function setKickCounter($kickcounter) {
+    $this->kickcounter = $kickcounter;
   }
 }
 ?>

@@ -27,6 +27,10 @@ require_once(ROOTDIR."/include/database/class.LengthQueries.php");
 require_once(ROOTDIR."/include/database/class.ServerQueries.php");
 require_once(ROOTDIR."/include/objects/class.Length.php");
 require_once(ROOTDIR."/include/objects/class.Server.php");
+require_once(ROOTDIR."/include/database/class.ReasonQueries.php");
+
+// Initialize Objects
+$reasonQueries = new ReasonQueries();
 
 // For getting from URL which is used by ES
 $hash = $_GET['hash']; // User is passed if given from ES (admin's Steam ID)
@@ -99,8 +103,21 @@ if($hash == $config->matchHash) {
       // Add perma ban
       $banId = $banQueries->addBan($steamId, $length->getLength(), $length->getTimeScale(), time(), $reason, $user->getName(), $pending, $nameOfBanned, $serverId, $ipOfBanned, $banner);
     }
+
+	$motivo = $reasonQueries->getReason($reason);
+
     // Now kick the user
-    kickUser($steamId, $serverId, $config->banMessage);
+    kickUser($steamId, $serverId, eregi_replace("time",$length->getReadable(),$config->banMessage),$nameOfBanned, $length->getReadable(), $motivo);
+
+    if($configOdonel->enableAutoPoste107Forum) {
+
+      // Use this to build the URL link (replace processServerBan with updateBan)
+      $url = "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+      $url = str_replace("processServerBan", "banlist", $url);
+
+      $postId = NewPostForum_e107(addslashes($nameOfBanned)." - ".addslashes($steamId),"[b]Admin:[/b] [color=#009900]".addslashes($username)."[/color]\r\n\r\n[b]Nick Baneado: [/b][color=#990000][link=".$url."&searchText=".addslashes($steamId)."]".addslashes($nameOfBanned)." - ".addslashes($steamId)."[/link][/color]\r\n\r\n[b]Motivo:[/b] ".$motivo."\r\n\r\n[b]Periodo:[/b] ".$length->getReadable(), time());
+      UpdateBanWebpage ($postId , $banId, $configOdonel);
+	}
   }
   
   // Make sure $banId is valid and that the user wants emails sent
@@ -117,14 +134,17 @@ if($hash == $config->matchHash) {
     }
     $body .= "\n\n";
     
-    // Use this to build the URL link (replace processWebBanUpdate with updateBan)
+    // Use this to build the URL link (replace processServerBan with updateBan)
     $url = "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-    str_replace("processWebBanUpdate", "updateBan", "$url");
+    $url = str_replace("processServerBan", "updateBan", $url);
     
-    $body .= "\n\n";
-    $body .= "Click on the following link to review the newly added ban: <a href='".$url."&banId=".$banId."'>New Ban</a>";
-    $body .= "<p>".$nameOfBanned." (".$steamId.") was banned from all servers.</p>";
-    $body .= "</body></html>";
+      $body .= "\n\n";
+      $body .= "Haga click en el siguiente link para ver el ban: <a href='".$url."&banId=".$banId."'>Nuevo Ban</a>";
+      $body .= "<p>".$bannedName." (".$steamId.") ha sido baneado de todos los servidores.</p>";  
+	  if($configOdonel->enableAutoPoste107Forum) {
+	    $body .= "<p>Post en el Foro: <a href='".$configOdonel->e107Url."e107_plugins/forum/forum_viewtopic.php?".$postId."'>Link</a></p>";
+      }
+      $body .= "</body></html>";
       
     $banManagerEmails = $config->banManagerEmails;
     for($i=0; $i<count($banManagerEmails); $i++) {
@@ -142,7 +162,7 @@ if($hash == $config->matchHash) {
 }
 
 // Kick the user from the specified server
-function kickUser($steamId, $serverId, $message) {
+function kickUser($steamId, $serverId, $message, $nameOfBanned, $periodo, $motivo) {
   // Leave this in to be compatible with the alternate thread version
   $kick = "kickid";
   $command = $kick." \"".$steamId."\" ".$message;
@@ -157,6 +177,37 @@ function kickUser($steamId, $serverId, $message) {
   if($r->isValid()) {
     $r->Auth();
     $r->kickUser($steamId, $message);
+    $r->sendRconCommand("banid 5 "."\"".$steamId."\" ");
+	$r->sendRconCommand("es_msg #multi #green Baneados: #lightgreen ".$nameOfBanned." #green ha sido baneado #lightgreen ".$periodo." #green por #lightgreen ".$motivo." con la #lightgreen ".$steamId." #green !!!");
   }
+}
+
+function NewPostForum_e107($TituloPost, $AsuntoPost, $now) {
+
+	// Connecting, selecting database
+	$link = mysql_connect($configOdonel->e107_dbHostName, $configOdonel->e107_dbUserName, $configOdonel->e107_dbPassword)
+	    or die('No se pudo conectar a la BD_e107: ' . mysql_error());
+	echo 'Connected successfully';
+	mysql_select_db($configOdonel->e107_dbName) or die('Could not select database');
+	
+	// Performing SQL query
+	$query = "INSERT INTO `".$configOdonel->e107TablePrefix."forum_t` (`thread_id`, `thread_name`, `thread_thread`, `thread_forum_id`, `thread_datestamp`, `thread_parent`, `thread_user`, `thread_views`, `thread_active`, `thread_lastpost`, `thread_s`, `thread_edit_datestamp`, `thread_lastuser`, `thread_total_replies`) ";
+	$query .= "VALUES (NULL, '".$TituloPost."', '".$AsuntoPost."', '".$configOdonel->e107_bans_forum_category_number."', '".$now."', '0', '".$configOdonel->e107_GlobalBan_user."', '0', '1', '".$now."', '0', '0', '', '0')";
+	
+	mysql_query($query) or die('Query failed: ' . mysql_error());
+	
+	$insertId = mysql_insert_id();
+    
+	// Closing connection
+	mysql_close($link);    
+    
+	return $insertId;
+}
+
+function UpdateBanWebpage ($postId , $banId, $configOdonel){
+	
+	$banQueries = new BanQueries();
+    $banQueries->updateBanWebpage ($configOdonel->e107Url."e107_plugins/forum/forum_viewtopic.php?".$postId , $banId);
+
 }
 ?>

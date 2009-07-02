@@ -54,30 +54,32 @@ if(count($users) < 1) {
 
 echo "\"clients.txt\"\n";
 echo "{\n";
-echo "  \"version\"	\"1\"\n";
+echo "    \"version\"	\"1\"\n";
 
-echo "  \"players\"\n";
-echo "  {\n";
+echo "    \"players\"\n";
+echo "    {\n";
 
+$i = 0;
 foreach($users as $user) {
   if($user->getActive() == 1) {
-    echo "    \"".$user->getName()."\"\n";
-    echo "    {\n";
-    echo "       \"name\"    \"".$user->getName()."\"\n";
-    echo "       \"steam\"   \"".$user->getSteamId()."\"\n";
-    echo "       \"groups\"\n";
-    echo "       {\n";
-    echo "        \"Admin\"   \"".$user->getAdminGroupName()."\"\n";
-    echo "        \"Immunity\"   \"".$user->getAdminGroupName()." Immune\"\n";
-    echo "       }\n";
-    echo "    }\n\n";
+	$i = $i + 1;
+    echo "        \"".$i.".- ".$user->getName()."\"\n";
+    echo "        {\n";
+    echo "            \"name\"    \"".$user->getName()."\"\n";
+    echo "            \"steam\"   \"".$user->getSteamId()."\"\n";
+    echo "            \"groups\"\n";
+    echo "            {\n";
+    echo "                \"Admin\"   \"".$user->getAdminGroupName()."\"\n";
+    echo "                \"Immunity\"   \"".$user->getAdminGroupName()." Immune\"\n";
+    echo "            }\n";
+    echo "        }\n\n";
   }
 }
-echo "  }\n";
+echo "    }\n";
   
-echo "  \"groups\"\n";
-echo "  {\n";
-echo "    \"Admin\"\n";
+echo "    \"groups\"\n";
+echo "    {\n";
+echo "        \"Admin\"\n";
 echo "    {\n";
 
 foreach($adminGroups as $adminGroup) {
@@ -90,7 +92,7 @@ echo "    \"Immunity\"\n";
 echo "    {\n";
 
 foreach($immunityGroups as $immunityGroup) {
-  echo "      \"".$immunityGroup->getName()." Immune\"   \"".$immunityGroup->getFlags()."\"\n";
+  echo "        \"".$immunityGroup->getName()." Immune\"   \"".$immunityGroup->getFlags()."\"\n";
 }
 echo "    }\n";
 echo "  }\n\n";

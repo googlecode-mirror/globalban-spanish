@@ -198,6 +198,7 @@ class InstallAndUpgradeQueries {
               `length` int(10) NOT NULL default '0',
               `time_scale` VARCHAR( 12 ) NOT NULL DEFAULT 'hours',
               `add_date` datetime NOT NULL,
+              `kick_counter` int(10) NOT NULL default '0',
               `expire_date` datetime NOT NULL,
               `reason_id` int(10) NOT NULL default '1',
               `banner` varchar(255) NOT NULL,
@@ -271,6 +272,7 @@ class InstallAndUpgradeQueries {
               `length` int(10) NOT NULL default '0',
               `time_scale` VARCHAR( 12 ) NOT NULL DEFAULT 'hours',
               `add_date` datetime NOT NULL,
+              `kick_counter` int(10) NOT NULL default '0',
               `expire_date` datetime NOT NULL,
               `reason_id` int(10) NOT NULL default '1',
               `banner` varchar(255) NOT NULL,
@@ -604,6 +606,7 @@ class InstallAndUpgradeQueries {
   }
 
   function upgradeThreePointThreeToThreePointFour() {
+
     $sql = "CREATE TABLE `gban_bad_names` (
               `bad_name_id` int(10) NOT NULL auto_increment,
               `bad_name` varchar(45) NOT NULL,
@@ -856,6 +859,12 @@ class InstallAndUpgradeQueries {
       $sql = "ALTER TABLE `gban_server_group` ADD `sm_immunity` INT( 3 ) NOT NULL DEFAULT '0';";
       
       $this->sql_query($sql);
+  }
+  function upgradeThreePointFourToOdonelPointOne() {
+
+    $sql = "ALTER TABLE `gban_ban` ADD `kick_counter` int(10) NOT NULL DEFAULT '0' AFTER `add_date` ;";
+
+    $this->sql_query($sql);
   }
 }
 ?>

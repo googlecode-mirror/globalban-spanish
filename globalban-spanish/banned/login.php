@@ -90,43 +90,47 @@ if($_GET['created'] == 1) {
   <form action="index.php?page=login" method="post" id="form">
   	<table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
   		<tr>
-  			<td class="rowColor1" width="1%" nowrap>Username:</td>
+  			<td class="rowColor1" width="1%" nowrap>Usuario:</td>
   			<td class="rowColor1" ><input type="text" name="username" /></td>
   		</tr>
   		<tr>
-  			<td class="rowColor2" width="1%" nowrap>Password:</td>
+  			<td class="rowColor2" width="1%" nowrap>Contrase&ntilde;a:</td>
   			<td class="rowColor2"><input type="password" name="lpassword" /></td>
   		</tr>
   		<tr>
-  			<td colspan="2" align="left" class="rowColor1">Remember Me <input type="checkbox" name="remember" value="1" />
+  			<td colspan="2" align="left" class="rowColor1">Recordar sesion
+  			  <input type="checkbox" name="remember" value="1" />
         <?php
   				if($error) {
   			?>
-  			<span class="error">Incorrect username/password entered.</span>
+  			<span class="error">El usuario o la contrase&ntilde;a introducida son incorrectos.</span>
   			<?php
   				}
   			?>
         </td>
   		</tr>
   		<tr>			
-  			<td align="left" colspan="2" class="rowColor2">
-  				<input type="reset" value="Reset Form" class="button" />&nbsp;
-  				<input type="submit" name="login" value="Submit" class="button" /></td>
+		  <td align="left" colspan="2" class="rowColor2">
+		  <input type="submit" name="login" value="Login" class="button" /></td>
   		</tr>
   	</table>
   </form>
 </div>
 
-<p>New User? <a href="index.php?page=newuser">Click Here</a></p>
-<p>Forgot password?
+<p><a href="index.php?page=newuser">Para Registrarse como nuevo admin, pulsa aqui</a></p>
+<p>Si has olvidado tu contrase&ntilde;a, introduce tu email y se te mandara unna nueva?
 <form action="index.php?page=login" method="post"> Email:<input type="text" name="email" size="60" maxlength="80"/>
-<input type="submit" name="forgotPassword" value="Send new password" class="button">
+<input type="submit" name="forgotPassword" value="Enviar nueva contraseña" class="button">
 </form>
 <?php
 if(!$emailError && isset($_POST['forgotPassword'])) {
-?><p class="error">New password sent to email address entered.</p><?php
+?>
+<p class="error">Se te ha enviado un email con tu nueva contrase&ntilde;a.</p>
+<?php
 } else if($emailError && isset($_POST['forgotPassword'])) {
-?><p class="error">Bad email address entered.</p><?php
+?>
+<p class="error">No hay ningun administrador registrado con ese email que has introducido, revisa si era correcto.</p>
+<?php
 }
 ?>
 </p>

@@ -22,13 +22,16 @@
 include_once(ROOTDIR."/include/database/class.BanQueries.php");
 include_once(ROOTDIR."/include/database/class.LengthQueries.php");
 require_once(ROOTDIR."/include/objects/class.Length.php");
+include_once(ROOTDIR."/include/database/class.UserQueries.php");
 
 $banId = $_POST['banId'];
 $bannedUser = $_POST['bannedUser'];
 $lengthId = $_POST['length']; // Length ID
+$admin = $_POST['admin']; // Admin Name
 $reason = $_POST['reason']; // Reason id number
 $serverId = $_POST['serverId']; // Server ID of ban
 $comments = $_POST['comments']; // comments
+$bannedPost = $_POST['bannedPost']; // comments
 
 // Make sure the user is an UNBU member, admin, or ban manager
 if($member || $admin || $banManager || $fullPower) {
@@ -59,6 +62,10 @@ if($allowedToBan) {
     } else {
       $pending = 0;
     }
+
+	$userQueries = new UserQueries();
+
+	$user = $userQueries->getUserInfo($admin);
     
     // Get add date of ban
     $addDate = $banQueries->getBanAddDate($banId);
@@ -67,13 +74,21 @@ if($allowedToBan) {
     $newExpireDate = $addDate + $lengthInSec;
 
     // Update ban
-    $banQueries->updateWebBanWithLength($length->getLength(), $length->getTimeScale(), $newExpireDate, $reason, $pending, $user, $serverId, $bannedUser, $banId, $comments);
+    $banQueries->updateWebBanWithLength($length->getLength(), $length->getTimeScale(), $newExpireDate, $reason, $pending, $admin, $username, $serverId, $bannedUser,$user->getSteamId(), $banId, $comments, $bannedPost);
     
     // Email
     $subject = "Ban Updated for ".$bannedUser;
 
     $body = "<html><body>";
-    $body .= "The following ban has been updated by " . $username;
+    $body .= "The following ban has been updated by ";
+    if($member) {
+      $body .= "a Member:";
+    } else if($admin) {
+      $body .= "an Admin:";
+    } else if($banManager || $fullPower) {
+      $body .= "a Ban Manager:";
+    }
+	 $body .= " ".$username;
 
     // Use this to build the URL link (replace processWebBanUpdate with updateBan)
     $url = "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];

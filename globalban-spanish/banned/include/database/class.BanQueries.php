@@ -25,6 +25,8 @@
 
 require_once(ROOTDIR."/include/database/class.Database.php");
 require_once(ROOTDIR."/include/objects/class.BannedUser.php");
+require_once(ROOTDIR."/include/objects/class.ReasonStats.php");
+require_once(ROOTDIR."/include/objects/class.AdminStats.php");
 require_once(ROOTDIR."/include/objects/class.Ip.php");
 require_once(ROOTDIR."/config/class.Config.php");
 
@@ -220,7 +222,7 @@ class BanQueries extends Config {
 	THIS SHOULD ONLY BE USED BY THE ARCHIVEBAN METHOD
 	************************************************************************/
   function deleteBan($steamId) {
-    $sql = "DELETE FROM gban_ban WHERE steam_id = '".$steamId."'"; 
+    $sql = "DELETE FROM gban_ban WHERE steam_id = '".addslashes($steamId)."'"; 
     
     $this->db->sql_query($sql);
   }
@@ -243,46 +245,224 @@ class BanQueries extends Config {
 	viewing the ban list.  Average users will only see the active and non-pending
 	ban totals, while admins will see the real total.
 	************************************************************************/
-  function getNumberOfBans($member, $admin, $banManager, $fullPower, $searchText) {
+  function getNumberOfBans($member, $admin, $banManager, $fullPower, $searchText, $bansFilter, $bansReason_id, $bansAdmin) {
     $banCount = 0;
     
     $searchText = trim($searchText); // Remove whitespace from search text
     $searchText = addslashes($searchText); // Prevent SQL Injection
     $searchJoin = "";
-    if($searchText != null && $searchText != "") {
-      if($member || $admin || $banManager || $fullPower) {
-        $searchJoin = " WHERE (steam_id LIKE '%".$searchText."%' OR name LIKE '%".$searchText."%') ";
-      } else {
-        $searchJoin = " AND (steam_id LIKE '%".$searchText."%' OR name LIKE '%".$searchText."%') ";
-      }
-    }
     
+	if($searchText != null && $searchText != "") {  
+      $searchJoin .= " (steam_id LIKE '%".$searchText."%' OR name LIKE '%".$searchText."%') ";
+	}    
+    if($bansFilter != null && $bansFilter != ""){
+	  if($searchJoin != ""){
+		$searchJoin .= " AND ";
+	  }	
+	  switch ($bansFilter) {
+	    case 1:
+	  		$searchJoin .= " (length = '0') ";  // Permanentes
+	        break;
+	    case 2:
+	  		$searchJoin .= " (length <> '0' AND expire_date > NOW()) ";  // Temporales Cumpliendose
+	        break;
+	    case 3:
+	  		$searchJoin .= " (length <> '0' AND expire_date < NOW()) ";  // Temporales Cumplidos
+	        break;
+		case 4:
+			$searchJoin .= " (length = '0' OR expire_date > NOW()) ";	// Permanentes + Temp. Cumpliendose = Vigentes
+	        break;
+	  }
+	}
+
+	if ($bansReason_id != null && $bansReason_id != "") {
+   	  if($searchJoin != ""){
+		$searchJoin .= " AND ";
+	  }
+      $searchJoin .= " reason_id = '".$bansReason_id."' ";
+	} 
+	if ($bansAdmin != null && $bansAdmin != "") {
+      if($bansAdmin == "Desconocido"){
+		$bansAdmin = "";
+	  }
+   	  if($searchJoin != ""){
+		$searchJoin .= " AND ";
+	  }
+	  $searchJoin .= " banner = '".$bansAdmin."' ";
+	}
+
     if($member || $admin || $banManager || $fullPower) {
-      $banCountQuery = "SELECT count(*) as count FROM gban_ban".$searchJoin;
-      $this->db->sql_query($banCountQuery);
-      $banCount = $this->db->get_row();
-      $banCount = $banCount['count'];
+      if($searchJoin != ""){
+        $banCountQuery = "SELECT count(*) as count FROM gban_ban WHERE ".$searchJoin;
+      } else {
+	    $banCountQuery = "SELECT count(*) as count FROM gban_ban";
+	  }
     } else {
-      $banCountQuery = "SELECT count(*) as count FROM gban_ban
-                        WHERE active = 1 AND pending = 0 ".$searchJoin;
-      $this->db->sql_query($banCountQuery);
-      $banCount = $this->db->get_row();
-      $banCount = $banCount['count'];
+	  if($searchJoin != ""){
+        $banCountQuery = "SELECT count(*) as count FROM gban_ban
+                          WHERE active = 1 AND pending = 0 AND ".$searchJoin;
+      } else {
+	    $banCountQuery = "SELECT count(*) as count FROM gban_ban
+                          WHERE active = 1 AND pending = 0 ";
+	  }
     }
+    $this->db->sql_query($banCountQuery);
+    $banCount = $this->db->get_row();
+    $banCount = $banCount['count'];
     return $banCount;
   }
   
+   /************************************************************************
+	Returns the numbers of bans to each reason in the database.
+	************************************************************************/
+
+  function getReasonStats($reasonSortBy, $reasonSortDirection, $reasonSearchText) {
+	$sql = "SELECT
+				r.reason AS Motivo,
+				r.reason_id AS Motivo_id,
+				Count(b.steam_id) AS NumBaneados,
+				Count(eb.ban_id) AS NumCumplidos,
+				Count(vb.ban_id) AS NumCumpliendose,
+				Count(pb.steam_id) AS NumPermanentes
+			FROM
+				gban_ban AS b
+				Left Join gban_reason AS r ON b.reason_id = r.reason_id
+				Left Join gban_ban AS eb ON b.ban_id = eb.ban_id AND (b.expire_date < NOW()) AND b.`length` <> '0' 
+				Left Join gban_ban AS vb ON b.ban_id = vb.ban_id AND (b.expire_date > NOW()) AND b.`length` <> '0'
+				Left Join gban_ban AS pb ON b.ban_id = pb.ban_id AND b.time_scale = 'minutes' AND b.`length` = 0
+
+			WHERE
+				b.active =  '1'
+			  AND
+				b.pending = '0'
+
+			GROUP BY
+				b.reason_id
+
+			ORDER BY ";
+	$sql .=	    "".$reasonSortBy." ".$reasonSortDirection.",NumCumpliendose DESC, NumCumplidos DESC";
+
+	$this->db->sql_query($sql);
+
+    $reasonStatsArray = $this->db->get_array();
+    
+    $reasonStats = array();
+    
+    for($i=0; $i<count($reasonStatsArray); $i++) {
+      $reasonStat = new ReasonStats();
+    
+      $reasonStat->setMotivo($reasonStatsArray[$i]['Motivo']);
+      $reasonStat->setMotivo_id($reasonStatsArray[$i]['Motivo_id']);
+      $reasonStat->setNumBaneados(stripslashes($reasonStatsArray[$i]['NumBaneados']));
+      $reasonStat->setNumCumplidos($reasonStatsArray[$i]['NumCumplidos']);
+      $reasonStat->setNumCumpliendose($reasonStatsArray[$i]['NumCumpliendose']);
+      $reasonStat->setNumPermanentes($reasonStatsArray[$i]['NumPermanentes']);
+
+      array_push($reasonStats, $reasonStat); // Add the reason stats object to the array
+    }
+        
+    return $reasonStats;
+  }
+
+
+   /************************************************************************
+	Returns the numbers of bans to each admin in the database.
+	************************************************************************/
+
+  function getAminStats($adminSortBy, $adminSortDirection, $adminSearchText) {
+
+	$sql = "SELECT
+				b.banner AS Admin,
+				Count(b.ban_id) AS NumBaneados,
+				Count(eb.ban_id) AS NumCumplidos,
+				Count(vb.ban_id) AS NumCumpliendose,
+				Count(pb.steam_id) AS NumPermanentes
+			FROM
+				gban_ban AS b
+				Left Join gban_ban AS eb ON b.ban_id = eb.ban_id AND (b.expire_date < NOW()) AND b.`length` <> '0' 
+				Left Join gban_ban AS vb ON b.ban_id = vb.ban_id AND (b.expire_date > NOW()) AND b.`length` <> '0'
+				Left Join gban_ban AS pb ON b.ban_id = pb.ban_id AND b.time_scale = 'minutes' AND b.`length` = 0
+
+			WHERE
+				b.active =  '1'
+			  AND
+				b.pending = '0'
+
+			GROUP BY
+				b.banner
+
+			ORDER BY ";
+	$sql .=	    "".$adminSortBy." ".$adminSortDirection.",NumCumpliendose DESC, NumCumplidos DESC";
+
+	$this->db->sql_query($sql);
+
+    $adminStatsArray = $this->db->get_array();
+    
+    $adminStats = array();
+    
+    for($i=0; $i<count($adminStatsArray); $i++) {
+      $adminStat = new AdminStats();
+	  
+	  $admin = $adminStatsArray[$i]['Admin'];
+      if($admin == ""){
+		$admin = "Desconocido";
+	  }
+      $adminStat->setAdmin($admin);
+      $adminStat->setNumBaneados(stripslashes($adminStatsArray[$i]['NumBaneados']));
+      $adminStat->setNumCumplidos($adminStatsArray[$i]['NumCumplidos']);
+      $adminStat->setNumCumpliendose($adminStatsArray[$i]['NumCumpliendose']);
+      $adminStat->setNumPermanentes($adminStatsArray[$i]['NumPermanentes']);
+
+      array_push($adminStats, $adminStat); // Add the reason stats object to the array
+    }
+        
+    return $adminStats;
+  }
+
+
   /************************************************************************
 	Get the current list of bans to display on a page limited by the config
 	value BansPerPage.
 	************************************************************************/
-  function getBanList($member, $admin, $banManager, $fullPower, $startRange, $banCount, $sortBy, $sortDirection, $searchText) {
+  function getBanList($member, $admin, $banManager, $fullPower, $startRange, $banCount, $sortBy, $sortDirection, $searchText, $bansFilter, $bansReason_id, $bansAdmin) {
     $searchText = trim($searchText); // Remove whitespace from search text
     $searchJoin = "";
+	$bansWhereSql = "";
     $searchText = addslashes($searchText); // Prevent SQL Injection
     if($searchText != null && $searchText != "") {
       $searchJoin = " (b.steam_id LIKE '%".$searchText."%' OR b.name LIKE '%".$searchText."%') ";
     }
+	if($bansFilter != null && $bansFilter != ""){
+	  switch ($bansFilter) {
+	    case 1:
+	  		$bansWhereSql = " (b.length = '0') ";
+	        break;
+	    case 2:
+	  		$bansWhereSql = " (b.length <> '0' AND b.expire_date > NOW()) ";
+	        break;
+	    case 3:
+	  		$bansWhereSql = " (b.length <> '0' AND b.expire_date < NOW()) ";
+	        break;
+		case 4:
+			$bansWhereSql = " (b.length = '0' OR b.expire_date > NOW()) ";
+	        break;
+	  }
+	}
+	if ($bansReason_id != null && $bansReason_id != "") {
+		if(!empty($bansWhereSql)) {
+    	  $bansWhereSql .= " AND ";
+    	}
+		$bansWhereSql .= " b.reason_id = '".$bansReason_id."' ";
+	} 
+    if ($bansAdmin != null && $bansAdmin != "") {
+      if(!empty($bansWhereSql)) {
+    	  $bansWhereSql .= " AND ";
+    	}
+      if($bansAdmin == "Desconocido"){
+		$bansAdmin = "";
+	  }
+	  $bansWhereSql .= " b.banner = '".$bansAdmin."' ";
+	}
 
     // Prevent SQL injection
     $sortBy = addslashes($sortBy);
@@ -290,13 +470,13 @@ class BanQueries extends Config {
   
     // Use LEFT JOIN so that bad reasons or serverids still display on the ban list, but as empty values
     // Get list of all the banned (Clan members can see ALL bans, active or not)
-    $banList = "SELECT b.ban_id, b.steam_id, b.server_id, COALESCE(s.name, b.webpage) AS servername, b.length, b.time_scale, b.add_date,
+    $banList = "SELECT b.ban_id, b.steam_id, b.server_id, COALESCE(s.name, b.webpage) AS servername, b.webpage, b.length, b.time_scale, b.add_date, b.kick_counter, 
     case when b.expire_date < NOW() then
       'Expired'
     else
       b.expire_date
     end expire_date,
-    br.reason, COALESCE(b.banner_steam_id, 'N/A') as banner_steam_id, b.active, b.pending, b.name, b.comments, 
+    br.reason, b.banner, COALESCE(b.banner_steam_id, 'N/A') as banner_steam_id, b.active, b.pending, b.name, b.comments,
     (SELECT count(1) FROM gban_demo d WHERE d.steam_id = b.steam_id) as demo_count,
     (SELECT count(1) FROM gban_ban_history bh WHERE bh.steam_id = b.steam_id) AS offenses, ";
     if($this->enableSmfIntegration) {
@@ -322,17 +502,27 @@ class BanQueries extends Config {
       if(!empty($searchJoin)) {
         $banList .= " AND ".$searchJoin;
       }
-    } else {
-      if(!empty($searchJoin)) {
-        $banList .= " WHERE ".$searchJoin;
+	  if(!empty($bansWhereSql)) {
+        $banList .= " AND ".$bansWhereSql;
       }
+    } else {
+	  if(!empty($searchJoin)) {
+        $banList .= "WHERE ".$searchJoin;
+	  	if(!empty($bansWhereSql)) {
+          $banList .= " AND ".$bansWhereSql;
+		}
+      } else {
+		if (!empty($bansWhereSql)){
+		  $banList .= "WHERE ".$bansWhereSql;
+	    }
+	  }
     }
     
     $banList .= " ORDER BY $sortBy $sortDirection";
         
     if($this->bansPerPage > 0) {
-      $this->endRange = $this->bansPerPage;
-      $banList .= " LIMIT ".$startRange.", ".$this->endRange;
+      $banList .= " LIMIT ".$startRange.", ".$this->bansPerPage;
+      $this->endRange = $startRange + $this->bansPerPage;
     }
     
     $this->db->sql_query($banList);
@@ -348,7 +538,7 @@ class BanQueries extends Config {
       $bannedUser->setSteamId($bannedUsersArray[$i]['steam_id']); // Steam ID of banned
       $bannedUser->setLength($bannedUsersArray[$i]['length']);
       $bannedUser->setTimeScale($bannedUsersArray[$i]['time_scale']);
-      
+      $bannedUser->setBanner($bannedUsersArray[$i]['banner']); // Name of banner
       $bannedUser->setAddDate($bannedUsersArray[$i]['add_date']);
       $bannedUser->setExpireDate($bannedUsersArray[$i]['expire_date']);
       $bannedUser->setReason($bannedUsersArray[$i]['reason']);
@@ -356,7 +546,7 @@ class BanQueries extends Config {
       $bannedUser->setPending($bannedUsersArray[$i]['pending']);
       $bannedUser->setServerId($bannedUsersArray[$i]['server_id']);
       if($bannedUsersArray[$i]['servername'] == "") {
-        $bannedUser->setServer("Bad Server ID");
+        $bannedUser->setServer("ID de server no valida");
       } else {
         $bannedUser->setServer($bannedUsersArray[$i]['servername']);
       }
@@ -372,6 +562,8 @@ class BanQueries extends Config {
       $bannedUser->setDemoCount($bannedUsersArray[$i]['demo_count']);
       $bannedUser->setComments(stripslashes($bannedUsersArray[$i]['comments']));
       $bannedUser->setOffenses($bannedUsersArray[$i]['offenses']);
+	  $bannedUser->setWebpage(stripslashes($bannedUsersArray[$i]['webpage']));
+      $bannedUser->setKickCounter($bannedUsersArray[$i]['kick_counter']);
       
       array_push($bannedUsers, $bannedUser); // Add the banned user object to the array
     }
@@ -568,6 +760,23 @@ class BanQueries extends Config {
       return false;
     }
   }
+
+  /************************************************************************
+	Determine if the steam_id already exists in the banner database
+	************************************************************************/
+  function doesBanExist($steamId) {
+    // Check to see if the user does exist in the ban list
+    $query = "SELECT length, UNIX_TIMESTAMP(expire_date) as expire_date, name " . 
+             "FROM gban_ban " .
+             "WHERE steam_id = '" . $steamId . "'";
+    $this->db->sql_query($query);
+    
+    if($this->db->num_rows() > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   
   /************************************************************************
 	Get the information of a baned user based on id
@@ -575,7 +784,7 @@ class BanQueries extends Config {
   function getBannedUser($banId) {
     $bannedUser = new BannedUser();
 	
-    $bannedQuery = "SELECT ban_id, steam_id, ip, length, time_scale, reason_id, server_id, name, banner, banner_steam_id, modified_by, comments
+    $bannedQuery = "SELECT ban_id, steam_id, ip, length, time_scale, reason_id, server_id, name, banner, banner_steam_id, modified_by, webpage, comments
                     FROM gban_ban 
                     WHERE ban_id = '".$banId."' 
                     LIMIT 1";
@@ -593,6 +802,7 @@ class BanQueries extends Config {
     $bannedUser->setBanner(stripslashes($tempBannedUser['banner']));
     $bannedUser->setBannerSteamId($tempBannedUser['banner_steam_id']);
     $bannedUser->setModifiedBy(stripslashes($tempBannedUser['modified_by']));
+    $bannedUser->setWebpage(stripslashes($tempBannedUser['webpage']));
     $bannedUser->setComments(stripslashes($tempBannedUser['comments']));
     
     return $bannedUser;
@@ -606,7 +816,7 @@ class BanQueries extends Config {
     
     $steamId = trim($steamId);
 
-    $bannedQuery = "SELECT ban_id, steam_id, ip, length, time_scale, reason_id, server_id, name, banner, banner_steam_id, modified_by,
+    $bannedQuery = "SELECT ban_id, steam_id, ip, length, time_scale, reason_id, server_id, name, banner, banner_steam_id, modified_by, webpage,
                     UNIX_TIMESTAMP(expire_date) as expire_date, UNIX_TIMESTAMP(add_date) as add_date, pending, comments
                     FROM gban_ban
                     WHERE steam_id = '".$steamId."'
@@ -625,6 +835,7 @@ class BanQueries extends Config {
     $bannedUser->setBanner(stripslashes($tempBannedUser['banner']));
     $bannedUser->setBannerSteamId($tempBannedUser['banner_steam_id']);
     $bannedUser->setModifiedBy(stripslashes($tempBannedUser['modified_by']));
+    $bannedUser->setWebpage(stripslashes($tempBannedUser['webpage']));
     $bannedUser->setAddDate($tempBannedUser['add_date']);
     $bannedUser->setExpireDate($tempBannedUser['expire_date']);
     $bannedUser->setPending($tempBannedUser['pending']);
@@ -637,8 +848,14 @@ class BanQueries extends Config {
 	Get the ban history of a specific ban id
 	************************************************************************/
   function getBanHistory($banId) {
-    $query = "SELECT b.ban_id, h.steam_id, h.ip, h.name, h.server_id, COALESCE(s.name, h.webpage) AS servername, h.length,
-              h.time_scale, h.add_date, h.expire_date, h.modified_by,
+    $query = "SELECT b.ban_id, h.steam_id, h.ip, h.name, h.server_id, COALESCE(s.name, h.webpage) AS servername, h.webpage, h.length,
+              h.time_scale, h.add_date,
+			  case when h.expire_date < NOW() then
+      			'Expired'
+    		  else
+      			h.expire_date
+    		  end expire_date,
+			  h.modified_by,
               br.reason, h.banner, h.banner_steam_id, h.active, h.pending, h.name, h.comments
               FROM gban_ban b, gban_ban_history h
               LEFT JOIN gban_reason br ON h.reason_id = br.reason_id
@@ -673,6 +890,7 @@ class BanQueries extends Config {
       } else {
         $bannedUser->setServer($bannedUsersArray[$i]['servername']);
       }
+	  $bannedUser->setWebpage($bannedUsersArray[$i]['webpage']);
       $bannedUser->setBannerSteamId($bannedUsersArray[$i]['banner_steam_id']);
       $bannedUser->setDemoCount($bannedUsersArray[$i]['demo_count']);
       $bannedUser->setComments(stripslashes($bannedUsersArray[$i]['comments']));
@@ -701,7 +919,15 @@ class BanQueries extends Config {
     $addNameQuery = "UPDATE gban_ban SET ip = '".addslashes($ip)."' WHERE steam_id = '".$steamId."'";
     $this->db->sql_query($addNameQuery);
   }
-  
+
+  /************************************************************************
+	Update the kick counter of a banned user if he try to join server
+	************************************************************************/
+  function updateKickCounter($steamId) {
+    $addNameQuery = "UPDATE gban_ban SET kick_counter=kick_counter+1 WHERE steam_id = '".$steamId."'";
+    $this->db->sql_query($addNameQuery);
+  }
+
   /************************************************************************
 	Change the banned ip's active status from active to inactive or vise versa
 	************************************************************************/
@@ -723,6 +949,13 @@ class BanQueries extends Config {
   function updateBanPendingStatus($pending, $id) {
     $this->db->sql_query("UPDATE gban_ban SET pending = '".$pending."' WHERE ban_id = '".$id."'");
   }
+
+  /************************************************************************
+	Just update the Ban webpage
+	************************************************************************/
+  function updateBanWebpage($bannedPost, $id) {
+    $this->db->sql_query("UPDATE gban_ban SET webpage = '".$bannedPost."' WHERE ban_id = '".$id."'");
+  }
   
   /************************************************************************
 	Just update the banned user's information
@@ -739,9 +972,9 @@ class BanQueries extends Config {
   /************************************************************************
 	Update the banned user's information and ban length
 	************************************************************************/
-  function updateWebBanWithLength($length, $timeScale, $newExpireDate, $reason, $pending, $user, $serverId, $bannedUser, $banId, $comments) {
+  function updateWebBanWithLength($length, $timeScale, $newExpireDate, $reason, $pending, $admin, $user, $serverId, $bannedUser, $bannerSteam, $banId, $comments, $bannedPost) {
     $sql = "UPDATE gban_ban SET length = '".$length."', time_scale = '".$timeScale."', expire_date = FROM_UNIXTIME(".$newExpireDate."), comments = '".addslashes($comments)."',
-    reason_id = '".$reason."', pending = '".$pending."', modified_by = '".$user."', server_id = '".$serverId."', name = '".$bannedUser."'
+    reason_id = '".$reason."', pending = '".$pending."', banner = '".$admin."', banner_steam_id = '".addslashes($bannerSteam)."', modified_by = '".$user."', server_id = '".$serverId."', name = '".$bannedUser."' , webpage = '".$bannedPost."'
     WHERE ban_id = '".$banId."'";
 
     // Update db

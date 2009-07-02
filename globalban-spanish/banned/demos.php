@@ -60,9 +60,10 @@ if($_POST['submitDemo']) {
   // We check for multiple page types as apache may be configured to support them
   $filename = str_replace(".php", "", $filename);
   $filename = str_replace(".jsp", "", $filename);
-  $filename = str_replace(".asp", "", $filename);
+  $filename = str_replace(".asp", "", $filename); 
+
   $extension = substr($filename, strlen($filename)-3, strlen($filename));
-  $allowedExtensions = array("dem", "zip", "rar");
+  $allowedExtensions = array("zip", "rar");
   if(in_array($extension, $allowedExtensions)) {
       if(uploadFile($filename, $tempName, $config, $demoQueries)) {
       $success = "success";
@@ -158,51 +159,51 @@ function formVerify() {
 // Display a message if the upload was successful
 if($success == "success") {
 ?>
-<h5><?=$filename?> successfully uploaded! <?=$fileType?></h5>
+<h5><?=$filename?> Demo subida con exito! <?=$fileType?></h5>
 <?php
 } // end success if
 else if($success == "error"){
 ?>
-<h5>File upload ERROR!!  This may be due to a duplicate demo name.</h5>
+<h5>ERROR al subir el archivo de la demo!!  Quizas ya exista un archivo con ese nombre o su tamaño sea superior a 10 Megas.</h5>
 <?php
 } else if($success == "ext not allowed") {
 ?>
-<h5>File upload ERROR!!  Only .dem, .zip, and .rar files allowed.</h5>
+<h5>ERROR al subir el archivo de la demo!!  Solo esta permitido enviar demos en formato comprimido .zip o .rar. Comprimala y enviaela de nuevo</h5>
 <?php
 }// end success else
 
 if($demoDeleted != "" || $demoDelete != null) {
 ?>
-<h5><?=$demoDeleted?> successfully deleted!</h5>
+<h5><?=$demoDeleted?> Demo borrada exitosamente!</h5>
 <?php
 }
 ?>
 <div class="tborder">
   <div id="tableHead">
-    <div><b>Upload Demo</b</div>
+    <div><b>Subir una Demo</b></div>
   </div>
   <form action="index.php?page=demos" onsubmit="return formVerify();" method="POST" enctype="multipart/form-data">
   <table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
   <tr>
     <td class="rowColor1" width="1%" nowrap>Steam ID:</td>
-    <td class="rowColor1"><input name="steamId" id="steamdId" type="text" value="" size="40"  maxLength="40"/> (must be in <b>STEAM_X:X:XXXXXX</b> format)
-    &nbsp;&nbsp;<font id="steamIdError" color='red' style="display:none;">Steam ID not in vaild format</font></td>
+    <td class="rowColor1"><input name="steamId" id="steamdId" type="text" value="" size="40"/> (formato requerido: <b>STEAM_X:X:XXXXXX</b>)
+    &nbsp;&nbsp;<font id="steamIdError" color='red' style="display:none;">Steam ID introducida en un formato no valido</font></td>
   </tr>
   <tr>
-    <td class="rowColor2" width="1%" nowrap>Offender:</td>
-    <td class="rowColor2"><input name="offenderName" id="offenderName" type="text" value="" size="40" maxLength="40"/>
-    &nbsp;&nbsp;<font id="offenderNameError" color='red' style="display:none;">Please enter the offender's name.</font></td>
+    <td class="rowColor2" width="1%" nowrap>Nick del supuesto cheto:</td>
+    <td class="rowColor2"><input name="offenderName" id="offenderName" type="text" value="" size="40"/>
+    &nbsp;&nbsp;<font id="offenderNameError" color='red' style="display:none;">Por favor introducca el nombre del supuesto cheto.</font></td>
   </tr>
   <tr>
-    <td class="rowColor1" width="1%" nowrap>Your Name:</td>
-    <td class="rowColor1"><input name="uploaderName" id="uploaderName" type="text" value="" size="40" maxLength="40"/> (not required)</td>
+    <td class="rowColor1" width="1%" nowrap>Nick tuyo:</td>
+    <td class="rowColor1"><input name="uploaderName" id="uploaderName" type="text" value="" size="40"/> (no requerido)</td>
   </tr>
   <tr>
-    <td class="rowColor2" width="1%" nowrap>Your Steam ID:</td>
-    <td class="rowColor2"><input name="uploaderSteamId" id="uploaderSteamId" type="text" value="<?=$user->getSteamId()?>" size="40" maxLength="40"/> (not required)</td>
+    <td class="rowColor2" width="1%" nowrap>Tu Steam ID:</td>
+    <td class="rowColor2"><input name="uploaderSteamId" id="uploaderSteamId" type="text" value="" size="40"/> (no requerido)</td>
   </tr>
   <tr>
-    <td class="rowColor1" width="1%" nowrap>Server:</td>
+    <td class="rowColor1" width="1%" nowrap>Servidor:</td>
     <td class="rowColor1">
       <select name="serverId">
       <?php
@@ -218,7 +219,7 @@ if($demoDeleted != "" || $demoDelete != null) {
     </td>
   </tr>
   <tr>
-    <td class="rowColor2" width="1%" nowrap>Reason:</td>
+    <td class="rowColor2" width="1%" nowrap>Motivo:</td>
     <td class="rowColor2">
       <select name="reasonId">
       <?php
@@ -227,30 +228,30 @@ if($demoDeleted != "" || $demoDelete != null) {
           ?><option value="<?=$reason->getId()?>"><?=$reason->getReason()?></option><?php
         }
       } else {
-      ?><option value="0">Breaking Server Rules</option><?php
+      ?><option value="0">Quebrantar las reglas del servidor</option><?php
       }
       ?>
       </select>
     </td>
   </tr>
   <tr>
-    <td class="rowColor1" width="1%" nowrap>File:</td>
+    <td class="rowColor1" width="1%" nowrap>Archivo:</td>
     <td class="rowColor1">
       <input type="hidden" name="MAX_FILE_SIZE" value="<?=($config->demoSizeLimit)*1000000?>" />
       <input id="file" name="file" size="40" type="file" />
-      &nbsp;&nbsp;<font id="fileError" color='red' style="display:none;">Please select a file.</font>
-      <font id="fileExtError" color='red' style="display:none;">Incorrect file type.</font>
+      &nbsp;&nbsp;<font id="fileError" color='red' style="display:none;">Por favor selecciones un archivo.</font>
+      <font id="fileExtError" color='red' style="display:none;">Formato de archivo incorrecto.</font>
     </td>
   </tr>
   <tr>
-    <td colspan="2" class="rowColor2"><input type="submit" name="submitDemo" value="Submit Demo"> <b>This may take some time for a large file.</b></td>
+    <td colspan="2" class="rowColor2"><input type="submit" name="submitDemo" value="Enviar Demo"> <b>Este proceso puede tardar algun tiempo, por favor no cierre esta ventana.</b></td>
   </tr>
   </table>
   </form>
 </div>
 
-<h5>*NOTE: You may only upload .dem, .zip, or .rar files (<?=$config->demoSizeLimit?>MB max).  Your name/steam id is only used for history reasons (it will never be shown publicly).</h5>
-<br/>
+<h5>*NOTA: Solamente puedes subir ficheros con extension .zip, or .rar (<?=$config->demoSizeLimit?>MB max).<br>  
+Tu nick/steam_id seran solo usadas internamente, para que podamos saber quien ha grabado la demo (no saldran publicadas en la lista).<br/></h5>
 
 <?php
 if(count($demoList) > 0) {
@@ -265,7 +266,7 @@ if(count($demoList) > 0) {
   
   <div class="tborder">
     <div id="tableHead">
-      <div><b>Demo List showing demos <?=($startRange+1)?> to <?=$demoQueries->getEndRange()?> of <?=$demoCount?></b></div>
+      <div><b>Listado de Demos desde la <?=($startRange+1)?> hasta <?=$demoQueries->getEndRange()?> de un total de <?=$demoCount?></b></div>
       <div>
         <?php pageLinks($config, $startRange, $demoCount, $sortDirection, $sortBy); ?>
       </div>
@@ -282,32 +283,32 @@ if(count($demoList) > 0) {
       </th>
       <th class="colColor2" width="1%" nowrap>
         <a href="index.php?page=demos&sc=d.offender_name&sd=ASC&sr=<?=$startRange?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
-        Offender
+        Nick Grabado
         <a href="index.php?page=demos&sc=d.offender_name&sd=DESC&sr=<?=$startRange?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a>
       </th>
       <th class="colColor1" width="1%" nowrap>
         <a href="index.php?page=demos&sc=d.demo_name&sd=ASC&sr=<?=$startRange?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
-        Demo Name
+        Demo
         <a href="index.php?page=demos&sc=d.demo_name&sd=DESC&sr=<?=$startRange?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a>
       </th>
       <th class="colColor2" width="1%" nowrap>
         <a href="index.php?page=demos&sc=add_date&sd=ASC&sr=<?=$startRange?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
-        Add Date
+        Fecha
         <a href="index.php?page=demos&sc=add_date&sd=DESC&sr=<?=$startRange?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a>
       </th>
       <th class="colColor1">
         <a href="index.php?page=demos&sc=d.reason_id&sd=ASC&sr=<?=$startRange?>"><img src="images/arrow_up.png"/></a>
-        Demo Reason
+        Motivo
         <a href="index.php?page=demos&sc=d.reason_id&sd=DESC&sr=<?=$startRange?>"><img src="images/arrow_down.png"/></a>
       </th>
       <th class="colColor2">
         <a href="index.php?page=demos&sc=d.server_id&sd=ASC&sr=<?=$startRange?>"><img src="images/arrow_up.png"/></a>
-        Server of Demo
+        Servidor
         <a href="index.php?page=demos&sc=d.server_id&sd=DESC&sr=<?=$startRange?>"><img src="images/arrow_down.png"/></a>
       </th>
       <th class="colColor1" width="1%" nowrap>
         <a href="index.php?page=demos&sc=banned&sd=ASC&sr=<?=$startRange?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
-        Banned
+        Baneado
         <a href="index.php?page=demos&sc=banned&sd=DESC&sr=<?=$startRange?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a>
       </th>
       <?php
@@ -332,9 +333,9 @@ if(count($demoList) > 0) {
         <?php
           // Non ban managers can only look
           if($demo->isBanned()) {
-            ?><img src="images/tick.png"/><?php
+            ?><div align="center"><img src="images/tick.png"/></div><?php
           } else {
-            ?><img src="images/cross.png"/><?php
+            ?><div align="center"><img src="images/cross.png"/></div><?php
           }
           // Add to banlist and Delete demo column
           if($banManager || $fullPower) {

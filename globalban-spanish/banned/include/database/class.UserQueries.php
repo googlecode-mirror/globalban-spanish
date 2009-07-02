@@ -612,7 +612,7 @@ class UserQueries extends Config {
       if($groupId > 0) {
         $sql = "SELECT a.admin_id, a.name
                 FROM gban_admins a
-                WHERE a.admin_id NOT IN (
+                WHERE a.access_level <> '5' AND a.admin_id NOT IN (
                   SELECT sa.admin_id
                   FROM gban_group_admin sa
                   WHERE server_group_id = '".addslashes($groupId)."'
@@ -621,7 +621,7 @@ class UserQueries extends Config {
       } else {
         $sql = "SELECT a.admin_id, a.name
                 FROM gban_admins a
-                WHERE a.admin_id NOT IN (
+                WHERE a.access_level <> '5' AND a.admin_id NOT IN (
                   SELECT sa.admin_id
                   FROM gban_server_admin sa
                   WHERE server_id = '".addslashes($serverId)."'
@@ -687,7 +687,7 @@ class UserQueries extends Config {
                 FROM gban_server_admin sa
                 WHERE server_id = '".addslashes($serverId)."'
                 )
-             ORDER BY UPPER(a.name) ASC";
+             ORDER BY sa.admin_group_id ASC, a.name ASC";
     }
     
     $this->db->sql_query($sql);
@@ -752,7 +752,7 @@ class UserQueries extends Config {
                 FROM gban_group_admin sa
                 WHERE server_group_id = '".addslashes($groupId)."'
                 )
-             ORDER BY UPPER(a.name)";
+             ORDER BY ga.admin_group_id ASC, a.name ASC";
     }
 
     $this->db->sql_query($sql);

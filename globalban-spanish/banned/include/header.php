@@ -24,7 +24,7 @@ ob_start();
   <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title><?=$config->siteName?> Ban Management</title>
+    <title><?=$config->siteName?> Administrados de Baneados</title>
     <link rel="icon" href="images/favicon.ico" type="image/vnd.microsoft.icon">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/vnd.microsoft.icon">
     <link rel="stylesheet" type="text/css" href="css/banned.css" />
@@ -68,7 +68,12 @@ ob_start();
 <body id="body">
 <script type="text/javascript" src="javascript/wz_tooltip.js"></script>
 <div id="container">
-
-<div id="logo"><img alt="<?=$config->siteName?>" src="images/<?=$config->siteLogo?>"/></div>
+ <div align="center">
+    <script type="text/javascript" src="javascript/flash.js"></script>
+    <script type="text/javascript">
+		show_flash("931", "250", "images/<?=$config->siteLogo?>", "", "team=Leyendas del Source");
+  </script>
+  </div>
+  <p>&nbsp;</p>
 
 <?php include("include/navigation.php")?>

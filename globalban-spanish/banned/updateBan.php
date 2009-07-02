@@ -25,6 +25,8 @@ require_once(ROOTDIR."/include/database/class.ServerQueries.php");
 require_once(ROOTDIR."/include/database/class.ReasonQueries.php");
 require_once(ROOTDIR."/include/database/class.BanQueries.php");
 include_once(ROOTDIR."/include/database/class.LengthQueries.php");
+require_once(ROOTDIR."/include/database/class.UserQueries.php"); // User specific queries
+require_once(ROOTDIR."/include/objects/class.User.php"); // User class to store user info
 include_once(ROOTDIR."/include/objects/class.Length.php");
 
 // Initialize Objects
@@ -32,12 +34,17 @@ $serverQueries = new ServerQueries();
 $reasonQueries = new ReasonQueries();
 $banQueries = new BanQueries();
 $lengthQueries = new LengthQueries();
+$userQuery = new UserQueries;
+$userEdit = new User;
 
 // Ban ID
 $banId = $_GET['banId'];
 
 // Get the list of servers
 $serverList = $serverQueries->getServers();
+
+// List of Admins
+$banAmins = $reasonQueries->getAdminsList();
 
 // List of Reasons
 $banReasons = $reasonQueries->getReasonList();
@@ -63,7 +70,7 @@ function confirmIpBan() {
 </script>
 <div class="tborder">
 <div id="tableHead">
-  <div><b>Update Ban Information</b</div>
+  <div><b>Actualizar Informacion del Ban</b></div>
 </div>
 <form action="index.php?page=processWebBanUpdate" method="POST">
 <input type="hidden" name="banId" value="<?=$banId?>">
@@ -73,7 +80,7 @@ function confirmIpBan() {
   <td class="rowColor1"><?=$bannedUser->getSteamId()?></td>
 </tr>
 <tr>
-  <td class="rowColor2" width="1%" nowrap>IP Address:</td>
+  <td class="rowColor2" width="1%" nowrap>Direccion IP:</td>
   <td class="rowColor2"><?=$bannedUser->getIp()?>
   <?php
     if($bannedUser->getIp() != "") {
@@ -87,38 +94,69 @@ function confirmIpBan() {
         }
       }
     } else {
-      ?>No IP recorded for this <?=$bannedUser->getSteamId()?><?php
+      ?>No hay IP guardada para esta <?=$bannedUser->getSteamId()?><?php
     }
   ?>
   </td>
 </tr>
 <tr>
-  <td class="rowColor1" width="1%" nowrap>Person Banned:</td>
-  <td class="rowColor1"><input type="text" name="bannedUser" size="40" maxlength="128" value="<?=$bannedUser->getName()?>"/></td>
+  <td class="rowColor1" width="1%" nowrap>Nick Baneado:</td>
+  <td class="rowColor1"><input type="text" name="bannedUser" size="40" maxlength="128" value="<?=str_replace(array("\"","\r\n", "\n", "\r"), "&quot;", $bannedUser->getName())?>"/></td>
 </tr>
 <tr>
-  <td class="rowColor2" width="1%" nowrap>Banned By:</td>
-  <td class="rowColor2"><?=$bannedUser->getBanner()?></td>
+
+
+<td class="rowColor1" width="1%" nowrap>Admin:</td>
+  <td class="rowColor1">
+    <select name="admin">
+    <?php
+      $fullPowerLevelEditUser = false;
+      $userEdit = $userQuery->getUserInfo($bannedUser->getModifiedBy());
+      if($userEdit->getAccessLevel() == 1){
+	    $fullPowerLevelEditUser = true;
+	  }
+	
+	// Make sure we have a list of admis to display
+    if(count($banAmins > 0)) {
+
+      for($i=0; $i<count($banAmins);$i++) {
+        $admin = $banAmins[$i]; 
+        if($admin->getAdmin() == $bannedUser->getBanner()) {
+          ?><option value="<?=$admin->getAdmin()?>" selected><?=$bannedUser->getBanner()?></option><?php
+        } else if(!$fullPowerLevelEditUser && $userQuery->getUserInfo($bannedUser->getBanner())->getAccessLevel() != 1){
+          ?><option value="<?=$admin->getAdmin()?>"><?=$admin->getAdmin()?></option><?php
+        } else if ($fullPower){
+		  ?><option value="<?=$admin->getAdmin()?>"><?=$admin->getAdmin()?></option><?php
+		}
+      }
+    } else {
+    ?><option value="-1">No hay admins disponibles</option><?php
+    }
+    ?>
+    </select>
+  </td>
+
 </tr>
 <tr>
-  <td class="rowColor1" width="1%" nowrap>Length of Ban:</td>
+  <td class="rowColor1" width="1%" nowrap>Duracion:</td>
   <td class="rowColor1">
     <select name="length">
       <?php
       foreach($banLengths as $banLength) {
-        $match = false;
         if($bannedUser->getLength() == $banLength->getLength() && $bannedUser->getTimeScale() == $banLength->getTimeScale()) {
-          $match = true;
-        }
-      
-        ?><option value="<?=$banLength->getId()?>"<?php if($match) { echo " selected"; } ?>><?=$banLength->getReadable()?></option><?php
+				?><option value="<?=$banLength->getId()?>" selected><?=$banLength->getReadable()?></option><?php
+        } else if(!$fullPowerLevelEditUser && $userQuery->getUserInfo($bannedUser->getBanner())->getAccessLevel() != 1) {
+				?><option value="<?=$banLength->getId()?>"><?=$banLength->getReadable()?></option><?php
+		} else if ($fullPower){
+				?><option value="<?=$banLength->getId()?>"><?=$banLength->getReadable()?></option><?php
+		}
       }
       ?>
     </select>
   </td class="rowColor1">
 </tr>
 <tr>
-  <td class="rowColor2" width="1%" nowrap>Server:</td>
+  <td class="rowColor2" width="1%" nowrap>Servidor:</td>
   <td class="rowColor2">
     <select name="serverId">
     <?php
@@ -139,7 +177,7 @@ function confirmIpBan() {
   </td>
 </tr>
 <tr>
-  <td class="rowColor1" width="1%" nowrap>Reason:</td>
+  <td class="rowColor1" width="1%" nowrap>Motivo:</td>
   <td class="rowColor1">
     <select name="reason">
     <?php
@@ -162,11 +200,17 @@ function confirmIpBan() {
   </td>
 </tr>
 <tr>
-  <td class="rowColor2" width="1%" valign="top" nowrap>Comments:</td>
-  <td class="rowColor2"><textarea id="comments" name="comments" cols="30" rows="5"><?=$bannedUser->getComments()?></textarea></td>
+  <td class="rowColor2" width="1%" valign="top" nowrap>Comentarios:</td>
+  <td class="rowColor2"><textarea id="comments" name="comments" cols="87" rows="5"><?=$bannedUser->getComments()?></textarea></td>
+</tr>
 </tr>
 <tr>
-  <td class="rowColor1" width="1%" nowrap>Last Modified By:</td>
+  <td class="rowColor1" width="1%" nowrap>Link al Post:</td>
+  <td class="rowColor1"><input type="text" name="bannedPost" size="100" maxlength="128" value="<?=$bannedUser->getWebpage()?>"/></td>
+</tr>
+<tr>
+<tr>
+  <td class="rowColor1" width="1%" nowrap>Ultima Modificacion Por:</td>
   <?php
   if($bannedUser->getModifiedBy() == "") { 
   ?>
@@ -196,19 +240,21 @@ function confirmIpBan() {
 
 <div class="tborder">
   <div id="tableHead">
-    <div><b>Ban History</b></div>
+    <div><b>Historial de Banes Anteriores</b></div>
   </div>
 
   <div>
     <table id="banlistTable" class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
 
     <tr>
-      <th class="colColor1" width="1%" nowrap>Length</th>
-      <th class="colColor2" width="1%" nowrap>Banner</th>
-      <th class="colColor1" width="1%" nowrap>Add Date</th>
-      <th class="colColor2" width="1%" nowrap>Expire Date</th>
-      <th class="colColor1">Server</th>
-      <th class="colColor2">Ban Reason</th>
+	  <th class="colColor1" align="center">Nick</th>
+	  <th class="colColor1" align="center">Motivo</th>
+      <th class="colColor2" width="1%" nowrap align="center">Duracion</th>
+      <th class="colColor1" width="1%" nowrap align="center">Admin</th>
+      <th class="colColor2" width="1%" nowrap align="center">Desde</th>
+      <th class="colColor1" width="1%" nowrap align="center">Hasta</th>
+      <th class="colColor2" align="center">Post Foro</th>
+	  <th class="colColor1" align="center">Comentarios</th>
     </tr>
     <?php
     // Loop through banned users and display them
@@ -222,28 +268,35 @@ function confirmIpBan() {
       $banLength->setLength($banHistUser->getLength());
       $banLength->setTimeScale($banHistUser->getTimeScale());
 
-      if($bannedUser->getLength() == 0) {
-        $expireDate = "Never";
-        $expireTime = "Never";
+      if($banHistUser->getLength() == 0) {
+        $expireDate = "Permanente";
+        $expireTime = "";
       }
+
+      if($banHistUser->getExpireDate() == 'Expired') {
+		$expireDate = "<i>Cumplido</i>";
+		$expireTime = "";
+	  }
 
       $length = $banLength->getReadable();
       
     
     ?>
     <tr>
-      <td class="colColor1" nowrap><?=$length?></td>
-      <td class="colColor2" nowrap><?=$bannedUser->getBanner()?></td>
-      <td class="colColor1" nowrap><?=$addDate?></td>
-      <td class="colColor2" nowrap><?=$expireDate?></td>
+	  <td class="colColor1" nowrap align="center"><?=$banHistUser->getName()?></td>
+	  <td class="colColor1" nowrap align="center"><?=$banHistUser->getReason()?></td>
+      <td class="colColor2" nowrap align="center"><?=$length?></td>
+      <td class="colColor1" nowrap align="center"><?=$banHistUser->getBanner()?></td>
+      <td class="colColor2" nowrap align="center"><?=$addDate." ".$addTime?></td>
+      <td class="colColor1" nowrap align="center"><?=$expireDate." ".$expireTime?></td>
       <?php
-      if($banHistUser->getServerId() != -1) {
-        echo "<td class='rowColor1'>".$banHistUser->getServer()."</td>";
+      if($banHistUser->getWebpage() != "") {
+        echo "<td class='rowColor2' align='center'><a href='".$banHistUser->getWebpage()."'><img src='images/database_add.png' align='absmiddle'/></a></td>";
       } else {
-        echo "<td class='rowColor2'><a href='".$banHistUser->getServer()."'>Import Server</a></td>";
+        echo "<td class='rowColor2' align='center'>Sin Post</td>";
       }
       ?>
-      <td class="colColor2"><?=$banHistUser->getReason()?></td>
+	  <td class="colColor1" nowrap><?=$comments?></td>
     </tr>
     <?php
     }
@@ -257,7 +310,7 @@ function confirmIpBan() {
 ?>
 <div class="tborder">
   <div id="tableHead">
-    <div><b>Access Denied/b</div>
+    <div><b>Acceso Denegado</b></div>
   </div>
 </div>
 <?php

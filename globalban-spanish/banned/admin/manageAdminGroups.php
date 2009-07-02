@@ -64,7 +64,7 @@ $groups = $adminGroupQueries->getAdminGroups();
   $(window).bind("load",function(){
 	 $('#adminGroupList').accordion({autoHeight: false });
   });
-  
+    
   $(document).ready(function(){
     // When focus is lost, update the group name field
     $("input[id^='groupName-']").blur(function() {
@@ -204,7 +204,7 @@ $groups = $adminGroupQueries->getAdminGroups();
           ?>
             <td class="colColor2">
               <input type="hidden" id="<?=$plugin->getId()?>-flagValue-<?=$group->getId()?>" value="<?=$flag->getPluginFlagId()?>"/>
-              <input type="checkbox" id="<?=$plugin->getId()?>-flag-<?=$group->getId()?>-<?=$flag->getPluginFlagId()?>" onclick="updatePluginFlag('<?=$group->getId()?>', '<?=$flag->getPluginFlagId()?>', this)"<?=$checked?>/> <?=$flag->getDescription()?>
+              <input type="checkbox" id="<?=$plugin->getId()?>-flag-<?=$group->getId()?>-<?=$flag->getPluginFlagId()?>" onclick="updatePluginFlag('<?=$group->getId()?>', '<?=$flag->getPluginFlagId()?>', this)"<?=$checked?>/> <?="(".$flag->getFlag().") ".$flag->getDescription()?>
             </td>
             <?php
               if(($i+1)%$flagsPerRow==0 && ($i+1) != count($flags)) {

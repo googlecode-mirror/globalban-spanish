@@ -93,21 +93,23 @@ if($_GET['dupe'] == "1") {
 ?>
 <div class="tborder">
   <div id="tableHead">
-    <div><b>Add New Ban</b></div>
+    <div><b>A&ntilde;adir un nuevo Ban</b></div>
   </div>
   <form action="index.php?page=processWebBan" onsubmit="return formVerify();" method="POST">
   <table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
   <tr>
     <td class="rowColor1" width="1%" nowrap>Steam ID:</td>
-    <td class="rowColor1"><input name="steamId" id="steamdId" type="text" value="<?=$steamId?>" size="40"/> (must be in <b>STEAM_X:X:XXXXXX</b> format)
+    <td class="rowColor1"><input name="steamId" id="steamdId" type="text" value="<?=$steamId?>" size="40"/> 
+    (debe tener el formato <b>STEAM_X:X:XXXXXX</b>)
     &nbsp;&nbsp;<font id="steamIdError" color='red' style="display:none;">Steam ID not in vaild format</font></td>
   </tr>
   <tr>
-    <td class="rowColor2" width="1%" nowrap>Person Banned:</td>
-    <td class="rowColor2"><input name="bannedName" id="bannedName" type="text" value="<?=$bannedName?>" size="40"/> (Not required)</td>
+    <td class="rowColor2" width="1%" nowrap>Nick del Baneando:</td>
+    <td class="rowColor2"><input name="bannedName" id="bannedName" type="text" value="<?=$bannedName?>" size="40"/> 
+    </td>
   </tr>
   <tr>
-    <td class="rowColor1" width="1%" nowrap>Length of Ban:</td>
+    <td class="rowColor1" width="1%" nowrap>Duracion:</td>
     <td class="rowColor1">
       <select name="length">
         <?php
@@ -132,14 +134,14 @@ if($_GET['dupe'] == "1") {
           }
         }
       } else {
-      ?><option value="-1">No Servers</option><?php
+      ?><option value="-1">Sin servidores</option><?php
       }
       ?>
       </select>
     </td>
   </tr>
   <tr>
-    <td class="rowColor1" width="1%" nowrap>Reason:</td>
+    <td class="rowColor1" width="1%" nowrap>Motivo:</td>
     <td class="rowColor1">
       <select name="reason">
       <?php
@@ -152,14 +154,14 @@ if($_GET['dupe'] == "1") {
           }
         }
       } else {
-      ?><option value="0">Breaking Server Rules</option><?php
+      ?><option value="0">Quebrantar las reglas del servidor</option><?php
       }
       ?>
       </select>
     </td>
   </tr>
   <tr>
-    <td colspan="2" class="rowColor2"><input type="submit" value="Add Ban"></td>
+    <td colspan="2" class="rowColor2"><input type="submit" value="A&ntilde;adir Ban"></td>
   </tr>
   </table>
   </form>
@@ -172,17 +174,17 @@ if($admin || $banManager || $fullPower) {
   <br/>
   <div class="tborder">
     <div id="tableHead">
-      <div><b>Add New IP Ban</b</div>
+      <div><b>Anadir un nuevo ban</b></div>
     </div>
     <form action="index.php?page=processWebBan" onsubmit="return formVerifyIp();" method="POST">
     <table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
     <tr>
-      <td class="rowColor1" width="1%" nowrap>IP Address:</td>
+      <td class="rowColor1" width="1%" nowrap>Direcci&oacute;n IP:</td>
       <td class="rowColor1"><input name="ip" id="ip" type="text" value="" size="40"/>
       &nbsp;&nbsp;<font id="ipError" color='red' style="display:none;">Invalid IP Address</font></td>
     </tr>
     <tr>
-      <td colspan="2" class="rowColor2"><input type="submit" name="ipBan" value="Add IP Ban"></td>
+      <td colspan="2" class="rowColor2"><input type="submit" name="ipBan" value="A&ntilde;adir IP Ban"></td>
     </tr>
     </table>
     </form>
@@ -194,7 +196,7 @@ if($admin || $banManager || $fullPower) {
 ?>
 <div class="tborder">
   <div id="tableHead">
-    <div><b>Access Denied/b</div>
+    <div><b>Acceso denegado/b</div>
   </div>
 </div>
 <?php

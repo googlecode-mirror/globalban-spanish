@@ -33,27 +33,46 @@ foreach($banLengths as $banLength) {
   $readable = $banLength->getLength() . " " . $banLength->getTimeScale();
 
   if($banLength->getLength() == 0) {
-    $readable = "Forever";
+    $readable = "Permanente";
   } else if($banLength->getLength() == 1) {
     if($banLength->getTimeScale() == "minutes") {
-      $readable = $banLength->getLength() . " minute";
+      $readable = $banLength->getLength() . " minuto";
     } else if($banLength->getTimeScale() == "hours") {
-      $readable = $banLength->getLength() . " hour";
+      $readable = $banLength->getLength() . " hora";
     } else if($banLength->getTimeScale() == "days") {
-      $readable = $banLength->getLength() . " day";
+      $readable = $banLength->getLength() . " dia";
     } else if($banLength->getTimeScale() == "weeks") {
-      $readable = $banLength->getLength() . " week";
+      $readable = $banLength->getLength() . " semana";
     } else if($banLength->getTimeScale() == "months") {
-      $readable = $banLength->getLength() . " month";
+      $readable = $banLength->getLength() . " mes";
     }
+  } else {
+    if($banLength->getTimeScale() == "minutes") {
+      $readable = $banLength->getLength() . " minutos";
+    } else if($banLength->getTimeScale() == "hours") {
+      $readable = $banLength->getLength() . " horas";
+    } else if($banLength->getTimeScale() == "days") {
+      $readable = $banLength->getLength() . " dias";
+    } else if($banLength->getTimeScale() == "weeks") {
+      $readable = $banLength->getLength() . " semanas";
+    } else if($banLength->getTimeScale() == "months") {
+      $readable = $banLength->getLength() . " meses";
+  	 }
   }
-
-  echo "  \"".$banLength->getId()."\"";
-  echo "  {";
-  echo "    \"length\"        \"".$banLength->getLength()."\"";
-  echo "    \"timeScale\"     \"".$banLength->getTimeScale()."\"";
-  echo "    \"readable\"      \"".$readable."\"";
-  echo "  }";
+  if($banLength->getLength() != 0) {
+	  echo "  \"".$banLength->getId()."\"";
+	  echo "  {";
+	  echo "    \"length\"        \"".$banLength->getLength()."\"";
+	  echo "    \"timeScale\"     \"".$banLength->getTimeScale()."\"";
+	  echo "    \"readable\"      \"".$readable."\"";
+	  echo "  }";
+  }
 }
+	  echo "  \"1\"";
+	  echo "  {";
+	  echo "    \"length\"        \"0\"";
+	  echo "    \"timeScale\"     \"minutes\"";
+	  echo "    \"readable\"      \"Permanente\"";
+	  echo "  }";
 ?>
 }

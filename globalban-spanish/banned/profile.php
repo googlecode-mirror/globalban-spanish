@@ -158,12 +158,12 @@ if(isset($_POST['updatePassword'])) {
 ?>
 <div class="tborder">
   <div id="tableHead">
-    <div><b>User Profile - General Information</b></div>
+    <div><b>Perfil de Usuario - Informacion General</b></div>
   </div>
   <form action="index.php?page=profile" method="post" id="form">
   	<table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
   		<tr>
-  			<td class="rowColor1" width="1%" nowrap>Username:</td>
+  			<td class="rowColor1" width="1%" nowrap>Usuario:</td>
   			<td class="rowColor1"><input type="text" name="username" value="<?=$user->getName()?>" size="40" maxlength="40" />
   			<?php if(!$valid['username']) { ?><span class="error">Enter a valid username</span><?php } ?></td>
   		</tr>
@@ -177,13 +177,13 @@ if(isset($_POST['updatePassword'])) {
   			<?php if(!$valid['email']) { ?><span class="error">Enter a valid email</span><?php } ?></td>
   		</tr>
   		</tr>
-  			<td class="rowColor2" width="1%" nowrap><img src="images/bullet_star.png"/> Current Password:</td>
+  			<td class="rowColor2" width="1%" nowrap><img src="images/bullet_star.png"/>Password Anterior:</td>
   			<td class="rowColor2"><input type="password" name="curPassword" value="" size="25" maxlength="25"/>
-  			<?php if(!$valid['curPassword']) { ?><span class="error">Enter a valid password</span><?php } ?></td>
+  			<?php if(!$valid['curPassword']) { ?><span class="error">Password Incorrecta</span><?php } else { ?><span>Requerida solamente si cambia el Email</span><?php } ?></td>
   		</tr>
   		<tr>			
   			<td align="left" colspan="3" class="rowColor1">
-  				<input type="submit" value="Update" name="generalProfile" class="button" /></td>
+  				<input type="submit" value="Aplicar Cambios" name="generalProfile" class="button" /></td>
   		</tr>
   	</table>
   </form>
@@ -191,7 +191,7 @@ if(isset($_POST['updatePassword'])) {
 <?php
 // Display that the changes were successful
 if($generalChangesMade) {
-  ?><h5 class="error">General Information Updated</h5><?php
+  ?><h5 class="error">Informacion General Actualizada</h5><?php
 }
 ?>
 <?php
@@ -200,46 +200,48 @@ if($generalErrors) {
   ?><h5 class="error">All changes made have been reset due to bad input</h5><?php
 }
 ?>
-<h5><img src="images/bullet_star.png"/> Only required if changing email</h5>
+<br/>
+<br/>
+<br/>
 <br/>
 <div class="tborder">
   <div id="tableHead">
-    <div><b>User Profile - Change Password</b></div>
+    <div><b>Perfil de Usuario - Cambiar Password</b></div>
   </div>
   <form action="index.php?page=profile" method="post" id="form">
   	<table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
       </tr>
-  			<td class="rowColor1" width="1%" nowrap>Current Password:</td>
+  			<td class="rowColor1" width="1%" nowrap>Password Anterior:</td>
   			<td class="rowColor1"><input type="password" name="cpassword" value="" size="25" maxlength="25"/>
   			<?php if(!$valid['cpassword']) { ?><span class="error">Enter a valid password</span><?php } ?></td>
   		</tr>
   		</tr>
-  			<td class="rowColor2" width="1%" nowrap>New Password:</td>
+  			<td class="rowColor2" width="1%" nowrap>Nueva Password:</td>
   			<td class="rowColor2"><input type="password" name="npassword" value="" size="25" maxlength="25"/>
   			<?php if(!$valid['npassword']) { ?><span class="error">Enter a valid password</span><?php } ?></td>
   		</tr>
   		<tr>
-  			<td class="rowColor1" width="1%" nowrap>Verify New Password:</td>
+  			<td class="rowColor1" width="1%" nowrap>Repita Nueva Password:</td>
   			<td class="rowColor1"><input type="password" name="vpassword" value="" size="25" maxlength="25"/>
   			<?php if(!$valid['vpassword']) { ?><span class="error">Password mis-match</span><?php } ?></td>
   		</tr>
   		<tr>			
   			<td align="left" colspan="3" class="rowColor2">
   				<input type="hidden" name="nopostpass" value="0" />
-  				<input type="submit" value="Change Password" name="updatePassword" class="button" /></td>
+  				<input type="submit" value="Cambiar Password" name="updatePassword" class="button" /></td>
   		</tr>
     </table>
   </form>
 </div>
 
 <h5>
-All password fields in the above section are required for changing a password.<br/>
-Passwords must contain at least 1 digit and be at least 6 characters in length.
+Estan requeridos todos los campos del formulario para el cambio de clave.<br/>
+El nuevo Password debe contener minimo 6 caracteres usando numeros y letras, NO SIRVE solo letras o solo numeros, requiere usar una mezcla de ambos Ej: odo531
 </h5>
 
 <?php
 // Display that the changes were successful
 if($passwordChangesMade) {
-  ?><h5 class="error">Password Updated</h5><?php
+  ?><h5 class="error">Password Cambiada con Exito</h5><?php
 }
 ?>

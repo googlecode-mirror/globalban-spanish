@@ -131,18 +131,18 @@ if($valid['username'] && $valid['email'] && $valid['vemail'] && $valid['password
     $subject = $config->siteName." Ban Management (New User)";
 
     $body = "<html><body>";
-    $body .= "You have successfully created your user: ".$username;
+    $body .= "Ha creado correctamente su nuevo usuario: ".$username;
     $body .= "\n\n";
 
     $body .= "\n\n";
-    $body .= "<p>You may start using your account immediately.</p>";
+    $body .= "<p>Puede comenzar a usar inmediatamente su nueva cuenta de usuario.</p>";
     $body .= "</body></html>";
 
     // To send HTML mail, the Content-type header must be set
     $headers  = "MIME-Version: 1.0" . "\r\n";
     $headers .= "Content-type: text/html; charset=utf-8" . "\r\n";
     // Additional headers
-    $headers .= "From: ".$config->siteName." Ban Management <".$config->emailFromHeader.">" . "\r\n";
+    $headers .= "From: ".$config->siteName." Gestor de Baneados <".$config->emailFromHeader.">" . "\r\n";
 
     // Send an email message to those that wish to recieve a notice of a newly added ban
     mail($email, $subject, $body, $headers);
@@ -160,28 +160,28 @@ if($_GET['error'] == 1) {
 ?>
 <div class="tborder">
   <div id="tableHead">
-    <div><b>New User Creation</b></div>
+    <div><b>Registro de un Nuevo Administrador</b></div>
   </div>
   <form action="index.php?page=newuser" method="post" id="form">
   	<table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
   		<tr>
-  			<td class="rowColor1">*Username:</td>
+  			<td class="rowColor1">*Usuario:</td>
   			<td class="rowColor1"><input type="text" name="username" value="<?=$username?>" size="40" maxlength="40" />
-  			<?php if(!$valid['username'] && !$nopost) { ?><span class="error">Username already taken</span><?php } ?></td>
+  			<?php if(!$valid['username'] && !$nopost) { ?><span class="error">Ese Usuario ya estaba siendo usado por otro administrador</span><?php } ?></td>
   		</tr>
   		<tr>
   			<td class="rowColor2">*Steam ID:</td>			
-  			<td class="rowColor2"><input name="steamId" id="steamdId" type="text" value="<?=$steamId?>" size="25" maxlength="25"/> (must be in <b>STEAM_X:X:XXXXXX</b> format)
-  			<?php if(!$valid['steamId'] && !$nopost) { ?><span class="error">Steam ID not in vaild format</span><?php } ?></td>
+  			<td class="rowColor2"><input name="steamId" id="steamdId" type="text" value="<?=$steamId?>" size="25" maxlength="25"/> (debe estar en el formato <b>STEAM_X:X:XXXXXX</b>)
+  			<?php if(!$valid['steamId'] && !$nopost) { ?><span class="error">Formato de Steam ID no valido</span><?php } ?></td>
   		</tr>
   			<td class="rowColor1">**Password:</td>
   			<td class="rowColor1"><input type="password" name="password" value="" size="25" maxlength="25"/>
-  			<?php if(!$valid['password'] && !$nopost) { ?><span class="error">Enter a valid password</span><?php } ?></td>
+  			<?php if(!$valid['password'] && !$nopost) { ?><span class="error">Tipo de claver no valida, minimo 6 caracteres y contener numeros y letras (No sirve solo letras o solo numeros, al menos con una letra o numero)</span><?php } ?></td>
   		</tr>
   		<tr>
-  			<td class="rowColor2">**Verify Password:</td>
+  			<td class="rowColor2">**Repita Password:</td>
   			<td class="rowColor2"><input type="password" name="vpassword" value="" size="25" maxlength="25"/>
-  			<?php if(!$valid['vpassword'] && !empty($password) && !$nopost) { ?><span class="error">Password mis-match</span><?php } ?></td>
+  			<?php if(!$valid['vpassword'] && !empty($password) && !$nopost) { ?><span class="error">La Password no coincide</span><?php } ?></td>
   		</tr>
   		<tr>
   			<td class="rowColor1">*Email:</td>
@@ -189,26 +189,26 @@ if($_GET['error'] == 1) {
   			<?php if(!$valid['email'] && !$nopost) { ?><span class="error">Enter a valid email</span><?php } ?></td>
   		</tr>
   		<tr>
-  			<td class="rowColor2">*Verify Email:</td>
+  			<td class="rowColor2">*Repita Email:</td>
   			<td class="rowColor2"><input type="text" name="vemail" value=""  size="60" maxlength="80" />
-  			<?php if(!$valid['vemail'] && !empty($email) && !$nopost) { ?><span class="error">Email mis-match</span><?php } ?></td>
+  			<?php if(!$valid['vemail'] && !empty($email) && !$nopost) { ?><span class="error">El Email no coincide</span><?php } ?></td>
   		</tr>
   		<tr>
-  			<td class="rowColor1">*Create Code:</td>
+  			<td class="rowColor1">*Codigo de seguridad:</td>
   			<td class="rowColor1"><input type="password" name="userCode" value="" />
-  			<?php if((!$valid['userCode'] && !empty($code) && !$nopost) || empty($code)) { ?><span class="error">Incorrect user creation code</span><?php } ?></td>
+  			<?php if((!$valid['userCode'] && !empty($code) && !$nopost) || empty($code)) { ?><span class="error">Codigo de seguridad incorrecto</span><?php } ?></td>
   		</tr>
   		<tr>			
   			<td align="left" colspan="3" class="rowColor2">
   				<input type="hidden" name="nopost" value="0" />
-  				<input type="reset" value="Reset Form" class="button" />&nbsp;
-  				<input type="submit" value="Submit" class="button" /></td>
+  				<input type="reset" value="Borrar Formulario" class="button" />&nbsp;
+  				<input type="submit" value="Enviar" class="button" /></td>
   		</tr>
   	</table>
   </form>
 </div>
 <h5>
-* Denotes a required field.<br />
-** Passwords must contain at least 1 digit and be at least 6 characters in length.
+* Campos requeridos.<br />
+** La Password debe ser de minimo 6 caracteres y contener numeros y letras (NO SIRVE SOLO LETRAS O SOLO NUMEROS).
 </h5>
 

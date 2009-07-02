@@ -25,10 +25,10 @@ class Reason{
   function __construct() {
   }
   
-	function Reason() {
-	}
+  function Reason() {
+  }
 	
-	function init() {
+  function init() {
     $this->id = -1;
     $this->reason = "Breaking Server Rules";
   }

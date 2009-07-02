@@ -63,19 +63,29 @@ class Length {
     $this->readable = $this->length . " " . $this->timeScale;
     if($this->length == 1) {
       if($this->timeScale == "minutes")
-        $this->readable = $this->length . " minute";
+        $this->readable = $this->length . " minuto";
       if($this->timeScale == "hours")
-        $this->readable = $this->length . " hour";
+        $this->readable = $this->length . " hora";
       if($this->timeScale == "days")
-        $this->readable = $this->length . " day";
+        $this->readable = $this->length . " dia";
       if($this->timeScale == "weeks")
-        $this->readable = $this->length . " week";
+        $this->readable = $this->length . " semana";
       if($this->timeScale == "months")
-        $this->readable = $this->length . " month";
+        $this->readable = $this->length . " mes";
+    }else {
+      if($this->timeScale == "minutes")
+        $this->readable = $this->length . " minutos";
+      if($this->timeScale == "hours")
+        $this->readable = $this->length . " horas";
+      if($this->timeScale == "days")
+        $this->readable = $this->length . " dias";
+      if($this->timeScale == "weeks")
+        $this->readable = $this->length . " semanas";
+      if($this->timeScale == "months")
+        $this->readable = $this->length . " meses";
     }
-    
     if($this->length == 0) {
-      $this->readable = "Forever";
+      $this->readable = "Permanente";
     }
     
     return $this->readable;

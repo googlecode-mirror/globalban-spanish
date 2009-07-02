@@ -25,6 +25,7 @@
 
 require_once(ROOTDIR."/include/database/class.Database.php"); //Database class
 require_once(ROOTDIR."/include/objects/class.Reason.php");
+require_once(ROOTDIR."/include/objects/class.Admin.php");
 
 class ReasonQueries {	
 
@@ -68,6 +69,29 @@ class ReasonQueries {
   }
   
   /************************************************************************
+	Gets the admins list with their admin id
+	************************************************************************/
+  function getAdminsList() {  
+    $adminsQuery = "SELECT admin_id, name FROM gban_admins ORDER BY admin_id";
+    $this->db->sql_query($adminsQuery);    
+    
+    $adminsList = array();
+    
+    $admins = $this->db->get_array();
+    
+    for($i=0; $i<count($admins); $i++) {
+      $admin = new Admin();
+      
+      $admin->setId($admins[$i]['admin_id']);
+      $admin->setAdmin($admins[$i]['name']);
+      
+      array_push($adminsList, $admin); // Add the reason object to the array
+    }
+    
+    return $adminsList;
+  }
+
+  /************************************************************************
 	Add a new reason
 	************************************************************************/
   function addReason($addReason) {
@@ -84,6 +108,19 @@ class ReasonQueries {
   function deleteReason($id) {
     $deleteReasonQuery = "DELETE FROM gban_reason WHERE reason_id = '".$id."'";
     $this->db->sql_query($deleteReasonQuery);
+  }
+
+  /************************************************************************
+	Get an existing reason by id
+	************************************************************************/
+  function getReason($id) {
+    $getReasonQuery = "SELECT reason FROM gban_reason WHERE reason_id = '".$id."'";
+    $this->db->sql_query($getReasonQuery);
+	
+	$temp = $this->db->get_row();
+
+    return $temp['reason'];
+
   }
   
   /************************************************************************

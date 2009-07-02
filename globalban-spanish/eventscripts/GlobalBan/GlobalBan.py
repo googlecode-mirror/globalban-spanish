@@ -90,7 +90,7 @@ banAppealMessage = "Banned. Appeal at yourdomain.com"
 hashCode = "secretHashCode"
 teachAdmins = 1
 clanName = "Your Clan Name or Community"
-allowAdminBanning = 0
+allowAdminBanning = 1
 wgetPath = "wget"
 pluginMani = 0
 pluginSourceMod = 0
@@ -285,7 +285,7 @@ def player_death(event_var):
       # This tells admins every time they die how to ban a player
       # This is to help them learn the command
       if isMember(event_var['es_steamid']):
-        es.tell(event_var['userid'], '#multi', '#greenType the following in say to ban: #default!banmenu')
+        es.tell(event_var['userid'], '#multi', '#greenPara abrir el menu de banear di en el chat: #default!banmenu')
 
 ################################################################################
 # Determines if the person trying to use this script is an admin
@@ -364,15 +364,15 @@ def banReasonList():
     banReasonMenu = keymenulib.create("banReasonMenu", "selectedBanReason", banLengthList, "GlobalBan_Reason", "#keyvalue reasonText", "#key", "Ban Reason List")
     banReasonMenu.send(playerid)
   else:
-    es.tell(playerid, '#green', 'You are not an admin!')
+    es.tell(playerid, '#green', 'No eres aun un admin, registrate en wwww.clanlds.es/baneados para serlo!')
     # Increment the number of attempts
     badAccess[es.getplayersteamid(playerid)] = int(badAccess[es.getplayersteamid(playerid)]) + 1
-    if int(badAccess[es.getplayersteamid(playerid)]) > 2:
+    if int(badAccess[es.getplayersteamid(playerid)]) > 4:
       # Remove the player from the badAccess dictionary
       if badAccess.has_key(event_var['es_steamid']):
         del badAccess[es.getplayersteamid(playerid)]
       # Kick the player
-      es.server.cmd('kickid ' + str(playerid) + ' You were kicked for attempting to use an admin command');
+      es.server.cmd('kickid ' + str(playerid) + ' Has sido expulsado por intentar usar un comando de admin');
 
 ################################################################################
 # This method brings up the ban length menu, which is displayed after the admin
@@ -438,7 +438,7 @@ def banInGame(playerid, userToBan, popupid):
     # When timescale is set to "i" (for ignore) that means the length is actually the length ID
     banUser(playerid, bannedSteamId, banReason, banLength, "i", nameOfBannedPlayer, bannedUserIp)
   else:
-    es.tell(callerId, '#green', 'You can not ban a bot')
+    es.tell(callerId, '#green', 'No puedes banear a un bot')
 
 ################################################################################
 # This method takes in 5 arguments and is used by external scripts wishing to tap
@@ -513,7 +513,7 @@ def banUser(callerId, bannedSteamId, banReason, banLength, timeScale, nameOfBann
 
   # Make sure the one being banned is not a member
   # Unless the flag to allow the banning of admins is set
-  if not isMember(bannedSteamId) or allowAdminBanning == 1:
+  if allowAdminBanning == "1" or not isMember(bannedSteamId):
     # Build the URL for processing the ban
     banUserURL = websiteAddy + 'index.php?page=processServerBan&es=1'
     banUserURL += '&steamId=' + bannedSteamId
@@ -532,27 +532,27 @@ def banUser(callerId, bannedSteamId, banReason, banLength, timeScale, nameOfBann
     gbanLog('GBAN: Ban User URL:' + banUserURL)
 
     # Add them to the banned_users.cfg file for 1 minute to prevent instant rejoin
-    es.server.cmd('banid ' +  str(1) + ' ' + bannedSteamId)
+    es.server.cmd('banid ' +  str(5) + ' ' + bannedSteamId)
 
     # Write the ban list
     es.server.cmd('writeid')
     
     if debugMode:
-      gbanLog('GBAN-DEBUG: ' + bannedSteamId + ' added to local ban list for 1 minute')
+      gbanLog('GBAN-DEBUG: ' + bannedSteamId + ' added to local ban list for 5 minute')
 
     # Use the player object to kick the user with a ban appeal message
-    es.server.cmd('kickid "' + bannedSteamId + '" ' + banAppealMessage);
+    # es.server.cmd('kickid "' + bannedSteamId + '" ' + banAppealMessage);
     
     if debugMode:
       gbanLog('GBAN-DEBUG: ' + bannedSteamId + ' has been kicked')
       gbanLog('GBAN-DEBUG: Banned by ' + callerSteamId)
 
     # Tell the server that the player has been banned and log it
-    es.msg('#lightgreen', nameOfBanned + ' has been banned from ALL ' + clanName + ' servers!')
+    # es.msg('#lightgreen', nameOfBanned + ' ha sido baneado de todos los servidores del clan ' + clanName + '!')
     gbanLog('GBAN: ' + nameOfBanned + ' has been banned from ALL ' + clanName + ' servers!')
     gbanLog('GBAN: STEAM ID Banned: ' + bannedSteamId)
   else:
-    es.tell(callerId, '#green', 'You can not ban an admin')
+    es.tell(callerId, '#green', 'No puedes Banear a otro admin')
 
 ################################################################################
 # This block recieves data from the web app and creates the GlobalBan.cfg file
