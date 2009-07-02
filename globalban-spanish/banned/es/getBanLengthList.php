@@ -21,6 +21,10 @@
 
 require_once(ROOTDIR."/include/database/class.LengthQueries.php");
 
+$lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_getBanLengthList.php';
+include_once(file_exists($lan_file) ? $lan_file : "languages/English/lan_getBanLengthList.php");
+
+
 $lengthQueries = new LengthQueries();
 $banLengths = $lengthQueries->getLengthList();
 
@@ -33,30 +37,30 @@ foreach($banLengths as $banLength) {
   $readable = $banLength->getLength() . " " . $banLength->getTimeScale();
 
   if($banLength->getLength() == 0) {
-    $readable = "Permanente";
+    $readable = LANLENGTH_012;
   } else if($banLength->getLength() == 1) {
     if($banLength->getTimeScale() == "minutes") {
-      $readable = $banLength->getLength() . " minuto";
+      $readable = $banLength->getLength(). " " .LANLENGTH_002;
     } else if($banLength->getTimeScale() == "hours") {
-      $readable = $banLength->getLength() . " hora";
+      $readable = $banLength->getLength(). " " .LANLENGTH_003;
     } else if($banLength->getTimeScale() == "days") {
-      $readable = $banLength->getLength() . " dia";
+      $readable = $banLength->getLength(). " " .LANLENGTH_004;
     } else if($banLength->getTimeScale() == "weeks") {
-      $readable = $banLength->getLength() . " semana";
+      $readable = $banLength->getLength(). " " .LANLENGTH_005;
     } else if($banLength->getTimeScale() == "months") {
-      $readable = $banLength->getLength() . " mes";
+      $readable = $banLength->getLength(). " " .LANLENGTH_006;
     }
   } else {
     if($banLength->getTimeScale() == "minutes") {
-      $readable = $banLength->getLength() . " minutos";
+      $readable = $banLength->getLength(). " " .LANLENGTH_007;
     } else if($banLength->getTimeScale() == "hours") {
-      $readable = $banLength->getLength() . " horas";
+      $readable = $banLength->getLength(). " " .LANLENGTH_008;
     } else if($banLength->getTimeScale() == "days") {
-      $readable = $banLength->getLength() . " dias";
+      $readable = $banLength->getLength(). " " .LANLENGTH_009;
     } else if($banLength->getTimeScale() == "weeks") {
-      $readable = $banLength->getLength() . " semanas";
+      $readable = $banLength->getLength(). " " .LANLENGTH_010;
     } else if($banLength->getTimeScale() == "months") {
-      $readable = $banLength->getLength() . " meses";
+      $readable = $banLength->getLength(). " " .LANLENGTH_011;
   	 }
   }
   if($banLength->getLength() != 0) {
@@ -72,7 +76,7 @@ foreach($banLengths as $banLength) {
 	  echo "  {";
 	  echo "    \"length\"        \"0\"";
 	  echo "    \"timeScale\"     \"minutes\"";
-	  echo "    \"readable\"      \"Permanente\"";
+	  echo "    \"readable\"      \"".LANLENGTH_012."\"";
 	  echo "  }";
 ?>
 }
