@@ -233,27 +233,27 @@ if(count($bannedUsers) > 0) {
     
     <tr>
       <th class="colColor1" width="1%" nowrap>
-        <div align="center"><a href="/index.php?page=banlist&amp;sc=b.steam_id&amp;sd=ASC&amp;sr=<?=$startRange?>&amp;bf=<?=$bansFilter?>&amp;bri=<?=$bansReason_id?>&amp;ba=<?=$bansAdmin?>&amp;searchText=<?=$searchText?>"><img src="/images/arrow_up.png" style="cursor:pointer;"/></a>
+        <div align="center"><a href="index.php?page=banlist&sc=b.steam_id&sd=ASC&sr=<?=$startRange?>&bf=<?=$bansFilter?>&bri=<?=$bansReason_id?>&ba=<?=$bansAdmin?>&searchText=<?=$searchText?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
           <?=LANINS_013?>
-        <a href="/index.php?page=banlist&amp;sc=b.steam_id&amp;sd=DESC&amp;sr=<?=$startRange?>&amp;bf=<?=$bansFilter?>&amp;bri=<?=$bansReason_id?>&amp;ba=<?=$bansAdmin?>&amp;searchText=<?=$searchText?>"><img src="/images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
+        <a href="index.php?page=banlist&sc=b.steam_id&sd=DESC&sr=<?=$startRange?>&bf=<?=$bansFilter?>&bri=<?=$bansReason_id?>&ba=<?=$bansAdmin?>&searchText=<?=$searchText?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
       <th class="colColor2" width="1%" nowrap>
-        <div align="center"><a href="/index.php?page=banlist&amp;sc=name&amp;sd=ASC&amp;sr=<?=$startRange?>&amp;bf=<?=$bansFilter?>&amp;bri=<?=$bansReason_id?>&amp;ba=<?=$bansAdmin?>&amp;searchText=<?=$searchText?>"><img src="/images/arrow_up.png" style="cursor:pointer;"/></a>
+        <div align="center"><a href="index.php?page=banlist&sc=name&sd=ASC&sr=<?=$startRange?>&bf=<?=$bansFilter?>&bri=<?=$bansReason_id?>&ba=<?=$bansAdmin?>&searchText=<?=$searchText?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
           <?=LANINS_014?>
-        <a href="/index.php?page=banlist&amp;sc=name&amp;sd=DESC&amp;sr=<?=$startRange?>&amp;bf=<?=$bansFilter?>&amp;bri=<?=$bansReason_id?>&amp;ba=<?=$bansAdmin?>&amp;searchText=<?=$searchText?>"><img src="/images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
+        <a href="index.php?page=banlist&sc=name&sd=DESC&sr=<?=$startRange?>&bf=<?=$bansFilter?>&bri=<?=$bansReason_id?>&ba=<?=$bansAdmin?>&searchText=<?=$searchText?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
 	  <th class="colColor1" width="1%" nowrap>
-        <div align="center"><a href="/index.php?page=banlist&amp;sc=length&amp;sd=ASC&amp;sr=<?=$startRange?>&amp;bf=<?=$bansFilter?>&amp;bri=<?=$bansReason_id?>&amp;ba=<?=$bansAdmin?>&amp;searchText=<?=$searchText?>"><img src="/images/arrow_up.png" style="cursor:pointer;"/></a>
+        <div align="center"><a href="index.php?page=banlist&sc=length&sd=ASC&sr=<?=$startRange?>&bf=<?=$bansFilter?>&bri=<?=$bansReason_id?>&ba=<?=$bansAdmin?>&searchText=<?=$searchText?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
           <?=LANINS_016?>
-        <a href="/index.php?page=banlist&amp;sc=length&amp;sd=DESC&amp;sr=<?=$startRange?>&amp;bf=<?=$bansFilter?>&amp;bri=<?=$bansReason_id?>&amp;ba=<?=$bansAdmin?>&amp;searchText=<?=$searchText?>"><img src="/images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
-      <th class="colColor2" width="1%" nowrap><div align="center"><a href="/index.php?page=banlist&amp;sc=banner&amp;sd=ASC&amp;sr=<?=$startRange?>&amp;bf=<?=$bansFilter?>&amp;bri=<?=$bansReason_id?>&amp;ba=<?=$bansAdmin?>&amp;searchText=<?=$searchText?>"><img src="/images/arrow_up.png" style="cursor:pointer;"/></a><?=LANINS_016?>
-        <a href="/index.php?page=banlist&amp;sc=banner&amp;sd=DESC&amp;sr=<?=$startRange?>&amp;bf=<?=$bansFilter?>&amp;bri=<?=$bansReason_id?>&amp;ba=<?=$bansAdmin?>&amp;searchText=<?=$searchText?>"><img src="/images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
+        <a href="index.php?page=banlist&sc=length&sd=DESC&sr=<?=$startRange?>&bf=<?=$bansFilter?>&bri=<?=$bansReason_id?>&ba=<?=$bansAdmin?>&searchText=<?=$searchText?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
+      <th class="colColor2" width="1%" nowrap><div align="center"><a href="index.php?page=banlist&sc=banner&sd=ASC&sr=<?=$startRange?>&bf=<?=$bansFilter?>&bri=<?=$bansReason_id?>&ba=<?=$bansAdmin?>&searchText=<?=$searchText?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>Admin
+        <a href="index.php?page=banlist&sc=banner&sd=DESC&sr=<?=$startRange?>&bf=<?=$bansFilter?>&bri=<?=$bansReason_id?>&ba=<?=$bansAdmin?>&searchText=<?=$searchText?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
       <th class="colColor1" width="1%" nowrap>
-        <div align="center"><a href="/index.php?page=banlist&amp;sc=add_date&amp;sd=ASC&amp;sr=<?=$startRange?>&amp;bf=<?=$bansFilter?>&amp;bri=<?=$bansReason_id?>&amp;ba=<?=$bansAdmin?>&amp;searchText=<?=$searchText?>"><img src="/images/arrow_up.png" style="cursor:pointer;"/></a>
+        <div align="center"><a href="index.php?page=banlist&sc=add_date&sd=ASC&sr=<?=$startRange?>&bf=<?=$bansFilter?>&bri=<?=$bansReason_id?>&ba=<?=$bansAdmin?>&searchText=<?=$searchText?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
           <?=LANINS_018?>
-        <a href="/index.php?page=banlist&amp;sc=add_date&amp;sd=DESC&amp;sr=<?=$startRange?>&amp;bf=<?=$bansFilter?>&amp;bri=<?=$bansReason_id?>&amp;ba=<?=$bansAdmin?>&amp;searchText=<?=$searchText?>"><img src="/images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
+        <a href="index.php?page=banlist&sc=add_date&sd=DESC&sr=<?=$startRange?>&bf=<?=$bansFilter?>&bri=<?=$bansReason_id?>&ba=<?=$bansAdmin?>&searchText=<?=$searchText?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
       <th class="colColor2" width="1%" nowrap>
-        <div align="center"><a href="/index.php?page=banlist&amp;sc=b.reason_id&amp;sd=ASC&amp;sr=<?=$startRange?>&amp;bf=<?=$bansFilter?>&amp;bri=<?=$bansReason_id?>&amp;ba=<?=$bansAdmin?>&amp;searchText=<?=$searchText?>"><img src="/images/arrow_up.png"/></a>
+        <div align="center"><a href="index.php?page=banlist&sc=b.reason_id&sd=ASC&sr=<?=$startRange?>&bf=<?=$bansFilter?>&bri=<?=$bansReason_id?>&ba=<?=$bansAdmin?>&searchText=<?=$searchText?>"><img src="images/arrow_up.png"/></a>
           <?=LANINS_020?>
-        <a href="/index.php?page=banlist&amp;sc=b.reason_id&amp;sd=DESC&amp;sr=<?=$startRange?>&amp;bf=<?=$bansFilter?>&amp;bri=<?=$bansReason_id?>&amp;ba=<?=$bansAdmin?>&amp;searchText=<?=$searchText?>"><img src="/images/arrow_down.png"/></a> </div></th>
+        <a href="index.php?page=banlist&sc=b.reason_id&sd=DESC&sr=<?=$startRange?>&bf=<?=$bansFilter?>&bri=<?=$bansReason_id?>&ba=<?=$bansAdmin?>&searchText=<?=$searchText?>"><img src="images/arrow_down.png"/></a> </div></th>
       <th class="colColor1" width="1%" nowrap>
         <div align="center">Post</div></th>
       <?php
@@ -261,13 +261,13 @@ if(count($bannedUsers) > 0) {
       if($member || $admin || $banManager || $fullPower) {
         ?>
         <th class="colColor2" width="1%" nowrap>
-          <div align="center"><a href="/index.php?page=banlist&amp;sc=active&amp;sd=ASC&amp;sr=<?=$startRange?>&amp;bf=<?=$bansFilter?>&amp;bri=<?=$bansReason_id?>&amp;ba=<?=$bansAdmin?>&amp;searchText=<?=$searchText?>"><img src="/images/arrow_up.png" style="cursor:pointer;"/></a>
+          <div align="center"><a href="index.php?page=banlist&sc=active&sd=ASC&sr=<?=$startRange?>&bf=<?=$bansFilter?>&bri=<?=$bansReason_id?>&ba=<?=$bansAdmin?>&searchText=<?=$searchText?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
 		  <?=LANINS_021?>
-          <a href="/index.php?page=banlist&amp;sc=active&amp;sd=DESC&amp;sr=<?=$startRange?>&amp;bf=<?=$bansFilter?>&amp;bri=<?=$bansReason_id?>&amp;ba=<?=$bansAdmin?>&amp;searchText=<?=$searchText?>"><img src="/images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
+          <a href="index.php?page=banlist&sc=active&sd=DESC&sr=<?=$startRange?>&bf=<?=$bansFilter?>&bri=<?=$bansReason_id?>&ba=<?=$bansAdmin?>&searchText=<?=$searchText?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
         <th class="colColor1" width="1%" nowrap>
-          <div align="center"><a href="/index.php?page=banlist&amp;sc=pending&amp;sd=ASC&amp;sr=<?=$startRange?>&amp;bf=<?=$bansFilter?>&amp;bri=<?=$bansReason_id?>&amp;ba=<?=$bansAdmin?>&amp;searchText=<?=$searchText?>"><img src="/images/arrow_up.png" style="cursor:pointer;"/></a>
+          <div align="center"><a href="index.php?page=banlist&sc=pending&sd=ASC&sr=<?=$startRange?>&bf=<?=$bansFilter?>&bri=<?=$bansReason_id?>&ba=<?=$bansAdmin?>&searchText=<?=$searchText?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
           <?=LANINS_022?>
-          <a href="index.php?page=banlist&sc=pending&sd=DESC&sr=<?=$startRange?>&bf=<?=$bansFilter?>&bri=<?=$bansReason_id?>&ba=<?=$bansAdmin?>&searchText=<?=$searchText?>"><img src="/images/arrow_down.png" style="cursor:pointer;"/>        </div></th>
+          <a href="index.php?page=banlist&sc=pending&sd=DESC&sr=<?=$startRange?>&bf=<?=$bansFilter?>&bri=<?=$bansReason_id?>&ba=<?=$bansAdmin?>&searchText=<?=$searchText?>"><img src="images/arrow_down.png" style="cursor:pointer;"/>        </div></th>
       	<?php
 		if($fullPower) {
           ?>
