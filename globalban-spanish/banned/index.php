@@ -34,6 +34,7 @@ $config = new Config(); // All configuration variables are contained in this obj
 $configOdonel = new ConfigOdonel(); // All configuration variables are contained in this object
 $version = "v3.4.1";
 $copyright = "Developed by <a href='mailto:soynuts@unbuinc.net'>Soynuts</a> of <a href='http://unbuinc.net'>UNBU Inc.</a> &copy;2007-2008 Translate/Edit Odonel";
+define("LANGUAGE", $configOdonel->LANGUAGE); // Global Constant of default Languaje
 // ############################################################################
 
 // Page to access

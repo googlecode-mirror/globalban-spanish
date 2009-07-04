@@ -31,8 +31,7 @@ class Length {
 	}
 	
 	function init() {
-	$lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_class.Length.php';
-    include_once(file_exists($lan_file) ? $lan_file : "languages/English/lan_class.Length.php");
+	echo ROOTDIR;
     $this->id = -1;
     $this->reason = LANLENGTH_001;
   }
@@ -62,9 +61,9 @@ class Length {
   }
   
   function getReadable() {
-   	$lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_class.Length.php"';
-    include_once(file_exists($lan_file) ? $lan_file : "languages/English/lan_class.Length.php");
-    $this->readable = $this->length . " " . $this->timeScale;
+   	$lan_file = ROOTDIR.'/languages/'.LANGUAGE.'/lan_class.Length.php';
+    include_once(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_class.Length.php");
+	$this->readable = $this->length . " " . $this->timeScale;
     if($this->length == 1) {
       if($this->timeScale == "minutes")
         $this->readable = $this->length. " " .LANLENGTH_002;

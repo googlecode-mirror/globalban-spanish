@@ -32,26 +32,31 @@
  */
 
 class ConfigOdonel {
+
+  var $LANGUAGE = "Spanish";
+  // var $LANGUAGE = "English";
+
+
   /**
    * HLstatsX Community Edition specific settings (http://www.hlxcommunity.com/)
    */
-
-  var $HLstatsUrl = "http://clanlds.nls.es/estadisticas/"; // Your stats web site Ej: "http://clanlds.nls.es/estadisticas/"
-
+  var $HLstatsUrl = "http://clanlds.nls.es/estadisticas/"; // Your stats web site Example: "http://clanlds.nls.es/estadisticas/" for disable set to "" empty string.
+  // var $HLstatsUrl = ""; var $HLstatsUrl = ""; // for disable set to "" empty string.
 
   /**
    * e107 Forum integration settings
    */
   var $enableAutoPoste107Forum = false;  // Whether to enable Auto-Post in the e107 Forum
-  var $e107Url = "http://clanlds.nls.es/"; // Your e107 web site Ej: "http://www.e107.com"
+  var $e107Url = "http://clanlds.nls.es/"; // Your e107 web site Ej: "http://www.e107.com/"
+ 
   var $e107_dbName = "e107"; // Set the e107 Database to access
   var $e107_dbUserName = "dbuser"; // Set the Database's user name login (recommend a user with only select and insert privs)
   var $e107_dbPassword = "dbpass"; // Set the Database user's password login
   var $e107_dbHostName = "localhost"; // Set the Database's host
   
   var $e107TablePrefix = "e107_"; // The prefix of the SMF tables
-  var $e107_bans_forum_category_number= "1"; // 
-  var $e107_GlobalBan_user= "500.GlobalBan";
+  var $e107_bans_forum_category_number= "1"; // For example if your forum category link is http://www.youre107.com/e107_plugins/forum/forum_viewforum.php?19 you must set it to "19"
+  var $e107_GlobalBan_user= "500.GlobalBan"; // e107 user to use, format must be "user_number.user_name"
   
   function __construct() {
   }

@@ -21,8 +21,8 @@
 
 require_once(ROOTDIR."/include/database/class.LengthQueries.php");
 
-$lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_getBanLengthList.php';
-include_once(file_exists($lan_file) ? $lan_file : "languages/English/lan_getBanLengthList.php");
+$lan_file = ROOTDIR.'/languages/'.LANGUAGE.'/lan_getBanLengthList.php';
+include_once(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_getBanLengthList.php");
 
 
 $lengthQueries = new LengthQueries();

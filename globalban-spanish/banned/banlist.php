@@ -51,11 +51,8 @@ if(empty($sortDirection)) {
   $sortDirection = "DESC";
 }
 
-// $LANGUAGE = "Spanish";
-$LANGUAGE = "English";
-
-$lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_banlist.php';
-include_once(file_exists($lan_file) ? $lan_file : "languages/English/lan_banlist.php");
+$lan_file = ROOTDIR.'/languages/'.LANGUAGE.'/lan_banlist.php';
+include_once(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_banlist.php");
 
 $banQueries = new BanQueries();
 
@@ -411,9 +408,12 @@ if(count($bannedUsers) > 0) {
       <tr>
         <td class="colColor1" nowrap>
         <img src="images/information.png" style="cursor:help" onmouseover="Tip('<?=$information?>', WIDTH, 300, SHADOW, true, FADEIN, 300, FADEOUT, 300, STICKY, 1, OFFSETX, -20, CLOSEBTN, true, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'))">
-		&nbsp;<a href='<?=$configOdonel->HLstatsUrl?>hlstats.php?mode=search&q=<?=str_replace(array("\t"," "), "", $bannedUser->getSteamId())?>&st=uniqueid&game=css'><img src='images/hxce.png' align='absmiddle'/></a>
-		&nbsp;<a href='<?=$linkprofile?>'><img src='images/steam.png' align='absmiddle'/></a>
-		&nbsp;
+		<?php
+		  if (!empty($configOdonel->HLstatsUrl)) {
+		    ?> &nbsp;<a href='<?=$configOdonel->HLstatsUrl?>hlstats.php?mode=search&q=<?=str_replace(array("\t"," "), "", $bannedUser->getSteamId())?>&st=uniqueid&game=css'><img src='images/hxce.png' align='absmiddle'/></a><?php
+		  }
+		?>
+		&nbsp;<a href='<?=$linkprofile?>'><img src='images/steam.png' align='absmiddle'/></a>&nbsp;
 		<?php
           // Fullpower admins and Ban Mangers can modify ALL bans
           // Members and Amdins can only edit their own bans (which is matched by either banner name or banner steam id)
