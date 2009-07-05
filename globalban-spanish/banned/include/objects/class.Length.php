@@ -33,7 +33,7 @@ class Length {
 	function init() {
 	echo ROOTDIR;
     $this->id = -1;
-    $this->reason = LANLENGTH_001;
+    $this->reason = $LANLENGTH_001;
   }
   
   function getId() {
@@ -61,34 +61,35 @@ class Length {
   }
   
   function getReadable() {
-   	$lan_file = ROOTDIR.'/languages/'.LANGUAGE.'/lan_class.Length.php';
-    include_once(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_class.Length.php");
+    global $LANGUAGE;
+   	$lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_class.Length.php';
+    include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_class.Length.php");
 	$this->readable = $this->length . " " . $this->timeScale;
     if($this->length == 1) {
       if($this->timeScale == "minutes")
-        $this->readable = $this->length. " " .LANLENGTH_002;
+        $this->readable = $this->length. " " .$LANLENGTH_002;
       if($this->timeScale == "hours")
-        $this->readable = $this->length. " " .LANLENGTH_003;
+        $this->readable = $this->length. " " .$LANLENGTH_003;
       if($this->timeScale == "days")
-        $this->readable = $this->length. " " .LANLENGTH_004;
+        $this->readable = $this->length. " " .$LANLENGTH_004;
       if($this->timeScale == "weeks")
-        $this->readable = $this->length. " " .LANLENGTH_005;
+        $this->readable = $this->length. " " .$LANLENGTH_005;
       if($this->timeScale == "months")
-        $this->readable = $this->length. " " .LANLENGTH_006;
+        $this->readable = $this->length. " " .$LANLENGTH_006;
     }else {
       if($this->timeScale == "minutes")
-        $this->readable = $this->length. " " .LANLENGTH_007;
+        $this->readable = $this->length. " " .$LANLENGTH_007;
       if($this->timeScale == "hours")
-        $this->readable = $this->length. " " .LANLENGTH_008;
+        $this->readable = $this->length. " " .$LANLENGTH_008;
       if($this->timeScale == "days")
-        $this->readable = $this->length. " " .LANLENGTH_009;
+        $this->readable = $this->length. " " .$LANLENGTH_009;
       if($this->timeScale == "weeks")
-        $this->readable = $this->length. " " .LANLENGTH_010;
+        $this->readable = $this->length. " " .$LANLENGTH_010;
       if($this->timeScale == "months")
-        $this->readable = $this->length. " " .LANLENGTH_011;
+        $this->readable = $this->length. " " .$LANLENGTH_011;
     }
     if($this->length == 0) {
-      $this->readable = LANLENGTH_012;
+      $this->readable = $LANLENGTH_012;
     }
     
     return $this->readable;

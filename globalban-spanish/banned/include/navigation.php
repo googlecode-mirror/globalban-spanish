@@ -117,3 +117,5 @@
   ?>
   </ul>
 </div>
+<a href="index.php?page=banlist&lg=English"><img src="images/flags/gb.gif" width="24" height="16" alt="English" /></a>
+<a href="index.php?page=banlist&lg=Spanish"><img src="images/flags/es.gif" width="24" height="16" alt="Spanish" /></a>

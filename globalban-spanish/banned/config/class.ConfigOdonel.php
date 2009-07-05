@@ -33,9 +33,8 @@
 
 class ConfigOdonel {
 
-  var $LANGUAGE = "Spanish";
-  // var $LANGUAGE = "English";
-
+  // var $LANGUAGE = "Spanish";
+  var $LANGUAGE = "English";
 
   /**
    * HLstatsX Community Edition specific settings (http://www.hlxcommunity.com/)

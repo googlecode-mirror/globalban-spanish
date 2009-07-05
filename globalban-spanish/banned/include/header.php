@@ -73,7 +73,6 @@ ob_start();
     <script type="text/javascript">
 		show_flash("931", "250", "images/<?=$config->siteLogo?>", "", "team=Leyendas del Source");
   </script>
-  </div>
+</div>
   <p>&nbsp;</p>
-
-<?php include("include/navigation.php")?>
+  <?php include("include/navigation.php")?>

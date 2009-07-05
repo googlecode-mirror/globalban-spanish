@@ -59,7 +59,7 @@ if(!empty($username) && !empty($password)) {
 		
 		// Store stuff into session (creates a valid session)
 		$_SESSION['name'] = $user->getName();
-   	$_SESSION['password'] = $user->getPassword(); // password should already be md5 encrypted
+   	    $_SESSION['password'] = $user->getPassword(); // password should already be md5 encrypted
 		$_SESSION['accessLevel'] = $user->getAccessLevel(); // Level of access
 		
 		header("Location: index.php?page=banlist"); // Requires ob_start and ob_flush

@@ -10,17 +10,17 @@
 +----------------------------------------------------------------------------+
 */
 
-define('LANINS_001', 'Breaking Server Rules');
-define('LANINS_002', 'minute');
-define('LANINS_003', 'hour');
-define('LANINS_004', 'day');
-define('LANINS_005', 'week');
-define('LANINS_006', 'month');
-define('LANINS_007', 'minutes');
-define('LANINS_008', 'hours');
-define('LANINS_009', 'days');
-define('LANINS_010', 'weeks');
-define('LANINS_011', 'months');
-define('LANINS_012', 'Permanent');
+$LANLENGTH_001 = 'Breaking Server Rules';
+$LANLENGTH_002 = 'minute';
+$LANLENGTH_003 = 'hour';
+$LANLENGTH_004 = 'day';
+$LANLENGTH_005 = 'week';
+$LANLENGTH_006 = 'month';
+$LANLENGTH_007 = 'minutes';
+$LANLENGTH_008 = 'hours';
+$LANLENGTH_009 = 'days';
+$LANLENGTH_010 = 'weeks';
+$LANLENGTH_011 = 'months';
+$LANLENGTH_012 = 'Permanent';
 
 ?>

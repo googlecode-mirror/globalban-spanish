@@ -10,17 +10,17 @@
 +----------------------------------------------------------------------------+
 */
 
-define('LANINS_001', 'Quebrantar las reglas del servidor');
-define('LANINS_002', 'minuto');
-define('LANINS_003', 'hora');
-define('LANINS_004', 'dia');
-define('LANINS_005', 'semanas');
-define('LANINS_006', 'meses');
-define('LANINS_007', 'minutos');
-define('LANINS_008', 'horas');
-define('LANINS_009', 'dias');
-define('LANINS_010', 'semanas');
-define('LANINS_011', 'meses');
-define('LANINS_012', 'Permanente');
+$LANLENGTH_001 = 'Quebrantar las reglas del servidor';
+$LANLENGTH_002 = 'minuto';
+$LANLENGTH_003 = 'hora';
+$LANLENGTH_004 = 'dia';
+$LANLENGTH_005 = 'semanas';
+$LANLENGTH_006 = 'meses';
+$LANLENGTH_007 = 'minutos';
+$LANLENGTH_008 = 'horas';
+$LANLENGTH_009 = 'dias';
+$LANLENGTH_010 = 'semanas';
+$LANLENGTH_011 = 'meses';
+$LANLENGTH_012 = 'Permanente';
 
 ?>

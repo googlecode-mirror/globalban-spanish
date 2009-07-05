@@ -147,10 +147,10 @@ function htmlUpdatePendingStatus(xml) {
     
     if(pending == 1) {
       //html = "<img src=\"images/hourglass.png\"/>";
-      document.getElementById("pending:"+id).childNodes[1].src = "images/hourglass.png";
+      document.getElementById("pending:"+id).childNodes[0].childNodes[1].src = "images/hourglass.png";
     } else {
       //html = "<img src=\"images/cross.png\"/>";
-      document.getElementById("pending:"+id).childNodes[1].src = "images/cross.png";
+      document.getElementById("pending:"+id).childNodes[0].childNodes[1].src = "images/cross.png";
     }
     
     // Change the html/image

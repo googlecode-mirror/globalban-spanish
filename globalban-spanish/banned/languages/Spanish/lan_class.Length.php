@@ -10,17 +10,17 @@
 +----------------------------------------------------------------------------+
 */
 
-define('LANLENGTH_001', 'Quebrantar las reglas del servidor');
-define('LANLENGTH_002', 'minuto');
-define('LANLENGTH_003', 'hora');
-define('LANLENGTH_004', 'dia');
-define('LANLENGTH_005', 'semanas');
-define('LANLENGTH_006', 'meses');
-define('LANLENGTH_007', 'minutos');
-define('LANLENGTH_008', 'horas');
-define('LANLENGTH_009', 'dias');
-define('LANLENGTH_010', 'semanas');
-define('LANLENGTH_011', 'meses');
-define('LANLENGTH_012', 'Permanente');
+$LANLENGTH_001 = 'Quebrantar las reglas del servidor';
+$LANLENGTH_002 = 'minuto';
+$LANLENGTH_003 = 'hora';
+$LANLENGTH_004 = 'dia';
+$LANLENGTH_005 = 'semanas';
+$LANLENGTH_006 = 'meses';
+$LANLENGTH_007 = 'minutos';
+$LANLENGTH_008 = 'horas';
+$LANLENGTH_009 = 'dias';
+$LANLENGTH_010 = 'semanas';
+$LANLENGTH_011 = 'meses';
+$LANLENGTH_012 = 'Permanente';
 
 ?>
