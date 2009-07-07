@@ -462,7 +462,7 @@ if(count($bannedUsers) > 0) {
         <td class="colColor2" nowrap><div align="center"><?=$bannedUser->getBanner()?></div></td>
 		<?php
           if($bannedUser->getLength() != 0) {
-            ?><td class="colColor1" nowrap onmouseover="Tip('Hasta:<br/><?=$expireDate." ".$expireTime?>', WIDTH, 150, SHADOW, true, FADEIN, 150, FADEOUT, 150, STICKY, 1, OFFSETX, -20, CLOSEBTN, false, CLICKCLOSE, false, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'))"><?php
+            ?><td class="colColor1" nowrap onmouseover="Tip('<?=$LANINS_019?>:<br/><?=$expireDate." ".$expireTime?>', WIDTH, 150, SHADOW, true, FADEIN, 150, FADEOUT, 150, STICKY, 1, OFFSETX, -20, CLOSEBTN, false, CLICKCLOSE, false, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'))"><?php
           } else {
             ?><td class="colColor1" nowrap><?php
           }

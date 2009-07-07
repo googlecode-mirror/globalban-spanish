@@ -18,14 +18,18 @@
     You should have received a copy of the GNU General Public License
     along with GlobalBan.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+$lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_navigation.php';
+include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_navigation.php");
+
 ?>
 <div id="menu">
   <ul id="nav">
   <?php
   // Web
-  if($config->enableForumLink) {
+  if($config->webUrl) {
   ?>
-  <li><a href="<?=$configOdonel->e107Url?>"><span>Web LDS</span></a></li>
+  <li><a href="<?=$configOdonel->webUrl?>"><span><?=$LANNAV_001?></span></a></li>
   <?php
   }
   ?>
@@ -34,7 +38,7 @@
   // Forums Button
   if($config->enableForumLink) {
   ?>
-  <li><a href="<?=$config->forumURL?>"><span>Foro</span></a></li>
+  <li><a href="<?=$config->forumURL?>"><span><?=$LANNAV_002?></span></a></li>
   <?php
   }
   ?>
@@ -42,18 +46,18 @@
   <?php
   // Ban List button
   ?>
-  <li><a href="index.php?page=banlist">Baneados</a></li>
+  <li><a href="index.php?page=banlist"><?=$LANNAV_003?></a></li>
 
   <?php
   // Ip List button
   ?>
-  <li><a href="index.php?page=ipbanlist">IPs Baneadas</a></li>
+  <li><a href="index.php?page=ipbanlist"><?=$LANNAV_004?></a></li>
 
   <?php
   // Add Ban Button
   if($member || $admin || $banManager || $fullPower) {
   ?>
-  <li><a href="index.php?page=addBan">A&ntilde;adir Ban</a></li>
+  <li><a href="index.php?page=addBan"><?=$LANNAV_005?></a></li>
   <?php
   }
   ?>
@@ -62,7 +66,7 @@
   // Add Ban Button
   if($fullPower) {
   ?>
-  <li><a href="index.php?page=importBans">Importar</a></li>
+  <li><a href="index.php?page=importBans"><?=$LANNAV_006?></a></li>
   <?php
   }
   ?>
@@ -70,17 +74,17 @@
   <?php
   // Demos Button
   ?>
-  <li><a href="index.php?page=demos">Demos</a></li>
+  <li><a href="index.php?page=demos"><?=$LANNAV_018?></a></li>
   
   <?php // Server List Button ?>
-  <li><a href="index.php?page=serverList">Servidores</a></li>
+  <li><a href="index.php?page=serverList"><?=$LANNAV_007?></a></li>
 
   
   <?php
   // Profile Button
   if($member || $admin || $banManager || $fullPower) {
   ?>
-  <li><a href="index.php?page=profile">Perfil</a></li>
+  <li><a href="index.php?page=profile"><?=$LANNAV_008?></a></li>
   <?php
   }
   ?>
@@ -92,14 +96,14 @@
   
     <li><a href="#">Admin</a>
       <ul>
-        <li><a href="index.php?page=configuration&adminPage=1">Configuraci&oacute;n</a></li>
-        <li><a href="index.php?page=banReasons&adminPage=1">Motivos</a></li>
-        <li><a href="index.php?page=banLengths&adminPage=1">Duraciones</a></li>
-        <li><a href="index.php?page=badNames&adminPage=1">Bad Names</a></li>
-        <li><a href="index.php?page=manageServers&adminPage=1">Servidores</a></li>
-        <li><a href="index.php?page=manageServerGroups&adminPage=1">Grupos Server</a></li>
-        <li><a href="index.php?page=manageAdminGroups&adminPage=1">Grupos Admins</a></li>
-        <li><a href="index.php?page=manageUsers&adminPage=1">Administradores</a></li>
+        <li><a href="index.php?page=configuration&adminPage=1"><?=$LANNAV_009?></li>
+        <li><a href="index.php?page=banReasons&adminPage=1"><?=$LANNAV_010?></a></li>
+        <li><a href="index.php?page=banLengths&adminPage=1"><?=$LANNAV_011?></a></li>
+        <li><a href="index.php?page=badNames&adminPage=1"><?=$LANNAV_012?></a></li>
+        <li><a href="index.php?page=manageServers&adminPage=1"><?=$LANNAV_013?></a></li>
+        <li><a href="index.php?page=manageServerGroups&adminPage=1"><?=$LANNAV_014?></a></li>
+        <li><a href="index.php?page=manageAdminGroups&adminPage=1"><?=$LANNAV_015?></a></li>
+        <li><a href="index.php?page=manageUsers&adminPage=1"><?=$LANNAV_016?></a></li>
       </ul>
     </li>
   
@@ -111,7 +115,7 @@
   // Logout
   if(isset($_SESSION['accessLevel']) && $page != "logout" && !$config->enableSmfIntegration) {
   ?>
-  <li><a href="index.php?page=logout">Salir</a></li>
+  <li><a href="index.php?page=logout"><?=$LANNAV_017?></a></li>
   <?php
   }
   ?>

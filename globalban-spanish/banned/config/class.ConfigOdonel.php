@@ -33,13 +33,21 @@
 
 class ConfigOdonel {
 
-  // var $LANGUAGE = "Spanish";
+  /**
+   * Default Language
+   */
   var $LANGUAGE = "English";
+  // var $LANGUAGE = "Spanish";
+  
+  /**
+   * Default Language
+   */
+  var $webUrl = "http://www.yourweb.com";
 
   /**
    * HLstatsX Community Edition specific settings (http://www.hlxcommunity.com/)
    */
-  var $HLstatsUrl = "http://clanlds.nls.es/estadisticas/"; // Your stats web site Example: "http://clanlds.nls.es/estadisticas/" for disable set to "" empty string.
+  var $HLstatsUrl = "http://http://www.yourweb.com/HLstats/"; // Your stats web site Example: "http://clanlds.nls.es/estadisticas/" for disable set to "" empty string.
   // var $HLstatsUrl = ""; var $HLstatsUrl = ""; // for disable set to "" empty string.
 
   /**
