@@ -27,7 +27,7 @@ include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_nav
   <ul id="nav">
   <?php
   // Web
-  if($config->webUrl) {
+  if($configOdonel->webUrl) {
   ?>
   <li><a href="<?=$configOdonel->webUrl?>"><span><?=$LANNAV_001?></span></a></li>
   <?php
