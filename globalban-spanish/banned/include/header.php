@@ -28,7 +28,6 @@ ob_start();
     <link rel="icon" href="images/favicon.ico" type="image/vnd.microsoft.icon">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/vnd.microsoft.icon">
     <link rel="stylesheet" type="text/css" href="css/banned.css" />
-    <link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
     <script src="javascript/functions.js" language="javascript" type="text/javascript"></script>
     <script src="javascript/jquery-1.2.6.min.js" language="javascript" type="text/javascript"></script>
     <script src="javascript/ui.core.js" language="javascript" type="text/javascript"></script>
