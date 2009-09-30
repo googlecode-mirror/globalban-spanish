@@ -59,7 +59,7 @@ if($hash == $config->matchHash) {
   if(!$kickedByName) {
     // Determine if this user is IP banned, if so kick them
     if($banQueries->isIpBanned($ipOfBanned)) {
-      kickUser($steamId, $serverId, $config->banMessage, $nameOfBanned);
+      kickUser($steamId, $serverId, eregi_replace("gb_time","mediante IP",$config->banMessage), $nameOfBanned);
 		$kickedByBan = true;
     }
 
@@ -78,7 +78,7 @@ if($hash == $config->matchHash) {
       if($bannedUser->getPending() == 1) {
         // Kick the user if the ban is 24 hours or less
         if($lengthInSec > 0 && $lengthInSec/3600 <= 24) {
-          kickUser($steamId, $serverId, $config->banMessage, $nameOfBanned);
+          kickUser($steamId, $serverId, eregi_replace("gb_time",$length->getReadable(),$config->banMessage), $nameOfBanned);
 			 $kickedByBan = true;
         } else {
           // Kick the user for the first 5 days that their ban is in pending mode
@@ -89,7 +89,7 @@ if($hash == $config->matchHash) {
 
           // Kick the user if it's still within X days of the pending ban add
           if($expireDate > $now) {
-            kickUser($steamId, $serverId, $config->banMessage, $nameOfBanned);
+            kickUser($steamId, $serverId, eregi_replace("gb_time",$length->getReadable(),$config->banMessage), $nameOfBanned);
 				$kickedByBan = true;
           }
         }
@@ -97,12 +97,12 @@ if($hash == $config->matchHash) {
         // If length is 0, don't bother checking expire_date
         if($lengthInSec == 0) {
           // Send rcon command to kick user
-          kickUser($steamId, $serverId, $config->banMessage, $nameOfBanned);
+          kickUser($steamId, $serverId, eregi_replace("gb_time",$length->getReadable(),$config->banMessage), $nameOfBanned);
 			 $kickedByBan = true;
         } else {
           // Check expire date to today's date
           if($bannedUser->getExpireDate() > $now) {
-            kickUser($steamId, $serverId, $config->banMessage, $nameOfBanned);
+            kickUser($steamId, $serverId, eregi_replace("gb_time",$length->getReadable(),$config->banMessage), $nameOfBanned);
 				$kickedByBan = true;
           }
         }

@@ -107,7 +107,7 @@ if($hash == $config->matchHash) {
 	$motivo = $reasonQueries->getReason($reason);
 
     // Now kick the user
-    kickUser($steamId, $serverId, eregi_replace("time",$length->getReadable(),$config->banMessage),$nameOfBanned, $length->getReadable(), $motivo);
+    kickUser($steamId, $serverId, eregi_replace("gb_time",$length->getReadable(),$config->banMessage),$nameOfBanned, $length->getReadable(), $motivo);
 
     if($configOdonel->enableAutoPoste107Forum) {
 
