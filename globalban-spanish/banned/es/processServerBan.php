@@ -115,7 +115,7 @@ if($hash == $config->matchHash) {
       $url = "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
       $url = str_replace("processServerBan", "banlist", $url);
 
-      $postId = NewPostForum_e107(addslashes($nameOfBanned)." - ".addslashes($steamId),"[b]Admin:[/b] [color=#009900]".addslashes($username)."[/color]\r\n\r\n[b]Nick Baneado: [/b][color=#990000][link=".$url."&searchText=".addslashes($steamId)."]".addslashes($nameOfBanned)." - ".addslashes($steamId)."[/link][/color]\r\n\r\n[b]Motivo:[/b] ".$motivo."\r\n\r\n[b]Periodo:[/b] ".$length->getReadable(), time());
+      $postId = NewPostForum_e107(addslashes($nameOfBanned)." - ".addslashes($steamId),"[b]Admin:[/b] [color=#009900]".addslashes($username)."[/color]\r\n\r\n[b]Nick Baneado: [/b][color=#990000][link=".$url."&searchText=".addslashes($steamId)."]".addslashes($nameOfBanned)." - ".addslashes($steamId)."[/link][/color]\r\n\r\n[b]Motivo:[/b] ".$motivo."\r\n\r\n[b]Periodo:[/b] ".$length->getReadable(), time(), $configOdonel);
       UpdateBanWebpage ($postId , $banId, $configOdonel);
 	}
   }
@@ -182,10 +182,10 @@ function kickUser($steamId, $serverId, $message, $nameOfBanned, $periodo, $motiv
   }
 }
 
-function NewPostForum_e107($TituloPost, $AsuntoPost, $now) {
+function NewPostForum_e107($TituloPost, $AsuntoPost, $now, $configOdonel) {
 
 	// Connecting, selecting database
-	$link = mysql_connect($configOdonel->e107_dbHostName, $configOdonel->e107_dbUserName, $configOdonel->e107_dbPassword)
+    $link = mysql_connect($configOdonel->e107_dbHostName, $configOdonel->e107_dbUserName, $configOdonel->e107_dbPassword)
 	    or die('No se pudo conectar a la BD_e107: ' . mysql_error());
 	echo 'Connected successfully';
 	mysql_select_db($configOdonel->e107_dbName) or die('Could not select database');
