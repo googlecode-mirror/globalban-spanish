@@ -266,7 +266,7 @@ if(file_get_contents("http://code.google.com/p/globalban-spanish/source/list")) 
         <?php
           }
         ?>
-        <td class="rowColor1" width="1%" nowrap><b>Official Version: </b><?=$officialVersion?></td>
+        <td class="rowColor1" width="1%" nowrap><a href="http://code.google.com/p/globalban-spanish/source/list"><b>Official Version: </b><?=$officialVersion?></a></td>
       </tr>
     </table>
   </div>
