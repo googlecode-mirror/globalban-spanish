@@ -241,7 +241,7 @@ if(file_get_contents("http://unbuinc.net/gbanversion.php")) {
 */
 // Make sure we can read data from another URL
 if(file_get_contents("http://code.google.com/p/globalban-spanish/source/list")) {
-  $officialVersion = "v3.4.1  r".substr(strstr(file_get_contents("http://code.google.com/p/globalban-spanish/source/list"), '<td class="id"><a href="detail?r='),strlen('<td class="id"><a href="detail?r='),2);
+  $officialVersion = "3.4.1 r".substr(strstr(file_get_contents("http://code.google.com/p/globalban-spanish/source/list"), '<td class="id"><a href="detail?r='),strlen('<td class="id"><a href="detail?r='),2);
 } else {
   $officialVersion = "N/A";
 }
@@ -255,17 +255,18 @@ if(file_get_contents("http://code.google.com/p/globalban-spanish/source/list")) 
     <table id="settingsTable" class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
       <tr>
         <?php
-          if((float)$currentVersionTemp[0] < (float)$officialVersion) {
+          // if((float)$currentVersionTemp[0] < (float)$officialVersion) {
+          if($currentVersion <> $officialVersion) {
         ?>
-        <td class="rowColor1" width="1%" nowrap><b>Your Version:</b><font color="red"><?=$currentVersion?></font></td>
+        <td class="rowColor1" width="1%" nowrap><b>Your Version: </b><font color="red"><?=$currentVersion?></font></td>
         <?php
           } else {
         ?>
-        <td class="rowColor1" width="1%" nowrap><b>Your Version:</b><?=$currentVersion?></td>
+        <td class="rowColor1" width="1%" nowrap><b>Your Version: </b><?=$currentVersion?></td>
         <?php
           }
         ?>
-        <td class="rowColor1" width="1%" nowrap><b>Official Version:</b><?=$officialVersion?></td>
+        <td class="rowColor1" width="1%" nowrap><b>Official Version: </b><?=$officialVersion?></td>
       </tr>
     </table>
   </div>
