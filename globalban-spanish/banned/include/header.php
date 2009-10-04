@@ -19,12 +19,26 @@
     along with GlobalBan.  If not, see <http://www.gnu.org/licenses/>.
 */
 ob_start();
+
+function my_explode($delim, $str, $lim = 1) {
+    if ($lim > -2) return explode($delim, $str, abs($lim));
+
+    $lim = -$lim;
+    $out = explode($delim, $str);
+    if ($lim >= count($out)) return $out;
+
+    $out = array_chunk($out, count($out) - $lim + 1);
+
+    return array_merge(array(implode($delim, $out[0])), $out[1]);
+}
+
+$siteLogo = my_explode('.', $config->siteLogo , -2);
 ?>
   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
   <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title><?=$config->siteName?> Administrados de Baneados</title>
+    <title><?=$config->siteName?> - Administrador de Baneados</title>
     <link rel="icon" href="images/favicon.ico" type="image/vnd.microsoft.icon">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/vnd.microsoft.icon">
     <link rel="stylesheet" type="text/css" href="css/banned.css" />
@@ -68,10 +82,20 @@ ob_start();
 <script type="text/javascript" src="javascript/wz_tooltip.js"></script>
 <div id="container">
  <div align="center">
-    <script type="text/javascript" src="javascript/flash.js"></script>
-    <script type="text/javascript">
-		show_flash("931", "250", "images/<?=$config->siteLogo?>", "", "team=Leyendas del Source");
-  </script>
+    <?PHP
+    if ($siteLogo[1] == "swf") {
+        ?>
+        <script type="text/javascript" src="javascript/flash.js"></script>
+        <script type="text/javascript">
+            show_flash("931", "250", "images/<?=$config->siteLogo?>", "", "team=Leyendas del Source");
+        </script>
+        <?php
+    }else{
+        ?>
+        <img alt="<?=$config->siteName?>" src="images/<?=$config->siteLogo?>"/>
+        <?php   
+    }
+    ?>
 </div>
   <p>&nbsp;</p>
   <?php include("include/navigation.php")?>
