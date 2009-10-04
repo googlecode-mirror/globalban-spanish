@@ -87,7 +87,7 @@ $siteLogo = my_explode('.', $config->siteLogo , -2);
         ?>
         <script type="text/javascript" src="javascript/flash.js"></script>
         <script type="text/javascript">
-            show_flash("931", "250", "images/<?=$config->siteLogo?>", "", "team=Leyendas del Source");
+            show_flash("931", "210", "images/<?=$config->siteLogo?>", "", "team=Global Ban");
         </script>
         <?php
     }else{
