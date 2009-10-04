@@ -28,5 +28,6 @@ $LANNAV_015 = 'Grupos Admins';
 $LANNAV_016 = 'Usuarios';
 $LANNAV_017 = 'Salir';
 $LANNAV_018 = 'Demos';
+$LANNAV_019 = 'Admin';
 
 ?>

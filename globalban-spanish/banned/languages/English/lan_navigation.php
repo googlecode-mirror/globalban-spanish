@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /*
 + ----------------------------------------------------------------------------+
 |     esGlobalBan - Language File.
@@ -28,5 +28,9 @@ $LANNAV_015 = 'Admin Groups';
 $LANNAV_016 = 'Users';
 $LANNAV_017 = 'Logout';
 $LANNAV_018 = 'Demos';
-
+$LANNAV_019 = 'Admin';
+$LANNAV_020 = 'Language';
+$LANNAV_021 = 'English';
+$LANNAV_022 = 'Spanish';
+$LANNAV_023 = 'Français';
 ?>
