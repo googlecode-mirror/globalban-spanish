@@ -290,8 +290,8 @@ if(count($bannedUsers) > 0) {
         $expireDate = "<i>".$LANINS_023."</i>";
       }
       list($addDate, $addTime, $year) = split(' ', $bannedUser->getAddDate());
-      $comments = str_replace(array("\r\n", "\n", "\r"), "<br/>", $bannedUser->getComments()); // Convert newlines into html line breaks
-      $comments = str_replace('"', "&#34;", $comments); // Replace quotes with the HTML code
+      $comments = str_replace(array('\r\n', '\n', '\r'), '<br/>', $bannedUser->getComments()); // Convert newlines into html line breaks
+      $comments = str_replace('"', '&#34;', $comments); // Replace quotes with the HTML code
       
       $banLength = new Length();
       $banLength->setLength($bannedUser->getLength());
@@ -362,8 +362,9 @@ if(count($bannedUsers) > 0) {
 	  foreach($banHistory as $banHistUser) {
 	      list($expireDateHist, $expireTimeHist) = split(' ', $banHistUser->getExpireDate());
 	      list($addDateHist, $addTimeHist, $yearHist) = split(' ', $banHistUser->getAddDate());
-	      $commentsHist = str_replace(array("\r\n", "\n", "\r"), "<br/>", $banHistUser->getComments()); // Convert newlines into html line breaks
-	
+	      $commentsHist = str_replace(array('\r\n', '\n', '\r'), '<br/>', $banHistUser->getComments()); // Convert newlines into html line breaks
+          $commentsHist = str_replace('"', '&#34;', $commentsHist); // Replace quotes with the HTML code
+          
 	      $banLengthHist = new Length();
 	      $banLengthHist->setLength($banHistUser->getLength());
 	      $banLengthHist->setTimeScale($banHistUser->getTimeScale());
@@ -437,8 +438,8 @@ if(count($bannedUsers) > 0) {
           } else {
             	?><?=str_replace(array("\"","\r\n", "\n", "\r"), "&quot;", $bannedUser->getName())?><?php
           }
-          if($bannedUser->getComments() != null || $bannedUser->getComments() != "") {
-            ?>&nbsp;<img src="images/information.png" style="cursor:help" onmouseover="Tip('<?=$LANINS_027?>:<br/><?=str_replace(array("\r\n", "\n", "\r"), "<br/>", $bannedUser->getComments())?>', WIDTH, 300, SHADOW, true, FADEIN, 300, FADEOUT, 300, STICKY, 1, OFFSETX, -20, CLOSEBTN, false, CLICKCLOSE, false, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'))"><?php
+          if($comments != null || $comments != "") {
+            ?>&nbsp;<img src="images/information.png" style="cursor:help" onmouseover="Tip('<?=$LANINS_027?>:<br/><?=$comments?>', WIDTH, 300, SHADOW, true, FADEIN, 300, FADEOUT, 300, STICKY, 1, OFFSETX, -20, CLOSEBTN, false, CLICKCLOSE, false, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'))"><?php
           }  
           if($bannedUser->getKickCounter() > 0) {
             ?>&nbsp;<span class="kickCounter">(<?=$bannedUser->getKickCounter()?>)</span><?php
