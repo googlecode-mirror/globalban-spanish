@@ -1,6 +1,9 @@
 <?php
 /*
-    This file is part of GlobalBan.
+    EDIT : This file as been edited by Fantole
+	http://www.css-ressource.com
+	
+	This file is part of GlobalBan.
 
     Written by Stefan Jonasson <soynuts@unbuinc.net>
     Copyright 2008 Stefan Jonasson
@@ -64,6 +67,41 @@ class ServerQueries extends Config {
     $deleteServerQuery = "DELETE FROM gban_servers WHERE server_id = '".$id."'";
     $this->db->sql_query($deleteServerQuery);
   }
+  
+  // BEGIN ADD FANTOLE
+  /************************************************************************
+	Delete a server Group
+	************************************************************************/
+  function deleteServerGroup($id, $name)
+  {
+  	if(empty($id) && empty($name))
+	{
+		return "false";
+	}
+	else
+	{
+    	$sql = "DELETE FROM gban_server_group WHERE server_group_id = '".$id."'";
+    	$this->db->sql_query($sql);
+		return "true";
+	}
+  }
+  
+  function deleteServerAdmin($server_group_id, $admin_id)
+  {
+  	if(empty($server_group_id) && empty($admin_id))
+	{
+		return "false";
+	}
+	else
+	{	
+    	$sql = "UPDATE gban_group_admin
+          SET admin_id='0'
+          WHERE server_group_id = '".addslashes($server_group_id)."'";
+    	$this->db->sql_query($sql);
+		return "true";
+	}
+  }
+  // END ADD FANTOLE
   
   /************************************************************************
 	Return an array of server objects
@@ -243,6 +281,29 @@ class ServerQueries extends Config {
             WHERE server_id = '".addslashes($serverId)."'";
     $this->db->sql_query($sql);
   }
+  
+  // BEGIN ADD FANTOLE
+  /************************************************************************
+	Update information of a server group
+	************************************************************************/
+  function updateServerGroup($groupId, $groupName, $groupDescription)
+  {
+  	if(empty($groupId) && empty($groupName) && empty($groupDescription))
+	{
+		return "false";
+    }
+	else
+	{
+		$sql = "UPDATE gban_server_group
+				SET group_name = '".addslashes($groupName)."',
+				description = '".addslashes($groupDescription)."'
+            	WHERE server_group_id = '".addslashes($groupId)."'";
+			    $this->db->sql_query($sql);
+				
+				return "true";
+	}
+  }
+  // END ADD FANTOLE
   
   /************************************************************************
 	Get a specific group
