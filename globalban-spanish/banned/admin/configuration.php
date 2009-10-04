@@ -222,9 +222,26 @@ function formVerify() {
 $currentVersion = substr($version, 1);
 $currentVersionTemp = split(" ", $currentVersion);
 
+/*
 // Make sure we can read data from another URL
 if(file_get_contents("http://unbuinc.net/gbanversion.php")) {
   $officialVersion = substr(file_get_contents("http://unbuinc.net/gbanversion.php"), 1);
+} else {
+  $officialVersion = "N/A";
+}
+*/
+
+/*
+// Make sure we can read data from another URL
+if(file_get_contents("http://unbuinc.net/gbanversion.php")) {
+  $officialVersion = substr(file_get_contents("http://unbuinc.net/gbanversion.php"), 1);
+} else {
+  $officialVersion = "N/A";
+}
+*/
+// Make sure we can read data from another URL
+if(file_get_contents("http://code.google.com/p/globalban-spanish/source/list")) {
+  $officialVersion = "v3.4.1  r".substr(strstr(file_get_contents("http://code.google.com/p/globalban-spanish/source/list"), '<td class="id"><a href="detail?r='),strlen('<td class="id"><a href="detail?r='),2);
 } else {
   $officialVersion = "N/A";
 }
