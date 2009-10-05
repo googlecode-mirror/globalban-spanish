@@ -118,9 +118,16 @@ include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_nav
   <li><a href="index.php?page=logout&lg=<?=$LANGUAGE?>"><?=$LANNAV_017?></a></li>
   <?php
   }
+  if ($adminPage==1) {
+      $adPage = "&adminPage=1";
+  }else{
+      $adPage = ""; 
+  }
   ?>
   </ul>
 </div>
-<a href="index.php?page=<?=$page?>&lg=English"><img src="images/flags/gb_large.png" width="36" height="21" alt="English" /></a>
-<a href="index.php?page=<?=$page?>&lg=Spanish"><img src="images/flags/es_large.png" width="36" height="21" alt="Spanish" /></a>
-<a href="index.php?page=<?=$page?>&lg=French"><img src="images/flags/fr_large.png" width="36" height="21" alt="Français" /></a>
+<ul>
+    <a href="index.php?page=<?=$page.$adPage?>&lg=English"><img src="images/flags/gb_large.png" width="32" height="19" alt="English" /></a>
+    <a href="index.php?page=<?=$page.$adPage?>&lg=Spanish"><img src="images/flags/es_large.png" width="32" height="19" alt="Spanish" /></a>
+    <a href="index.php?page=<?=$page.$adPage?>&lg=French"><img src="images/flags/fr_large.png" width="32" height="19" alt="Français" /></a>
+</ul>

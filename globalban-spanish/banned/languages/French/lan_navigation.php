@@ -12,15 +12,15 @@
 
 $LANNAV_001 = 'Web';
 $LANNAV_002 = 'Forums';
-$LANNAV_003 = 'Liste des bannies';
-$LANNAV_004 = 'Liste des Ips bannies';
-$LANNAV_005 = 'Ajouter un Ban';
-$LANNAV_006 = 'Importer un Bans';
-$LANNAV_007 = 'Liste des serveurs';
+$LANNAV_003 = 'Bannies';
+$LANNAV_004 = 'Ips Bannies';
+$LANNAV_005 = 'Ajouter Ban';
+$LANNAV_006 = 'Importer';
+$LANNAV_007 = 'Serveurs';
 $LANNAV_008 = 'Profile';
 $LANNAV_009 = 'Configuration';
-$LANNAV_010 = 'Raison des bans';
-$LANNAV_011 = 'Durée des bans';
+$LANNAV_010 = 'Raisons';
+$LANNAV_011 = 'Durées';
 $LANNAV_012 = 'Pseudo bannie';
 $LANNAV_013 = 'Serveurs';
 $LANNAV_014 = 'Server Groups';
