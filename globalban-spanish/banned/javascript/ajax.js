@@ -1,4 +1,7 @@
 /*
+	EDIT : This file as been edited by Fantole
+	http://www.css-ressource.com
+
     This file is part of GlobalBan.
 
     Written by Stefan Jonasson <soynuts@unbuinc.net>
@@ -688,5 +691,180 @@ function htmlUpdateUploadConfig(xml) {
 
     // Change the html
     document.getElementById("server:"+id).innerHTML = html;
+  }
+}
+
+// ADD FANTOLE
+function saveServerGroup(id) {
+  var processFile = "index.php?page=updateServerGroups&ajax=1";
+  
+  var name = escape(document.getElementById("groupName:"+id).value);
+  var description = document.getElementById("groupDescription:"+id).value;
+  
+  var errorFound = false;
+  var alertMessage = "";
+
+  // Validate Name
+  if(name == "") {
+    alertMessage += "Name is empty.\n\r";
+    errorFound = true;
+  }
+  
+  // Validate Descrition
+  if(description == "") {
+    alertMessage += "Description is empty.\n\r";
+    errorFound = true;
+  }  
+  
+  // We have an error, do not submit the form
+  if(errorFound) {
+    alert(alertMessage);
+	document.location.reload();return(false)
+    return false;
+  }
+  
+  var reqSend = "&id="+id+"&name="+name+"&description="+description;
+
+  createRequest(serverSavedGroup, processFile, reqSend, 0);
+}
+
+function serverSavedGroup(xml) {
+
+  // Make sure we have an XML object
+  if(xml === null) {
+    return; // Do nothing
+  }
+
+  // Get the root element from the document
+  var root = xml.getElementsByTagName("root")[0];
+  if(root !== null) {
+    // This returns the id we updated
+    var id = root.getElementsByTagName("id")[0].firstChild.nodeValue;
+    // This returns the name we updated
+    var name = root.getElementsByTagName("name")[0].firstChild.nodeValue;
+	// This returns the descrition we updated
+    // Returns the success message
+    var success = root.getElementsByTagName("success")[0].firstChild.nodeValue;
+    
+    if(success == "true") {
+      alert(name+" Saved!");
+    } else {
+      alert("The current Description for " + name + " did not match.  Save Failed!");
+    }
+  }
+}
+
+function deleteVerify(id, name) {
+  if(confirm("Do you really want to delete "+name+"?")) {
+  var processFile = "index.php?page=deleteServerGroups&ajax=1";
+  
+  var name = escape(document.getElementById("groupName:"+id).value);
+  //var description = document.getElementById("groupDescription:"+id).value;
+  
+  var errorFound = false;
+  var alertMessage = "";
+
+  // Validate ID
+  if(id == "") {
+    alertMessage += "The name doesn't exist.\n\r";
+    errorFound = true;
+  }
+  
+  // We have an error, do not submit the form
+  if(errorFound) {
+    alert(alertMessage);
+	document.location.reload();return(false)
+    return false;
+  }
+  
+  var reqSend = "&id="+id+"&name="+name;
+
+  createRequest(serverDeleteGroup, processFile, reqSend, 0);
+}}
+
+function serverDeleteGroup(xml) {
+  // Make sure we have an XML object
+  if(xml === null) {
+    return; // Do nothing
+  }
+
+  // Get the root element from the document
+  var root = xml.getElementsByTagName("root")[0];
+  if(root !== null) {
+    // This returns the id we deleted
+    var id = root.getElementsByTagName("id")[0].firstChild.nodeValue;
+    // This returns the name we deleted
+    var name = root.getElementsByTagName("name")[0].firstChild.nodeValue;
+    // Returns the success message
+    var success = root.getElementsByTagName("success")[0].firstChild.nodeValue;
+    
+    if(success == "true") {
+      alert(name+" Deleted!");
+	  document.location.href="index.php?page=manageServerGroups&adminPage=1"
+    } else {
+      alert("The current Server Group " + name + " did not match.  Delete Failed!");
+    }
+  }
+}
+
+
+
+
+
+
+
+// ADD
+
+function deleteVerify2(server_group_id , admin_id, name) {
+  if(confirm("Do you really want to delete "+name+"?")) {
+  var processFile = "index.php?page=deleteServerAdmin&ajax=1";
+  
+  //var name = escape(document.getElementById("deleteUser:"+id).value);
+  //var description = document.getElementById("groupDescription:"+id).value;
+  
+  var errorFound = false;
+  var alertMessage = "";
+
+  // Validate ID
+  if(server_group_id == "") {
+    alertMessage += "The name doesn't exist.\n\r";
+    errorFound = true;
+  }
+  
+  // We have an error, do not submit the form
+  if(errorFound) {
+    alert(alertMessage);
+	document.location.reload();return(false)
+    return false;
+  }
+  
+  var reqSend = "&server_group_id="+server_group_id+"&admin_id="+admin_id+"&name="+name;
+
+  createRequest(serverDeleteUser, processFile, reqSend, 0);
+}}
+
+function serverDeleteUser(xml) {
+  // Make sure we have an XML object
+  if(xml === null) {
+    return; // Do nothing
+  }
+
+  // Get the root element from the document
+  var root = xml.getElementsByTagName("root")[0];
+  if(root !== null) {
+    // This returns the id we deleted
+    var server_group_id = root.getElementsByTagName("server_group_id")[0].firstChild.nodeValue;
+    // This returns the name we deleted
+    var admin_id = root.getElementsByTagName("admin_id")[0].firstChild.nodeValue;
+    // Returns the success message
+	var name = root.getElementsByTagName("name")[0].firstChild.nodeValue;
+    var success = root.getElementsByTagName("success")[0].firstChild.nodeValue;
+    
+    if(success == "true") {
+      alert(name+" Deleted!");
+	  document.location.href="index.php?page=manageServerAdmins&adminPage=1&serverGroupId="+server_group_id
+    } else {
+      alert("The current Server Group ID = " + name + " did not match.  Delete Failed!");
+    }
   }
 }
