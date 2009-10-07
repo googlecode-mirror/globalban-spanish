@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /*
     This file is part of GlobalBan.
 
@@ -32,19 +32,19 @@ $pluginList = $adminGroupQueries->getPluginList($groupId);
 
 // The HTML must match what is in the manageAdminGroups.php file
 ?>
-<span id="pluginTables-<?=$groupId?>">
+<span id="pluginTables-<?php echo $groupId?>">
 <?php
 // Now create each plugin table
 foreach($pluginList as $plugin) {
   $flags = $adminGroupQueries->getGroupPluginPowers($groupId, $plugin->getId());
 ?>
-  <table id="pluginSection-<?=$groupId?>-<?=$plugin->getId()?>" class="bordercolor" width="99%" cellspacing="1" cellpadding="5" border="0" align="center" style="margin-bottom: 10px;">
+  <table id="pluginSection-<?php echo $groupId?>-<?php echo $plugin->getId()?>" class="bordercolor" width="99%" cellspacing="1" cellpadding="5" border="0" align="center" style="margin-bottom: 10px;">
     <tr>
       <th class="colColor1" colspan="3">
-        <?=$plugin->getName()?> &nbsp;
-        [<span class="actionLink" onclick="selectAllOfPlugin('<?=$plugin->getId()?>', '<?=$groupId?>')">Select All</span>] 
-        [<span class="actionLink" onclick="selectNoneOfPlugin('<?=$plugin->getId()?>', '<?=$groupId?>')">Select None</span>]
-        [<span class="actionLink" onclick="removePlugin('<?=$plugin->getId()?>', '<?=$groupId?>', '<?=$plugin->getName()?>')">Remove Plugin</span>]
+        <?php echo $plugin->getName()?> &nbsp;
+        [<span class="actionLink" onclick="selectAllOfPlugin('<?php echo $plugin->getId()?>', '<?php echo $groupId?>')">Select All</span>] 
+        [<span class="actionLink" onclick="selectNoneOfPlugin('<?php echo $plugin->getId()?>', '<?php echo $groupId?>')">Select None</span>]
+        [<span class="actionLink" onclick="removePlugin('<?php echo $plugin->getId()?>', '<?php echo $groupId?>', '<?php echo $plugin->getName()?>')">Remove Plugin</span>]
       </th>
     </tr>
     <tr>
@@ -60,8 +60,8 @@ foreach($pluginList as $plugin) {
       }
     ?>
       <td class="colColor2">
-        <input type="hidden" id="<?=$plugin->getId()?>-flagValue-<?=$groupId?>" value="<?=$flag->getPluginFlagId()?>"/>
-        <input type="checkbox" id="<?=$plugin->getId()?>-flag-<?=$groupId?>-<?=$flag->getPluginFlagId()?>" onclick="updatePluginFlag('<?=$groupId?>', '<?=$flag->getPluginFlagId()?>', this)"<?=$checked?>/> <?=$flag->getDescription()?>
+        <input type="hidden" id="<?php echo $plugin->getId()?>-flagValue-<?php echo $groupId?>" value="<?php echo $flag->getPluginFlagId()?>"/>
+        <input type="checkbox" id="<?php echo $plugin->getId()?>-flag-<?php echo $groupId?>-<?php echo $flag->getPluginFlagId()?>" onclick="updatePluginFlag('<?php echo $groupId?>', '<?php echo $flag->getPluginFlagId()?>', this)"<?php echo $checked?>/> <?php echo $flag->getDescription()?>
       </td>
       <?php
         if(($i+1)%$flagsPerRow==0 && ($i+1) != count($flags)) {
