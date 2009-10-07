@@ -26,11 +26,16 @@ include_once(ROOTDIR."/include/database/class.DemoQueries.php");
 include_once(ROOTDIR."/include/database/class.UserQueries.php");
 include_once(ROOTDIR."/include/objects/class.Demo.php");
 
+
 // Page gets (for range and sorts and other things)
 $startRange = $_GET['sr']; // Start Range
 $sortBy = $_GET['sc']; // Column to sort by
 $sortDirection = $_GET['sd']; // Direction to sort by
 $searchText = $_POST['searchText']; // Search text
+
+$lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_demos.php';
+include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_demos.php");
+
 
 if(!isset($_POST['searchText'])) {
   $searchText = $_GET['searchText'];
@@ -60,8 +65,7 @@ if($_POST['submitDemo']) {
   // We check for multiple page types as apache may be configured to support them
   $filename = str_replace(".php", "", $filename);
   $filename = str_replace(".jsp", "", $filename);
-  $filename = str_replace(".asp", "", $filename); 
-
+  $filename = str_replace(".asp", "", $filename);
   $extension = substr($filename, strlen($filename)-3, strlen($filename));
   $allowedExtensions = array("zip", "rar");
   if(in_array($extension, $allowedExtensions)) {
@@ -136,10 +140,10 @@ function formVerify() {
     document.getElementById("fileError").style.display = "";
   } else {
     document.getElementById("fileError").style.display = "none";
-    // We have a file, now check the extension (can only be dem, zip, or rar)
+    // We have a file, now check the extension (can only be zip, or rar)
     var fileExt = file.substring(file.length-3, file.length);
     fileExt = fileExt.toLowerCase();
-    if(fileExt != "dem" && fileExt != "zip" && fileExt != "rar") {
+    if(fileExt != "zip" && fileExt != "rar") {
       errorFound = true;
       document.getElementById("fileExtError").style.display = "";
     } else {
@@ -159,99 +163,102 @@ function formVerify() {
 // Display a message if the upload was successful
 if($success == "success") {
 ?>
-<h5><?=$filename?> Demo subida con exito! <?=$fileType?></h5>
+<h5><?php echo $filename?> <?php echo $LANDEMOS_001; ?> <?php echo $fileType?></h5>
 <?php
 } // end success if
 else if($success == "error"){
 ?>
-<h5>ERROR al subir el archivo de la demo!!  Quizas ya exista un archivo con ese nombre o su tama�o sea superior a 10 Megas.</h5>
+<h5><?php echo $LANDEMOS_002; ?></h5>
 <?php
 } else if($success == "ext not allowed") {
 ?>
-<h5>ERROR al subir el archivo de la demo!!  Solo esta permitido enviar demos en formato comprimido .zip o .rar. Comprimala y enviaela de nuevo</h5>
+<h5><?php echo $LANDEMOS_003; ?></h5>
 <?php
 }// end success else
 
 if($demoDeleted != "" || $demoDelete != null) {
 ?>
-<h5><?=$demoDeleted?> Demo borrada exitosamente!</h5>
+<h5><?php echo $demoDeleted?> <?php echo $LANDEMOS_004 ?></h5>
 <?php
 }
 ?>
 <div class="tborder">
   <div id="tableHead">
-    <div><b>Subir una Demo</b></div>
+    <div><b><?php echo $LANDEMOS_005; ?></b></div>
   </div>
   <form action="index.php?page=demos" onsubmit="return formVerify();" method="POST" enctype="multipart/form-data">
   <table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
   <tr>
-    <td class="rowColor1" width="1%" nowrap>Steam ID:</td>
-    <td class="rowColor1"><input name="steamId" id="steamdId" type="text" value="" size="40"/> (formato requerido: <b>STEAM_X:X:XXXXXX</b>)
-    &nbsp;&nbsp;<font id="steamIdError" color='red' style="display:none;">Steam ID introducida en un formato no valido</font></td>
+    <td class="rowColor1" width="1%" nowrap><img src="images/bullet_star.png" /> <?php echo $LANDEMOS_006; ?></td>
+    <td class="rowColor1"><input name="steamId" id="steamdId" type="text" value="" size="40"  maxLength="40"/> <?php echo $LANDEMOS_007; ?>
+    &nbsp;&nbsp;<font id="steamIdError" color='red' style="display:none;"><?php echo $LANDEMOS_008; ?></font></td>
   </tr>
   <tr>
-    <td class="rowColor2" width="1%" nowrap>Nick del supuesto cheto:</td>
-    <td class="rowColor2"><input name="offenderName" id="offenderName" type="text" value="" size="40"/>
-    &nbsp;&nbsp;<font id="offenderNameError" color='red' style="display:none;">Por favor introducca el nombre del supuesto cheto.</font></td>
+    <td class="rowColor2" width="1%" nowrap><img src="images/bullet_star.png" /> <?php echo $LANDEMOS_009; ?></td>
+    <td class="rowColor2"><input name="offenderName" id="offenderName" type="text" value="" size="40" maxLength="40"/>
+    &nbsp;&nbsp;<font id="offenderNameError" color='red' style="display:none;"><?php echo $LANDEMOS_010; ?></font></td>
   </tr>
   <tr>
-    <td class="rowColor1" width="1%" nowrap>Nick tuyo:</td>
-    <td class="rowColor1"><input name="uploaderName" id="uploaderName" type="text" value="" size="40"/> (no requerido)</td>
+    <td class="rowColor1" width="1%" nowrap><?php echo $LANDEMOS_011; ?></td>
+    <td class="rowColor1"><input name="uploaderName" id="uploaderName" type="text" value="" size="40" maxLength="40"/> <?php echo $LANDEMOS_012; ?></td>
   </tr>
   <tr>
-    <td class="rowColor2" width="1%" nowrap>Tu Steam ID:</td>
-    <td class="rowColor2"><input name="uploaderSteamId" id="uploaderSteamId" type="text" value="" size="40"/> (no requerido)</td>
+    <td class="rowColor2" width="1%" nowrap><?php echo $LANDEMOS_013; ?></td>
+    <td class="rowColor2"><input name="uploaderSteamId" id="uploaderSteamId" type="text" value="<?php echo $user->getSteamId()?>" size="40" maxLength="40"/> <?php echo $LANDEMOS_012 ?></td>
   </tr>
   <tr>
-    <td class="rowColor1" width="1%" nowrap>Servidor:</td>
+    <td class="rowColor1" width="1%" nowrap><img src="images/bullet_star.png" /> <?php echo $LANDEMOS_014; ?></td>
     <td class="rowColor1">
       <select name="serverId">
       <?php
       if(count($serverList > 0)) {
         foreach($serverList as $server) {
-          ?><option value="<?=$server->getId()?>"><?=$server->getName()?></option><?php
+          ?><option value="<?php echo $server->getId()?>"><?php echo $server->getName()?></option><?php
         }
       } else {
-      ?><option value="-1">No Servers</option><?php
+      ?><option value="-1"><?php echo $LANDEMOS_015; ?></option><?php
       }
       ?>
       </select>
     </td>
   </tr>
   <tr>
-    <td class="rowColor2" width="1%" nowrap>Motivo:</td>
+    <td class="rowColor2" width="1%" nowrap><img src="images/bullet_star.png" /> <?php echo $LANDEMOS_016; ?></td>
     <td class="rowColor2">
       <select name="reasonId">
       <?php
       if(count($banReasons > 0)) {
         foreach($banReasons as $reason) {
-          ?><option value="<?=$reason->getId()?>"><?=$reason->getReason()?></option><?php
+          ?><option value="<?php echo $reason->getId()?>"><?php echo $reason->getReason()?></option><?php
         }
       } else {
-      ?><option value="0">Quebrantar las reglas del servidor</option><?php
+      ?><option value="0"><?php echo $LANDEMOS_017; ?></option><?php
       }
       ?>
       </select>
     </td>
   </tr>
   <tr>
-    <td class="rowColor1" width="1%" nowrap>Archivo:</td>
+    <td class="rowColor1" width="1%" nowrap><img src="images/bullet_star.png" /> <?php echo $LANDEMOS_018; ?></td>
     <td class="rowColor1">
-      <input type="hidden" name="MAX_FILE_SIZE" value="<?=($config->demoSizeLimit)*1000000?>" />
+      <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo ($config->demoSizeLimit)*1000000?>" />
       <input id="file" name="file" size="40" type="file" />
-      &nbsp;&nbsp;<font id="fileError" color='red' style="display:none;">Por favor selecciones un archivo.</font>
-      <font id="fileExtError" color='red' style="display:none;">Formato de archivo incorrecto.</font>
+      &nbsp;&nbsp;<font id="fileError" color='red' style="display:none;"><?php echo $LANDEMOS_019; ?></font>
+      <font id="fileExtError" color='red' style="display:none;"><?php echo $LANDEMOS_020; ?></font>
     </td>
   </tr>
   <tr>
-    <td colspan="2" class="rowColor2"><input type="submit" name="submitDemo" value="Enviar Demo"> <b>Este proceso puede tardar algun tiempo, por favor no cierre esta ventana.</b></td>
+    <td colspan="2" class="rowColor2"><input type="submit" name="submitDemo" value="<?php echo $LANDEMOS_021; ?>"> <b><?php echo $LANDEMOS_022; ?></b></td>
   </tr>
   </table>
   </form>
 </div>
 
-<h5>*NOTA: Solamente puedes subir ficheros con extension .zip, or .rar (<?=$config->demoSizeLimit?>MB max).<br>  
-Tu nick/steam_id seran solo usadas internamente, para que podamos saber quien ha grabado la demo (no saldran publicadas en la lista).<br/></h5>
+<h5>
+<img src="images/bullet_star.png" /> <?php echo $LANDEMOS_023; ?> <br/>
+<?php echo $LANDEMOS_024 ?> <img src="images/bullet_star.png" /> <?php echo $LANDEMOS_025; ?><br />
+<strong><?php echo $LANDEMOS_026; ?> <?php echo $config->demoSizeLimit?><?php echo $LANDEMOS_027; ?></strong></h5>
+<br/>
 
 <?php
 if(count($demoList) > 0) {
@@ -260,13 +267,13 @@ if(count($demoList) > 0) {
   <div id="search" align="right">
     <form action="" method="post">
     <input name="searchText" id="searchText" type="text" value="" size="40" maxLength="40"/>
-    <input type="submit" value="Search">
+    <input type="submit" value="<?php echo $LANDEMOS_046; ?>">
     </form>
   </div>
   
   <div class="tborder">
     <div id="tableHead">
-      <div><b>Listado de Demos desde la <?=($startRange+1)?> hasta <?=$demoQueries->getEndRange()?> de un total de <?=$demoCount?></b></div>
+      <div><b><?php echo $LANDEMOS_028; ?> <?php echo ($startRange+1)?> <?php echo $LANDEMOS_029; ?> <?php echo $demoQueries->getEndRange()?> <?php echo $LANDEMOS_030 ?> <?php echo $demoCount?></b></div>
       <div>
         <?php pageLinks($config, $startRange, $demoCount, $sortDirection, $sortBy); ?>
       </div>
@@ -277,44 +284,44 @@ if(count($demoList) > 0) {
 
     <tr>
       <th class="colColor1" width="1%" nowrap>
-        <a href="index.php?page=demos&sc=d.steam_id&sd=ASC&sr=<?=$startRange?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
-        Steam ID
-        <a href="index.php?page=demos&sc=d.steam_id&sd=DESC&sr=<?=$startRange?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a>
+        <a href="index.php?page=demos&sc=d.steam_id&sd=ASC&sr=<?php echo $startRange?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
+        <?php echo $LANDEMOS_006; ?>
+        <a href="index.php?page=demos&sc=d.steam_id&sd=DESC&sr=<?php echo $startRange?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a>
       </th>
       <th class="colColor2" width="1%" nowrap>
-        <a href="index.php?page=demos&sc=d.offender_name&sd=ASC&sr=<?=$startRange?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
-        Nick Grabado
-        <a href="index.php?page=demos&sc=d.offender_name&sd=DESC&sr=<?=$startRange?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a>
+        <a href="index.php?page=demos&sc=d.offender_name&sd=ASC&sr=<?php echo $startRange?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
+        <?php echo $LANDEMOS_031; ?>
+        <a href="index.php?page=demos&sc=d.offender_name&sd=DESC&sr=<?php echo $startRange?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a>
       </th>
       <th class="colColor1" width="1%" nowrap>
-        <a href="index.php?page=demos&sc=d.demo_name&sd=ASC&sr=<?=$startRange?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
-        Demo
-        <a href="index.php?page=demos&sc=d.demo_name&sd=DESC&sr=<?=$startRange?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a>
+        <a href="index.php?page=demos&sc=d.demo_name&sd=ASC&sr=<?php echo $startRange?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
+        <?php echo $LANDEMOS_032; ?>
+        <a href="index.php?page=demos&sc=d.demo_name&sd=DESC&sr=<?php echo $startRange?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a>
       </th>
       <th class="colColor2" width="1%" nowrap>
-        <a href="index.php?page=demos&sc=add_date&sd=ASC&sr=<?=$startRange?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
-        Fecha
-        <a href="index.php?page=demos&sc=add_date&sd=DESC&sr=<?=$startRange?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a>
+        <a href="index.php?page=demos&sc=add_date&sd=ASC&sr=<?php echo $startRange?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
+        <?php echo $LANDEMOS_033; ?>
+        <a href="index.php?page=demos&sc=add_date&sd=DESC&sr=<?php echo $startRange?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a>
       </th>
       <th class="colColor1">
-        <a href="index.php?page=demos&sc=d.reason_id&sd=ASC&sr=<?=$startRange?>"><img src="images/arrow_up.png"/></a>
-        Motivo
-        <a href="index.php?page=demos&sc=d.reason_id&sd=DESC&sr=<?=$startRange?>"><img src="images/arrow_down.png"/></a>
+        <a href="index.php?page=demos&sc=d.reason_id&sd=ASC&sr=<?php echo $startRange?>"><img src="images/arrow_up.png"/></a>
+        <?php echo $LANDEMOS_016; ?>
+        <a href="index.php?page=demos&sc=d.reason_id&sd=DESC&sr=<?php echo $startRange?>"><img src="images/arrow_down.png"/></a>
       </th>
       <th class="colColor2">
-        <a href="index.php?page=demos&sc=d.server_id&sd=ASC&sr=<?=$startRange?>"><img src="images/arrow_up.png"/></a>
-        Servidor
-        <a href="index.php?page=demos&sc=d.server_id&sd=DESC&sr=<?=$startRange?>"><img src="images/arrow_down.png"/></a>
+        <a href="index.php?page=demos&sc=d.server_id&sd=ASC&sr=<?php echo $startRange?>"><img src="images/arrow_up.png"/></a>
+        <?php echo $LANDEMOS_034; ?>
+        <a href="index.php?page=demos&sc=d.server_id&sd=DESC&sr=<?php echo $startRange?>"><img src="images/arrow_down.png"/></a>
       </th>
       <th class="colColor1" width="1%" nowrap>
-        <a href="index.php?page=demos&sc=banned&sd=ASC&sr=<?=$startRange?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
-        Baneado
-        <a href="index.php?page=demos&sc=banned&sd=DESC&sr=<?=$startRange?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a>
+        <a href="index.php?page=demos&sc=banned&sd=ASC&sr=<?php echo $startRange?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
+       <?php echo $LANDEMOS_035; ?> 
+        <a href="index.php?page=demos&sc=banned&sd=DESC&sr=<?php echo $startRange?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a>
       </th>
       <?php
       if($banManager || $fullPower) {
-        ?><th class="colColor1" width="1%" nowrap>Add</th>
-        <th class="colColor2" width="1%" nowrap>Delete</th><?php
+        ?><th class="colColor1" width="1%" nowrap><?php echo $LANDEMOS_036; ?></th>
+        <th class="colColor2" width="1%" nowrap><?php echo $LANDEMOS_037; ?></th><?php
       }
       ?>
     </tr>
@@ -323,29 +330,29 @@ if(count($demoList) > 0) {
     foreach($demoList as $demo) {
       ?>
       <tr>
-        <td class="colColor1" nowrap><?=$demo->getSteamId()?></td>
-        <td class="colColor2" nowrap><?=$demo->getOffenderName()?></td>
-        <td class="colColor1" nowrap><a href="<?=$config->demoRootDir."/".$demo->getDemoName()?>"><?=$demo->getDemoName()?></a></td>
-        <td class="colColor2" nowrap><?=$demo->getAddDate()?></td>
-        <td class="colColor1"><?=$demo->getReason()?></td>
-        <td class="colColor2"><?=$demo->getServer()?></td>
-        <td id="banned:<?=$demo->getDemoId()?>" class="colColor1" width="1%" nowrap>
+        <td class="colColor1" nowrap><?php echo $demo->getSteamId()?></td>
+        <td class="colColor2" nowrap><?php echo $demo->getOffenderName()?></td>
+        <td class="colColor1" nowrap><a href="<?php echo $config->demoRootDir."/".$demo->getDemoName()?>"><?php echo $demo->getDemoName()?></a></td>
+        <td class="colColor2" nowrap><?php echo $demo->getAddDate()?></td>
+        <td class="colColor1"><?php echo $demo->getReason()?></td>
+        <td class="colColor2"><?php echo $demo->getServer()?></td>
+        <td id="banned:<?php echo $demo->getDemoId()?>" class="colColor1" width="1%" nowrap>
         <?php
           // Non ban managers can only look
           if($demo->isBanned()) {
-            ?><div align="center"><img src="images/tick.png"/></div><?php
+            ?><img src="images/tick.png"/><?php
           } else {
-            ?><div align="center"><img src="images/cross.png"/></div><?php
+            ?><img src="images/cross.png"/><?php
           }
           // Add to banlist and Delete demo column
           if($banManager || $fullPower) {
             if(!$demo->isBanned()) { ?>
-            <td class="colColor1"><a href="index.php?page=addBan&steamId=<?=$demo->getSteamId()?>&bannedName=<?=$demo->getOffenderName()?>&reasonId=<?=$demo->getReasonId()?>&serverId=<?=$demo->getServerId()?>" style="cursor:pointer;" onmouseover="Tip('Click to ban the user', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('demosTable'));">
+            <td class="colColor1"><a href="index.php?page=addBan&steamId=<?php echo $demo->getSteamId()?>&bannedName=<?php echo $demo->getOffenderName()?>&reasonId=<?php echo $demo->getReasonId()?>&serverId=<?php echo $demo->getServerId()?>" style="cursor:pointer;" onmouseover="Tip('<?php echo $LANDEMOS_038 ?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('demosTable'));">
             <img src="images/database_add.png"/></td>
             <?php } else { ?>
             <td class="colColor1"></td>
             <?php } ?>
-            <td class="colColor2"><a href="index.php?page=demos&process=delete&demoId=<?=$demo->getDemoId()?>" style="cursor:pointer;" onmouseover="Tip('Click to delete this demo', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('demosTable'));">
+            <td class="colColor2"><a href="index.php?page=demos&process=delete&demoId=<?php echo $demo->getDemoId()?>" style="cursor:pointer;" onmouseover="Tip('<?php echo $LANDEMOS_039 ?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('demosTable'));">
             <img src="images/trash-full.png"/></a></td>
             <?php
           }
@@ -448,7 +455,8 @@ function uploadFile($filename, $tempName, $config, $demoQueries) {
       */
       if($config->sendDemoEmails) {
         // Email
-        $subject = "New Demo Uploaded";
+        //$subject = "Nouvelle démo uploadé";
+		$subject = $LANDEMOS_040;
 
         $body = "<html><body>";
 
@@ -465,7 +473,7 @@ function uploadFile($filename, $tempName, $config, $demoQueries) {
           $headers  = "MIME-Version: 1.0" . "\r\n";
           $headers .= "Content-type: text/html; charset=utf-8" . "\r\n";
           // Additional headers
-          $headers .= "From: ".$config->siteName." Ban Management <".$config->emailFromHeader.">" . "\r\n";
+          $headers .= "From: ".$config->siteName. $LANDEMOS_043 .$config->emailFromHeader . "\r\n"; 
 
           // Send an email message to those that wish to recieve a notice of a newly added ban
           mail($banManagerEmails[$i], $subject, $body, $headers);
@@ -488,7 +496,7 @@ function pageLinks($config, $startRange, $banCount, $sortDirection, $sortBy) {
 
     // Show previous button
     if($currentPage != 1) {
-    ?><a href="index.php?page=demos&sr=<?=($startRange-$config->bansPerPage)?>&sd=<?=$sortDirection?>&sc=<?=$sortBy?>">&lt;&lt;Previous</a> <?php
+    ?><a href="index.php?page=demos&sr=<?php echo ($startRange-$config->bansPerPage)?>&sd=<?php echo $sortDirection?>&sc=<?php echo $sortBy?>">&lt;&lt; <?php echo $LANDEMOS_044 ?></a> <?php
     }
 
     // Show Middle Links
@@ -496,9 +504,9 @@ function pageLinks($config, $startRange, $banCount, $sortDirection, $sortBy) {
     if($startRange+1 > $eitherside) {
       // Show first page
       if($currentPage == $page) {
-        ?><a href="index.php?page=demos&sr=<?=$y?>&sd=<?=$sortDirection?>&sc=<?=$sortBy?>"><b>[<?=$page?>]</b></a> <?php
+        ?><a href="index.php?page=demos&sr=<?php echo $y?>&sd=<?php echo $sortDirection?>&sc=<?php echo $sortBy?>"><b>[<?php echo $page?>]</b></a> <?php
       } else {
-        ?><a href="index.php?page=demos&sr=<?=$y?>&sd=<?=$sortDirection?>&sc=<?=$sortBy?>"><?=$page?></a> <?php
+        ?><a href="index.php?page=demos&sr=<?php echo $y?>&sd=<?php echo $sortDirection?>&sc=<?php echo $sortBy?>"><?php echo $page?></a> <?php
       }
       ?> ... <?php
     }
@@ -506,9 +514,9 @@ function pageLinks($config, $startRange, $banCount, $sortDirection, $sortBy) {
     while($y<$banCount) {
       if(($y > ($startRange - $eitherside)) && ($y < ($startRange + $eitherside))) {
         if($currentPage == $page) {
-          ?><a href="index.php?page=demos&sr=<?=$y?>&sd=<?=$sortDirection?>&sc=<?=$sortBy?>"><b>[<?=$page?>]</b></a> <?php
+          ?><a href="index.php?page=demos&sr=<?php echo $y?>&sd=<?php echo $sortDirection?>&sc=<?php echo $sortBy?>"><b>[<?php echo $page?>]</b></a> <?php
         } else {
-          ?><a href="index.php?page=demos&sr=<?=$y?>&sd=<?=$sortDirection?>&sc=<?=$sortBy?>"><?=$page?></a> <?php
+          ?><a href="index.php?page=demos&sr=<?php echo $y?>&sd=<?php echo $sortDirection?>&sc=<?php echo $sortBy?>"><?php echo $page?></a> <?php
         }
       }
       $page++;
@@ -524,15 +532,15 @@ function pageLinks($config, $startRange, $banCount, $sortDirection, $sortBy) {
 
       // Show last page
       if($y == $lastPage && ($startRange+$eitherside)<$banCount) {
-        ?><a href="index.php?page=demos&sr=<?=$y?>&sd=<?=$sortDirection?>&sc=<?=$sortBy?>"><b>[<?=$page?>]</b></a> <?php
+        ?><a href="index.php?page=demos&sr=<?php echo $y?>&sd=<?php echo $sortDirection?>&sc=<?php echo $sortBy?>"><b>[<?php echo $page?>]</b></a> <?php
       } else {
-        ?><a href="index.php?page=demos&sr=<?=$y?>&sd=<?=$sortDirection?>&sc=<?=$sortBy?>"><?=$page?></a> <?php
+        ?><a href="index.php?page=demos&sr=<?php echo $y?>&sd=<?php echo $sortDirection?>&sc=<?php echo $sortBy?>"><?php echo $page?></a> <?php
       }
     }
 
     // Show next button
     if(($page-1 > ($startRange/$config->bansPerPage)+1 || $currentPage == 1) && $banCount > $config->bansPerPage) {
-    ?><a href="index.php?page=demos&sr=<?=($startRange+$config->bansPerPage)?>&sd=<?=$sortDirection?>&sc=<?=$sortBy?>"> Next&gt;&gt;</a> <?php
+    ?><a href="index.php?page=demos&sr=<?php echo ($startRange+$config->bansPerPage)?>&sd=<?php echo $sortDirection?>&sc=<?php echo $sortBy?>"> <?php echo $LANDEMOS_045 ?>&gt;&gt;</a> <?php
     }
   }
 }
