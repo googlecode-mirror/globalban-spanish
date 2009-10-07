@@ -84,21 +84,21 @@ $url = substr($url, 0, strrpos($url, "/")) . "/";
 
 if($saveSQL) {
 ?>
-<?echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>";?>
+<?php echo "<?php echo xml version=\"1.0\" encoding=\"UTF-8\" ?>";?>
 
 <GlobalBans>
 <?php
 foreach($bannedUsers as $bannedUser) {
 ?>
   <Ban>
-    <SteamID><?=$bannedUser->getSteamId()?></SteamID>
-    <IP><?=$bannedUser->getIp()?></IP>
-    <Name><?=undoUnwantedConvert(utf8_to_html(convertXmlSpecial(stripslashes($bannedUser->getName()))))?></Name>
-    <Length><?=$bannedUser->getLength()?></Length>
-    <TimeScale><?=$bannedUser->getTimeScale()?></TimeScale>
-    <AddDate><?=$bannedUser->getAddDate()?></AddDate>
-    <ExpireDate><?=$bannedUser->getExpireDate()?></ExpireDate>
-    <Webpage><?=$url?></Webpage>
+    <SteamID><?php echo $bannedUser->getSteamId() ?></SteamID>
+    <IP><?php echo $bannedUser->getIp() ?></IP>
+    <Name><?php echo undoUnwantedConvert(utf8_to_html(convertXmlSpecial(stripslashes($bannedUser->getName())))) ?></Name>
+    <Length><?php echo $bannedUser->getLength() ?></Length>
+    <TimeScale><?php echo $bannedUser->getTimeScale() ?></TimeScale>
+    <AddDate><?php echo $bannedUser->getAddDate() ?></AddDate>
+    <ExpireDate><?php echo $bannedUser->getExpireDate() ?></ExpireDate>
+    <Webpage><?php echo $url ?></Webpage>
   </Ban>
 <?php
 }
@@ -107,7 +107,7 @@ foreach($bannedUsers as $bannedUser) {
 // Empty line after banid print is needed to force a new line
 foreach($bannedUsers as $bannedUser) {
 ?>
-banid <?=$bannedUser->getLength()?> <?=$bannedUser->getSteamId()?>
+banid <?php echo $bannedUser->getLength() ?> <?php echo $bannedUser->getSteamId() ?>
 
 <?php
 }
