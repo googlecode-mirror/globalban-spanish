@@ -43,7 +43,7 @@ $bannedIps = $banQueries->downloadActiveIps();
 // Empty line after banid print is needed to force a new line
 foreach($bannedIps as $bannedIp) {
 ?>
-addip 0 <?=$bannedIp->getIp()?>
+addip 0 <?php echo $bannedIp->getIp() ?>
 
 <?php
 }
