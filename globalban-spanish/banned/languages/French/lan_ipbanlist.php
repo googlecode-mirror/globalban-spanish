@@ -10,9 +10,9 @@
 +----------------------------------------------------------------------------+
 */
 // Login
-$LANIPBAN_001 = "Liste des Ip's bannis";
-$LANIPBAN_002 = 'de';
-$LANIPBAN_003 = 'à';
+$LANIPBAN_001 = "Liste des Ip's bannis ";
+$LANIPBAN_002 = ' de ';
+$LANIPBAN_003 = ' à ';
 $LANIPBAN_004 = 'Adresse IP';
 $LANIPBAN_005 = 'Active';
 $LANIPBAN_006 = "NOTE: Les IP bannis s'appliquent pour tout serveur présent dans la liste.";
@@ -21,6 +21,4 @@ $LANIPBAN_008 = "La liste des Ip's est vide";
 $LANIPBAN_009 = 'Précédent';
 $LANIPBAN_010 = 'Suivant';
 $LANIPBAN_011 = 'Rechercher';
-
-
 ?>
