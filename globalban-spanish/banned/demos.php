@@ -463,7 +463,7 @@ function uploadFile($filename, $tempName, $config, $demoQueries) {
         // Use this to build the URL link
         $url = "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
 
-        $body .= "Click on the following link to review the newly added demo of <a href='".$url."&searchText=".$steamId."'>".$offenderName." (".$steamId.")</a>";
+        $body .= $LANDEMOS_041 . " <a href='".$url."&searchText=".$steamId."'>".$offenderName." (".$steamId.")</a>";
         $body .= "</body></html>";
 
         $banManagerEmails = $config->banManagerEmails;
