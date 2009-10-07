@@ -20,6 +20,9 @@
 */
 ob_start();
 
+$lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_header.php';
+include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/French/lan_header.php");
+
 function my_explode($delim, $str, $lim = 1) {
     if ($lim > -2) return explode($delim, $str, abs($lim));
 
@@ -38,10 +41,11 @@ $siteLogo = my_explode('.', $config->siteLogo , -2);
   <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title><?=$config->siteName?> - Administrador de Baneados</title>
+    <title><?php echo $config->siteName ?><?php echo $LANHEAD_001 ?></title>
     <link rel="icon" href="images/favicon.ico" type="image/vnd.microsoft.icon">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/vnd.microsoft.icon">
     <link rel="stylesheet" type="text/css" href="css/banned.css" />
+    <!--<link rel="stylesheet" type="text/css" href="css/print.css" media="print" /> -->
     <script src="javascript/functions.js" language="javascript" type="text/javascript"></script>
     <script src="javascript/jquery-1.2.6.min.js" language="javascript" type="text/javascript"></script>
     <script src="javascript/ui.core.js" language="javascript" type="text/javascript"></script>
