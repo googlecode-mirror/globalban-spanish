@@ -18,13 +18,16 @@
     You should have received a copy of the GNU General Public License
     along with GlobalBan.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+$lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_footer.php';
+include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_footer.php");
+
 ?>
 <div id="footer">
-<?=$copyright?> - <?=$version?>
-<?php if(!$config->enableSmfIntegration) { ?> - <a href="index.php?page=login"><span>[Admin]</span></a><?php } ?>
+<?php echo $copyright?> - <?php echo $version?><br />
+<?php if(!$config->enableSmfIntegration) { ?> - <a href="index.php?page=login"><span><?php echo $LANFOOTER_001 ?></span></a><?php } ?>
 </div>
 </div>
-
 </body>
 </html>
 <?php ob_flush(); ?>
