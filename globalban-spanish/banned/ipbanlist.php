@@ -38,8 +38,8 @@ if(empty($sortDirection)) {
   $sortDirection = "DESC";
 }
 
-$lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_banlist.php';
-include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_ipban.php");
+$lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_ipbanlist.php';
+include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_ipbanlist.php");
 
 $banQueries = new BanQueries();
 
