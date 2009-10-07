@@ -24,6 +24,10 @@ include_once(ROOTDIR."/include/database/class.ServerQueries.php");
 include_once(ROOTDIR."/include/database/class.ReasonQueries.php");
 include_once(ROOTDIR."/include/database/class.LengthQueries.php");
 
+$lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_addban.php';
+include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_addban.php");
+
+
 $steamId = $_GET['steamId'];
 $bannedName = stripslashes($_GET['bannedName']);
 $serverId = $_GET['serverId'];
@@ -88,80 +92,78 @@ function formVerifyIp() {
 </script>
 <?php
 if($_GET['dupe'] == "1") {
-  ?><script type="text/javascript">alert("The user you tried to ban is already banned.");</script><?php
+  ?><script type="text/javascript">alert("<?php echo $LANADDBAN_001 ?>");</script><?php
 }
 ?>
 <div class="tborder">
   <div id="tableHead">
-    <div><b>A&ntilde;adir un nuevo Ban</b></div>
+    <div><b><?php echo $LANADDBAN_002 ?></b></div>
   </div>
   <form action="index.php?page=processWebBan" onsubmit="return formVerify();" method="POST">
   <table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
   <tr>
-    <td class="rowColor1" width="1%" nowrap>Steam ID:</td>
-    <td class="rowColor1"><input name="steamId" id="steamdId" type="text" value="<?=$steamId?>" size="40"/> 
-    (debe tener el formato <b>STEAM_X:X:XXXXXX</b>)
-    &nbsp;&nbsp;<font id="steamIdError" color='red' style="display:none;">Steam ID not in vaild format</font></td>
+    <td class="rowColor1" width="1%" nowrap><img src="images/bullet_star.png" /><?php echo $LANADDBAN_003 ?></td>
+    <td class="rowColor1"><input name="steamId" id="steamdId" type="text" value="<?php echo $steamId ?>" size="40"/> <?php echo $LANADDBAN_004 ?>
+    &nbsp;&nbsp;<font id="steamIdError" color='red' style="display:none;"><?php echo $LANADDBAN_005 ?></font></td>
   </tr>
   <tr>
-    <td class="rowColor2" width="1%" nowrap>Nick del Baneando:</td>
-    <td class="rowColor2"><input name="bannedName" id="bannedName" type="text" value="<?=$bannedName?>" size="40"/> 
-    </td>
+    <td class="rowColor2" width="1%" nowrap><img src="images/bullet_star.png" /><?php echo $LANADDBAN_006 ?></td>
+    <td class="rowColor2"><input name="bannedName" id="bannedName" type="text" value="<?php echo $bannedName ?>" size="40"/> <?php echo $LANADDBAN_007 ?></td>
   </tr>
   <tr>
-    <td class="rowColor1" width="1%" nowrap>Duracion:</td>
+    <td class="rowColor1" width="1%" nowrap><img src="images/bullet_star.png" /> <?php echo $LANADDBAN_008 ?></td>
     <td class="rowColor1">
       <select name="length">
         <?php
         foreach($banLengths as $banLength) {
-          ?><option value="<?=$banLength->getId()?>"><?=$banLength->getReadable()?></option><?php
+          ?><option value="<?php echo $banLength->getId() ?>"><?php echo $banLength->getReadable() ?></option><?php
         }
         ?>
       </select>
     </td>
   </tr>
   <tr>
-    <td class="rowColor2" width="1%" nowrap>Server:</td>
+    <td class="rowColor2" width="1%" nowrap><img src="images/bullet_star.png" /> <?php echo $LANADDBAN_009 ?></td>
     <td class="rowColor2">
       <select name="server">
       <?php
       if(count($serverList > 0)) {
         foreach($serverList as $server) {
           if($server->getId() == $serverId) {
-            ?><option value="<?=$server->getId()?>" selected><?=$server->getName()?></option><?php
+            ?><option value="<?php echo $server->getId() ?>" selected><?php echo $server->getName() ?></option><?php
           } else {
-            ?><option value="<?=$server->getId()?>"><?=$server->getName()?></option><?php
+            ?><option value="<?php echo $server->getId() ?>"><?php echo $server->getName() ?></option><?php
           }
         }
       } else {
-      ?><option value="-1">Sin servidores</option><?php
+      ?><option value="-1"><?php echo $LANADDBAN_010 ?></option><?php
       }
       ?>
       </select>
     </td>
   </tr>
   <tr>
-    <td class="rowColor1" width="1%" nowrap>Motivo:</td>
+    <td class="rowColor1" width="1%" nowrap><img src="images/bullet_star.png" /> <?php echo $LANADDBAN_011 ?></td>
     <td class="rowColor1">
       <select name="reason">
       <?php
       if(count($banReasons > 0)) {
         foreach($banReasons as $reason) {
           if($reason->getId() == $reasonId) {
-            ?><option value="<?=$reason->getId()?>" selected><?=$reason->getReason()?></option><?php
+            ?><option value="<?php echo $reason->getId() ?>" selected><?php echo $reason->getReason() ?></option><?php
           } else {
-            ?><option value="<?=$reason->getId()?>"><?=$reason->getReason()?></option><?php
+            ?><option value="<?php echo $reason->getId() ?>"><?php echo $reason->getReason() ?></option><?php
           }
         }
       } else {
-      ?><option value="0">Quebrantar las reglas del servidor</option><?php
+      ?><option value="0"><?php echo $LANADDBAN_012 ?></option><?php
       }
       ?>
       </select>
     </td>
   </tr>
   <tr>
-    <td colspan="2" class="rowColor2"><input type="submit" value="A&ntilde;adir Ban"></td>
+    <td colspan="2" class="rowColor2"><input type="submit" value="<?php echo $LANADDBAN_018 ?>"></td>
   </tr>
   </table>
   </form>
@@ -174,17 +176,17 @@ if($admin || $banManager || $fullPower) {
   <br/>
   <div class="tborder">
     <div id="tableHead">
-      <div><b>Anadir un nuevo ban</b></div>
+      <div><b><?php echo $LANADDBAN_013 ?></b></div>
     </div>
     <form action="index.php?page=processWebBan" onsubmit="return formVerifyIp();" method="POST">
     <table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
     <tr>
-      <td class="rowColor1" width="1%" nowrap>Direcci&oacute;n IP:</td>
+      <td class="rowColor1" width="1%" nowrap><?php echo $LANADDBAN_014 ?></td>
       <td class="rowColor1"><input name="ip" id="ip" type="text" value="" size="40"/>
-      &nbsp;&nbsp;<font id="ipError" color='red' style="display:none;">Invalid IP Address</font></td>
+      &nbsp;&nbsp;<font id="ipError" color='red' style="display:none;"><?php echo $LANADDBAN_015 ?></font></td>
     </tr>
     <tr>
-      <td colspan="2" class="rowColor2"><input type="submit" name="ipBan" value="A&ntilde;adir IP Ban"></td>
+      <td colspan="2" class="rowColor2"><input type="submit" name="ipBan" value="<?php echo $LANADDBAN_016 ?>"></td>
     </tr>
     </table>
     </form>
@@ -196,7 +198,7 @@ if($admin || $banManager || $fullPower) {
 ?>
 <div class="tborder">
   <div id="tableHead">
-    <div><b>Acceso denegado/b</div>
+    <div><b><?php echo $LANADDBAN_017 ?></b</div>
   </div>
 </div>
 <?php
