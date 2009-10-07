@@ -10,10 +10,8 @@
 |     $Author: Odonel $
 +----------------------------------------------------------------------------+
 */
-/*
 $LANMANAGESERVERGROUPS_001 = "Voulez-vous vraiment supprimer";
 $LANMANAGESERVERGROUPS_002 = '?';
-*/
 $LANMANAGESERVERGROUPS_003 = "Liste des groupes des Serveurs";
 $LANMANAGESERVERGROUPS_004 = "Nom du Groupe";
 $LANMANAGESERVERGROUPS_005 = "Description du Groupe";

@@ -10,26 +10,29 @@
 |     $Author: Odonel $
 +----------------------------------------------------------------------------+
 */
-$LANDEMOS_001 = 'Do you really want to delete ';
-$LANDEMOS_002 = '?';
-$LANDEMOS_003 = 'Server Group List';
-$LANDEMOS_004 = 'Group Name';
-$LANDEMOS_005 = 'Description';
-$LANDEMOS_006 = 'Servers';
-$LANDEMOS_007 = 'Admins';
-$LANDEMOS_008 = 'Save';
-$LANDEMOS_009 = 'Delete';
-$LANDEMOS_010 = "Servers";
-$LANDEMOS_011 = 'No Servers';
-$LANDEMOS_012 = 'Click to manage the admins for ';
-$LANDEMOS_013 = 'Click to save settings for ';
-$LANDEMOS_014 = 'Click to delete ';
-$LANDEMOS_015 = 'Add New Group';
-$LANDEMOS_016 = 'Group Name:';
-$LANDEMOS_017 = 'Description:';
-$LANDEMOS_018 = 'Group Name Already Exists';
-$LANDEMOS_019 = 'Add Group';
-$LANDEMOS_020 = 'Note: If you add or delete a group then you should save your changes by clicking <b>&quot;Save Configuration&quot;</b> of the page ';
-$LANDEMOS_021 = 'Configuration';
-$LANDEMOS_022 = '.';
+$LANMANAGESERVERGROUPS_001 = 'Do you really want to delete ';
+$LANMANAGESERVERGROUPS_002 = '?';
+$LANMANAGESERVERGROUPS_003 = 'Server Group List';
+$LANMANAGESERVERGROUPS_004 = 'Group Name';
+$LANMANAGESERVERGROUPS_005 = 'Description';
+$LANMANAGESERVERGROUPS_006 = 'Servers';
+$LANMANAGESERVERGROUPS_007 = 'Admins';
+$LANMANAGESERVERGROUPS_008 = 'Save';
+$LANMANAGESERVERGROUPS_009 = 'Delete';
+$LANMANAGESERVERGROUPS_010 = "Servers";
+$LANMANAGESERVERGROUPS_011 = 'No Servers';
+$LANMANAGESERVERGROUPS_012 = 'Click to manage the admins for ';
+$LANMANAGESERVERGROUPS_013 = 'Click to save settings for ';
+$LANMANAGESERVERGROUPS_014 = 'Click to delete ';
+$LANMANAGESERVERGROUPS_015 = 'Add New Group';
+$LANMANAGESERVERGROUPS_016 = 'Group Name:';
+$LANMANAGESERVERGROUPS_017 = 'Description:';
+$LANMANAGESERVERGROUPS_018 = 'Group Name Already Exists';
+$LANMANAGESERVERGROUPS_019 = 'Add Group';
+$LANMANAGESERVERGROUPS_020 = '';
+$LANMANAGESERVERGROUPS_021 = 'Note: If you add or delete a group then you should save your changes by clicking <b>&quot;Save Configuration&quot;</b> of the page ';
+$LANMANAGESERVERGROUPS_022 = 'Configuration';
+$LANMANAGESERVERGROUPS_023 = '.';
+
+
 ?>
