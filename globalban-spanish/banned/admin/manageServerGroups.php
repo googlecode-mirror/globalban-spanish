@@ -1,6 +1,9 @@
 <?php
 /*
-    This file is part of GlobalBan.
+    EDIT : This file as been edited by Fantole
+	http://www.css-ressource.com
+	
+	This file is part of GlobalBan.
 
     Written by Stefan Jonasson <soynuts@unbuinc.net>
     Copyright 2008 Stefan Jonasson
@@ -23,16 +26,20 @@ require_once(ROOTDIR."/include/database/class.ServerQueries.php");
 require_once(ROOTDIR."/include/objects/class.Server.php");
 require_once(ROOTDIR."/include/objects/class.ServerGroup.php");
 
+$lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_manageServerGroups.php';
+include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_manageServerGroups.php");
+
 ?>
 <script src="javascript/ajax.js" language="javascript" type="text/javascript"></script>
 <script src="javascript/functions.js" language="javascript" type="text/javascript"></script>
-<script type="text/javascript">
+<!--<script type="text/javascript">
 function deleteVerify(serverId, serverName) {
-  if(confirm("Do you really want to delete "+serverName+"?")) {
+  if(confirm("<?php /*?><?php echo $LANMANAGESERVERGROUPS_001 ?><?php */?> .  "+serverName+"<?php /*?><?php echo $LANMANAGESERVERGROUPS_002 ?><?php */?>")) {
     document.getElementById("deleteServer"+serverId).submit();
   }
 }
-</script>
+</script> -->
+
 <?php
 // Only those with full privs can remove or add servers to the list
 if($fullPower) {
@@ -42,18 +49,26 @@ $serverQueries = new ServerQueries();
 $error = false;
 
 // If this is set, then that means a server is being added
-if(isset($_POST['submitAdd'])) {
+if(isset($_POST['submitAdd']))
+{
+  if (!empty($_POST['groupName']) && !empty($_POST['description']))
+  {
+  	$newGroupId = $serverQueries->addServerGroup($_POST['groupName'], $_POST['description']);
 
-  $newGroupId = $serverQueries->addServerGroup($_POST['groupName'], $_POST['description']);
-
-  if($newGroupId < 0) {
-    $error = true;
+  	if($newGroupId < 0)
+  	{
+   	 $error = true;
+  	}
+  }
+  if (empty($_POST['groupName']) && empty($_POST['description']))
+  {
+  	$error = true;
   }
 }
 
 // If a server is being deleted
-if(isset($_POST['deleteServer'])) {
-  $serverQueries->deleteServer($_POST['serverId']);
+if(!empty($_GET['deleteServer'])) {
+  $serverQueries->deleteServerGroup($_GET['deleteServer']);
 }
 // Get list of server objects
 $groups = $serverQueries->getServerGroups();
@@ -61,28 +76,28 @@ $groups = $serverQueries->getServerGroups();
 <br/>
 <div class="tborder">
   <div id="tableHead">
-    <div><b>Server Group List</b></div>
+    <div><b><?php echo $LANMANAGESERVERGROUPS_003 ?></b></div>
   </div>
   <table id="serverGroup" class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
     <tr>
-      <th class="colColor1" width="1%" nowrap>Group Name</th>
-      <th class="colColor2" width="1%" nowrap>Description</th>
-      <th class="colColor1" width="1%" nowrap>Servers</th>
-      <th class="colColor2" width="1%" nowrap>Admins</th>
-      <th class="colColor1" width="1%" nowrap>Save</th>
-      <th class="colColor2" width="1%" nowrap>Delete</th>
+      <th class="colColor1" width="1%" nowrap><?php echo $LANMANAGESERVERGROUPS_004 ?></th>
+      <th class="colColor2" width="1%" nowrap><?php echo $LANMANAGESERVERGROUPS_005 ?></th>
+      <th class="colColor1" width="1%" nowrap><?php echo $LANMANAGESERVERGROUPS_006 ?></th>
+      <th class="colColor2" width="1%" nowrap><?php echo $LANMANAGESERVERGROUPS_007 ?></th>
+      <th class="colColor1" width="1%" nowrap><?php echo $LANMANAGESERVERGROUPS_008 ?></th>
+      <th class="colColor2" width="1%" nowrap><?php echo $LANMANAGESERVERGROUPS_009 ?></th>
     </tr>
     <?php foreach($groups as $group) {
       
       $serversInGroup = "<div class='tborder'>";
       $serversInGroup .= "<div id='tableHead'>";
-      $serversInGroup .= "<div style='color:#FFFFFF'><b>".$group->getName()." Servers</b></div>";
+	  $serversInGroup .= "<div style='color:#FFFFFF'><b>".$group->getName()." ".$LANMANAGESERVERGROUPS_010."</b></div>";
       $serversInGroup .= "</div>";
       $serversInGroup .= "<table class='bordercolor' width='100%'' cellspacing='1' cellpadding='5' border='0' style='margin-top: 1px;'>";
 
       $servers = $group->getServers();
       if(count($servers) == 0) {
-        $serversInGroup .= "<tr class='rowColor1'><td>No Servers</td></tr>";
+        $serversInGroup .= $LANMANAGESERVERGROUPS_011;
       } else {
         foreach($servers as $server) {
           $serversInGroup .= "<tr class='rowColor1'><td>".$server->getName()."</td></tr>";
@@ -96,24 +111,25 @@ $groups = $serverQueries->getServerGroups();
     
       ?>
       <tr>
-        <td class="colColor1" width="1%" nowrap><input type="text" id="groupName:<?=$group->getId()?>" name="groupName:<?=$group->getId()?>" value="<?=$group->getName()?>" size="40" maxlength="255"/></td>
-        <td class="colColor2" width="1%" nowrap><input type="text" id="groupDescription:<?=$group->getId()?>" name="groupDescription:<?=$group->getId()?>" value="<?=$group->getDescription()?>" size="40" maxlength="255"/></td>
+        <td class="colColor1" width="1%" nowrap><input type="text" id="groupName:<?php echo $group->getId()?>" name="groupName:<?php echo $group->getId()?>" value="<?php echo $group->getName()?>" size="40" maxlength="255"/></td>
+        <td class="colColor2" width="1%" nowrap><input type="text" id="groupDescription:<?php echo $group->getId()?>" name="groupDescription:<?php echo $group->getId()?>" value="<?php echo $group->getDescription()?>" size="40" maxlength="255"/></td>
         <td class="colColor1" width="1%" nowrap
-            onmouseover="Tip('<?=$serversInGroup?>', STICKY, 1, SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('serverGroup'))">
+            onmouseover="Tip('<?php echo $serversInGroup?>', STICKY, 1, SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('serverGroup'))">
             <img src="images/network.png"/>
         </td>
-        <td class="colColor2" width="1%" nowrap style="cursor:pointer;" onclick="location.href='index.php?page=manageServerAdmins&adminPage=1&serverGroupId=<?=$group->getId()?>'"
-            onmouseover="Tip('Click to manage the admins for <?=$group->getName()?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('serverGroup'))">
+        <td class="colColor2" width="1%" nowrap style="cursor:pointer;" onclick="location.href='index.php?page=manageServerAdmins&adminPage=1&serverGroupId=<?php echo $group->getId()?>'"
+            onmouseover="Tip('<?php echo $LANMANAGESERVERGROUPS_012 ?> <?php echo $group->getName()?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('serverGroup'))">
             <img src="images/group.png"/>
         </td>
-        <td class="colColor1" id="save:<?=$group->getId()?>" onclick="saveServer('<?=$group->getId()?>');" style="cursor:pointer;"
-            onmouseover="Tip('Click to save settings for <?=$group->getName()?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('serverGroup'))">
+		<!-- onclick"saveserver"-->
+        <td class="colColor1" id="save:<?php echo $group->getId()?>" onclick="saveServerGroup('<?php echo $group->getId()?>');" style="cursor:pointer;"
+            onmouseover="Tip('<?php echo $LANMANAGESERVERGROUPS_013 ?> <?php echo $group->getName()?> ', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('serverGroup'))">
         <img src="images/tick.png"/>
         </td>
-        <td class="colColor2" style="cursor:pointer;" onclick="deleteVerify('<?=$group->getId()?>', '<?=$group->getName()?>');"
-            onmouseover="Tip('Click to delete <?=$group->getName()?> from the server list', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('serverGroup'))">
-        <form action="index.php?page=manageServerGroups&adminPage=1" id="deleteServer<?=$group->getId()?>" name="deleteServer<?=$group->getId()?>" method="POST">
-          <input type="hidden" name="serverGroupId" id="serverGroupId" value="<?=$group->getId()?>"/>
+        <td class="colColor2" style="cursor:pointer;" onclick="deleteVerify('<?php echo $group->getId()?>', '<?php echo $group->getName()?>');"
+            onmouseover="Tip('<?php echo $LANMANAGESERVERGROUPS_014 ?> <?php echo $group->getName()?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('serverGroup'))">
+        <form action="index.php?page=manageServerGroups&adminPage=1" id="deleteServer<?php echo $group->getId()?>" name="deleteServer<?php echo $group->getId()?>" method="POST">
+          <input type="hidden" name="serverGroupId" id="serverGroupId" value="<?php echo $group->getId()?>"/>
           <input type="hidden" name="deleteServer" value="1">
           <img src="images/trash-full.png"/>
         </form>
@@ -125,31 +141,33 @@ $groups = $serverQueries->getServerGroups();
    </div>
     <br/><br/>
 
-    <!-- This row is for adding a new group -->
+	<!-- This row is for adding a new group -->
     <div class="tborder">
     <div id="tableHead">
-      <div><b>Add New Group</b></div>
+      <div><b><?php echo $LANMANAGESERVERGROUPS_015 ?></b></div>
     </div>
     <form action="index.php?page=manageServerGroups&adminPage=1" method="POST" onsubmit="return formVerify();">
     <table id="newGroupTable" class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
     <tr>
-      <td class="colColor1" width="1%" nowrap>Group Name:</td>
+      <td class="colColor1" width="1%" nowrap><?php echo $LANMANAGESERVERGROUPS_016 ?></td>
       <td class="colColor1" nowrap><input type="text" name="groupName" id="groupName" value="" size="40" maxlength="255"/></td>
     </tr>
     <tr>
-      <td class="colColor2" width="1%" nowrap>Description:</td>
+      <td class="colColor2" width="1%" nowrap><?php echo $LANMANAGESERVERGROUPS_017 ?></td>
       <td class="colColor2" nowrap><input type="text" name="description" id="description" value="" size="40" maxlength="255"/></td>
     </tr>
-      <td class="colColor1" colspan="2"><input type="submit" name="submitAdd" id="submitAdd" value="Add Group"/></td>
+      <td class="colColor1" colspan="2"><input type="submit" name="submitAdd" id="submitAdd" value="<?php echo $LANMANAGESERVERGROUPS_019 ?>"/></td>
     </tr>
     <?php
       if($error) {
-      ?><tr><td class="colColor1" colspan="2"><span class="error">Group Name Already Exists</span></td></tr><?php
+      ?><tr><td class="colColor1" colspan="2"><span class="error"><?php echo $LANMANAGESERVERGROUPS_018 ?></span></td></tr><?php
       }
     ?>
   </table>
   </form>
 </div>
+<h5><?php echo $LANMANAGESERVERGROUPS_021 ?> <a href="index.php?page=configuration&adminPage=1">"<?php echo $LANMANAGESERVERGROUPS_022 ?>"</a><?php echo $LANMANAGESERVERGROUPS_023 ?></h5>
+
 <?php
 }
 ?>
