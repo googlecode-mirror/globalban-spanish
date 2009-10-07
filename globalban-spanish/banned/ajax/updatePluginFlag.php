@@ -47,8 +47,8 @@ header("Cache-Control: no-cache, must-revalidate");
 ?>
 <?echo "<?xml version=\"1.0\" ?>";?>
 <root>
-  <groupId><?=$groupId?></groupId>
-  <flagId><?=$flagId?></flagId>
-  <success><?=$success?></success>
-  <checked><?=$checked?></checked>
+  <groupId><?php echo $groupId?></groupId>
+  <flagId><?php echo $flagId?></flagId>
+  <success><?php echo $success?></success>
+  <checked><?php echo $checked?></checked>
 </root>

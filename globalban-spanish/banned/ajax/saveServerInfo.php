@@ -53,9 +53,9 @@ function convertXmlSpecial($string) {
 }
 
 ?>
-<?echo "<?xml version=\"1.0\" ?>";?>
+<?php echo "<?xml version=\"1.0\" ?>";?>
 <root>
-  <id><?=$id?></id>
-	<name><?=convertXmlSpecial($name)?></name>
-	<success><?=$success?></success>
+  <id><?php echo $id?></id>
+	<name><?php echo convertXmlSpecial($name)?></name>
+	<success><?php echo $success?></success>
 </root>

@@ -72,10 +72,10 @@ function convertXmlSpecial($string) {
   return $string;
 }
 ?>
-<?echo "<?xml version=\"1.0\" ?>";?>
+<?php echo "<?xml version=\"1.0\" ?>";?>
 <root>
-  <id><?=$server->getId()?></id>
-	<name><?=convertXmlSpecial($server->getName())?></name>
-	<port><?=$server->getPort()?></port>
-	<success><?=$success?></success>
+  <id><?php echo $server->getId()?></id>
+	<name><?php echo convertXmlSpecial($server->getName())?></name>
+	<port><?php echo $server->getPort()?></port>
+	<success><?php echo $success?></success>
 </root>

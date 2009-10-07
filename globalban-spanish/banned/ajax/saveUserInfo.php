@@ -56,10 +56,10 @@ if($fullPower) {
 ?>
 <?echo "<?xml version=\"1.0\" ?>";?>
 <root>
-  <id><?=$user->getId()?></id>
-	<name><?=$user->getName()?></name>
-	<steamid><?=$user->getSteamId()?></steamid>
-	<error><?=$error?></error>
+  <id><?php echo $user->getId()?></id>
+	<name><?php echo $user->getName()?></name>
+	<steamid><?php echo $user->getSteamId()?></steamid>
+	<error><?php echo $error?></error>
 </root>
 <?php
 }

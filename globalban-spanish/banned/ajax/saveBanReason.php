@@ -42,6 +42,6 @@ header("Cache-Control: no-cache, must-revalidate");
 ?>
 <?echo "<?xml version=\"1.0\" ?>";?>
 <root>
-  <id><?=$id?></id>
-	<reason><?=$reason?></reason>
+  <id><?php echo $id?></id>
+	<reason><?php echo $reason?></reason>
 </root>
