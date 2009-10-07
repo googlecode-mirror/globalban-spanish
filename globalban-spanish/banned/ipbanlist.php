@@ -38,12 +38,23 @@ if(empty($sortDirection)) {
   $sortDirection = "DESC";
 }
 
+$lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_banlist.php';
+include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_ipban.php");
+
 $banQueries = new BanQueries();
 
 // Count how many bans exist in the database
 $ipCount = $banQueries->getNumberOfIpBans($banManager, $fullPower, $searchText);
 
 $bannedIps = $banQueries->getIpBanList($banManager, $fullPower, $startRange, $ipCount, $sortBy, $sortDirection, $searchText);
+?>
+<div id="search" align="right">
+  <form action="" method="post">
+  <input name="searchText" id="searchText" type="text" value="<?php echo $searchText?>" size="40" maxLength="40"/>
+  <input type="submit" value="<?php echo $LANIPBAN_011; ?>">
+  </form>
+  </div>
+<?php
 
 if(count($bannedIps) > 0) {
   ?>
@@ -52,18 +63,12 @@ if(count($bannedIps) > 0) {
     <script language="Javascript" type="text/javascript">
     rowHighlight("ipbanlistTable");
   </script>
+ 
   
-  
-  <div id="search" align="right">
-  <form action="" method="post">
-  <input name="searchText" id="searchText" type="text" value="" size="40" maxLength="40"/>
-  <input type="submit" value="Search">
-  </form>
-  </div>
   
   <div class="tborder">
     <div id="tableHead">
-      <div><b>IP Ban List showing IP bans <?=($startRange+1)?> to <?=$banQueries->getEndRange()?> of <?=$ipCount?></b></div>
+      <div><b><?php echo $LANIPBAN_001; ?><?php echo ($startRange+1) ?> <?php echo $LANIPBAN_002; ?> <?php echo $banQueries->getEndRange() ?> <?php echo $LANIPBAN_003; ?> <?php echo $ipCount ?></b></div>
       <div>
         <?php pageLinks($config, $startRange, $ipCount); ?>
       </div>
@@ -75,7 +80,7 @@ if(count($bannedIps) > 0) {
     <tr>
       <th class="colColor1" nowrap>
         <a href="index.php?page=ipbanlist&sc=ip&sd=ASC"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
-        IP Address
+        <?php echo $LANIPBAN_004; ?>
         <a href="index.php?page=ipbanlist&sc=ip&sd=DESC"><img src="images/arrow_down.png" style="cursor:pointer;"/></a>
       </th>
       <?php
@@ -84,7 +89,7 @@ if(count($bannedIps) > 0) {
         ?>
         <th class="colColor2" width="1%" nowrap>
           <a href="index.php?page=ipbanlist&sc=active&sd=ASC"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
-          Active
+          <?php echo $LANIPBAN_005; ?>
           <a href="index.php?page=ipbanlist&sc=active&sd=DESC"><img src="images/arrow_down.png" style="cursor:pointer;"/></a>
         </th>
         <?php
@@ -97,12 +102,12 @@ if(count($bannedIps) > 0) {
 
       ?>
       <tr>
-        <td class="colColor1" nowrap><?=$bannedIp->getIp()?></td>
+        <td class="colColor1" nowrap><?php echo $bannedIp->getIp() ?></td>
         <?php
         // Show extra headers for ban manager
         if($banManager || $fullPower) {
           ?>
-          <td id="active:<?=$bannedIp->getIp()?>" class="colColor2" onclick="changeIpActiveStatus('<?=$bannedIp->getIp()?>', <?=$bannedIp->getActive()?>);" style="cursor:pointer;">
+          <td id="active:<?php echo $bannedIp->getIp() ?>" class="colColor2" onclick="changeIpActiveStatus('<?php echo $bannedIp->getIp() ?>', <?php echo $bannedIp->getActive() ?>);" style="cursor:pointer;">
           <?php if($bannedIp->getActive() == 0) {
             ?><img src="images/cross.png"/><?php
           } else {
@@ -126,7 +131,7 @@ if(count($bannedIps) > 0) {
       </div>
     </div>
   </div>
-  <h5>*NOTE: IP Bans apply to ALL servers on the server list page.</h5>
+  <h5><img src="images/bullet_star.png" /> <?php echo $LANIPBAN_006; ?></h5>
   <br/>
 <?php
   // Only display if there are bans
@@ -134,14 +139,14 @@ if(count($bannedIps) > 0) {
   ?>
   <div class="tborder">
     <div id="tableHead">
-      <div><b>Download IP Bans</b</div>
+      <div><b><?php echo $LANIPBAN_007; ?></b></div>
     </div>
     <table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
     <form action="exportIps.php" method="post" id="form">
     	<table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
     		<tr>
     			<td align="left" class="rowColor2">
-    				<input type="submit" name="submit" value="Download IP List" class="button" /></td>
+    				<input type="submit" name="submit" value="<?php echo $LANIPBAN_007; ?>" class="button" /></td>
     		</tr>
     </table>
   </div>
@@ -152,7 +157,7 @@ else {
 ?>
 <div class="tborder">
   <div id="tableHead">
-    <div><b>IP List is Empty</b></div>
+    <div><b><?php echo $LANIPBAN_008; ?></b></div>
   </div>
 </div>
 <?php
@@ -167,7 +172,7 @@ function pageLinks($config, $startRange, $ipCount) {
 
     // Show previous button
     if($currentPage != 1) {
-    ?><a href="index.php?page=ipbanlist&sr=<?=($startRange-$config->bansPerPage)?>">&lt;&lt;Previous</a> <?php
+    ?><a href="index.php?page=ipbanlist&sr=<?php echo ($startRange-$config->bansPerPage) ?>">&lt;&lt;<?php echo $LANIPBAN_009; ?></a> <?php
     }
 
     // Show Middle Links
@@ -175,9 +180,9 @@ function pageLinks($config, $startRange, $ipCount) {
     if($startRange+1 > $eitherside) {
       // Show first page
       if($currentPage == $page) {
-        ?><a href="index.php?page=ipbanlist&sr=<?=$y?>"><b>[<?=$page?>]</b></a> <?php
+        ?><a href="index.php?page=ipbanlist&sr=<?php echo $y?>"><b>[<?php echo $page?>]</b></a> <?php
       } else {
-        ?><a href="index.php?page=ipbanlist&sr=<?=$y?>"><?=$page?></a> <?php
+        ?><a href="index.php?page=ipbanlist&sr=<?php echo $y?>"><?php echo $page?></a> <?php
       }
       ?> ... <?php
     }
@@ -185,9 +190,9 @@ function pageLinks($config, $startRange, $ipCount) {
     while($y<$ipCount) {
       if(($y > ($startRange - $eitherside)) && ($y < ($startRange + $eitherside))) {
         if($currentPage == $page) {
-          ?><a href="index.php?page=ipbanlist&sr=<?=$y?>"><b>[<?=$page?>]</b></a> <?php
+          ?><a href="index.php?page=ipbanlist&sr=<?php echo $y?>"><b>[<?php echo $page?>]</b></a> <?php
         } else {
-          ?><a href="index.php?page=ipbanlist&sr=<?=$y?>"><?=$page?></a> <?php
+          ?><a href="index.php?page=ipbanlist&sr=<?php echo $y?>"><?php echo $page?></a> <?php
         }
       }
       $page++;
@@ -203,15 +208,15 @@ function pageLinks($config, $startRange, $ipCount) {
 
       // Show last page
       if($y == $lastPage && ($startRange+$eitherside)<$ipCount) {
-        ?><a href="index.php?page=ipbanlist&sr=<?=$y?>"><b>[<?=$page?>]</b></a> <?php
+        ?><a href="index.php?page=ipbanlist&sr=<?php echo $y?>"><b>[<?php echo $page?>]</b></a> <?php
       } else {
-        ?><a href="index.php?page=ipbanlist&sr=<?=$y?>"><?=$page?></a> <?php
+        ?><a href="index.php?page=ipbanlist&sr=<?php echo $y?>"><?php echo $page?></a> <?php
       }
     }
 
     // Show next button
     if(($page-1 > ($startRange/$config->bansPerPage)+1 || $currentPage == 1) && $ipCount > $config->bansPerPage) {
-    ?><a href="index.php?page=ipbanlist&sr=<?=($startRange+$config->bansPerPage)?>"> Next&gt;&gt;</a> <?php
+    ?><a href="index.php?page=ipbanlist&sr=<?php echo ($startRange+$config->bansPerPage)?>"> <?php echo $LANIPBAN_010; ?>&gt;&gt;</a> <?php
     }
   }
 }
