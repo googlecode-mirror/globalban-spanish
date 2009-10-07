@@ -44,6 +44,6 @@ header("Cache-Control: no-cache, must-revalidate");
 ?>
 <?echo "<?xml version=\"1.0\" ?>";?>
 <root>
-  <ip><?=$ip?></ip>
-	<update><?=$active?></update>
+  <ip><?php echo $ip?></ip>
+	<update><?php echo $active?></update>
 </root>

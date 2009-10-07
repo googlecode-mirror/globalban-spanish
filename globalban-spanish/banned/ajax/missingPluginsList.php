@@ -29,4 +29,4 @@ $missingPlugins = $adminGroupQueries->getUnaddedPluginList($groupId);
 
 // The HTML must match what is in the manageAdminGroups.php file
 ?>
-<select id="pluginList-<?=$groupId?>" name="plugin"><?php foreach($missingPlugins as $missingPlugin) { echo "<option value='".$missingPlugin->getId()."'>".$missingPlugin->getName()."</option>"; } ?></select>
+<select id="pluginList-<?php echo $groupId?>" name="plugin"><?php foreach($missingPlugins as $missingPlugin) { echo "<option value='".$missingPlugin->getId()."'>".$missingPlugin->getName()."</option>"; } ?></select>
