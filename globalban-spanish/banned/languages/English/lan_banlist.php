@@ -67,5 +67,6 @@ $LANINS_054 = 'Download Ban List';
 $LANINS_055 = 'Ban List is Empty';
 $LANINS_056 = 'Previous';
 $LANINS_057 = 'Next';
-
+$LANINS_058 = 'TOTAL';
+$LANINS_059 = 'Expirate Date';
 ?>
