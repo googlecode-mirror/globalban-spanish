@@ -24,7 +24,7 @@ include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_foo
 
 ?>
 <div id="footer">
-<?php echo $copyright?> - <?php echo $version?><br />
+<?php echo $copyright?> - <?php echo $version?>
 <?php if(!$config->enableSmfIntegration) { ?> - <a href="index.php?page=login"><span><?php echo $LANFOOTER_001 ?></span></a><?php } ?>
 </div>
 </div>

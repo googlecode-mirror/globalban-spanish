@@ -279,7 +279,7 @@ function confirmIpBan() {
       }
 
 	  if($banHistUser->getExpireDate() == 'Expired') {
-		$expireDate = $LANUPDATEBAN_028;
+		$expireDate = "<i>".$LANUPDATEBAN_028."</i>";
 		$expireTime = "";
 	  }
 $length = $banLength->getReadable();
