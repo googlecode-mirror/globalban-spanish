@@ -122,6 +122,9 @@ include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_nav
       $adPage = "&adminPage=1";
   }else{
       $adPage = ""; 
+      if(isset($_GET['banId'])) {
+        $adPage .= '&banId='.$_GET['banId']; // Get banId value
+      }
   }
   ?>
   </ul>

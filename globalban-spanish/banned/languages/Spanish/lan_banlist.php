@@ -68,5 +68,5 @@ $LANINS_055 = 'La lista de baneados esta vacia';
 $LANINS_056 = 'Anterior';
 $LANINS_057 = 'Siguiente';
 $LANINS_058 = 'TOTAL';
-$LANINS_059 = 'Hasta';
+$LANINS_059 = 'Hasta:';
 ?>

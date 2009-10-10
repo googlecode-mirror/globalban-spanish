@@ -110,8 +110,8 @@ function confirmIpBan() {
 <tr>
 
 
-<td class="rowColor1" width="1%" nowrap><?php echo $LANUPDATEBAN_007; ?></td>
-  <td class="rowColor1">
+<td class="rowColor2" width="1%" nowrap><?php echo $LANUPDATEBAN_007; ?></td>
+  <td class="rowColor2">
     <select name="admin">
     <?php
       $fullPowerLevelEditUser = false;
@@ -215,21 +215,21 @@ function confirmIpBan() {
 </tr>
 <tr>
 <tr>
-  <td class="rowColor1" width="1%" nowrap><?php echo $LANUPDATEBAN_016; ?></td>
+  <td class="rowColor2" width="1%" nowrap><?php echo $LANUPDATEBAN_016; ?></td>
   <?php
   if($bannedUser->getModifiedBy() == "") { 
   ?>
-    <td class="rowColor1"><?php echo $bannedUser->getBanner() ?></td>
+    <td class="rowColor2"><?php echo $bannedUser->getBanner() ?></td>
   <?php
   } else {
   ?>
-    <td class="rowColor1"><?php echo $bannedUser->getModifiedBy() ?></td>
+    <td class="rowColor2"><?php echo $bannedUser->getModifiedBy() ?></td>
   <?php
   }
   ?>
 </tr>
 <tr>
-  <td colspan="2" class="rowColor2"><input type="submit" name="updateBan" value="<?php echo $LANUPDATEBAN_017; ?>"></td>
+  <td colspan="2" class="rowColor1"><input type="submit" name="updateBan" value="<?php echo $LANUPDATEBAN_017; ?>"></td>
 </tr>
 </table>
 </form>
@@ -295,12 +295,12 @@ $length = $banLength->getReadable();
       <td class="colColor2" nowrap align="center"><?=$expireDate." ".$expireTime?></td>
       <?php
       if($banHistUser->getWebpage() != "") {
-        echo "<td class='rowColor2' align='center'><a href='".$banHistUser->getWebpage()."'><img src='images/database_add.png' align='absmiddle'/></a></td>";
+        echo "<td class='rowColor1' align='center'><a href='".$banHistUser->getWebpage()."'><img src='images/database_add.png' align='absmiddle'/></a></td>";
       } else {
-        echo "<td class='rowColor2' align='center'><img src='images/cross.png' align='absmiddle' alt='".$LANUPDATEBAN_029."'/></td>";
+        echo "<td class='rowColor1' align='center'><img src='images/cross.png' align='absmiddle' alt='".$LANUPDATEBAN_029."'/></td>";
       }
       ?>
-	  <td class="colColor1" nowrap><?php echo $comments?></td>
+	  <td class="colColor2" nowrap><?php echo $comments?></td>
     </tr>
     <?php
     }
