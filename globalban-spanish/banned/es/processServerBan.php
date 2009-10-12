@@ -111,11 +111,10 @@ if($hash == $config->matchHash) {
 
     if($configOdonel->enableAutoPoste107Forum) {
 
-      // Use this to build the URL link (replace processServerBan with updateBan)
-      $url = "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-      $url = str_replace("processServerBan", "banlist", $url);
+      // Use this to build the URL link
+      $url = "http://".$_SERVER["SERVER_NAME"].$_SERVER["PHP_SELF"];
 
-      $postId = NewPostForum_e107(addslashes($nameOfBanned)." - ".addslashes($steamId),"[b]Admin:[/b] [color=#009900]".addslashes($username)."[/color]\r\n\r\n[b]Nick Baneado: [/b][color=#990000][link=".$url."&searchText=".addslashes($steamId)."]".addslashes($nameOfBanned)." - ".addslashes($steamId)."[/link][/color]\r\n\r\n[b]Motivo:[/b] ".$motivo."\r\n\r\n[b]Periodo:[/b] ".$length->getReadable(), time(), $configOdonel);
+      $postId = NewPostForum_e107(addslashes($nameOfBanned)." - ".addslashes($steamId),"[b]Admin:[/b] [color=#009900]".addslashes($username)."[/color]\r\n\r\n[b]Nick Baneado: [/b][color=#990000][link=".$url."?page=banlist&searchText=".addslashes($steamId)."]".addslashes($nameOfBanned)." - ".addslashes($steamId)."[/link][/color]\r\n\r\n[b]Motivo:[/b] ".$motivo."\r\n\r\n[b]Periodo:[/b] ".$length->getReadable(), time(), $configOdonel);
       UpdateBanWebpage ($postId , $banId, $configOdonel);
 	}
   }
@@ -134,12 +133,8 @@ if($hash == $config->matchHash) {
     }
     $body .= "\n\n";
     
-    // Use this to build the URL link (replace processServerBan with updateBan)
-    $url = "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-    $url = str_replace("processServerBan", "updateBan", $url);
-    
       $body .= "\n\n";
-      $body .= "Haga click en el siguiente link para ver el ban: <a href='".$url."&banId=".$banId."'>Nuevo Ban</a>";
+      $body .= "Haga click en el siguiente link para ver el ban: <a href='".$url."?page=banlist&searchText=".addslashes($steamId)."'>Nuevo Ban</a>";
       $body .= "<p>".$bannedName." (".$steamId.") ha sido baneado de todos los servidores.</p>";  
 	  if($configOdonel->enableAutoPoste107Forum) {
 	    $body .= "<p>Post en el Foro: <a href='".$configOdonel->e107Url."e107_plugins/forum/forum_viewtopic.php?".$postId."'>Link</a></p>";
