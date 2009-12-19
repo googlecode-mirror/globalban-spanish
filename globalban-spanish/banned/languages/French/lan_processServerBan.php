@@ -3,17 +3,17 @@
 + ----------------------------------------------------------------------------+
 |     esGlobalBan - Language File.
 |
-|     $Source: /cvsroot/banned/languages/French/LAN_PROCESSBAN.php,v $
+|     $Source: /cvsroot/banned/languages/French/lan_processServerBan.php,v $
 |     $Revision: 1.0 $
 |     $Date: 2009/07/02 30:36:39 $
 |     $Author: Odonel $
 +----------------------------------------------------------------------------+
 */
 
-$LAN_PROCESSBAN_001 = "[b]Admin:[/b] [color=#009900]";
-$LAN_PROCESSBAN_002 = '[b]Pseudo Bannie : [/b]';
-$LAN_PROCESSBAN_003 = "[b]Raison :[/b]";
-$LAN_PROCESSBAN_004 = '[b]Durée :[/b]';
+$LAN_PROCESSBAN_001 = "Admin";
+$LAN_PROCESSBAN_002 = 'Pseudo Bannie';
+$LAN_PROCESSBAN_003 = "Raison";
+$LAN_PROCESSBAN_004 = 'Durée';
 $LAN_PROCESSBAN_005 = 'Le format du Steam ID est invalide.';
 $LAN_PROCESSBAN_006 = 'Pseudo :';
 $LAN_PROCESSBAN_007 = '(non requis)';

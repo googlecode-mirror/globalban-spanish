@@ -29,6 +29,9 @@ require_once(ROOTDIR."/include/objects/class.Length.php");
 require_once(ROOTDIR."/include/objects/class.Server.php");
 require_once(ROOTDIR."/include/database/class.ReasonQueries.php");
 
+$lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_processServerBan.php';
+include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_processServerBan.php");
+
 // Initialize Objects
 $reasonQueries = new ReasonQueries();
 
@@ -111,10 +114,11 @@ if($hash == $config->matchHash) {
 
     if($configOdonel->enableAutoPoste107Forum) {
 
-      // Use this to build the URL link
-      $url = "http://".$_SERVER["SERVER_NAME"].$_SERVER["PHP_SELF"];
+      // Use this to build the URL link (replace processServerBan with updateBan)
+      $url = "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+      $url = str_replace("processServerBan", "banlist", $url);
 
-      $postId = NewPostForum_e107(addslashes($nameOfBanned)." - ".addslashes($steamId),"[b]Admin:[/b] [color=#009900]".addslashes($username)."[/color]\r\n\r\n[b]Nick Baneado: [/b][color=#990000][link=".$url."?page=banlist&searchText=".addslashes($steamId)."]".addslashes($nameOfBanned)." - ".addslashes($steamId)."[/link][/color]\r\n\r\n[b]Motivo:[/b] ".$motivo."\r\n\r\n[b]Periodo:[/b] ".$length->getReadable(), time(), $configOdonel);
+      $postId = NewPostForum_e107(addslashes($nameOfBanned)." - ".addslashes($steamId),"[b]".$LAN_PROCESSBAN_001.":[/b] [color=#009900]".addslashes($username)."[/color]\r\n\r\n[b]".$LAN_PROCESSBAN_002.": [/b][color=#990000][link=".$url."&searchText=".addslashes($steamId)."]".addslashes($nameOfBanned)." - ".addslashes($steamId)."[/link][/color]\r\n\r\n[b]".$LAN_PROCESSBAN_003.":[/b] ".$motivo."\r\n\r\n[b]".$LAN_PROCESSBAN_004.":[/b] ".$length->getReadable(), time(), $configOdonel);
       UpdateBanWebpage ($postId , $banId, $configOdonel);
 	}
   }
@@ -122,22 +126,26 @@ if($hash == $config->matchHash) {
   // Make sure $banId is valid and that the user wants emails sent
   if($banId > 0 && $config->sendEmails) {
     // Email
-    $subject = "Ban Added In-Game by ".$user->getName();
+    $subject = $LAN_PROCESSBAN_005." ".$user->getName();
     
     $body = "<html><body>";
-    $body .= "The following ban has been added by ";
+    $body .= $LAN_PROCESSBAN_006;
     if($member) {
-      $body .= "a Member and MUST be reviewed.";
+      $body .= $LAN_PROCESSBAN_007;
     } else {
-      $body .= "an Admin.";
+      $body .= $LAN_PROCESSBAN_008;
     }
     $body .= "\n\n";
     
+    // Use this to build the URL link (replace processServerBan with updateBan)
+    $url = "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+    $url = str_replace("processServerBan", "updateBan", $url);
+    
       $body .= "\n\n";
-      $body .= "Haga click en el siguiente link para ver el ban: <a href='".$url."?page=banlist&searchText=".addslashes($steamId)."'>Nuevo Ban</a>";
-      $body .= "<p>".$bannedName." (".$steamId.") ha sido baneado de todos los servidores.</p>";  
+      $body .= $LAN_PROCESSBAN_009.": <a href='".$url."&banId=".$banId."'>".$LAN_PROCESSBAN_010."</a>";
+      $body .= "<p>".$bannedName." (".$steamId.") ".$LAN_PROCESSBAN_011."</p>";  
 	  if($configOdonel->enableAutoPoste107Forum) {
-	    $body .= "<p>Post en el Foro: <a href='".$configOdonel->e107Url."e107_plugins/forum/forum_viewtopic.php?".$postId."'>Link</a></p>";
+	    $body .= "<p>".$LAN_PROCESSBAN_012.": <a href='".$configOdonel->e107Url."e107_plugins/forum/forum_viewtopic.php?".$postId."'>Link</a></p>";
       }
       $body .= "</body></html>";
       
@@ -148,7 +156,7 @@ if($hash == $config->matchHash) {
       $headers  = "MIME-Version: 1.0" . "\r\n";
       $headers .= "Content-type: text/html; charset=utf-8" . "\r\n";			
       // Additional headers
-      $headers .= "From: ".$config->siteName." Ban Management <".$config->emailFromHeader.">" . "\r\n";
+      $headers .= "From: ".$config->siteName." ".$LAN_PROCESSBAN_013." <".$config->emailFromHeader.">" . "\r\n";
       
       // Send an email message to those that wish to recieve a notice of a newly added ban
       mail($banManagerEmails[$i], $subject, $body, $headers);
@@ -173,7 +181,7 @@ function kickUser($steamId, $serverId, $message, $nameOfBanned, $periodo, $motiv
     $r->Auth();
     $r->kickUser($steamId, $message);
     $r->sendRconCommand("banid 5 "."\"".$steamId."\" ");
-	$r->sendRconCommand("es_msg #multi #green Baneados: #lightgreen ".$nameOfBanned." #green ha sido baneado #lightgreen ".$periodo." #green por #lightgreen ".$motivo." con la #lightgreen ".$steamId." #green !!!");
+	$r->sendRconCommand("es_msg #multi #green ".$LAN_PROCESSBAN_014.": #lightgreen ".$nameOfBanned." #green ".$LAN_PROCESSBAN_015." #lightgreen ".$periodo." #green ".$LAN_PROCESSBAN_016." #lightgreen ".$motivo." ".$LAN_PROCESSBAN_017." #lightgreen ".$steamId." #green !!!");
   }
 }
 
