@@ -10,11 +10,11 @@
 +----------------------------------------------------------------------------+
 */
 
-$LANCHECKUSER_001 = "Votre nom contient le mot ";
-$LANCHECKUSER_002 = 'qui n\'est pas autorisé sur le serveur';
+$LANCHECKUSER_001 = 'Your name contains the word ';
+$LANCHECKUSER_002 = ' which is not allowed on the server.';
 $LANCHECKUSER_003 = ' by IP';
-$LANCHECKUSER_004 = 'GB: Il a été et bannie :';
-$LANCHECKUSER_005 = 'son STEAMID est :';
+$LANCHECKUSER_004 = 'Kicked Banned Player:';
+$LANCHECKUSER_005 = ' with the ';
 $LANCHECKUSER_006 = 'EX-BANNED';
 $LANCHECKUSER_007 = 'Reason';
 $LANCHECKUSER_008 = 'Admin';
@@ -24,6 +24,5 @@ $LANCHECKUSER_011 = 'Hello ';
 $LANCHECKUSER_012 = 'we remind you that you were already banned by';
 $LANCHECKUSER_013 = 'the';
 $LANCHECKUSER_014 = 'be good and do not give us reason to ban you again, thanks.';
-ECKUSER_014 = 'Portate bien y no nos des motivos para volver a tener que banearte, gracias.';
 
 ?>

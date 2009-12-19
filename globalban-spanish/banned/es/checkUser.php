@@ -27,6 +27,8 @@ require_once(ROOTDIR."/include/database/class.ReasonQueries.php");
 require_once(ROOTDIR."/include/objects/class.Length.php");
 require_once(ROOTDIR."/include/objects/class.Server.php");
 
+$lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_checkuser.php';
+include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_checkuser.php");
 
 // Get the hash value passed from ES
 $hash = $_GET['hash'];
@@ -47,7 +49,7 @@ if($hash == $config->matchHash) {
   // Loop through the names to kick to see if the word exists in the user's name
   foreach($namesToKick as $nameToKick) {
     if(strpos(strtolower($nameOfBanned), $nameToKick->getBadName()) !== false) {
-      kickUser($steamId, $serverId, "Tu Nick contiene la palabra ".$nameToKick->getBadName()." que no esta permitida en este servidor");
+	  kickUser($steamId, $serverId, $LANCHECKUSER_001 .$nameToKick->getBadName(). $LANCHECKUSER_002);
       $kickedByName = true;
       break; // Break out of the loop
     }
@@ -59,7 +61,7 @@ if($hash == $config->matchHash) {
   if(!$kickedByName) {
     // Determine if this user is IP banned, if so kick them
     if($banQueries->isIpBanned($ipOfBanned)) {
-      kickUser($steamId, $serverId, eregi_replace("gb_time","mediante IP",$config->banMessage), $nameOfBanned);
+      kickUser($steamId, $serverId, eregi_replace("gb_time",$LANCHECKUSER_003,$config->banMessage), $nameOfBanned);
 		$kickedByBan = true;
     }
 
@@ -115,13 +117,13 @@ if($hash == $config->matchHash) {
 				$server = $serverQueries->getServer($serverId);
 				$r = new rcon($server->getIp(),$server->getPort(),$server->getRcon());
 				$r->Auth();
-				$r->sendRconCommand("ma_chat ******** GB: EX-BANEADO: ".$nameOfBanned." - ".$steamId." | ".$bannedUser->getName()." | Motivo: ".$reasonQueries->getReason($bannedUser->getReasonId()));
-				$r->sendRconCommand("ma_chat ******** GB: Admin: ".$bannedUser->getBanner()." | Periodo: ".$length->getReadable()." | Fecha: ".gmdate('d M Y H:i:s', $bannedUser->getAddDate()));
-				// $r->sendRconCommand("ma_csay ******** GB: EX-BANEADO: ".$nameOfBanned)." ********";
-				$r->sendRconCommand("ma_msay 10 #ALL -> ** GB: EX-BANEADO **\\n ".$nameOfBanned."\\n ".$bannedUser->getName()."\\n ".$steamId."\\n-> ********************\\n\\n Motivo: ".$reasonQueries->getReason($bannedUser->getReasonId())."\\n Fecha: ".gmdate('d M Y H:i:s', $bannedUser->getAddDate())." \\n Admin: ".$bannedUser->getBanner()."\\n Periodo: ".$length->getReadable()."\\n-> ********************");
-				$r->sendRconCommand("ma_psay ".$steamId." ** GB: Hola: ".$nameOfBanned." ".$steamId." te recordamos que ya estuviste baneado por: ".$reasonQueries->getReason($bannedUser->getReasonId())." el: ".gmdate('d M Y H:i:s', $bannedUser->getAddDate()));
-				$r->sendRconCommand("ma_psay ".$steamId." ** GB: Hola: ".$nameOfBanned." Portate bien y no nos des motivos para volver a tener que banearte.");
-				$r->sendRconCommand("ma_msay 999 ".$steamId." -> GlobalBan\\n Hola: ".$nameOfBanned." ".$steamId."\\n\\n te recordamos que ya estuviste baneado\\n  Motivo: ".$reasonQueries->getReason($bannedUser->getReasonId())."\\n  Fecha: ".gmdate('d M Y H:i:s', $bannedUser->getAddDate())." \\n \\n Portate bien y no nos des motivos para volver a tener que banearte.");
+				$r->sendRconCommand("ma_chat ******** GB: ".$LANCHECKUSER_006.": ".$nameOfBanned." - ".$steamId." | ".$bannedUser->getName()." | ".$LANCHECKUSER_007.": ".$reasonQueries->getReason($bannedUser->getReasonId()));
+				$r->sendRconCommand("ma_chat ******** GB: ".$LANCHECKUSER_008.": ".$bannedUser->getBanner()." | ".$LANCHECKUSER_009.": ".$length->getReadable()." | ".$LANCHECKUSER_010.": ".gmdate('d M Y H:i:s', $bannedUser->getAddDate()));
+				// $r->sendRconCommand("ma_csay ******** GB: ".$LANCHECKUSER_006.": ".$nameOfBanned)." ********";
+				$r->sendRconCommand("ma_msay 10 #ALL -> ** GB: ".$LANCHECKUSER_006." **\\n ".$nameOfBanned."\\n ".$bannedUser->getName()."\\n ".$steamId."\\n-> ********************\\n\\n ".$LANCHECKUSER_007.": ".$reasonQueries->getReason($bannedUser->getReasonId())."\\n ".$LANCHECKUSER_010.": ".gmdate('d M Y H:i:s', $bannedUser->getAddDate())." \\n ".$LANCHECKUSER_008.": ".$bannedUser->getBanner()."\\n ".$LANCHECKUSER_009.": ".$length->getReadable()."\\n-> ********************");
+				$r->sendRconCommand("ma_psay ".$steamId." ** GB: ".$LANCHECKUSER_011.": ".$nameOfBanned." ".$steamId." ".$LANCHECKUSER_012.": ".$reasonQueries->getReason($bannedUser->getReasonId())." ".$LANCHECKUSER_013.": ".gmdate('d M Y H:i:s', $bannedUser->getAddDate()));
+				$r->sendRconCommand("ma_psay ".$steamId." ** GB: ".$LANCHECKUSER_011.": ".$nameOfBanned." ".$LANCHECKUSER_012);
+				$r->sendRconCommand("ma_msay 999 ".$steamId." -> GlobalBan\\n ".$LANCHECKUSER_011.": ".$nameOfBanned." ".$steamId."\\n\\n ".$LANCHECKUSER_012."\\n  ".$LANCHECKUSER_007.": ".$reasonQueries->getReason($bannedUser->getReasonId())."\\n  ".$LANCHECKUSER_010.": ".gmdate('d M Y H:i:s', $bannedUser->getAddDate())." \\n \\n ".$LANCHECKUSER_014);
 			}	
 		}
       // If their name is empty, update it
@@ -153,7 +155,7 @@ function kickUser($steamId, $serverId, $message, $nameOfBanned) {
     $r->Auth();
     $r->kickUser($steamId, $message);
     $r->sendRconCommand("banid 5 ".$steamId);
-    $r->sendRconCommand("es_tell GB: Se ha kickeado al baneado: ".$nameOfBanned." con la ".$steamId);
+    $r->sendRconCommand("es_tell GB: ".$LANCHECKUSER_004.".$nameOfBanned. $LANCHECKUSER_005 .$steamId);
   }
 	$banQueries2 = new BanQueries();
 	$banQueries2->updateKickCounter($steamId);
