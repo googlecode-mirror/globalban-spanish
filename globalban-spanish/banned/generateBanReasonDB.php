@@ -45,10 +45,10 @@ GlobalBan_Reason
 
 for($i=0; $i<count($reasons); $i++) { 
     $reason = $reasons[$i];
-?>   "<?=$reason->getId()?>"
+?>   "<?php echo $reason->getId() ?>"
    {
-    "reasonId"       "<?=$reason->getId()?>"
-	  "reasonText"     "<?=$reason->getReason()?>"
+    "reasonId"       "<?php echo $reason->getId() ?>"
+	  "reasonText"     "<?php echo $reason->getReason() ?>"
    }
 <?php
 }
