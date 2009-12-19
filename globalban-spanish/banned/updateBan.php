@@ -206,7 +206,7 @@ function confirmIpBan() {
 </tr>
 <tr>
   <td class="rowColor2" width="1%" valign="top" nowrap><?php echo $LANUPDATEBAN_014; ?></td>
-  <td class="rowColor2"><textarea id="comments" name="comments" cols="30" rows="5"><?php echo $bannedUser->getComments() ?></textarea></td>
+  <td class="rowColor2"><textarea id="comments" name="comments" cols="80" rows="10"><?php echo $bannedUser->getComments() ?></textarea></td>
 </tr>
 </tr>
 <tr>

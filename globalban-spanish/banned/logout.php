@@ -31,11 +31,15 @@ unset($_SESSION['accessLevel']);
 unset($_SESSION['name']);
 unset($_SESSION['password']);
 session_destroy();
+
+$lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_navigation.php';
+include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_loginout.php");
 ?>
 
 <div class="tborder">
   <div id="tableHead">
-    <div><b>Logout Successful</b></div>
+    <div><b><?php echo $LANLOGINOUT_013; ?></b></div>
   </div>
 </div>
-<p>You have logged out successfully!</p>
+<p><?php echo $LANLOGINOUT_014; ?></p>
+<meta http-equiv="Refresh" content="2;URL=index.php">
