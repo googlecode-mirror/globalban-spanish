@@ -31,6 +31,9 @@ $password = "";
 $vpassword = "";
 $steamId = "";
 
+$lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_newuser.php';
+include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_newuser.php");
+
 $nopost = true; // Flag of whether the form was submitted yet
 if(isset($_POST['nopost'])) {
 	$nopost = $_POST['nopost'];
@@ -128,21 +131,21 @@ if($valid['username'] && $valid['email'] && $valid['vemail'] && $valid['password
 	if($userQueries->addUser($username, $password, 4, $steamId, $email)) {
 	
     // Email the user
-    $subject = $config->siteName." Ban Management (New User)";
+    $subject = $config->siteName." ".$LAN_NEWUSER_025." ".$LAN_NEWUSER_026;
 
     $body = "<html><body>";
-    $body .= "Ha creado correctamente su nuevo usuario: ".$username;
+    $body .= $LAN_NEWUSER_022.": ".$username;
     $body .= "\n\n";
 
     $body .= "\n\n";
-    $body .= "<p>Puede comenzar a usar inmediatamente su nueva cuenta de usuario.</p>";
+    $body .= "<p>".$LAN_NEWUSER_023."</p>";
     $body .= "</body></html>";
 
     // To send HTML mail, the Content-type header must be set
     $headers  = "MIME-Version: 1.0" . "\r\n";
     $headers .= "Content-type: text/html; charset=utf-8" . "\r\n";
     // Additional headers
-    $headers .= "From: ".$config->siteName." Gestor de Baneados <".$config->emailFromHeader.">" . "\r\n";
+    $headers .= "From: ".$config->siteName." ".$LAN_NEWUSER_025." <".$config->emailFromHeader.">\r\n";
 
     // Send an email message to those that wish to recieve a notice of a newly added ban
     mail($email, $subject, $body, $headers);
@@ -154,61 +157,70 @@ if($valid['username'] && $valid['email'] && $valid['vemail'] && $valid['password
 }
 
 if($_GET['error'] == 1) {
-  echo "<h5>There is a database error.  Admin IDs between the gban_admins and gban_admin_steam tables are not matching.</h5>";
+  echo "<h5>".$LAN_NEWUSER_002."</h5>";
 }
 
 ?>
 <div class="tborder">
   <div id="tableHead">
-    <div><b>Registro de un Nuevo Administrador</b></div>
+    <div><b><?php echo $LAN_NEWUSER_001; ?></b></div>
   </div>
   <form action="index.php?page=newuser" method="post" id="form">
   	<table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
   		<tr>
-  			<td class="rowColor1">*Usuario:</td>
+  			<td class="rowColor1">*<?php echo $LAN_NEWUSER_003; ?>:</td>
   			<td class="rowColor1"><input type="text" name="username" value="<?=$username?>" size="40" maxlength="40" />
-  			<?php if(!$valid['username'] && !$nopost) { ?><span class="error">Ese Usuario ya estaba siendo usado por otro administrador</span><?php } ?></td>
+  			<?php if(!$valid['username'] && !$nopost) { ?><span class="error"><?php echo $LAN_NEWUSER_004; ?></span><?php } ?></td>
   		</tr>
   		<tr>
-  			<td class="rowColor2">*Steam ID:</td>			
-  			<td class="rowColor2"><input name="steamId" id="steamdId" type="text" value="<?=$steamId?>" size="25" maxlength="25"/> (debe estar en el formato <b>STEAM_X:X:XXXXXX</b>)
-  			<?php if(!$valid['steamId'] && !$nopost) { ?><span class="error">Formato de Steam ID no valido</span><?php } ?></td>
+  			<td class="rowColor2">*<?php echo $LAN_NEWUSER_005; ?>:</td>			
+  			<td class="rowColor2"><input name="steamId" id="steamdId" type="text" value="<?=$steamId?>" size="25" maxlength="25"/> (<?php echo $LAN_NEWUSER_006; ?>)
+  			<?php if(!$valid['steamId'] && !$nopost) { ?><span class="error"><?php echo $LAN_NEWUSER_007; ?></span><?php } ?></td>
   		</tr>
-  			<td class="rowColor1">**Password:</td>
+  			<td class="rowColor1">**<?php echo $LAN_NEWUSER_008; ?>:</td>
   			<td class="rowColor1"><input type="password" name="password" value="" size="25" maxlength="25"/>
-  			<?php if(!$valid['password'] && !$nopost) { ?><span class="error">Tipo de claver no valida, minimo 6 caracteres y contener numeros y letras (No sirve solo letras o solo numeros, al menos con una letra o numero)</span><?php } ?></td>
+  			<?php if(!$valid['password'] && !$nopost) { ?><span class="error"><?php echo $LAN_NEWUSER_009; ?></span><?php } ?></td>
   		</tr>
   		<tr>
-  			<td class="rowColor2">**Repita Password:</td>
+  			<td class="rowColor2">**<?php echo $LAN_NEWUSER_010; ?>:</td>
   			<td class="rowColor2"><input type="password" name="vpassword" value="" size="25" maxlength="25"/>
-  			<?php if(!$valid['vpassword'] && !empty($password) && !$nopost) { ?><span class="error">La Password no coincide</span><?php } ?></td>
+  			<?php if(!$valid['vpassword'] && !empty($password) && !$nopost) { ?><span class="error"><?php echo $LAN_NEWUSER_011; ?></span><?php } ?></td>
   		</tr>
   		<tr>
-  			<td class="rowColor1">*Email:</td>
+  			<td class="rowColor1">*<?php echo $LAN_NEWUSER_012; ?>:</td>
   			<td class="rowColor1"><input type="text" name="email" value="<?php if(!empty($email)) { echo $email; } ?>" size="60" maxlength="80" />
-  			<?php if(!$valid['email'] && !$nopost) { ?><span class="error">Enter a valid email</span><?php } ?></td>
+  			<?php if(!$valid['email'] && !$nopost) { ?><span class="error"><?php echo $LAN_NEWUSER_013; ?></span><?php } ?></td>
   		</tr>
   		<tr>
-  			<td class="rowColor2">*Repita Email:</td>
+  			<td class="rowColor2">*<?php echo $LAN_NEWUSER_014; ?>:</td>
   			<td class="rowColor2"><input type="text" name="vemail" value=""  size="60" maxlength="80" />
-  			<?php if(!$valid['vemail'] && !empty($email) && !$nopost) { ?><span class="error">El Email no coincide</span><?php } ?></td>
+  			<?php if(!$valid['vemail'] && !empty($email) && !$nopost) { ?><span class="error"><?php echo $LAN_NEWUSER_015; ?></span><?php } ?></td>
   		</tr>
   		<tr>
-  			<td class="rowColor1">*Codigo de seguridad:</td>
+  			<td class="rowColor1">*<?php echo $LAN_NEWUSER_016; ?>:</td>
   			<td class="rowColor1"><input type="password" name="userCode" value="" />
-  			<?php if((!$valid['userCode'] && !empty($code) && !$nopost) || empty($code)) { ?><span class="error">Codigo de seguridad incorrecto</span><?php } ?></td>
+  			<?php
+			if(isset($_POST['submit']))
+			{
+				if((!$valid['userCode'] && !empty($code) && !$nopost) || empty($code))
+				{?>
+					<span class="error"><?php echo $LAN_NEWUSER_017; ?> </span><?php
+				}?></td>
+			<?php
+			}
+			?>
   		</tr>
   		<tr>			
   			<td align="left" colspan="3" class="rowColor2">
   				<input type="hidden" name="nopost" value="0" />
-  				<input type="reset" value="Borrar Formulario" class="button" />&nbsp;
-  				<input type="submit" value="Enviar" class="button" /></td>
+  				<input type="reset" value="<?php echo $LAN_NEWUSER_021; ?>" class="button" />&nbsp;
+  				<input type="submit" value="<?php echo $LAN_NEWUSER_018; ?>" class="button" /></td>
   		</tr>
   	</table>
   </form>
 </div>
 <h5>
-* Campos requeridos.<br />
-** La Password debe ser de minimo 6 caracteres y contener numeros y letras (NO SIRVE SOLO LETRAS O SOLO NUMEROS).
+* <?php echo $LAN_NEWUSER_019; ?><br />
+** <?php echo $LAN_NEWUSER_020; ?>
 </h5>
 
