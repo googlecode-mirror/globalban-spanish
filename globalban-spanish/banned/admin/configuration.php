@@ -241,7 +241,7 @@ if(file_get_contents("http://unbuinc.net/gbanversion.php")) {
 */
 // Make sure we can read data from another URL
 if(file_get_contents("http://code.google.com/p/globalban-spanish/source/list")) {
-  $officialVersion = "3.4.1 r".substr(strstr(file_get_contents("http://code.google.com/p/globalban-spanish/source/list"), '<td class="id"><a href="detail?r='),strlen('<td class="id"><a href="detail?r='),2);
+  $officialVersion = "3.4.1 r".substr(strstr(file_get_contents("http://code.google.com/p/globalban-spanish/source/list", NULL, NULL, 14600, 2000), '<td class="id"><a href="detail?r='),strlen('<td class="id"><a href="detail?r='),2);
 } else {
   $officialVersion = "N/A";
 }

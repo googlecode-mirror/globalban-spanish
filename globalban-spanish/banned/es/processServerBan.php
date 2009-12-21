@@ -107,10 +107,11 @@ if($hash == $config->matchHash) {
       $banId = $banQueries->addBan($steamId, $length->getLength(), $length->getTimeScale(), time(), $reason, $user->getName(), $pending, $nameOfBanned, $serverId, $ipOfBanned, $banner);
     }
 
-	$motivo = $reasonQueries->getReason($reason);
-
+    $menssageTOplayer = eregi_replace("gb_time",$length->getReadable(),$config->banMessage);
+    $menssageTOserver = "#multi #green ".$LAN_PROCESSBAN_014.": #lightgreen ".$nameOfBanned." #green ".$LAN_PROCESSBAN_015." #lightgreen ".$length->getReadable()." #green ".$LAN_PROCESSBAN_016." #lightgreen ".$reasonQueries->getReason($reason)." #green ".$LAN_PROCESSBAN_017." #lightgreen \"".$steamId."\" #green !!!";
+    
     // Now kick the user
-    kickUser($steamId, $serverId, eregi_replace("gb_time",$length->getReadable(),$config->banMessage),$nameOfBanned, $length->getReadable(), $motivo);
+    kickUser($steamId, $serverId, $menssageTOplayer ,$menssageTOserver);
 
     if($configOdonel->enableAutoPoste107Forum) {
 
@@ -165,10 +166,10 @@ if($hash == $config->matchHash) {
 }
 
 // Kick the user from the specified server
-function kickUser($steamId, $serverId, $message, $nameOfBanned, $periodo, $motivo) {
+function kickUser($steamId, $serverId, $menssageTOplayer ,$menssageTOserver) {
   // Leave this in to be compatible with the alternate thread version
   $kick = "kickid";
-  $command = $kick." \"".$steamId."\" ".$message;
+  $command = $kick." \"".$steamId."\" ".$menssageTOplayer;
   echo $command;
   
   // This will send an RCON command to the server
@@ -179,9 +180,9 @@ function kickUser($steamId, $serverId, $message, $nameOfBanned, $periodo, $motiv
   $r = new rcon($server->getIp(),$server->getPort(),$server->getRcon());
   if($r->isValid()) {
     $r->Auth();
-    $r->kickUser($steamId, $message);
+    $r->kickUser($steamId, $menssageTOplayer);
     $r->sendRconCommand("banid 5 "."\"".$steamId."\" ");
-	$r->sendRconCommand("es_msg #multi #green ".$LAN_PROCESSBAN_014.": #lightgreen ".$nameOfBanned." #green ".$LAN_PROCESSBAN_015." #lightgreen ".$periodo." #green ".$LAN_PROCESSBAN_016." #lightgreen ".$motivo." ".$LAN_PROCESSBAN_017." #lightgreen ".$steamId." #green !!!");
+	$r->sendRconCommand("es_msg ".$menssageTOserver);
   }
 }
 

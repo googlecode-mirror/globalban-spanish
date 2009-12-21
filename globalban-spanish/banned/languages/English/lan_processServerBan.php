@@ -26,6 +26,6 @@ $LAN_PROCESSBAN_013 = 'Ban Management';
 $LAN_PROCESSBAN_014 = 'GlobalBan';
 $LAN_PROCESSBAN_015 = 'has been banned';
 $LAN_PROCESSBAN_016 = 'by';
-$LAN_PROCESSBAN_017 = 'with the';
+$LAN_PROCESSBAN_017 = 'with';
 
 ?>

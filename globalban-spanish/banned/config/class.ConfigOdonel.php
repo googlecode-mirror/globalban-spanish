@@ -38,6 +38,7 @@ class ConfigOdonel {
    */
   var $LANGUAGE = "English";
   // var $LANGUAGE = "Spanish";
+  // var $LANGUAGE = "French";
   
   /**
    * Default Language
@@ -48,7 +49,7 @@ class ConfigOdonel {
    * HLstatsX Community Edition specific settings (http://www.hlxcommunity.com/)
    */
   var $HLstatsUrl = "http://http://www.yourweb.com/HLstats/"; // Your stats web site Example: "http://clanlds.nls.es/estadisticas/" for disable set to "" empty string.
-  // var $HLstatsUrl = ""; var $HLstatsUrl = ""; // for disable set to "" empty string.
+  // var $HLstatsUrl = ""; // for disable set to "" empty string, like in this example.
 
   /**
    * e107 Forum integration settings
