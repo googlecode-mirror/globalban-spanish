@@ -307,7 +307,7 @@ if(count($bannedUsers) > 0) {
       
       $information = "<div class='tborder'>";
       $information .= "<div id='tableHead'>";
-      $information .= "<div style='color:#FFFFFF'><b><?php echo $LANINS_026?></b></div>";
+      $information .= "<div style='color:#FFFFFF'><b>".$LANINS_026."</b></div>";
       $information .= "</div>";
       $information .= "<table class='bordercolor' width='100%'' cellspacing='1' cellpadding='5' border='0' style='margin-top: 1px;'>";
       $information .= "<tr class='rowColor1'><td>".$LANINS_013.":</td><td>".$bannedUser->getSteamId()."</td></tr>";
@@ -341,7 +341,7 @@ if(count($bannedUsers) > 0) {
 
       $information2 = "<div class='tborder'>";
       $information2 .= "<div id='tableHead'>";
-      $information2 .= "<div style='color:#FFFFFF'><b><?php echo $LANINS_031?></b></div>";
+      $information2 .= "<div style='color:#FFFFFF'><b>".$LANINS_031."</b></div>";
       $information2 .= "</div>";
       $information2 .= "<table class='bordercolor' width='800px' cellspacing='1' cellpadding='5' border='0' style='margin-top: 1px;'>";
 
