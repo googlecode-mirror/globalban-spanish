@@ -413,7 +413,7 @@ if(count($bannedUsers) > 0) {
         <img src="images/information.png" style="cursor:help" onmouseover="Tip('<?php echo $information?>', WIDTH, 300, SHADOW, true, FADEIN, 300, FADEOUT, 300, STICKY, 1, OFFSETX, -20, CLOSEBTN, true, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'))">
 		<?php
 		  if (!empty($configOdonel->HLstatsUrl)) {
-		    ?> &nbsp;<a href='<?php echo $configOdonel->HLstatsUrl?>hlstats.php?mode=search&q=<?php echo str_replace(array("\t"," "), "", $bannedUser->getSteamId())?>&st=uniqueid&game=css'><img src='images/hxce.png' align='absmiddle'/></a><?php
+		    ?> &nbsp;<a href='<?php echo $configOdonel->HLstatsUrl?>hlstats.php?mode=search&q=<?php echo str_replace(array("\t"," "), "", $bannedUser->getSteamId())?>&st=uniqueid&game='><img src='images/hxce.png' align='absmiddle'/></a><?php
 		  }
 		?>
 		&nbsp;<a href='<?php echo $linkprofile?>'><img src='images/steam.png' align='absmiddle'/></a>&nbsp;
