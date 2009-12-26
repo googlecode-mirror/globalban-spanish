@@ -46,7 +46,7 @@ if(isset($_POST['submitImport'])) {
     while( $data = fread( $f, 4096 ) ) { $bans .= $data; }
     fclose( $f );
 
-    echo $bans;
+   
 
     $banLines = explode("\n", $bans);
 
@@ -59,8 +59,10 @@ if(isset($_POST['submitImport'])) {
     $banner = ""; // Don't know who banner is, so leave empty
     $count = 0;
     $failed = 0;
+    $failedIDs = "";
 
     foreach($banLines as $banLine) {
+      echo $banLine."<br>";
       $ban = explode(" ", $banLine);
       // 0 = banid (discard)
       // 1 = length
@@ -90,6 +92,7 @@ if(isset($_POST['submitImport'])) {
           $count++;
         } else {
           $failed++;
+          $failedIDs .= " - Already exist: ".$steamId."<br>";
         }
       }
     }
@@ -100,10 +103,12 @@ if(isset($_POST['submitImport'])) {
 
 // The XML form was submitted
 if(isset($_POST['submitXMLImport'])) {
+  $reason = $_POST['reasonXML']; // Reason Id
   $reason = $_POST['reason']; // Reason Id
   $tempName = $_FILES['file']['tmp_name']; // Temp name of when it is uploaded
   $count = 0;
   $alreadyAdded = 0;
+  $alreadyDs = "";
   $failed = 0;
 
   if(is_uploaded_file($tempName)) {
@@ -132,6 +137,7 @@ if(isset($_POST['submitXMLImport'])) {
         $count++;
       } else {
         $alreadyAdded++;
+        $alreadyDs .= " - Already exist: ".$steamId."<br>";
       }
     }
     
@@ -146,13 +152,16 @@ if($bansAdded) {
   ?><h5 class="error"><?=$count?> steam IDs imported to ban table.<br/>
   <?php
     if($alreadyAdded > 0) {
-      echo $alreadyAdded . " of the imports already exist in the database.";
+      echo $alreadyAdded . " of the imports already exist in the database.<br/><br/>";
     }
     if($failed > 0) {
-      echo "Failed to add ".$failed." bans as they already exist.";
+      echo "Failed to add ".$failed." bans as they already exist.<br/><br/>";
     }
   ?>
   </h5><?php
+  
+    echo $alreadyIDs;
+    echo $failedIDs;        
 }
 ?>
 <div class="tborder">
@@ -185,7 +194,7 @@ if($bansAdded) {
       </select>
     </td>
     <td width="1%" nowrap>Reason to apply to all imports:
-      <select name="reason">
+      <select name="reasonXML">
       <?php
       if(count($banReasons > 0)) {
         for($i=0; $i<count($banReasons);$i++) {
