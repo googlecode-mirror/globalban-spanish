@@ -24,6 +24,9 @@ require_once(ROOTDIR."/include/database/class.ServerQueries.php");
 require_once(ROOTDIR."/include/objects/class.Server.php");
 require_once(ROOTDIR."/include/class.rcon.php");
 
+$lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_serverList.php';
+include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_serverList.php");
+
 $serverQueries = new ServerQueries();
 
 $error = false;
@@ -33,7 +36,7 @@ $servers = $serverQueries->getServers();
 ?>
 <div class="tborder">
   <div id="tableHead">
-    <div><b>Server List</b></div>
+    <div><b><?php echo $LAN_SERVERLIST_001 ?></b></div>
   </div>
   
   <table id="serverListTable" class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
@@ -50,29 +53,29 @@ $servers = $serverQueries->getServers();
           <td class="colColor1" valign="top">
           <?php
             if($r->isValid()) {
-              ?><img src="images/connect.png" onmouseover="Tip('The server is online.', SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('serverListTable'))"/><?php
+              ?><img src="images/connect.png" onmouseover="Tip('<?php echo $LAN_SERVERLIST_002 ?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('serverListTable'))"/><?php
             } else {
-              ?><img src="images/disconnect.png" onmouseover="Tip('<b>The server is offline.</b><br/><i>The server information may not be configured correctly or <br/>the web server firewall is preventing communication with the server.</i>', SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('serverListTable'))"/><?php
+              ?><img src="images/disconnect.png" onmouseover="Tip('<?php echo $LAN_SERVERLIST_003 ?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('serverListTable'))"/><?php
             }
           ?>
-          <b><?=$server->getName()?></b><br/>
-          <?=$server->getIp()?>:<?=$server->getPort()?><br/>
+          <b><?php echo $server->getName() ?></b><br/>
+          <?php echo $server->getIp() ?>:<?php echo $server->getPort() ?><br/>
           <?php
           if($r->isValid()) {
             ?>
-            <?=$serverData['gamedesc']?><br/>
-            <?=$serverData['map']?>
-            <?=$serverData['numplayers']?>/<?=$serverData['maxplayers']?>
+            <?php echo $serverData['gamedesc'] ?><br/>
+            <?php echo $serverData['map'] ?>
+            <?php echo $serverData['numplayers'] ?>/<?php echo $serverData['maxplayers'] ?>
             
             <?php
             $usersOnline = $liveData->getPlayers($server->getIp(),$server->getPort());
             if(count($usersOnline) > 0) {
               $usersOnlineTable = "<div class='tborder'>";
               $usersOnlineTable .= "<div id='tableHead'>";
-              $usersOnlineTable .= "<div style='color:#FFFFFF'><b>Player Information</b></div>";
+              $usersOnlineTable .= $LAN_SERVERLIST_004;
               $usersOnlineTable .= "</div>";
               $usersOnlineTable .= "<table class='bordercolor' width='100%'' cellspacing='1' cellpadding='5' border='0' style='margin-top: 1px;'>";
-              $usersOnlineTable .= "<tr class='rowColor1'><th>ID</th><th>Name</th><th>Kills</th><th>Connect Time</th></tr>";
+              $usersOnlineTable .= $LAN_SERVERLIST_005;
               foreach($usersOnline as $userOnline) {
                 if($i%2==0) {
                   $usersOnlineTable .= "<tr class='rowColor1'>";
@@ -96,10 +99,10 @@ $servers = $serverQueries->getServers();
               $usersOnlineTable .= "</table>";
               $usersOnlineTable .= "</div>";
             } else {
-              $usersOnlineTable = "No players online.";
+              $usersOnlineTable = $LAN_SERVERLIST_006;
             }
             ?>
-            <img src="images/group.png" onmouseover="Tip('<?=addslashes($usersOnlineTable)?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, STICKY, 1, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('serverListTable'))"/><br/>
+            <img src="images/group.png" onmouseover="Tip('<?php echo addslashes($usersOnlineTable) ?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, STICKY, 1, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('serverListTable'))"/><br/>
           <?php } ?>
           <?php
             $appNumber = 0;
@@ -109,8 +112,8 @@ $servers = $serverQueries->getServers();
               $appNumber = 300;
             }
           ?>
-          <a href='steam: "-applaunch <?=$appNumber?> -game <?=$server->getType()?> +connect <?=$server->getIp()?>:<?=$server->getPort()?>"'>Join Server</a>
-          </td>
+		  <a href='steam: "-applaunch <?php echo $appNumber ?> -game <?php echo $server->getType() ?> +connect <?php echo $server->getIp()?>:<?php echo $server->getPort() ?>"'><?php echo $LAN_SERVERLIST_007 ?></a>
+		  </td>
           <?php
             if(($i+1)%$serversPerRow==0 && ($i+1) != count($servers)) {
               ?></tr><tr><?php
