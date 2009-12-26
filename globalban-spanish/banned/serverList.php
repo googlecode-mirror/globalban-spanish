@@ -112,8 +112,8 @@ $servers = $serverQueries->getServers();
               $appNumber = 300;
             }
           ?>
-		  <a href='steam: "-applaunch <?php echo $appNumber ?> -game <?php echo $server->getType() ?> +connect <?php echo $server->getIp()?>:<?php echo $server->getPort() ?>"'><?php echo $LAN_SERVERLIST_007 ?></a>
-		  </td>
+		    <a href='steam://connect/<?php echo $server->getIp()?>:<?php echo $server->getPort() ?>'><?php echo $LAN_SERVERLIST_007 ?></a>
+          </td>
           <?php
             if(($i+1)%$serversPerRow==0 && ($i+1) != count($servers)) {
               ?></tr><tr><?php
