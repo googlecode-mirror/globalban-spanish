@@ -10,18 +10,19 @@
 +----------------------------------------------------------------------------+
 */
 
-$LANIMPORTBANS_001 = "Les steam id ont été importés dans la base de donnée.";
-$LANIMPORTBANS_002 = 'Importer des bannes';
-$LANIMPORTBANS_003 = "Import du fichier banned_users.cfg";
-$LANIMPORTBANS_004 = 'Import du fichier GlobalBan XML';
-$LANIMPORTBANS_005 = 'Rechercher le fichier banned_users.cfg dans votre disque dur en parcourant avec le bouton &quot;Parcourir&quot;.';
-$LANIMPORTBANS_006 = 'Rechercher le fichier banned_users.xml dans votre disque dur en parcourant avec le bouton &quot;Parcourir&quot;.';
-$LANIMPORTBANS_007 = 'Raison :';
-$LANIMPORTBANS_008 = 'La liste est vide';
-$LANIMPORTBANS_009 = 'Importer (CFG Bans)';
-$LANIMPORTBANS_010 = 'Importer (XML Bans)';
-$LANIMPORTBANS_011 = 'Note: Le processus peut prendre quelques minutes selon la taille du fichier.';
-$LANIMPORTBANS_012 = 'existent déjà dans la base de donnée.';
-$LANIMPORTBANS_013 = "Echec pour l'ajout";
-$LANIMPORTBANS_014 = "car il éxiste déjà.";
+$LAN_IMPORTBANS_001 = "Les steam id ont été importés dans la base de donnée.";
+$LAN_IMPORTBANS_002 = 'Importer des bannes';
+$LAN_IMPORTBANS_003 = "Import du fichier banned_users.cfg";
+$LAN_IMPORTBANS_004 = 'Import du fichier GlobalBan XML';
+$LAN_IMPORTBANS_005 = 'Rechercher le fichier banned_users.cfg dans votre disque dur en parcourant avec le bouton &quot;Parcourir&quot;.';
+$LAN_IMPORTBANS_006 = 'Rechercher le fichier banned_users.xml dans votre disque dur en parcourant avec le bouton &quot;Parcourir&quot;.';
+$LAN_IMPORTBANS_007 = 'Raison :';
+$LAN_IMPORTBANS_008 = 'La liste est vide';
+$LAN_IMPORTBANS_009 = 'Importer (CFG Bans)';
+$LAN_IMPORTBANS_010 = 'Importer (XML Bans)';
+$LAN_IMPORTBANS_011 = 'Note: Le processus peut prendre quelques minutes selon la taille du fichier.';
+$LAN_IMPORTBANS_012 = 'existent déjà dans la base de donnée.';
+$LAN_IMPORTBANS_013 = "Echec pour l'ajout";
+$LAN_IMPORTBANS_014 = "car il éxiste déjà.";
+$LAN_IMPORTBANS_015 = 'Already exist: ';
 ?>

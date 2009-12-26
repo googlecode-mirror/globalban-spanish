@@ -23,6 +23,10 @@ include_once(ROOTDIR."/include/database/class.BanQueries.php");
 include_once(ROOTDIR."/include/database/class.ServerQueries.php");
 include_once(ROOTDIR."/include/database/class.ReasonQueries.php");
 
+
+$lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_importBans.php';
+include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_importBans.php");
+
 // Import bans from banned_users.cfg file
 if($fullPower) {
 
@@ -92,7 +96,7 @@ if(isset($_POST['submitImport'])) {
           $count++;
         } else {
           $failed++;
-          $failedIDs .= " - Already exist: ".$steamId."<br>";
+          $failedIDs .= " - ".$LAN_IMPORTBANS_015.$steamId."<br>";
         }
       }
     }
@@ -137,7 +141,7 @@ if(isset($_POST['submitXMLImport'])) {
         $count++;
       } else {
         $alreadyAdded++;
-        $alreadyDs .= " - Already exist: ".$steamId."<br>";
+        $alreadyDs .= " - ".$LAN_IMPORTBANS_015.$steamId."<br>";
       }
     }
     
@@ -149,13 +153,13 @@ if(isset($_POST['submitXMLImport'])) {
 <?php
 // Display that the changes were successful
 if($bansAdded) {
-  ?><h5 class="error"><?=$count?> steam IDs imported to ban table.<br/>
+  ?><h5 class="error"><?php echo $count ?> <?php echo $LAN_IMPORTBANS_001 ?><br/>
   <?php
     if($alreadyAdded > 0) {
-      echo $alreadyAdded . " of the imports already exist in the database.<br/><br/>";
+      echo $alreadyAdded . $LAN_IMPORTBANS_012 . "<br/><br/>";
     }
     if($failed > 0) {
-      echo "Failed to add ".$failed." bans as they already exist.<br/><br/>";
+      echo $LAN_IMPORTBANS_013 . $failed.$LAN_IMPORTBANS_014 . "<br/><br/>";
     }
   ?>
   </h5><?php
@@ -166,43 +170,43 @@ if($bansAdded) {
 ?>
 <div class="tborder">
   <div id="tableHead">
-    <div><b>Import Bans</b</div>
+    <div><b><?php echo $LAN_IMPORTBANS_002 ?></b></div>
   </div>
   <form action="index.php?page=importBans" method="POST" enctype="multipart/form-data">
   <table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
     <tr class="rowColor2">
-      <th style="text-align: left;">Import from banned_users.cfg</th>
-      <th style="text-align: left;">Import from GlobalBan XML file</th>
+      <th style="text-align: left;"><?php echo $LAN_IMPORTBANS_003 ?></th>
+      <th style="text-align: left;"><?php echo $LAN_IMPORTBANS_004 ?></th>
     </tr>
     <tr class="rowColor1">
-      <td>Locate the appropriate banned_users.cfg with the browse button below.</td>
-      <td>Locate the appropriate banned_users.xml with the browse button below.</td>
+      <td><?php echo $LAN_IMPORTBANS_005 ?></td>
+      <td><?php echo $LAN_IMPORTBANS_006 ?></td>
     </tr>
     <tr class="rowColor2">
-    <td width="1%" nowrap>Reason to apply to all imports:
+    <td width="1%" nowrap><?php echo $LAN_IMPORTBANS_007 ?>
       <select name="reason">
       <?php
       if(count($banReasons > 0)) {
         for($i=0; $i<count($banReasons);$i++) {
           $reason = $banReasons[$i];
-          ?><option value="<?=$reason->getId()?>"><?=$reason->getReason()?></option><?php
+          ?><option value="<?php echo $reason->getId() ?>"><?php echo $reason->getReason() ?></option><?php
         }
       } else {
-      ?><option value="-1">Reason List Empty, Populate before proceeding</option><?php
+      ?><option value="-1"><?php echo $LAN_IMPORTBANS_008 ?></option><?php
       }
       ?>
       </select>
     </td>
-    <td width="1%" nowrap>Reason to apply to all imports:
+    <td width="1%" nowrap><?php echo $LAN_IMPORTBANS_007 ?>
       <select name="reasonXML">
       <?php
       if(count($banReasons > 0)) {
         for($i=0; $i<count($banReasons);$i++) {
           $reason = $banReasons[$i];
-          ?><option value="<?=$reason->getId()?>"><?=$reason->getReason()?></option><?php
+          ?><option value="<?php echo $reason->getId() ?>"><?php echo $reason->getReason() ?></option><?php
         }
       } else {
-      ?><option value="-1">Reason List Empty, Populate before proceeding</option><?php
+      ?><option value="-1"><?php echo $LAN_IMPORTBANS_008 ?></option><?php
       }
       ?>
       </select>
@@ -213,14 +217,14 @@ if($bansAdded) {
       <td><input id="file" name="file" size="40" type="file" /></td>
     </tr>
     <tr class="rowColor2">
-      <td><input type="submit" name="submitImport" value="Import CFG Bans"/></td>
-      <td><input type="submit" name="submitXMLImport" value="Import XML Bans"/></td>
+      <td><input type="submit" name="submitImport" value="<?php echo $LAN_IMPORTBANS_009 ?>"/></td>
+      <td><input type="submit" name="submitXMLImport" value="<?php echo $LAN_IMPORTBANS_010 ?>"/></td>
     </tr>
   </table>
   </form>
 </div>
 <br/>
-<h5>Note: This process may take some time if the import is large.</h5>
+<h5><?php echo $LANIMPORTBANS_011 ?></h5>
 <?php
 }
 ?>
