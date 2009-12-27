@@ -23,6 +23,10 @@
 define("ROOTDIR", dirname(__FILE__)); // Global Constant of root directory
 require_once(ROOTDIR."/config/class.Config.php");
 
+
+$lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_configurationSave.php';
+include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_configurationSave.php");
+
 // Get the config object, we want to read the database connection information
 $config = new Config();
 
@@ -160,18 +164,17 @@ $servers = $serverQueries->getServers();
 // Cycle through each server
 foreach($servers as $server) {
   ?>
-  <h3 id="server:<?=$server->getId()?>">Saving configuration to <?=$server->getName()?> <img src="images/wait.gif"/></h3>
+  <h3 id="server:<?php echo $server->getId()?>"><?php echo $LANCONFIGURATIONSAVE_001 ?> <?php echo $server->getName()?> <img src="images/wait.gif"/></h3>
   <?php
 }
 ?>
-<h5>Note: The configuration will continue to save if you navigate off this page.  However, reloading this page or navigating
-back too quickly can have odd results and require a new save.</h5>
+<h5><?php echo $LANCONFIGURATIONSAVE_002 ?></h5>
 <script src="javascript/ajax.js" language="javascript" type="text/javascript"></script>
 <script language="Javascript" type="text/javascript">
 <?php
 foreach($servers as $server) {
 ?>
-  saveServerConfig(<?=$server->getId()?>);
+  saveServerConfig(<?php echo $server->getId()?>);
 <?php
 }
 ?>

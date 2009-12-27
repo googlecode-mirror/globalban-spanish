@@ -10,7 +10,7 @@
 +----------------------------------------------------------------------------+
 */
 
-$LANCONFIGURATIONSAVE_001 = "Sauvegarde de la configuration de";
-$LANCONFIGURATIONSAVE_002 = "Note: La configuration continuera à enregistrer si vous naviguez sur cette page. Toutefois, le rechargement de cette page ou un retour en arrière peut ne pas fonctionner correctement.";
+$LAN_CONFIGURATIONSAVE_001 = 'Saving configuration to ';
+$LAN_CONFIGURATIONSAVE_002 = 'Note: The configuration will continue to save if you navigate off this page. However, reloading this page or navigating back too quickly can have odd results and require a new save.';
 
 ?>
