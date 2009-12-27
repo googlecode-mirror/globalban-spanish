@@ -552,7 +552,7 @@ function hideShowSuperUserBlock() {
   
   <div class="tborder">
     <div id="tableHead">
-      <div><b>Full Installation Configuration</b><br/><?=$fileError?></div>
+      <div><b>Full Installation Configuration</b><br/><?php echo $fileError?></div>
     </div>
   </div>
   
@@ -609,7 +609,7 @@ function hideShowSuperUserBlock() {
         </select>
       </td>
       <td class="rowColor2" width="1%" nowrap>Forum Address <img src="images/help.png" style="cursor:help" onmouseover="Tip('Enter in the URL of your forum if you have enabled the forum link.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
-      <td class="rowColor2" width="1%" nowrap><input type="text" name="forumURL" value="<?=$config->forumURL?>" size="40" maxlength="255"/></td>
+      <td class="rowColor2" width="1%" nowrap><input type="text" name="forumURL" value="<?php echo $config->forumURL?>" size="40" maxlength="255"/></td>
     </tr>
     <tr>
       <td class="rowColor1" width="1%" nowrap>Bans Per Page <img src="images/help.png" style="cursor:help" onmouseover="Tip('This sets the number of bans to be displayed per page on the ban list page.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
@@ -656,7 +656,7 @@ function hideShowSuperUserBlock() {
     </tr>
     <tr>
       <td class="rowColor1" width="1%" nowrap>Email Address of Sender <img src="images/help.png" style="cursor:help" onmouseover="Tip('This is the \'from\' address the emails below will see when they recieve an email for newly added bans or demos.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
-      <td class="rowColor1" colspan="3" nowrap><input type="text" name="senderEmail" value="<?=$config->emailFromHeader?>" size="40" maxlength="255"/></td>
+      <td class="rowColor1" colspan="3" nowrap><input type="text" name="senderEmail" value="<?php echo $config->emailFromHeader?>" size="40" maxlength="255"/></td>
     </tr>
     <tr>
       <td class="rowColor2" width="1%" nowrap valign="top">Email Addresses to Recieve Ban and Demo Notices <img src="images/help.png" style="cursor:help" onmouseover="Tip('The email address of people you wish to recieve ban add or demo add notifications.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
@@ -857,7 +857,7 @@ if($step == 3) {
 ?>
 <h2>Install Complete - Redirecting...</h2>
 <script type="text/javascript">
-window.location = "installComplete.php?fileError=<?=$fileError?>"
+window.location = "installComplete.php?fileError=<?php echo $fileError?>"
 </script>
 <?php
 }

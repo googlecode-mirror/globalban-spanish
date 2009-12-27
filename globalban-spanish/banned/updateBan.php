@@ -287,12 +287,12 @@ $length = $banLength->getReadable();
     
     ?>
     <tr>
-	  <td class="colColor1" nowrap align="center"><?=$banHistUser->getName()?></td>
-	  <td class="colColor2" nowrap align="center"><?=$banHistUser->getReason()?></td>
-      <td class="colColor1" nowrap align="center"><?=$length?></td>
-      <td class="colColor2" nowrap align="center"><?=$banHistUser->getBanner()?></td>
-      <td class="colColor1" nowrap align="center"><?=$addDate." ".$addTime?></td>
-      <td class="colColor2" nowrap align="center"><?=$expireDate." ".$expireTime?></td>
+	  <td class="colColor1" nowrap align="center"><?php echo $banHistUser->getName()?></td>
+	  <td class="colColor2" nowrap align="center"><?php echo $banHistUser->getReason()?></td>
+      <td class="colColor1" nowrap align="center"><?php echo $length?></td>
+      <td class="colColor2" nowrap align="center"><?php echo $banHistUser->getBanner()?></td>
+      <td class="colColor1" nowrap align="center"><?php echo $addDate." ".$addTime?></td>
+      <td class="colColor2" nowrap align="center"><?php echo $expireDate." ".$expireTime?></td>
       <?php
       if($banHistUser->getWebpage() != "") {
         echo "<td class='rowColor1' align='center'><a href='".$banHistUser->getWebpage()."'><img src='images/database_add.png' align='absmiddle'/></a></td>";

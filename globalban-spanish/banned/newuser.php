@@ -169,12 +169,12 @@ if($_GET['error'] == 1) {
   	<table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
   		<tr>
   			<td class="rowColor1">*<?php echo $LAN_NEWUSER_003; ?>:</td>
-  			<td class="rowColor1"><input type="text" name="username" value="<?=$username?>" size="40" maxlength="40" />
+  			<td class="rowColor1"><input type="text" name="username" value="<?php echo $username?>" size="40" maxlength="40" />
   			<?php if(!$valid['username'] && !$nopost) { ?><span class="error"><?php echo $LAN_NEWUSER_004; ?></span><?php } ?></td>
   		</tr>
   		<tr>
   			<td class="rowColor2">*<?php echo $LAN_NEWUSER_005; ?>:</td>			
-  			<td class="rowColor2"><input name="steamId" id="steamdId" type="text" value="<?=$steamId?>" size="25" maxlength="25"/> (<?php echo $LAN_NEWUSER_006; ?>)
+  			<td class="rowColor2"><input name="steamId" id="steamdId" type="text" value="<?php echo $steamId?>" size="25" maxlength="25"/> (<?php echo $LAN_NEWUSER_006; ?>)
   			<?php if(!$valid['steamId'] && !$nopost) { ?><span class="error"><?php echo $LAN_NEWUSER_007; ?></span><?php } ?></td>
   		</tr>
   			<td class="rowColor1">**<?php echo $LAN_NEWUSER_008; ?>:</td>

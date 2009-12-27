@@ -218,7 +218,7 @@ if(!$complete) {
 if($complete) {
 ?>
 <script type="text/javascript">
-window.location = "upgradeComplete.php?version=<?=$upgradeVersion?>"
+window.location = "upgradeComplete.php?version=<?php echo $upgradeVersion?>"
 </script>
 <?php
 }
