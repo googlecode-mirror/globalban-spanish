@@ -20,6 +20,10 @@
 */
 
 // Only those with full privs can do configuration
+
+$lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_configuration.php';
+include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_configuration.php");
+
 if($fullPower) {
 ?>
 <script language="javascript">
@@ -32,7 +36,7 @@ function addEmail() {
   // Validate the email address
   var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
   if(!filter.test(email)) {
-    alert("Please enter a valid email address");
+    alert("<?php echo $LAN_CONFIGURATION_001 ?>");
     return false;
   }
   
@@ -40,8 +44,8 @@ function addEmail() {
   var emailArray = emails.value.split("\n");
   for(i=0; i<emailArray.length; i++) {
     if(emailArray[i] == email) {
-      alert(email + " is already in the list");
-      return false;
+      alert(email + " <?php echo $LAN_CONFIGURATION_002 ?>");
+	  return false;
     }
   }
   
@@ -101,7 +105,7 @@ function formVerify() {
   
   // Demo dir check
   if(document.getElementById("demoDir").value == "") {
-    warningMessage += "You must specify a directory for demos.\n";
+    warningMessage += "<?php echo $LAN_CONFIGURATION_003 ?>\n";
     document.getElementById("demoDirWarn").style.display = "";
     noWarnings = false;
   } else {
@@ -110,7 +114,7 @@ function formVerify() {
   
   // Demo Size check
   if(document.getElementById("demoSizeLimit").value == "") {
-    warningMessage += "You must specify a demo size limit.\n";
+	warningMessage += "<?php echo $LAN_CONFIGURATION_004 ?>\n";
     document.getElementById("demoSizeLimitWarn").style.display = "";
     noWarnings = false;
   } else {
@@ -119,7 +123,7 @@ function formVerify() {
   
   // Ban Message
   if(document.getElementById("banMessage").value == "") {
-    warningMessage += "You must specify ban message.\n";
+	warningMessage += "<?php echo $LAN_CONFIGURATION_005 ?>\n";
     document.getElementById("banMessageWarn").style.display = "";
     noWarnings = false;
   } else {
@@ -128,7 +132,7 @@ function formVerify() {
   
   // Days to keep pending banned
   if(document.getElementById("daysBanPending").value == "") {
-    warningMessage += "You must specify the number of days to keep a pending ban banned for.\n";
+	warningMessage += "<?php echo $LAN_CONFIGURATION_006 ?>\n";
     document.getElementById("daysBanPendingWarn").style.display = "";
     noWarnings = false;
   } else {
@@ -137,7 +141,7 @@ function formVerify() {
   
   // Hash
   if(document.getElementById("hash").value == "") {
-    warningMessage += "You must specify a hash code for security reasons.\n";
+	warningMessage += "<?php echo $LAN_CONFIGURATION_007 ?>\n";
     document.getElementById("hashWarn").style.display = "";
     noWarnings = false;
   } else {
@@ -147,13 +151,13 @@ function formVerify() {
   // SMF
   if(document.getElementById("smfIntegration").value == "true") {
     if(document.getElementById("smfTablePrefix").value == "") {
-      warningMessage += "You must specify a SMF table prefix.\n";
+	  warningMessage += "<?php echo $LAN_CONFIGURATION_008 ?>\n";
       document.getElementById("smfTablePrefixWarn").style.display = "none";
       noWarnings = false;
     }
     // Full Power Users
     if(document.getElementById("smfFullPowerGroup").value == "" || document.getElementById("smfFullPowerGroup").value == 0) {
-      warningMessage += "You must specify a SMF group that will have full power privileges.\n";
+	  warningMessage += "<?php echo $LAN_CONFIGURATION_009 ?>\n";
       document.getElementById("smfFullPowerGroupWarn").style.display = "";
       noWarnings = false;
     } else {
@@ -161,7 +165,7 @@ function formVerify() {
     }
     // Ban Managers
     if(document.getElementById("smfBanManagerGroup").value == "" || document.getElementById("smfBanManagerGroup").value == 0) {
-      warningMessage += "You must specify a SMF group that will have ban manager privileges.\n";
+	  warningMessage += "<?php echo $LAN_CONFIGURATION_010 ?>\n";
       document.getElementById("smfBanManagerGroupWarn").style.display = "";
       noWarnings = false;
     } else {
@@ -169,7 +173,7 @@ function formVerify() {
     }
     // Admins
     if(document.getElementById("smfAdminGroup").value == "" || document.getElementById("smfAdminGroup").value == 0) {
-      warningMessage += "You must specify a SMF group that will have admin privileges.\n";
+	  warningMessage += "<?php echo $LAN_CONFIGURATION_011 ?>\n";
       document.getElementById("smfAdminGroupWarn").style.display = "";
       noWarnings = false;
     } else {
@@ -177,7 +181,7 @@ function formVerify() {
     }
     // Members
     if(document.getElementById("smfMemberGroup").value == "" || document.getElementById("smfMemberGroup").value == 0) {
-      warningMessage += "You must specify a SMF group that will have member privileges.\n";
+	  warningMessage += "<?php echo $LAN_CONFIGURATION_012 ?>\n";
       document.getElementById("smfMemberGroupWarn").style.display = "";
       noWarnings = false;
     } else {
@@ -185,7 +189,7 @@ function formVerify() {
     }
     // No Power
     if(document.getElementById("smfNoPowerGroup").value == "" || document.getElementById("smfNoPowerGroup").value == 0) {
-      warningMessage += "You must specify a SMF group that will have no immediate powers.\n";
+	  warningMessage += "<?php echo $LAN_CONFIGURATION_013 ?>\n";
       document.getElementById("smfNoPowerGroupWarn").style.display = "";
       noWarnings = false;
     } else {
@@ -195,7 +199,7 @@ function formVerify() {
   } else {
     // Create User Code Check
     if(document.getElementById("createUserCode").value == "") {
-      warningMessage += "You must specify user creation code.\n";
+	  warningMessage += "<?php echo $LAN_CONFIGURATION_014 ?>\n";
       document.getElementById("createUserCodeWarn").style.display = "";
       noWarnings = false;
     } else {
@@ -250,7 +254,7 @@ if(file_get_contents("http://code.google.com/p/globalban-spanish/source/list")) 
 <form action="index.php?page=configurationSave&adminPage=1" onsubmit="return formVerify();" method="POST">
   <div class="tborder">
     <div id="tableHead">
-      <div><b>Version Information</b></div>
+      <div><b><?php echo $LAN_CONFIGURATION_015 ?></b></div>
     </div>
     <table id="settingsTable" class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
       <tr>
@@ -258,15 +262,15 @@ if(file_get_contents("http://code.google.com/p/globalban-spanish/source/list")) 
           // if((float)$currentVersionTemp[0] < (float)$officialVersion) {
           if($currentVersion <> $officialVersion) {
         ?>
-        <td class="rowColor1" width="1%" nowrap><b>Your Version: </b><font color="red"><?=$currentVersion?></font></td>
+        <td class="rowColor1" width="1%" nowrap><b>Your Version: </b><font color="red"><?php echo $currentVersion ?></font></td>
         <?php
           } else {
         ?>
-        <td class="rowColor1" width="1%" nowrap><b>Your Version: </b><?=$currentVersion?></td>
+        <td class="rowColor1" width="1%" nowrap><b><?php echo $LAN_CONFIGURATION_016 ?> </b><?php echo $currentVersion ?></td>
         <?php
           }
         ?>
-        <td class="rowColor1" width="1%" nowrap><a href="http://code.google.com/p/globalban-spanish/source/list"><b>Official Version: </b><?=$officialVersion?></a></td>
+        <td class="rowColor1" width="1%" nowrap><a href="http://code.google.com/p/globalban-spanish/source/list"><b><?php echo $LAN_CONFIGURATION_022 ?> </b><?php echo $officialVersion ?></a></td>
       </tr>
     </table>
   </div>
@@ -275,86 +279,86 @@ if(file_get_contents("http://code.google.com/p/globalban-spanish/source/list")) 
 
   <div class="tborder">
     <div id="tableHead">
-      <div><b>Website Settings</b></div>
+      <div><b><?php echo $LAN_CONFIGURATION_017 ?></b></div>
     </div>
 
     <table id="settingsTable" class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
     <tr>
-      <td class="rowColor1" width="1%" nowrap>Site Name <img src="images/help.png" style="cursor:help" onmouseover="Tip('This is the name of your community that displays in the title bar of the browser.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
-      <td class="rowColor1" width="1%" nowrap><input type="text" name="siteName" value="<?=$config->siteName?>" size="40" maxlength="255" onkeyup="removeSpecialCharacters(this)"/></td>
-      <td class="rowColor1" width="1%" nowrap>Logo <img src="images/help.png" style="cursor:help" onmouseover="Tip('This must be the exact file name of your logo image found in the images directory. (dislpays at the top of the page)', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
-      <td class="rowColor1" width="1%" nowrap><input type="text" name="logo" value="<?=$config->siteLogo?>" size="40" maxlength="100"/></td>
+      <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_018 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_019 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" nowrap><input type="text" name="siteName" value="<?php echo $config->siteName ?>" size="40" maxlength="255" onkeyup="removeSpecialCharacters(this)"/></td>
+      <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_020 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_021 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" nowrap><input type="text" name="logo" value="<?php echo $config->siteLogo ?>" size="40" maxlength="100"/></td>
     </tr>
     <tr>
-      <td class="rowColor2" width="1%" nowrap>Enable Forum Link <img src="images/help.png" style="cursor:help" onmouseover="Tip('This will add a menu item that will go to your community forum.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_023 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_024 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor2" width="1%" nowrap>
         <select name="enableForumLink">
-          <option value="true"<?php if($config->enableForumLink) echo " selected"; ?>>Yes</option>
-          <option value="false"<?php if(!$config->enableForumLink) echo " selected"; ?>>No</option>
+          <option value="true"<?php if($config->enableForumLink) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_025 ?></option>
+          <option value="false"<?php if(!$config->enableForumLink) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_026 ?></option>
         </select>
       </td>
-      <td class="rowColor2" width="1%" nowrap>Forum Address <img src="images/help.png" style="cursor:help" onmouseover="Tip('Enter in the URL of your forum if you have enabled the forum link.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
-      <td class="rowColor2" width="1%" nowrap><input type="text" name="forumURL" value="<?=$config->forumURL?>" size="40" maxlength="255"/></td>
+      <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_027 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_028 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor2" width="1%" nowrap><input type="text" name="forumURL" value="<?php echo $config->forumURL ?>" size="40" maxlength="255"/></td>
     </tr>
     <tr>
-      <td class="rowColor1" width="1%" nowrap>Bans Per Page <img src="images/help.png" style="cursor:help" onmouseover="Tip('This sets the number of bans to be displayed per page on the ban list page.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
-      <td class="rowColor1" width="1%" nowrap><input type="text" name="bansPerPage" value="<?=$config->bansPerPage?>" size="10" maxlength="5" onkeyup="removeCharacters(this)"/></td>
-      <td class="rowColor1" width="1%" nowrap>Number of Page Links <img src="images/help.png" style="cursor:help" onmouseover="Tip('The number of links to show before and after selected page (IE: set at 2 you would see 1 2 ... 10 11 [12] 13 14 ... 23 24).', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
-      <td class="rowColor1" width="1%" nowrap><input type="text" name="numPageLinks" value="<?=$config->maxPageLinks?>" size="5" maxlength="2" onkeyup="removeCharacters(this)"/></td>
+      <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_029 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_030 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" nowrap><input type="text" name="bansPerPage" value="<?php echo $config->bansPerPage ?>" size="10" maxlength="5" onkeyup="removeCharacters(this)"/></td>
+      <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_031 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_032 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" nowrap><input type="text" name="numPageLinks" value="<?php echo $config->maxPageLinks ?>" size="5" maxlength="2" onkeyup="removeCharacters(this)"/></td>
     </tr>
     <tr>
-      <td class="rowColor2" width="1%" nowrap>Demo Directory <img src="images/help.png" style="cursor:help" onmouseover="Tip('The directory relative to the root of this webpage.  By default it is set to the demos folder.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_033 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_034 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor2" width="1%" nowrap>
-        <input type="text" id="demoDir" name="demoDir" value="<?=$config->demoRootDir?>" size="40" maxlength="40"/>
+        <input type="text" id="demoDir" name="demoDir" value="<?php echo $config->demoRootDir ?>" size="40" maxlength="40"/>
         <img src="images/warning.png" id="demoDirWarn" style="display:none"/>
       </td>
-      <td class="rowColor2" width="1%" nowrap>Demo Size Limit(MB) <img src="images/help.png" style="cursor:help" onmouseover="Tip('The max demo size in MB that can be uploaded.  This can not be higher than what is defined in the php.ini configuration file.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_035 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_036 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor2" width="1%" nowrap>
-        <input type="text" id="demoSizeLimit" name="demoSizeLimit" value="<?=$config->demoSizeLimit?>" size="10" maxlength="5" onkeyup="removeCharacters(this)"/>
+        <input type="text" id="demoSizeLimit" name="demoSizeLimit" value="<?php echo $config->demoSizeLimit ?>" size="10" maxlength="5" onkeyup="removeCharacters(this)"/>
         <img src="images/warning.png" id="demoSizeLimitWarn" style="display:none"/>
       </td>
     </tr>
     <tr>
-      <td class="rowColor1" width="1%" nowrap>User Create Code <img src="images/help.png" style="cursor:help" onmouseover="Tip('This is the code that you can give to members/admins to create their own account to access this site if you are running in standalone mode.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_037 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_038 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor1" width="1%" nowrap>
-        <input type="text" id="createUserCode" name="createUserCode" value="<?=$config->createUserCode?>" size="20" maxlength="30" onkeyup="removeSpecialCharacters(this)"/>
+        <input type="text" id="createUserCode" name="createUserCode" value="<?php echo $config->createUserCode ?>" size="20" maxlength="30" onkeyup="removeSpecialCharacters(this)"/>
         <img src="images/warning.png" id="createUserCodeWarn" style="display:none"/>
       </td>
       <td class="rowColor1" width="1%" nowrap></td>
       <td class="rowColor1" width="1%" nowrap></td>
     </tr>
     <tr>
-      <td class="rowColor2" width="1%" nowrap>Send Emails On Ban <img src="images/help.png" style="cursor:help" onmouseover="Tip('If yes, all emails listed below will recieve an email when a new ban is added.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_039 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_040 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor2" width="1%" nowrap>
         <select name="sendEmailsOnBan">
-          <option value="true"<?php if($config->sendEmails) echo " selected"; ?>>Yes</option>
-          <option value="false"<?php if(!$config->sendEmails) echo " selected"; ?>>No</option>
+          <option value="true"<?php if($config->sendEmails) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_025 ?></option>
+          <option value="false"<?php if(!$config->sendEmails) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_026 ?></option>
         </select>
       </td>
-      <td class="rowColor2" width="1%" nowrap>Send Emails On Demo Add <img src="images/help.png" style="cursor:help" onmouseover="Tip('If yes, all emails listed below will recieve an email when a new demo is added.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_041 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_042 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor2" width="1%" nowrap>
         <select name="sendEmailsDemo">
-          <option value="true"<?php if($config->sendDemoEmails) echo " selected"; ?>>Yes</option>
-          <option value="false"<?php if(!$config->sendDemoEmails) echo " selected"; ?>>No</option>
+          <option value="true"<?php if($config->sendDemoEmails) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_025 ?></option>
+          <option value="false"<?php if(!$config->sendDemoEmails) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_026 ?></option>
         </select>
       </td>
     </tr>
     <tr>
-      <td class="rowColor1" width="1%" nowrap>Email Address of Sender <img src="images/help.png" style="cursor:help" onmouseover="Tip('This is the \'from\' address the emails below will see when they recieve an email for newly added bans or demos.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
-      <td class="rowColor1" width="1%" colspan="3" nowrap><input type="text" name="senderEmail" value="<?=$config->emailFromHeader?>" size="40" maxlength="255"/></td>
+      <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_043 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_044 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" colspan="3" nowrap><input type="text" name="senderEmail" value="<?php echo $config->emailFromHeader ?>" size="40" maxlength="255"/></td>
     </tr>
     <tr>
-      <td class="rowColor2" width="1%" nowrap valign="top">Email Addresses to Recieve Ban and Demo Notices <img src="images/help.png" style="cursor:help" onmouseover="Tip('The email address of people you wish to recieve ban add or demo add notifications.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor2" width="1%" nowrap valign="top"><?php echo $LAN_CONFIGURATION_045 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_046 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor2" width="1%" valign="top" nowrap>
         <input type="text" id="email" name="email" value="" size="40" maxlength="255"/>
-        <input type="button" value="Add >>" onclick="addEmail()"/>
-        <input type="button" value="<< Remove" onclick="removeEmail()"/>
+        <input type="button" value="<?php echo $LAN_CONFIGURATION_047 ?>" onclick="addEmail()"/>
+        <input type="button" value="<?php echo $LAN_CONFIGURATION_048 ?>" onclick="removeEmail()"/>
       </td>
       <td class="rowColor2" width="1%" nowrap colspan="2">
         <select id="emailList" name="emailList" size="5">
           <?php
           for($i=0; $i<count($config->banManagerEmails); $i++) {
-                ?><option value="<?=$config->banManagerEmails[$i]?>"><?=$config->banManagerEmails[$i]?></option><?php
+                ?><option value="<?php echo $config->banManagerEmails[$i] ?>"><?php echo $config->banManagerEmails[$i] ?></option><?php
             }
           ?>
         </select>
@@ -375,50 +379,50 @@ if(file_get_contents("http://code.google.com/p/globalban-spanish/source/list")) 
   
   <div class="tborder">
     <div id="tableHead">
-      <div><b>Ban Settings</b></div>
+      <div><b><?php echo $LAN_CONFIGURATION_049 ?></b></div>
     </div>
 
     <table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
     <tr>
-      <td class="rowColor1" width="1%" nowrap>Ban Message <img src="images/help.png" style="cursor:help" onmouseover="Tip('The message that banned users will see when they attempt to connect to your servers.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_050 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_051 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor1" width="1%" nowrap>
-        <input type="text" id="banMessage" name="banMessage" value="<?=$config->banMessage?>" size="60" maxlength="255" onkeyup="removeSpecialCharacters(this)"/>
+        <input type="text" id="banMessage" name="banMessage" value="<?php echo $config->banMessage ?>" size="60" maxlength="255" onkeyup="removeSpecialCharacters(this)"/>
         <img src="images/warning.png" id="banMessageWarn" style="display:none"/>
       </td>
-      <td class="rowColor1" width="1%" nowrap>Allow Admins to be Banned <img src="images/help.png" style="cursor:help" onmouseover="Tip('Set this to true to allow admins to ban other admins.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_052 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_053 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor1" width="1%" nowrap>
         <select name="allowAdminBan">
-          <option value="true"<?php if($config->allowAdminBans) echo " selected"; ?>>Yes</option>
-          <option value="false"<?php if(!$config->allowAdminBans) echo " selected"; ?>>No</option>
+          <option value="true"<?php if($config->allowAdminBans) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_025 ?></option>
+          <option value="false"<?php if(!$config->allowAdminBans) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_026 ?></option>
         </select>
       </td>
     </tr>
     <tr>
-      <td class="rowColor2" width="1%" nowrap>Days to keep pending bans banned <img src="images/help.png" style="cursor:help" onmouseover="Tip('The number of days a ban in pending mode should be banned for.  This only applies to bans greater than 1 hour and issued by a member.  The ban will be no different from an inactive ban after this number of days if it is not removed from pending status.  Set to 0 to let anyone banned by a member for more than an hour to be able to rejoin instantly.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_054 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_055 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor2" width="1%" nowrap>
-        <input type="text" id="daysBanPending" name="daysBanPending" value="<?=$config->daysBanPending?>" size="10" maxlength="5" onkeyup="removeCharacters(this)"/>
+        <input type="text" id="daysBanPending" name="daysBanPending" value="<?php echo $config->daysBanPending ?>" size="10" maxlength="5" onkeyup="removeCharacters(this)"/>
         <img src="images/warning.png" id="daysBanPendingWarn" style="display:none"/>
       </td>
-      <td class="rowColor2" width="1%" nowrap>Remove pending on demo upload <img src="images/help.png" style="cursor:help" onmouseover="Tip('Remove the pending status of a ban if a member uploads a demo for the pending ban.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_056 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_057 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor2" width="1%" nowrap>
         <select name="removePendingOnUpload">
-          <option value="true"<?php if($config->removePendingOnUpload) echo " selected"; ?>>Yes</option>
-          <option value="false"<?php if(!$config->removePendingOnUpload) echo " selected"; ?>>No</option>
+          <option value="true"<?php if($config->removePendingOnUpload) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_025 ?></option>
+          <option value="false"<?php if(!$config->removePendingOnUpload) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_026 ?></option>
         </select>
       </td>
     </tr>
     <tr>
-      <td class="rowColor1" width="1%" nowrap>Hash Code <img src="images/help.png" style="cursor:help" onmouseover="Tip('This is a secret code that is used by the ES script to talk to the web server when banning.  This is to prevent some random person from adding a ban.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_058 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_059 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor1" width="1%" nowrap>
-        <input type="text" id="hash" name="hash" value="<?=$config->matchHash?>" size="40" maxlength="255" onkeyup="removeSpecialCharacters(this)"/>
+        <input type="text" id="hash" name="hash" value="<?php echo $config->matchHash ?>" size="40" maxlength="255" onkeyup="removeSpecialCharacters(this)"/>
         <img src="images/warning.png" id="hashWarn" style="display:none"/>
-        <input type="button" value="Generate" onclick="generateHash()">
+        <input type="button" value="<?php echo $LAN_CONFIGURATION_082 ?>" onclick="generateHash()">
       </td>
-      <td class="rowColor1" width="1%" nowrap>Teach Admins <img src="images/help.png" style="cursor:help" onmouseover="Tip('Set this to yes if you wish to display the \'Type !banmenu\' message after a member/admin dies.  This is to teach or remind members how to ban.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_060 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_061 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor1" width="1%" nowrap>
         <select name="teachAdmins">
-          <option value="1"<?php if($config->teachAdmins == 1) echo " selected"; ?>>Yes</option>
-          <option value="0"<?php if($config->teachAdmins == 0) echo " selected"; ?>>No</option>
+          <option value="1"<?php if($config->teachAdmins == 1) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_025 ?></option>
+          <option value="0"<?php if($config->teachAdmins == 0) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_026 ?></option>
         </select>
       </td>
     </tr>
@@ -429,52 +433,52 @@ if(file_get_contents("http://code.google.com/p/globalban-spanish/source/list")) 
 
   <div class="tborder">
     <div id="tableHead">
-      <div><b>SMF Integration Settings</b></div>
+      <div><b><?php echo $LAN_CONFIGURATION_062 ?></b></div>
     </div>
 
     <table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
     <tr>
-      <td class="rowColor1" width="1%" nowrap>Enable SMF Integration <img src="images/help.png" style="cursor:help" onmouseover="Tip('Enable this to integrate with your SMF boards and use the SMF member groups instead.  The SMF tables must start with smf_.  The GlobalBan web pages must be installed under your Forums folder (yoursite.com/Forums/banned).', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_063 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_064 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor1" width="1%" nowrap>
         <select id="smfIntegration" name="smfIntegration">
-          <option value="true"<?php if($config->enableSmfIntegration) {echo " selected";} ?>>Yes</option>
-          <option value="false"<?php if(!$config->enableSmfIntegration) {echo " selected";} ?>>No</option>
+          <option value="true"<?php if($config->enableSmfIntegration) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_025 ?></option>
+          <option value="false"<?php if(!$config->enableSmfIntegration) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_026 ?></option>
         </select>
       </td>
-      <td class="rowColor1" width="1%" nowrap>SMF Table Prefix <img src="images/help.png" style="cursor:help" onmouseover="Tip('The prefix of your SMF tables (normally smf_ by default).', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_065 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_066 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor1" width="1%" nowrap>
         <input type="text" id="smfTablePrefix" name="smfTablePrefix" value="smf_" size="15" maxlength="10"/>
         <img src="images/warning.png" id="smfTablePrefixWarn" style="display:none"/>
       </td>
     </tr>
     <tr>
-      <td class="rowColor2" width="1%" nowrap>SMF Super-User Group <img src="images/help.png" style="cursor:help" onmouseover="Tip('Enter in the group ID that you wish to associate with that will have full access to this site.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_067 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_068 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor2" width="1%" nowrap>
-        <input type="text" id="smfFullPowerGroup" name="smfFullPowerGroup" value="<?=$config->fullPowerGroup?>" size="10" maxlength="5" onkeyup="removeCharacters(this)"/>
+        <input type="text" id="smfFullPowerGroup" name="smfFullPowerGroup" value="<?php echo $config->fullPowerGroup ?>" size="10" maxlength="5" onkeyup="removeCharacters(this)"/>
         <img src="images/warning.png" id="smfFullPowerGroupWarn" style="display:none"/>
       </td>
-      <td class="rowColor2" width="1%" nowrap>SMF Ban Manger Group <img src="images/help.png" style="cursor:help" onmouseover="Tip('TEnter the group ID that you wish to associate with that will be able to access all bans.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_069 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_070 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor2" width="1%" nowrap>
-        <input type="text" id="smfBanManagerGroup" name="smfBanManagerGroup" value="<?=$config->banManagerGroup?>" size="10" maxlength="5" onkeyup="removeCharacters(this)"/>
+        <input type="text" id="smfBanManagerGroup" name="smfBanManagerGroup" value="<?php echo $config->banManagerGroup ?>" size="10" maxlength="5" onkeyup="removeCharacters(this)"/>
         <img src="images/warning.png" id="smfBanManagerGroupWarn" style="display:none"/>
       </td>
     </tr>
     <tr>
-      <td class="rowColor1" width="1%" nowrap>SMF Admin Group <img src="images/help.png" style="cursor:help" onmouseover="Tip('Enter the group ID that you wish to associate with that will be able to ban anyone without any restrictions.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_071 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_072 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor1" width="1%" nowrap>
-        <input type="text" id="smfAdminGroup" name="smfAdminGroup" value="<?=$config->adminGroup?>" size="10" maxlength="5" onkeyup="removeCharacters(this)"/>
+        <input type="text" id="smfAdminGroup" name="smfAdminGroup" value="<?php echo $config->adminGroup ?>" size="10" maxlength="5" onkeyup="removeCharacters(this)"/>
         <img src="images/warning.png" id="smfAdminGroupWarn" style="display:none"/>
       </td>
-      <td class="rowColor1" width="1%" nowrap>SMF Member Group <img src="images/help.png" style="cursor:help" onmouseover="Tip('Enter the group ID that you wish to associate with that will be able to ban, but all bans greater than 1 hour will be placed in pending mode.  If the ban is not removed from pending mode after the number of days specified by \'days to keep pending banned\' then the ban will become inactive.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_073 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_074 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor1" width="1%" nowrap>
-        <input type="text" id="smfMemberGroup" name="smfMemberGroup" value="<?=$config->memberGroup?>" size="10" maxlength="5" onkeyup="removeCharacters(this)"/>
+        <input type="text" id="smfMemberGroup" name="smfMemberGroup" value="<?php echo $config->memberGroup ?>" size="10" maxlength="5" onkeyup="removeCharacters(this)"/>
         <img src="images/warning.png" id="smfMemberGroupWarn" style="display:none"/>
       </td>
     </tr>
     <tr>
-      <td class="rowColor1" width="1%" nowrap>SMF No Power Group <img src="images/help.png" style="cursor:help" onmouseover="Tip('Enter the group ID that you wish to associate with that will have no powers and will rely on admin group assignment powers.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_075 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_076 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor1" width="1%" nowrap>
-        <input type="text" id="smfNoPowerGroup" name="smfNoPowerGroup" value="<?=$config->noPowerGroup?>" size="10" maxlength="5" onkeyup="removeCharacters(this)"/>
+        <input type="text" id="smfNoPowerGroup" name="smfNoPowerGroup" value="<?php echo $config->noPowerGroup ?>" size="10" maxlength="5" onkeyup="removeCharacters(this)"/>
         <img src="images/warning.png" id="smfNoPowerGroupWarn" style="display:none"/>
       </td>
       <td class="rowColor1" width="1%" nowrap></td>
@@ -487,11 +491,11 @@ if(file_get_contents("http://code.google.com/p/globalban-spanish/source/list")) 
   
   <div class="tborder">
     <div id="tableHead">
-      <div><input type="submit" value="Save Configuration"></div>
+      <div><input type="submit" value="<?php echo $LAN_CONFIGURATION_077 ?>"></div>
     </div>
   </div>
 
-  <h5>Note: Saving the configuration will also update GlobalBan.cfg on all active servers.</h5>
+  <h5><?php echo $LAN_CONFIGURATION_078 ?></h5>
 
 </form>
 
@@ -500,7 +504,7 @@ if(file_get_contents("http://code.google.com/p/globalban-spanish/source/list")) 
 ?>
 <div class="tborder">
   <div id="tableHead">
-    <div><b>Access Denied</b></div>
+    <div><b><?php echo $LAN_CONFIGURATION_079; ?></b></div>
   </div>
 <div class="tborder">
 <?php
