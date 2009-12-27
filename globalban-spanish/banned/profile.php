@@ -22,6 +22,9 @@
 require_once(ROOTDIR."/include/database/class.UserQueries.php");
 require_once(ROOTDIR."/include/objects/class.User.php");
 
+$lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_profile.php';
+include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_profile.php");
+
 $userQueries = new UserQueries();
 
 $user = $userQueries->getUserInfo($_SESSION['name']); // Get current logged in user's info
@@ -158,32 +161,32 @@ if(isset($_POST['updatePassword'])) {
 ?>
 <div class="tborder">
   <div id="tableHead">
-    <div><b>Perfil de Usuario - Informacion General</b></div>
+    <div><b><?php echo $LAN_PROFILE_001; ?></b></div>
   </div>
   <form action="index.php?page=profile" method="post" id="form">
   	<table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
   		<tr>
-  			<td class="rowColor1" width="1%" nowrap>Usuario:</td>
-  			<td class="rowColor1"><input type="text" name="username" value="<?=$user->getName()?>" size="40" maxlength="40" />
-  			<?php if(!$valid['username']) { ?><span class="error">Enter a valid username</span><?php } ?></td>
+  			<td class="rowColor1" width="1%" nowrap><?php echo $LAN_PROFILE_002; ?></td>
+  			<td class="rowColor1"><input type="text" name="username" value="<?php echo $user->getName() ?>" size="40" maxlength="40" />
+  			<?php if(!$valid['username']) { ?><span class="error"><?php echo $LAN_PROFILE_003; ?></span><?php } ?></td>
   		</tr>
   		<tr>
-  			<td class="rowColor2" width="1%" nowrap>Steam ID:</td>
-  			<td class="rowColor2"><input name="steamId" id="steamdId" type="text" value="<?=$user->getSteamId()?>" size="25" maxlength="25"/> (must be in <b>STEAM_X:X:XXXXXX</b> format)
-  			<?php if(!$valid['steamId']) { ?><span class="error">Steam ID not in vaild format</span><?php } ?></td>
+  			<td class="rowColor2" width="1%" nowrap><?php echo $LAN_PROFILE_004; ?></td>
+  			<td class="rowColor2"><input name="steamId" id="steamdId" type="text" value="<?php echo $user->getSteamId() ?>" size="25" maxlength="25"/> <?php echo $LAN_PROFILE_005; ?>
+  			<?php if(!$valid['steamId']) { ?><span class="error"><?php echo $LAN_PROFILE_006; ?></span><?php } ?></td>
   		<tr>
-  			<td class="rowColor1" width="1%" nowrap>Email:</td>
-  			<td class="rowColor1"><input type="text" name="email" size="60" maxlength="80" value="<?=$user->getEmail()?>" />
-  			<?php if(!$valid['email']) { ?><span class="error">Enter a valid email</span><?php } ?></td>
+  			<td class="rowColor1" width="1%" nowrap><?php echo $LAN_PROFILE_007; ?></td>
+  			<td class="rowColor1"><input type="text" name="email" size="60" maxlength="80" value="<?php echo $user->getEmail() ?>" />
+  			<?php if(!$valid['email']) { ?><span class="error"><?php echo $LAN_PROFILE_008; ?></span><?php } ?></td>
   		</tr>
   		</tr>
-  			<td class="rowColor2" width="1%" nowrap><img src="images/bullet_star.png"/>Password Anterior:</td>
+  			<td class="rowColor2" width="1%" nowrap><img src="images/bullet_star.png"/> <?php echo $LAN_PROFILE_009 ?></td>
   			<td class="rowColor2"><input type="password" name="curPassword" value="" size="25" maxlength="25"/>
-  			<?php if(!$valid['curPassword']) { ?><span class="error">Password Incorrecta</span><?php } else { ?><span>Requerida solamente si cambia el Email</span><?php } ?></td>
+  			<?php if(!$valid['curPassword']) { ?><span class="error"><?php echo $LAN_PROFILE_010; ?></span><?php } else { ?><span><?php echo $LAN_PROFILE_014; ?></span><?php } ?></td>
   		</tr>
   		<tr>			
   			<td align="left" colspan="3" class="rowColor1">
-  				<input type="submit" value="Aplicar Cambios" name="generalProfile" class="button" /></td>
+  				<input type="submit" value="<?php echo $LAN_PROFILE_011; ?>" name="generalProfile" class="button" /></td>
   		</tr>
   	</table>
   </form>
@@ -191,13 +194,13 @@ if(isset($_POST['updatePassword'])) {
 <?php
 // Display that the changes were successful
 if($generalChangesMade) {
-  ?><h5 class="error">Informacion General Actualizada</h5><?php
+  ?><h5 class="error"><?php echo $LAN_PROFILE_012; ?></h5><?php
 }
 ?>
 <?php
 // Display an error message if there was any bad input
 if($generalErrors) {
-  ?><h5 class="error">All changes made have been reset due to bad input</h5><?php
+  ?><h5 class="error"><?php echo $LAN_PROFILE_013; ?></h5><?php
 }
 ?>
 <br/>
@@ -206,42 +209,42 @@ if($generalErrors) {
 <br/>
 <div class="tborder">
   <div id="tableHead">
-    <div><b>Perfil de Usuario - Cambiar Password</b></div>
+    <div><b><?php echo $LAN_PROFILE_015; ?></b></div>
   </div>
   <form action="index.php?page=profile" method="post" id="form">
   	<table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
       </tr>
-  			<td class="rowColor1" width="1%" nowrap>Password Anterior:</td>
+  			<td class="rowColor1" width="1%" nowrap><?php echo $LAN_PROFILE_016; ?></td>
   			<td class="rowColor1"><input type="password" name="cpassword" value="" size="25" maxlength="25"/>
-  			<?php if(!$valid['cpassword']) { ?><span class="error">Enter a valid password</span><?php } ?></td>
+  			<?php if(!$valid['cpassword']) { ?><span class="error"><?php echo $LAN_PROFILE_017; ?></span><?php } ?></td>
   		</tr>
   		</tr>
-  			<td class="rowColor2" width="1%" nowrap>Nueva Password:</td>
+  			<td class="rowColor2" width="1%" nowrap><?php echo $LAN_PROFILE_018; ?></td>
   			<td class="rowColor2"><input type="password" name="npassword" value="" size="25" maxlength="25"/>
-  			<?php if(!$valid['npassword']) { ?><span class="error">Enter a valid password</span><?php } ?></td>
+  			<?php if(!$valid['npassword']) { ?><span class="error"><?php echo $LAN_PROFILE_019; ?></span><?php } ?></td>
   		</tr>
   		<tr>
-  			<td class="rowColor1" width="1%" nowrap>Repita Nueva Password:</td>
+  			<td class="rowColor1" width="1%" nowrap><?php echo $LAN_PROFILE_020; ?></td>
   			<td class="rowColor1"><input type="password" name="vpassword" value="" size="25" maxlength="25"/>
-  			<?php if(!$valid['vpassword']) { ?><span class="error">Password mis-match</span><?php } ?></td>
+  			<?php if(!$valid['vpassword']) { ?><span class="error"><?php echo $LAN_PROFILE_021; ?></span><?php } ?></td>
   		</tr>
   		<tr>			
   			<td align="left" colspan="3" class="rowColor2">
   				<input type="hidden" name="nopostpass" value="0" />
-  				<input type="submit" value="Cambiar Password" name="updatePassword" class="button" /></td>
+  				<input type="submit" value="<?php echo $LAN_PROFILE_022; ?>" name="updatePassword" class="button" /></td>
   		</tr>
     </table>
   </form>
 </div>
 
 <h5>
-Estan requeridos todos los campos del formulario para el cambio de clave.<br/>
-El nuevo Password debe contener minimo 6 caracteres usando numeros y letras, NO SIRVE solo letras o solo numeros, requiere usar una mezcla de ambos Ej: odo531
+<?php echo $LAN_PROFILE_023; ?>
+
 </h5>
 
 <?php
 // Display that the changes were successful
 if($passwordChangesMade) {
-  ?><h5 class="error">Password Cambiada con Exito</h5><?php
+  ?><h5 class="error"><?php echo $LAN_PROFILE_024; ?></h5><?php
 }
 ?>
