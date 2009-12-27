@@ -28,6 +28,9 @@ require_once(ROOTDIR."/include/objects/class.Server.php");
 require_once(ROOTDIR."/include/objects/class.Length.php");
 require_once(ROOTDIR."/include/database/class.ReasonQueries.php");
 
+$lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_processWebBan.php';
+include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_processWebBan.php");
+
 // Initialize Objects
 $reasonQueries = new ReasonQueries();
 
@@ -86,18 +89,18 @@ if($allowedToBan) {
       // Use this to build the URL link (replace processWebBan with updateBan)
       $url = "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
 	  $url = str_replace("processWebBan", "banlist", $url);
-      $postId = NewPostForum_e107(addslashes($bannedName)." - ".addslashes($steamId),"[b]Admin:[/b] [color=#009900]".addslashes($username)."[/color]\r\n\r\n[b]Nick Baneado: [/b][color=#990000][link=".$url."&searchText=".addslashes($steamId)."]".addslashes($bannedName)." - ".addslashes($steamId)."[/link][/color]\r\n\r\n[b]Motivo:[/b] ".$reasonQueries->getReason($reason)."\r\n\r\n[b]Periodo:[/b] ".$length->getReadable(), time(),$configOdonel);
+      $postId = NewPostForum_e107(addslashes($bannedName)." - ".addslashes($steamId),"[b]".$LAN_PROCESSWEBBAN_021."[/b] [color=#009900]".addslashes($username)."[/color]\r\n\r\n[b]".$LAN_PROCESSWEBBAN_022." [/b][color=#990000][link=".$url."&searchText=".addslashes($steamId)."]".addslashes($bannedName)." - ".addslashes($steamId)."[/link][/color]\r\n\r\n[b]".$LAN_PROCESSWEBBAN_023." [/b]".$reasonQueries->getReason($reason)."\r\n\r\n[b]".$LAN_PROCESSWEBBAN_024." [/b]".$length->getReadable(), time(),$configOdonel);
 	  UpdateBanWebpage ($postId , $banId, $configOdonel);
 	}
 
 	if($config->sendEmails) {
       // Email
-      $subject = "Ban Added By Web App";
+	  $subject = $LAN_PROCESSWEBBAN_001;	
 
       $body = "<html><body>";
-      $body .= "The following ban has been added by " . $username;
+      $body .= $LAN_PROCESSWEBBAN_003 . "  ". $username ." ";
       if($member) {
-        $body .= " and MUST be reviewed.";
+        $body .= $LAN_PROCESSWEBBAN_004;
       }
       $body .= "\n\n";
 
@@ -106,10 +109,10 @@ if($allowedToBan) {
       $url = str_replace("processWebBan", "updateBan", $url);
 
       $body .= "\n\n";
-      $body .= "Haga click en el siguiente link para ver el ban: <a href='".$url."&banId=".$banId."'>Nuevo Ban</a>";
-      $body .= "<p>".$bannedName." (".$steamId.") ha sido baneado de todos los servidores.</p>";  
+      $body .= $LAN_PROCESSWEBBAN_005." <a href='".$url."&banId=".$banId."'>".$LAN_PROCESSWEBBAN_006."</a>";
+      $body .= "<p>".$bannedName." (".$steamId.") ".$LAN_PROCESSWEBBAN_007."</p>";  
 	  if($configOdonel->enableAutoPoste107Forum) {
-	    $body .= "<p>Post en el Foro: <a href='".$configOdonel->e107Url."e107_plugins/forum/forum_viewtopic.php?".$postId."'>Link</a></p>";
+	    $body .= "<p>".$LAN_PROCESSWEBBAN_008." <a href='".$configOdonel->e107Url."e107_plugins/forum/forum_viewtopic.php?".$postId."'>".$LAN_PROCESSWEBBAN_009."</a></p>";
       }
       $body .= "</body></html>";
 
@@ -120,7 +123,7 @@ if($allowedToBan) {
         $headers  = "MIME-Version: 1.0" . "\r\n";
         $headers .= "Content-type: text/html; charset=utf-8" . "\r\n";
         // Additional headers
-        $headers .= "From: ".$config->siteName." Ban Management <".$config->emailFromHeader.">" . "\r\n";
+        $headers .= "From: ".$config->siteName." ".$LAN_PROCESSWEBBAN_011." <".$config->emailFromHeader.">" . "\r\n";
         mail($banManagerEmails[$i], $subject, $body, $headers);
       }
       // Finish Email
@@ -153,9 +156,9 @@ function NewPostForum_e107($TituloPost, $AsuntoPost, $now, $configOdonel) {
 
 	// Connecting, selecting database
 	$link = mysql_connect($configOdonel->e107_dbHostName, $configOdonel->e107_dbUserName, $configOdonel->e107_dbPassword)
-	    or die('No se pudo conectar a la BD_e107: ' . mysql_error());
-	echo 'Connected successfully';
-	mysql_select_db($configOdonel->e107_dbName) or die('Could not select database e107');
+	    or die($LAN_PROCESSWEBBAN_012." ".mysql_error());
+
+	mysql_select_db($configOdonel->e107_dbName) or die($LAN_PROCESSWEBBAN_013);
 	
 	// Performing SQL query
 	$query = "INSERT INTO `".$configOdonel->e107TablePrefix."forum_t` (`thread_id`, `thread_name`, `thread_thread`, `thread_forum_id`, `thread_datestamp`, `thread_parent`, `thread_user`, `thread_views`, `thread_active`, `thread_lastpost`, `thread_s`, `thread_edit_datestamp`, `thread_lastuser`, `thread_total_replies`) ";
