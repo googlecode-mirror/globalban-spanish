@@ -301,15 +301,15 @@ if(file_get_contents("http://code.google.com/p/globalban-spanish/source/list")) 
       <td class="rowColor2" width="1%" nowrap><input type="text" name="webUrl" value="<?php echo $config->webUrl ?>" size="40" maxlength="255"/></td>
     </tr>
     <tr>
-      <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_023 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_024 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
-      <td class="rowColor2" width="1%" nowrap>
+      <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_023 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_024 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" nowrap>
         <select name="enableForumLink">
           <option value="true"<?php if($config->enableForumLink) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_025 ?></option>
           <option value="false"<?php if(!$config->enableForumLink) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_026 ?></option>
         </select>
       </td>
-      <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_027 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_028 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
-      <td class="rowColor2" width="1%" nowrap><input type="text" name="forumURL" value="<?php echo $config->forumURL ?>" size="40" maxlength="255"/></td>
+      <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_027 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_028 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" nowrap><input type="text" name="forumURL" value="<?php echo $config->forumURL ?>" size="40" maxlength="255"/></td>
     </tr>
     <tr>
       <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_087 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_088 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
@@ -346,8 +346,8 @@ if(file_get_contents("http://code.google.com/p/globalban-spanish/source/list")) 
         <input type="text" id="createUserCode" name="createUserCode" value="<?php echo $config->createUserCode ?>" size="40" maxlength="40" onkeyup="removeSpecialCharacters(this)"/>
         <img src="images/warning.png" id="createUserCodeWarn" style="display:none"/>
       </td>
-      <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_091 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_092 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
-      <td class="rowColor2" width="1%" nowrap>
+      <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_091 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_092 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" nowrap>
         <select name="LANGUAGE">
           <option value="English"<?php if($config->LANGUAGE == "English") echo " selected"; ?>>English</option>
           <option value="Spanish"<?php if($config->LANGUAGE == "Spanish") echo " selected"; ?>>Spanish</option>
@@ -504,13 +504,13 @@ if(file_get_contents("http://code.google.com/p/globalban-spanish/source/list")) 
       </td>
     </tr>
     <tr>
-      <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_075 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_076 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
-      <td class="rowColor1" width="1%" nowrap>
+      <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_075 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_076 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor2" width="1%" nowrap>
         <input type="text" id="smfNoPowerGroup" name="smfNoPowerGroup" value="<?php echo $config->noPowerGroup ?>" size="10" maxlength="5" onkeyup="removeCharacters(this)"/>
         <img src="images/warning.png" id="smfNoPowerGroupWarn" style="display:none"/>
       </td>
-      <td class="rowColor1" width="1%" nowrap></td>
-      <td class="rowColor1" width="1%" nowrap></td>
+      <td class="rowColor2" width="1%" nowrap></td>
+      <td class="rowColor2" width="1%" nowrap></td>
     </tr>
     </table>
   </div>
@@ -562,13 +562,13 @@ if(file_get_contents("http://code.google.com/p/globalban-spanish/source/list")) 
       </td>
     </tr>
     <tr>
-      <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_106 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_107 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
-      <td class="rowColor1" width="1%" nowrap>
+      <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_106 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_107 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor2" width="1%" nowrap>
         <input type="text" id="e107_dbPassword" name="e107_dbPassword" value="<?php echo $config->e107_dbPassword ?>" size="40" maxlength="255"/>
         <img src="images/warning.png" id="e107_dbPasswordWarn" style="display:none"/>
       </td>
-      <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_108 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_109 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
-      <td class="rowColor1" width="1%" nowrap>
+      <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_108 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_109 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor2" width="1%" nowrap>
         <input type="text" id="e107_bans_forum_category_number" name="e107_bans_forum_category_number" value="<?php echo $config->e107_bans_forum_category_number ?>" size="15" maxlength="255" onkeyup="removeCharacters(this)"/>
         <img src="images/warning.png" id="e107_bans_forum_category_numberWarn" style="display:none"/>
       </td>
