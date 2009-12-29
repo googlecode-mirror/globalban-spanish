@@ -81,6 +81,7 @@ class Config {
   /**
    * Site specific settings
    */
+  var $"."LANGUAGE = \"".$_POST['LANGUAGE']."\"; // Default Language (English, Spanish, French, ...)   
   var $"."bansPerPage = ".$bansPerPage."; // Number of bans to display on ban list page for each page (-1 show all)
   var $"."maxPageLinks = ".$_POST['numPageLinks']."; // Number of links to show before and after selected page (IE: set at 2 you would see 1 2 ... 10 11 [12] 13 14 ... 23 24)
   var $"."demoRootDir = \"".$_POST['demoDir']."\"; // Folder to save demos to (folder must be relative to banned dir)
@@ -105,6 +106,19 @@ class Config {
   var $"."noPowerGroup = ".$smfNoPowerGroup."; // The SMF group id that has no power unless given by an admin group
 
   /**
+   * e107 integration settings
+   */
+  var $"."enableAutoPoste107Forum = ".$_POST['enableAutoPoste107Forum'].";  // Whether to enable e107 integration, just generate Auto-Post in the e107 Forum with each new ban.
+  var $"."e107TablePrefix = \"".$_POST['e107TablePrefix']."\"; // The prefix of the e107 tables
+  var $"."e107Url = \"".$_POST['e107Url']."\"; // Your e107 web site Ej: \"http://www.e107.com/\"
+  var $"."e107_dbName = \"".$_POST['e107_dbName']."\"; //  Set the e107 Database Name to access
+  var $"."e107_dbUserName = \"".$_POST['e107_dbUserName']."\";  // Set the Database's user name login (recommend a user with only select and insert privs)
+  var $"."e107_dbPassword = \"".$_POST['e107_dbPassword']."\";  // Set the Database user's password login
+  var $"."e107_dbHostName = \"".$_POST['e107_dbHostName']."\";  // Set the Database's host
+  var $"."e107_bans_forum_category_number = \"".$_POST['e107_bans_forum_category_number']."\";  //  For example if your Banned forum category link is http://www.youre107.com/e107_plugins/forum/forum_viewforum.php?19 you must set it to \"19\"
+  var $"."e107_GlobalBan_user = \"".$_POST['e107_GlobalBan_user']."\";  // e107 user to use like post owner, format must be \"user_number_ID.user_name\", Ex: \"5.GlobalBan\"
+
+  /**
    * Ban specific settings
    */
   var $"."banMessage = \"".str_replace("$", "\\$", $_POST['banMessage'])."\"; // Message to display to those banned
@@ -120,6 +134,20 @@ class Config {
    */
   var $"."enableForumLink = ".$_POST['enableForumLink'].";
   var $"."forumURL = \"".$_POST['forumURL']."\"; // Link to your forums
+  
+  /**
+   * Web Settings
+   * Very simple web integration (Just adds a link button)
+   */
+  var $"."enableWebLink = ".$_POST['enableWebLink'].";
+  var $"."webUrl = \"".$_POST['webUrl']."\"; // Link to your forums
+  
+  /**
+   * HLstatsX Settings
+   * Very simple web integration (Just adds a link button)
+   */
+  var $"."enableHLstatsLink = ".$_POST['enableHLstatsLink'].";
+  var $"."HLstatsUrl = \"".$_POST['HLstatsUrl']."\"; // Link to your forums
 
   /**
    * Database Block

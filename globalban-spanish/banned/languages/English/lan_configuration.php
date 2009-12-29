@@ -9,6 +9,7 @@
 |     $Author: Odonel $
 +----------------------------------------------------------------------------+
 */
+
 $LAN_CONFIGURATION_001 = 'Please enter a valid email address.';
 $LAN_CONFIGURATION_002 = 'is already in the list';
 $LAN_CONFIGURATION_003 = 'You must specify a directory for demos.';
@@ -40,7 +41,7 @@ $LAN_CONFIGURATION_028 = 'Enter in the URL of your forum if you have enabled the
 $LAN_CONFIGURATION_029 = 'Bans Per Page';
 $LAN_CONFIGURATION_030 = 'This sets the number of bans to be displayed per page on the ban list page.';
 $LAN_CONFIGURATION_031 = 'Number of Page Links';
-$LAN_CONFIGURATION_032 = 'The number of links to show before and after selected page (IE: set at 2 you would see 1 2 ... 10 11 [12] 13 14 ... 23 24).';
+$LAN_CONFIGURATION_032 = "The number of links to show before and after selected page (IE: set at \'2\' you would see \'1 2 ... 10 11 [12] 13 14 ... 23 24\').";
 $LAN_CONFIGURATION_033 = 'Demo Directory';
 $LAN_CONFIGURATION_034 = 'The directory relative to the root of this webpage.  By default it is set to the demos folder.';
 $LAN_CONFIGURATION_035 = 'Demo Size Limit(MB)';
@@ -63,7 +64,7 @@ $LAN_CONFIGURATION_051 = "The message that banned users will see when they attem
 $LAN_CONFIGURATION_052 = 'Allow Admins to be Banned';
 $LAN_CONFIGURATION_053 = 'Set this to true to allow admins to ban other admins.';
 $LAN_CONFIGURATION_054 = 'Days to keep pending bans banned';
-$LAN_CONFIGURATION_055 = 'The number of days a ban in pending mode should be banned for.  This only applies to bans greater than 1 hour and issued by a member.  The ban will be no different from an inactive ban after this number of days if it is not removed from pending status.  Set to 0 to let anyone banned by a member for more than an hour to be able to rejoin instantly.';
+$LAN_CONFIGURATION_055 = "The number of days a ban in pending mode should be banned for.  This only applies to bans greater than 1 hour and issued by a member.  The ban will be no different from an inactive ban after this number of days if it is not removed from pending status.  Set to \'0\' to let anyone banned by a member for more than an hour to be able to rejoin instantly.";
 $LAN_CONFIGURATION_056 = 'Remove pending on demo upload';
 $LAN_CONFIGURATION_057 = 'Remove the pending status of a ban if a member uploads a demo for the pending ban.';
 $LAN_CONFIGURATION_058 = 'Hash Code';
@@ -91,5 +92,34 @@ $LAN_CONFIGURATION_079 = 'Access Denied.';
 $LAN_CONFIGURATION_080 = '';
 $LAN_CONFIGURATION_081 = '';
 $LAN_CONFIGURATION_082 = 'Generate';
+$LAN_CONFIGURATION_083 = 'Enable Web Link';
+$LAN_CONFIGURATION_084 = 'This will add a menu item that will go to your community website.';
+$LAN_CONFIGURATION_085 = 'Web Address';
+$LAN_CONFIGURATION_086 = 'Enter in the URL of your web if you have enabled the web link. Ex: http://www.yourdomain.com';
+$LAN_CONFIGURATION_087 = 'Enable HLstatsX Link';
+$LAN_CONFIGURATION_088 = 'This will add a link per each Steam_ID at Ban List, that will search it in your HLstatsX Community Edition (http://www.hlxcommunity.com/).';
+$LAN_CONFIGURATION_089 = 'HlstatsX Address';
+$LAN_CONFIGURATION_090 = 'Enter in the URL of your HlstatsX web if you have enabled the HlstatsX link. Ex: http://www.yourdomain.com/HlstatsX/';
+$LAN_CONFIGURATION_091 = 'Default Language';
+$LAN_CONFIGURATION_092 = 'The language they were shown by default to all visitors that do not specify one. Will also be used in the messages that are sent to game server.';
+$LAN_CONFIGURATION_093 = 'e107 Integration Settings';
+$LAN_CONFIGURATION_094 = 'Enable e107 Auto New Post';
+$LAN_CONFIGURATION_095 = 'If you have an e107 forum and want GlobalBan automatically create a new post in your forum e107 every time someone adds a new ban, select this option and set the rest of this section.';
+$LAN_CONFIGURATION_096 = 'e107 Web Address';
+$LAN_CONFIGURATION_097 = "Enter in the URL of your e107 web. Ex: \'http://www.your_e107_domain.com/\'";
+$LAN_CONFIGURATION_098 = "e107 Database Host";
+$LAN_CONFIGURATION_099 = "Set the e107 Database\'s host, normaly it\'s localhost.";
+$LAN_CONFIGURATION_100 = "e107 Table Prefix";
+$LAN_CONFIGURATION_101 = "The prefix of your e107 tables (normally \'e107_\' by default).";
+$LAN_CONFIGURATION_102 = "Database Username";
+$LAN_CONFIGURATION_103 = "MySQL user with access to the database used by e107.";
+$LAN_CONFIGURATION_104 = "e107 Username";
+$LAN_CONFIGURATION_105 = "e107 Registered User that we wish listed as author of the post GlobalBan generated. We introduce it using the format \'ID.Usuario\' for example \'5.Globalban\'.";
+$LAN_CONFIGURATION_106 = "Database Password";
+$LAN_CONFIGURATION_107 = "MySQL user´s Password to access e107 database.";
+$LAN_CONFIGURATION_108 = "ID Category Forum";
+$LAN_CONFIGURATION_109 = "For example if your Banned e107 Forum category link is \'http://www.youre107.com/e107_plugins/forum/forum_viewforum.php?19\' you must set it to \'19\'";
+$LAN_CONFIGURATION_110 = "Database Name";
+$LAN_CONFIGURATION_111 = "MySQL Database Name used by your e107 website.";
 
 ?>

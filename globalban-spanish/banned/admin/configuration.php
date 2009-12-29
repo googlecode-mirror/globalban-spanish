@@ -290,6 +290,17 @@ if(file_get_contents("http://code.google.com/p/globalban-spanish/source/list")) 
       <td class="rowColor1" width="1%" nowrap><input type="text" name="logo" value="<?php echo $config->siteLogo ?>" size="40" maxlength="100"/></td>
     </tr>
     <tr>
+      <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_083 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_084 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor2" width="1%" nowrap>
+        <select name="enableWebLink">
+          <option value="true"<?php if($config->enableWebLink) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_025 ?></option>
+          <option value="false"<?php if(!$config->enableWebLink) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_026 ?></option>
+        </select>
+      </td>
+      <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_085 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_086 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor2" width="1%" nowrap><input type="text" name="webUrl" value="<?php echo $config->webUrl ?>" size="40" maxlength="255"/></td>
+    </tr>
+    <tr>
       <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_023 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_024 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor2" width="1%" nowrap>
         <select name="enableForumLink">
@@ -299,6 +310,17 @@ if(file_get_contents("http://code.google.com/p/globalban-spanish/source/list")) 
       </td>
       <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_027 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_028 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor2" width="1%" nowrap><input type="text" name="forumURL" value="<?php echo $config->forumURL ?>" size="40" maxlength="255"/></td>
+    </tr>
+    <tr>
+      <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_087 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_088 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor2" width="1%" nowrap>
+        <select name="enableHLstatsLink">
+          <option value="true"<?php if($config->enableHLstatsLink) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_025 ?></option>
+          <option value="false"<?php if(!$config->enableHLstatsLink) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_026 ?></option>
+        </select>
+      </td>
+      <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_089 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_090 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor2" width="1%" nowrap><input type="text" name="HLstatsUrl" value="<?php echo $config->HLstatsUrl ?>" size="40" maxlength="255"/></td>
     </tr>
     <tr>
       <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_029 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_030 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
@@ -321,11 +343,17 @@ if(file_get_contents("http://code.google.com/p/globalban-spanish/source/list")) 
     <tr>
       <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_037 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_038 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor1" width="1%" nowrap>
-        <input type="text" id="createUserCode" name="createUserCode" value="<?php echo $config->createUserCode ?>" size="20" maxlength="30" onkeyup="removeSpecialCharacters(this)"/>
+        <input type="text" id="createUserCode" name="createUserCode" value="<?php echo $config->createUserCode ?>" size="40" maxlength="40" onkeyup="removeSpecialCharacters(this)"/>
         <img src="images/warning.png" id="createUserCodeWarn" style="display:none"/>
       </td>
-      <td class="rowColor1" width="1%" nowrap></td>
-      <td class="rowColor1" width="1%" nowrap></td>
+      <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_091 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_092 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor2" width="1%" nowrap>
+        <select name="LANGUAGE">
+          <option value="English"<?php if($config->LANGUAGE == "English") echo " selected"; ?>>English</option>
+          <option value="Spanish"<?php if($config->LANGUAGE == "Spanish") echo " selected"; ?>>Spanish</option>
+          <option value="French"<?php if($config->LANGUAGE == "French") echo " selected"; ?>>French</option>
+        </select>
+      </td>
     </tr>
     <tr>
       <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_039 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_040 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
@@ -480,6 +508,76 @@ if(file_get_contents("http://code.google.com/p/globalban-spanish/source/list")) 
       <td class="rowColor1" width="1%" nowrap>
         <input type="text" id="smfNoPowerGroup" name="smfNoPowerGroup" value="<?php echo $config->noPowerGroup ?>" size="10" maxlength="5" onkeyup="removeCharacters(this)"/>
         <img src="images/warning.png" id="smfNoPowerGroupWarn" style="display:none"/>
+      </td>
+      <td class="rowColor1" width="1%" nowrap></td>
+      <td class="rowColor1" width="1%" nowrap></td>
+    </tr>
+    </table>
+  </div>
+  
+  <br/>
+
+  <div class="tborder">
+    <div id="tableHead">
+      <div><b><?php echo $LAN_CONFIGURATION_093 ?></b></div>
+    </div>
+
+    <table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
+    <tr>
+      <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_094 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_095 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" nowrap>
+        <select id="enableAutoPoste107Forum" name="enableAutoPoste107Forum">
+          <option value="true"<?php if($config->enableAutoPoste107Forum) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_025 ?></option>
+          <option value="false"<?php if(!$config->enableAutoPoste107Forum) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_026 ?></option>
+        </select>
+      </td>
+      <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_096 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_097 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" nowrap>
+        <input type="text" id="e107Url" name="e107Url" value="<?php echo $config->e107Url ?>" size="40" maxlength="255"/>
+        <img src="images/warning.png" id="e107UrlWarn" style="display:none"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_098 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_099 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor2" width="1%" nowrap>
+        <input type="text" id="e107_dbHostName" name="e107_dbHostName" value="<?php echo $config->e107_dbHostName ?>" size="40" maxlength="255"/>
+        <img src="images/warning.png" id="e107_dbHostNameWarn" style="display:none"/>
+      </td>
+      <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_100 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_101 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor2" width="1%" nowrap>
+        <input type="text" id="e107TablePrefix" name="e107TablePrefix" value="<?php echo $config->e107TablePrefix ?>" size="30" maxlength="15"/>
+        <img src="images/warning.png" id="e107TablePrefixWarn" style="display:none"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_102 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_103 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" nowrap>
+        <input type="text" id="e107_dbUserName" name="e107_dbUserName" value="<?php echo $config->e107_dbUserName ?>" size="40" maxlength="255"/>
+        <img src="images/warning.png" id="e107_dbUserNameWarn" style="display:none"/>
+      </td>
+      <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_104 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_105 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" nowrap>
+        <input type="text" id="e107_GlobalBan_user" name="e107_GlobalBan_user" value="<?php echo $config->e107_GlobalBan_user ?>" size="30" maxlength="255"/>
+        <img src="images/warning.png" id="e107_GlobalBan_userWarn" style="display:none"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_106 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_107 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" nowrap>
+        <input type="text" id="e107_dbPassword" name="e107_dbPassword" value="<?php echo $config->e107_dbPassword ?>" size="40" maxlength="255"/>
+        <img src="images/warning.png" id="e107_dbPasswordWarn" style="display:none"/>
+      </td>
+      <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_108 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_109 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" nowrap>
+        <input type="text" id="e107_bans_forum_category_number" name="e107_bans_forum_category_number" value="<?php echo $config->e107_bans_forum_category_number ?>" size="15" maxlength="255" onkeyup="removeCharacters(this)"/>
+        <img src="images/warning.png" id="e107_bans_forum_category_numberWarn" style="display:none"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_110 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_111 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" nowrap>
+        <input type="text" id="e107_dbName" name="e107_dbName" value="<?php echo $config->e107_dbName ?>" size="40" maxlength="255"/>
+        <img src="images/warning.png" id="e107_dbNameWarn" style="display:none"/>
       </td>
       <td class="rowColor1" width="1%" nowrap></td>
       <td class="rowColor1" width="1%" nowrap></td>

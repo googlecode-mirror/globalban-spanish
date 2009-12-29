@@ -113,14 +113,14 @@ if($hash == $config->matchHash) {
     // Now kick the user
     kickUser($steamId, $serverId, $menssageTOplayer ,$menssageTOserver);
 
-    if($configOdonel->enableAutoPoste107Forum) {
+    if($config->enableAutoPoste107Forum) {
 
       // Use this to build the URL link (replace processServerBan with updateBan)
       $url = "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
       $url = str_replace("processServerBan", "banlist", $url);
 
-      $postId = NewPostForum_e107(addslashes($nameOfBanned)." - ".addslashes($steamId),"[b]".$LAN_PROCESSBAN_001.":[/b] [color=#009900]".addslashes($username)."[/color]\r\n\r\n[b]".$LAN_PROCESSBAN_002.": [/b][color=#990000][link=".$url."&searchText=".addslashes($steamId)."]".addslashes($nameOfBanned)." - ".addslashes($steamId)."[/link][/color]\r\n\r\n[b]".$LAN_PROCESSBAN_003.":[/b] ".$motivo."\r\n\r\n[b]".$LAN_PROCESSBAN_004.":[/b] ".$length->getReadable(), time(), $configOdonel);
-      UpdateBanWebpage ($postId , $banId, $configOdonel);
+      $postId = NewPostForum_e107(addslashes($nameOfBanned)." - ".addslashes($steamId),"[b]".$LAN_PROCESSBAN_001.":[/b] [color=#009900]".addslashes($username)."[/color]\r\n\r\n[b]".$LAN_PROCESSBAN_002.": [/b][color=#990000][link=".$url."&searchText=".addslashes($steamId)."]".addslashes($nameOfBanned)." - ".addslashes($steamId)."[/link][/color]\r\n\r\n[b]".$LAN_PROCESSBAN_003.":[/b] ".$motivo."\r\n\r\n[b]".$LAN_PROCESSBAN_004.":[/b] ".$length->getReadable(), time(), $config);
+      UpdateBanWebpage ($postId , $banId, $config);
 	}
   }
   
@@ -145,8 +145,8 @@ if($hash == $config->matchHash) {
       $body .= "\n\n";
       $body .= $LAN_PROCESSBAN_009.": <a href='".$url."&banId=".$banId."'>".$LAN_PROCESSBAN_010."</a>";
       $body .= "<p>".$bannedName." (".$steamId.") ".$LAN_PROCESSBAN_011."</p>";  
-	  if($configOdonel->enableAutoPoste107Forum) {
-	    $body .= "<p>".$LAN_PROCESSBAN_012.": <a href='".$configOdonel->e107Url."e107_plugins/forum/forum_viewtopic.php?".$postId."'>Link</a></p>";
+	  if($config->enableAutoPoste107Forum) {
+	    $body .= "<p>".$LAN_PROCESSBAN_012.": <a href='".$config->e107Url."e107_plugins/forum/forum_viewtopic.php?".$postId."'>Link</a></p>";
       }
       $body .= "</body></html>";
       
@@ -186,17 +186,17 @@ function kickUser($steamId, $serverId, $menssageTOplayer ,$menssageTOserver) {
   }
 }
 
-function NewPostForum_e107($TituloPost, $AsuntoPost, $now, $configOdonel) {
+function NewPostForum_e107($TituloPost, $AsuntoPost, $now, $config) {
 
 	// Connecting, selecting database
-    $link = mysql_connect($configOdonel->e107_dbHostName, $configOdonel->e107_dbUserName, $configOdonel->e107_dbPassword)
+    $link = mysql_connect($config->e107_dbHostName, $config->e107_dbUserName, $config->e107_dbPassword)
 	    or die('No se pudo conectar a la BD_e107: ' . mysql_error());
 	echo 'Connected successfully';
-	mysql_select_db($configOdonel->e107_dbName) or die('Could not select database');
+	mysql_select_db($config->e107_dbName) or die('Could not select database');
 	
 	// Performing SQL query
-	$query = "INSERT INTO `".$configOdonel->e107TablePrefix."forum_t` (`thread_id`, `thread_name`, `thread_thread`, `thread_forum_id`, `thread_datestamp`, `thread_parent`, `thread_user`, `thread_views`, `thread_active`, `thread_lastpost`, `thread_s`, `thread_edit_datestamp`, `thread_lastuser`, `thread_total_replies`) ";
-	$query .= "VALUES (NULL, '".$TituloPost."', '".$AsuntoPost."', '".$configOdonel->e107_bans_forum_category_number."', '".$now."', '0', '".$configOdonel->e107_GlobalBan_user."', '0', '1', '".$now."', '0', '0', '', '0')";
+	$query = "INSERT INTO `".$config->e107TablePrefix."forum_t` (`thread_id`, `thread_name`, `thread_thread`, `thread_forum_id`, `thread_datestamp`, `thread_parent`, `thread_user`, `thread_views`, `thread_active`, `thread_lastpost`, `thread_s`, `thread_edit_datestamp`, `thread_lastuser`, `thread_total_replies`) ";
+	$query .= "VALUES (NULL, '".$TituloPost."', '".$AsuntoPost."', '".$config->e107_bans_forum_category_number."', '".$now."', '0', '".$config->e107_GlobalBan_user."', '0', '1', '".$now."', '0', '0', '', '0')";
 	
 	mysql_query($query) or die('Query failed: ' . mysql_error());
 	
@@ -208,10 +208,10 @@ function NewPostForum_e107($TituloPost, $AsuntoPost, $now, $configOdonel) {
 	return $insertId;
 }
 
-function UpdateBanWebpage ($postId , $banId, $configOdonel){
+function UpdateBanWebpage ($postId , $banId, $config){
 	
 	$banQueries = new BanQueries();
-    $banQueries->updateBanWebpage ($configOdonel->e107Url."e107_plugins/forum/forum_viewtopic.php?".$postId , $banId);
+    $banQueries->updateBanWebpage ($config->e107Url."e107_plugins/forum/forum_viewtopic.php?".$postId , $banId);
 
 }
 ?>
