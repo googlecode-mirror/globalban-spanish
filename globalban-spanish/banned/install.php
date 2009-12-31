@@ -113,16 +113,14 @@ if($step == 3) {
       $logo = "logo.png";
     }
 
-    $emailCount = $_POST['emailCount']-1;
+    $emails = explode("\n", $_POST['emails']);
     $emailList = "";
 
     // Generate the list of Ban Manager Emails
-    for($i=0; $i<$emailCount; $i++) {
-      $inputName = "email".($i+1);
-      $email = $_POST[$inputName];
-      if(!empty($email)) {
-        $emailList .= "\"".$email."\"";
-        if($i < $emailCount-1) {
+    for($i=0; $i<count($emails); $i++) {
+      if(!empty($emails[$i])) {
+        $emailList .= "\"".str_replace(array("\r\n", "\n", "\r"), "", $emails[$i])."\"";
+        if($i < count($emails)-1) {
           $emailList .= ", ";
         }
       }
@@ -130,7 +128,7 @@ if($step == 3) {
 
     // Generate the php config file
     // We have it aligned to the right so that extra white space does not get into the final file
-    $configData = "<?php
+$configData = "<?php
 /**
  *  This makes it easier to include configuration variables to other classes
  *  by simply extending the class with the Config class.  Any new variables that
@@ -147,6 +145,7 @@ class Config {
   /**
    * Site specific settings
    */
+  var $"."LANGUAGE = \"".$_POST['LANGUAGE']."\"; // Default Language (English, Spanish, French, ...)   
   var $"."bansPerPage = ".$_POST['bansPerPage']."; // Number of bans to display on ban list page for each page (-1 show all)
   var $"."maxPageLinks = ".$_POST['numPageLinks']."; // Number of links to show before and after selected page (IE: set at 2 you would see 1 2 ... 10 11 [12] 13 14 ... 23 24)
   var $"."demoRootDir = \"".$_POST['demoDir']."\"; // Folder to save demos to (folder must be relative to banned dir)
@@ -171,6 +170,19 @@ class Config {
   var $"."noPowerGroup = ".$_POST['smfNoPowerGroup']."; // The SMF group id that has no power unless given by an admin group
 
   /**
+   * e107 integration settings
+   */
+  var $"."enableAutoPoste107Forum = ".$_POST['enableAutoPoste107Forum'].";  // Whether to enable e107 integration, just generate Auto-Post in the e107 Forum with each new ban.
+  var $"."e107TablePrefix = \"".$_POST['e107TablePrefix']."\"; // The prefix of the e107 tables
+  var $"."e107Url = \"".$_POST['e107Url']."\"; // Your e107 web site Ej: \"http://www.e107.com/\"
+  var $"."e107_dbName = \"".$_POST['e107_dbName']."\"; //  Set the e107 Database Name to access
+  var $"."e107_dbUserName = \"".$_POST['e107_dbUserName']."\";  // Set the Database's user name login (recommend a user with only select and insert privs)
+  var $"."e107_dbPassword = \"".$_POST['e107_dbPassword']."\";  // Set the Database user's password login
+  var $"."e107_dbHostName = \"".$_POST['e107_dbHostName']."\";  // Set the Database's host
+  var $"."e107_bans_forum_category_number = \"".$_POST['e107_bans_forum_category_number']."\";  //  For example if your Banned forum category link is http://www.youre107.com/e107_plugins/forum/forum_viewforum.php?19 you must set it to \"19\"
+  var $"."e107_GlobalBan_user = \"".$_POST['e107_GlobalBan_user']."\";  // e107 user to use like post owner, format must be \"user_number_ID.user_name\", Ex: \"5.GlobalBan\"
+
+  /**
    * Ban specific settings
    */
   var $"."banMessage = \"".str_replace("$", "\\$", $_POST['banMessage'])."\"; // Message to display to those banned
@@ -186,6 +198,20 @@ class Config {
    */
   var $"."enableForumLink = ".$_POST['enableForumLink'].";
   var $"."forumURL = \"".$_POST['forumURL']."\"; // Link to your forums
+  
+  /**
+   * Web Settings
+   * Very simple web integration (Just adds a link button)
+   */
+  var $"."enableWebLink = ".$_POST['enableWebLink'].";
+  var $"."webUrl = \"".$_POST['webUrl']."\"; // Link to your forums
+  
+  /**
+   * HLstatsX Settings
+   * Very simple web integration (Just adds a link button)
+   */
+  var $"."enableHLstatsLink = ".$_POST['enableHLstatsLink'].";
+  var $"."HLstatsUrl = \"".$_POST['HLstatsUrl']."\"; // Link to your forums
 
   /**
    * Database Block
@@ -601,15 +627,37 @@ function hideShowSuperUserBlock() {
       <td class="rowColor1" width="1%" nowrap><input type="text" name="logo" value="logo.png" size="40" maxlength="100"/></td>
     </tr>
     <tr>
-      <td class="rowColor2" width="1%" nowrap>Enable Forum Link <img src="images/help.png" style="cursor:help" onmouseover="Tip('This will add a menu item that will go to your community forum.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor2" width="1%" nowrap>Enable Web Link <img src="images/help.png" style="cursor:help" onmouseover="Tip('This will add a menu item that will go to your community website.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor2" width="1%" nowrap>
-        <select name="enableForumLink">
-          <option value="true"<?php if($config->enableForumLink) echo " selected"; ?>>Yes</option>
-          <option value="false"<?php if(!$config->enableForumLink) echo " selected"; ?>>No</option>
+        <select name="enableWebLink">
+          <option value="true" selected>Yes</option>
+          <option value="false">No</option>
         </select>
       </td>
-      <td class="rowColor2" width="1%" nowrap>Forum Address <img src="images/help.png" style="cursor:help" onmouseover="Tip('Enter in the URL of your forum if you have enabled the forum link.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
-      <td class="rowColor2" width="1%" nowrap><input type="text" name="forumURL" value="<?php echo $config->forumURL?>" size="40" maxlength="255"/></td>
+      <td class="rowColor2" width="1%" nowrap>Web Address <img src="images/help.png" style="cursor:help" onmouseover="Tip('Enter in the URL of your web if you have enabled the web link. Ex: http://www.yourdomain.com', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor2" width="1%" nowrap><input type="text" name="webUrl" value="http://www.yourdomain.com" size="50" maxlength="255"/></td>
+    </tr>
+    <tr>
+      <td class="rowColor1" width="1%" nowrap>Enable Forum Link <img src="images/help.png" style="cursor:help" onmouseover="Tip('This will add a menu item that will go to your community forum.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" nowrap>
+        <select name="enableForumLink">
+          <option value="true" selected>Yes</option>
+          <option value="false">No</option>
+        </select>
+      </td>
+      <td class="rowColor1" width="1%" nowrap>Forum Address <img src="images/help.png" style="cursor:help" onmouseover="Tip('Enter in the URL of your forum if you have enabled the forum link.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" nowrap><input type="text" name="forumURL" value="http://www.yourdomain.com/forum/" size="50" maxlength="255"/></td>
+    </tr>
+    <tr>
+      <td class="rowColor2" width="1%" nowrap>Enable HLstatsX Link <img src="images/help.png" style="cursor:help" onmouseover="Tip('This will add a link per each Steam_ID at Ban List, that will search it in your HLstatsX Community Edition (http://www.hlxcommunity.com/).', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor2" width="1%" nowrap>
+        <select name="enableHLstatsLink">
+          <option value="true" selected>Yes</option>
+          <option value="false">No</option>
+        </select>
+      </td>
+      <td class="rowColor2" width="1%" nowrap>HlstatsX Address <img src="images/help.png" style="cursor:help" onmouseover="Tip('Enter in the URL of your HlstatsX web if you have enabled the HlstatsX link. Ex: http://www.yourdomain.com/HlstatsX/', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor2" width="1%" nowrap><input type="text" name="HLstatsUrl" value="http://www.yourweb.com/HLstats/" size="50" maxlength="255"/></td>
     </tr>
     <tr>
       <td class="rowColor1" width="1%" nowrap>Bans Per Page <img src="images/help.png" style="cursor:help" onmouseover="Tip('This sets the number of bans to be displayed per page on the ban list page.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
@@ -635,8 +683,14 @@ function hideShowSuperUserBlock() {
         <input type="text" id="createUserCode" name="createUserCode" value="" size="20" maxlength="30" onkeyup="removeSpecialCharacters(this)"/>
         <img src="images/warning.png" id="createUserCodeWarn" style="display:none"/>
       </td>
-      <td class="rowColor1" width="1%" nowrap></td>
-      <td class="rowColor1" width="1%" nowrap></td>
+      <td class="rowColor1" width="1%" nowrap>Default Language <img src="images/help.png" style="cursor:help" onmouseover="Tip('The language they were shown by default to all visitors that do not specify one. Will also be used in the messages that are sent to game server.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" nowrap>
+        <select name="LANGUAGE">
+          <option value="English" selected>English</option>
+          <option value="Spanish">Spanish</option>
+          <option value="French">French</option>
+        </select>
+      </td>
     </tr>
     <tr>
       <td class="rowColor2" width="1%" nowrap>Send Emails On Ban <img src="images/help.png" style="cursor:help" onmouseover="Tip('If yes, all emails listed below will recieve an email when a new ban is added.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
@@ -683,9 +737,9 @@ function hideShowSuperUserBlock() {
 
     <table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
     <tr>
-      <td class="rowColor1" width="1%" nowrap>Ban Message <img src="images/help.png" style="cursor:help" onmouseover="Tip('The message that banned users will see when they attempt to connect to your servers.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" nowrap>Ban Message <img src="images/help.png" style="cursor:help" onmouseover="Tip('The message that banned users will see when they attempt to connect to your servers. Use the Var \'gb_time\' to add the lenght of the ban in the message, example: You are banned gb_time. Visit www.yourweb.com/banned/ for more info.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor1" nowrap>
-        <input type="text" id="banMessage" name="banMessage" value="You are banned. Appeal at yourdomain.com" size="60" maxlength="255" onkeyup="removeSpecialCharacters(this)"/>
+        <input type="text" id="banMessage" name="banMessage" value="You are banned gb_time. Appeal at yourdomain.com" size="60" maxlength="255" onkeyup="removeSpecialCharacters(this)"/>
         <img src="images/warning.png" id="banMessageWarn" style="display:none"/>
       </td>
       <td class="rowColor2" width="1%" nowrap>Allow Admins to be Banned <img src="images/help.png" style="cursor:help" onmouseover="Tip('Set this to true to allow admins to ban other admins.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
@@ -715,7 +769,7 @@ function hideShowSuperUserBlock() {
       <td class="rowColor2" width="1%" nowrap>
         <input type="text" id="hash" name="hash" value="" size="40" maxlength="255" onkeyup="removeSpecialCharacters(this)"/>
         <img src="images/warning.png" id="hashWarn" style="display:none"/>
-        <input type="button" value="Generate" onclick="generateHash()">
+        <input type="button" value="Auto-Generate" onclick="generateHash()">
       </td>
       <td class="rowColor2" width="1%" nowrap>Teach Admins <img src="images/help.png" style="cursor:help" onmouseover="Tip('Set this to yes if you wish to display the \'Type !banmenu\' message after a member/admin dies.  This is to teach or remind members how to ban.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor2" nowrap>
@@ -777,6 +831,78 @@ function hideShowSuperUserBlock() {
       <td class="rowColor1" width="1%" nowrap>
         <input type="text" id="smfNoPowerGroup" name="smfNoPowerGroup" value="0" size="10" maxlength="5" onkeyup="removeCharacters(this)"/>
         <img src="images/warning.png" id="smfNoPowerGroupWarn" style="display:none"/>
+      </td>
+      <td class="rowColor1" width="1%" nowrap></td>
+      <td class="rowColor1" width="1%" nowrap></td>
+      <td class="rowColor1" width="1%" nowrap></td>
+      <td class="rowColor1" width="1%" nowrap></td>
+    </tr>
+    </table>
+  </div>
+
+<br/>
+
+  <div class="tborder">
+    <div id="tableHead">
+      <div><b>e107 Integration Settings</b></div>
+    </div>
+
+    <table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
+    <tr>
+      <td class="rowColor1" width="1%" nowrap>Enable e107 Auto New Post <img src="images/help.png" style="cursor:help" onmouseover="Tip('If you have an e107 forum and want GlobalBan automatically create a new post in your forum e107 every time someone adds a new ban, select this option and set the rest of this section.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" nowrap>
+        <select id="enableAutoPoste107Forum" name="enableAutoPoste107Forum">
+          <option value="true">Yes</option>
+          <option value="false" selected>No</option>
+        </select>
+      </td>
+      <td class="rowColor1" width="1%" nowrap>e107 Web Address <img src="images/help.png" style="cursor:help" onmouseover="Tip('Enter in the URL of your e107 web. Ex: \'http://www.your_e107_domain.com/\'', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" nowrap>
+        <input type="text" id="e107Url" name="e107Url" value="http://www.your_e107_web.com/" size="40" maxlength="255"/>
+        <img src="images/warning.png" id="e107UrlWarn" style="display:none"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="rowColor2" width="1%" nowrap>e107 Database Host <img src="images/help.png" style="cursor:help" onmouseover="Tip('Set the e107 Database\'s host, normaly it\'s localhost.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor2" width="1%" nowrap>
+        <input type="text" id="e107_dbHostName" name="e107_dbHostName" value="localhost" size="40" maxlength="255"/>
+        <img src="images/warning.png" id="e107_dbHostNameWarn" style="display:none"/>
+      </td>
+      <td class="rowColor2" width="1%" nowrap>e107 Table Prefix <img src="images/help.png" style="cursor:help" onmouseover="Tip('The prefix of your e107 tables (normally \'e107_\' by default).', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor2" width="1%" nowrap>
+        <input type="text" id="e107TablePrefix" name="e107TablePrefix" value="e107_" size="30" maxlength="15"/>
+        <img src="images/warning.png" id="e107TablePrefixWarn" style="display:none"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="rowColor1" width="1%" nowrap>Database Username <img src="images/help.png" style="cursor:help" onmouseover="Tip('MySQL user with access to the database used by e107.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" nowrap>
+        <input type="text" id="e107_dbUserName" name="e107_dbUserName" value="db_e107_UserName" size="40" maxlength="255"/>
+        <img src="images/warning.png" id="e107_dbUserNameWarn" style="display:none"/>
+      </td>
+      <td class="rowColor1" width="1%" nowrap>e107 Username <img src="images/help.png" style="cursor:help" onmouseover="Tip('e107 Registered User that we wish listed as author of the post GlobalBan generated. We introduce it using the format \'ID.UserName\' for example \'5.Globalban\'.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" nowrap>
+        <input type="text" id="e107_GlobalBan_user" name="e107_GlobalBan_user" value="5.GlobalBan" size="30" maxlength="255"/>
+        <img src="images/warning.png" id="e107_GlobalBan_userWarn" style="display:none"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="rowColor2" width="1%" nowrap>Database Password <img src="images/help.png" style="cursor:help" onmouseover="Tip('MySQL Password to access e107 database.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor2" width="1%" nowrap>
+        <input type="text" id="e107_dbPassword" name="e107_dbPassword" value="db_e107_Password" size="40" maxlength="255"/>
+        <img src="images/warning.png" id="e107_dbPasswordWarn" style="display:none"/>
+      </td>
+      <td class="rowColor2" width="1%" nowrap>ID Category Forum <img src="images/help.png" style="cursor:help" onmouseover="Tip('For example if your Banned e107 Forum category link is \'http://www.youre107.com/e107_plugins/forum/forum_viewforum.php?19\' you must set it to \'19\'', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor2" width="1%" nowrap>
+        <input type="text" id="e107_bans_forum_category_number" name="e107_bans_forum_category_number" value="1" size="15" maxlength="255" onkeyup="removeCharacters(this)"/>
+        <img src="images/warning.png" id="e107_bans_forum_category_numberWarn" style="display:none"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="rowColor1" width="1%" nowrap>Database Name <img src="images/help.png" style="cursor:help" onmouseover="Tip('MySQL Database Name used by your e107 website.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" nowrap>
+        <input type="text" id="e107_dbName" name="e107_dbName" value="db_e107" size="40" maxlength="255"/>
+        <img src="images/warning.png" id="e107_dbNameWarn" style="display:none"/>
       </td>
       <td class="rowColor1" width="1%" nowrap></td>
       <td class="rowColor1" width="1%" nowrap></td>

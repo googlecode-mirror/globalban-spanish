@@ -170,7 +170,7 @@ if($endRange > $banCount) {
   <input type="hidden" name="bf" size=2 value="<?php echo $bansFilter?>">
   <input type="hidden" name="bri" size=2 value="<?php echo $bansReason_id?>"> 
   <input type="hidden" name="ba" size=2 value="<?php echo $bansAdmin?>"> 
-  <input type="submit" value="<?php echo $LANINS_001?>">
+  <input type="submit" value="<?php echo $LAN_BANLIST_001?>">
   </form>
   </div>
 
@@ -179,48 +179,48 @@ if(count($bannedUsers) > 0) {
   ?>
   <div class="tborder">
     <div id="tableHead">
-      <div><b><?php echo $LANINS_002?>
+      <div><b><?php echo $LAN_BANLIST_002?>
 <?php
   if(!empty($bansFilter)) {
 	  switch ($bansFilter) {
 	    case 1:
 			?>
-			 <span class="longSelect"> <?php echo $LANINS_003?> </span>
+			 <span class="longSelect"> <?php echo $LAN_BANLIST_003?> </span>
 			<?php
 	        break;
 	    case 2:
 			?>
-			 <span class="longSelect"> <?php echo $LANINS_004?> </span>
+			 <span class="longSelect"> <?php echo $LAN_BANLIST_004?> </span>
 			<?php
 	        break;
 	    case 3:
 			?>
-			 <span class="longSelect"> <?php echo $LANINS_005?> </span>
+			 <span class="longSelect"> <?php echo $LAN_BANLIST_005?> </span>
 			<?php
 	        break;
 		case 4:
 			?>
-			 <span class="longSelect"> <?php echo $LANINS_006?> </span>
+			 <span class="longSelect"> <?php echo $LAN_BANLIST_006?> </span>
 			<?php
 	        break;
 	  }
   } 
 ?>
-  <?php echo $LANINS_007?>
+  <?php echo $LAN_BANLIST_007?>
 <?php
   if(!empty($bansAdmin)) {
 ?>
-  <?php echo $LANINS_008?> <span class="adminSelect"><?php echo $bansAdmin?></span> 
+  <?php echo $LAN_BANLIST_008?> <span class="adminSelect"><?php echo $bansAdmin?></span> 
 <?php
   }
   if(!empty($bansReason_id)) {
     $reasonQueries = new ReasonQueries();
 ?>
-  <?php echo $LANINS_009?> <span class="reasonSelect"><?php echo $reasonQueries->getReason($bansReason_id);?></span> 
+  <?php echo $LAN_BANLIST_009?> <span class="reasonSelect"><?php echo $reasonQueries->getReason($bansReason_id);?></span> 
 <?php
   }
 ?>
- <?php echo $LANINS_010.number_format(($startRange+1), 0, ",", ".")." ".$LANINS_011.number_format($endRange, 0, ",", ".")." ".$LANINS_012.number_format($banCount, 0, ",", ".")?></b></div>
+ <?php echo $LAN_BANLIST_010.number_format(($startRange+1), 0, ",", ".")." ".$LAN_BANLIST_011.number_format($endRange, 0, ",", ".")." ".$LAN_BANLIST_012.number_format($banCount, 0, ",", ".")?></b></div>
       <div>
         <?php pageLinks($config, $startRange, $banCount, $sortDirection, $sortBy, $searchText, $bansFilter, $bansReason_id, $bansAdmin, $LANGUAGE); ?>
       </div>
@@ -232,25 +232,25 @@ if(count($bannedUsers) > 0) {
     <tr>
       <th class="colColor1" width="1%" nowrap>
         <div align="center"><a href="index.php?page=banlist&sc=b.steam_id&sd=ASC&sr=<?php echo $startRange?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
-          <?php echo $LANINS_013?>
+          <?php echo $LAN_BANLIST_013?>
         <a href="index.php?page=banlist&sc=b.steam_id&sd=DESC&sr=<?php echo $startRange?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
       <th class="colColor2" width="1%" nowrap>
         <div align="center"><a href="index.php?page=banlist&sc=name&sd=ASC&sr=<?php echo $startRange?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
-          <?php echo $LANINS_014?>
+          <?php echo $LAN_BANLIST_014?>
         <a href="index.php?page=banlist&sc=name&sd=DESC&sr=<?php echo $startRange?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
 	  <th class="colColor1" width="1%" nowrap>
         <div align="center"><a href="index.php?page=banlist&sc=length&sd=ASC&sr=<?php echo $startRange?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
-          <?php echo $LANINS_016?>
+          <?php echo $LAN_BANLIST_016?>
         <a href="index.php?page=banlist&sc=length&sd=DESC&sr=<?php echo $startRange?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
       <th class="colColor2" width="1%" nowrap><div align="center"><a href="index.php?page=banlist&sc=banner&sd=ASC&sr=<?php echo $startRange?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>Admin
         <a href="index.php?page=banlist&sc=banner&sd=DESC&sr=<?php echo $startRange?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
       <th class="colColor1" width="1%" nowrap>
         <div align="center"><a href="index.php?page=banlist&sc=add_date&sd=ASC&sr=<?php echo $startRange?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
-          <?php echo $LANINS_018?>
+          <?php echo $LAN_BANLIST_018?>
         <a href="index.php?page=banlist&sc=add_date&sd=DESC&sr=<?php echo $startRange?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
       <th class="colColor2" width="1%" nowrap>
         <div align="center"><a href="index.php?page=banlist&sc=b.reason_id&sd=ASC&sr=<?php echo $startRange?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png"/></a>
-          <?php echo $LANINS_020?>
+          <?php echo $LAN_BANLIST_020?>
         <a href="index.php?page=banlist&sc=b.reason_id&sd=DESC&sr=<?php echo $startRange?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png"/></a> </div></th>
       <th class="colColor1" width="1%" nowrap>
         <div align="center">Post</div></th>
@@ -260,17 +260,17 @@ if(count($bannedUsers) > 0) {
         ?>
         <th class="colColor2" width="1%" nowrap>
           <div align="center"><a href="index.php?page=banlist&sc=active&sd=ASC&sr=<?php echo $startRange?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
-		  <?php echo $LANINS_021?>
+		  <?php echo $LAN_BANLIST_021?>
           <a href="index.php?page=banlist&sc=active&sd=DESC&sr=<?php echo $startRange?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
         <th class="colColor1" width="1%" nowrap>
           <div align="center"><a href="index.php?page=banlist&sc=pending&sd=ASC&sr=<?php echo $startRange?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
-          <?php echo $LANINS_022?>
+          <?php echo $LAN_BANLIST_022?>
           <a href="index.php?page=banlist&sc=pending&sd=DESC&sr=<?php echo $startRange?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/>        </div></th>
       	<?php
 		if($fullPower) {
           ?>
 		  <th class="colColor2" width="1%" nowrap>
-        <div align="center"><?php echo $LANINS_037?></div></th>
+        <div align="center"><?php echo $LAN_BANLIST_037?></div></th>
 		<?php
       	}
       	?>
@@ -288,7 +288,7 @@ if(count($bannedUsers) > 0) {
       if($expireDate != 'Expired') {
         list($expireDate, $expireTime) = split(' ', $bannedUser->getExpireDate());
       } else {
-        $expireDate = "<i>".$LANINS_023."</i>";
+        $expireDate = "<i>".$LAN_BANLIST_023."</i>";
       }
       list($addDate, $addTime, $year) = split(' ', $bannedUser->getAddDate());
       $comments = str_replace(array("\r\n", "\n", "\r"), "<br>", $bannedUser->getComments()); // Convert newlines into html line breaks
@@ -300,7 +300,7 @@ if(count($bannedUsers) > 0) {
       $banLength->setTimeScale($bannedUser->getTimeScale());
       
       if($bannedUser->getLength() == 0) {
-        $expireDate = $LANINS_024;
+        $expireDate = $LAN_BANLIST_024;
         $expireTime = "";
       }
       
@@ -308,32 +308,32 @@ if(count($bannedUsers) > 0) {
       
       $information = "<div class='tborder'>";
       $information .= "<div id='tableHead'>";
-      $information .= "<div style='color:#FFFFFF'><b>".$LANINS_026."</b></div>";
+      $information .= "<div style='color:#FFFFFF'><b>".$LAN_BANLIST_026."</b></div>";
       $information .= "</div>";
       $information .= "<table class='bordercolor' width='100%'' cellspacing='1' cellpadding='5' border='0' style='margin-top: 1px;'>";
-      $information .= "<tr class='rowColor1'><td>".$LANINS_013.":</td><td>".$bannedUser->getSteamId()."</td></tr>";
-      $information .= "<tr class='rowColor2'><td>".$LANINS_014.":</td><td>".str_replace('"', "&#34;", $bannedUser->getName())."</td></tr>";
-      $information .= "<tr class='rowColor1'><td>".$LANINS_016.":</td><td>".$length."</td></tr>";
-      $information .= "<tr class='rowColor2'><td>".$LANINS_017.":</td><td>".str_replace('"', "&#34;", $bannedUser->getBanner())."</td></tr>";
-      $information .= "<tr class='rowColor1'><td>".$LANINS_018.":</td><td>".$bannedUser->getAddDate()."</td></tr>";
-      $information .= "<tr class='rowColor2'><td>".$LANINS_019.":</td><td>".$expireDate." ".$expireTime."</td></tr>";
-      $information .= "<tr class='rowColor1'><td>".$LANINS_020.":</td><td>".$bannedUser->getReason()."</td></tr>";
+      $information .= "<tr class='rowColor1'><td>".$LAN_BANLIST_013.":</td><td>".$bannedUser->getSteamId()."</td></tr>";
+      $information .= "<tr class='rowColor2'><td>".$LAN_BANLIST_014.":</td><td>".str_replace('"', "&#34;", $bannedUser->getName())."</td></tr>";
+      $information .= "<tr class='rowColor1'><td>".$LAN_BANLIST_016.":</td><td>".$length."</td></tr>";
+      $information .= "<tr class='rowColor2'><td>".$LAN_BANLIST_017.":</td><td>".str_replace('"', "&#34;", $bannedUser->getBanner())."</td></tr>";
+      $information .= "<tr class='rowColor1'><td>".$LAN_BANLIST_018.":</td><td>".$bannedUser->getAddDate()."</td></tr>";
+      $information .= "<tr class='rowColor2'><td>".$LAN_BANLIST_019.":</td><td>".$expireDate." ".$expireTime."</td></tr>";
+      $information .= "<tr class='rowColor1'><td>".$LAN_BANLIST_020.":</td><td>".$bannedUser->getReason()."</td></tr>";
       if($bannedUser->getServerId() != -1) {
-        $information .= "<tr class='rowColor2'><td>".$LANINS_029.":</td><td>".str_replace('"', "&#34;", $bannedUser->getServer())."</td></tr>";
+        $information .= "<tr class='rowColor2'><td>".$LAN_BANLIST_029.":</td><td>".str_replace('"', "&#34;", $bannedUser->getServer())."</td></tr>";
       } else {
-        $information .= "<tr class='rowColor2'><td>".$LANINS_029.":</td><td><a href='".str_replace('"', "&#34;", $bannedUser->getServer())."'>Import Server</a></td></tr>";
+        $information .= "<tr class='rowColor2'><td>".$LAN_BANLIST_029.":</td><td><a href='".str_replace('"', "&#34;", $bannedUser->getServer())."'>Import Server</a></td></tr>";
       }
-      $information .= "<tr class='rowColor2'><td>".$LANINS_025.":</td><td>".str_replace('"', "&#34;", $bannedUser->getOffenses())."</td></tr>";
-      $information .= "<tr class='rowColor1'><td>".$LANINS_030.":</td>";
+      $information .= "<tr class='rowColor2'><td>".$LAN_BANLIST_025.":</td><td>".str_replace('"', "&#34;", $bannedUser->getOffenses())."</td></tr>";
+      $information .= "<tr class='rowColor1'><td>".$LAN_BANLIST_030.":</td>";
       $information .= "<td>";
       if($bannedUser->getDemoCount() > 0) {
-        $information .= "<a href='index.php?page=demos&searchText=".$bannedUser->getSteamId()."&lg=".$LANGUAGE."'><b>".$LANINS_035." (".$bannedUser->getDemoCount().")</b></a>";
+        $information .= "<a href='index.php?page=demos&searchText=".$bannedUser->getSteamId()."&lg=".$LANGUAGE."'><b>".$LAN_BANLIST_035." (".$bannedUser->getDemoCount().")</b></a>";
       } else {
-        $information .= "<b>".$bannedUser->getDemoCount()." ".$LANINS_030."</b>";
+        $information .= "<b>".$bannedUser->getDemoCount()." ".$LAN_BANLIST_030."</b>";
       }
       $information .= "</td></tr>";
-      $information .= "<tr class='rowColor2'><td valign='top'>".$LANINS_028.":</td><td>".$bannedUser->getKickCounter()."</td></tr>";
-      $information .= "<tr class='rowColor1'><td valign='top'>".$LANINS_027.":</td><td>".$comments."</td></tr>";
+      $information .= "<tr class='rowColor2'><td valign='top'>".$LAN_BANLIST_028.":</td><td>".$bannedUser->getKickCounter()."</td></tr>";
+      $information .= "<tr class='rowColor1'><td valign='top'>".$LAN_BANLIST_027.":</td><td>".$comments."</td></tr>";
       $information .= "</table>";
       $information .= "</div>";
 
@@ -342,19 +342,19 @@ if(count($bannedUsers) > 0) {
 
       $information2 = "<div class='tborder'>";
       $information2 .= "<div id='tableHead'>";
-      $information2 .= "<div style='color:#FFFFFF'><b>".$LANINS_031."</b></div>";
+      $information2 .= "<div style='color:#FFFFFF'><b>".$LAN_BANLIST_031."</b></div>";
       $information2 .= "</div>";
       $information2 .= "<table class='bordercolor' width='800px' cellspacing='1' cellpadding='5' border='0' style='margin-top: 1px;'>";
 
 	  $information2 .= "<tr>";
-	  $information2 .= " <th class='colColor1' align='center'>".$LANINS_014."</th>";
-	  $information2 .= " <th class='colColor1' align='center'>".$LANINS_020."</th>";
-	  $information2 .= " <th class='colColor2' width='1%' nowrap align='center'>".$LANINS_016."</th>";
-	  $information2 .= " <th class='colColor1' width='1%' nowrap align='center'>".$LANINS_017."</th>";
-	  $information2 .= " <th class='colColor2' width='1%' nowrap align='center'>".$LANINS_018."</th>";
-	  $information2 .= " <th class='colColor1' width='1%' nowrap align='center'>".$LANINS_019."</th>";
-	  $information2 .= " <th class='colColor2' align='center'>".$LANINS_032."</th>";
-	  $information2 .= " <th class='colColor1' align='center'>".$LANINS_027."</th>";
+	  $information2 .= " <th class='colColor1' align='center'>".$LAN_BANLIST_014."</th>";
+	  $information2 .= " <th class='colColor1' align='center'>".$LAN_BANLIST_020."</th>";
+	  $information2 .= " <th class='colColor2' width='1%' nowrap align='center'>".$LAN_BANLIST_016."</th>";
+	  $information2 .= " <th class='colColor1' width='1%' nowrap align='center'>".$LAN_BANLIST_017."</th>";
+	  $information2 .= " <th class='colColor2' width='1%' nowrap align='center'>".$LAN_BANLIST_018."</th>";
+	  $information2 .= " <th class='colColor1' width='1%' nowrap align='center'>".$LAN_BANLIST_019."</th>";
+	  $information2 .= " <th class='colColor2' align='center'>".$LAN_BANLIST_032."</th>";
+	  $information2 .= " <th class='colColor1' align='center'>".$LAN_BANLIST_027."</th>";
 	  $information2 .= "</tr>";
       
 	  // Ban history of the user
@@ -372,12 +372,12 @@ if(count($bannedUsers) > 0) {
 	      $banLengthHist->setTimeScale($banHistUser->getTimeScale());
 	
 	      if($banHistUser->getLength() == 0) {
-	        $expireDateHist = $LANINS_033;
+	        $expireDateHist = $LAN_BANLIST_033;
 	        $expireTimeHist = "";
 	      }
 
       	  if($banHistUser->getExpireDate() == 'Expired') {
-	        $expireDateHist = "<i>".$LANINS_024."</i>";
+	        $expireDateHist = "<i>".$LAN_BANLIST_024."</i>";
 			$expireTimeHist = "";
     	  }
 
@@ -392,7 +392,7 @@ if(count($bannedUsers) > 0) {
 		  if($banHistUser->getWebpage() != "") {
 		    $information2 .= "<td class='rowColor2' align='center'><a href='".$banHistUser->getWebpage()."'><img src='images/database_add.png' align='absmiddle'/></a></td>";
 		  } else {
-		    $information2 .= "<td class='rowColor2' align='center'>Sin Post</td>";
+		    $information2 .= "<td class='rowColor2' align='center'>".$LAN_BANLIST_034."</td>";
 		  }
 
 		  $information2 .= "  <td class='colColor1'>".$commentsHist."</td>";
@@ -441,7 +441,7 @@ if(count($bannedUsers) > 0) {
             	?><?php echo str_replace(array("\"","\r\n", "\n", "\r"), "&quot;", $bannedUser->getName())?><?php
           }
           if($comments != null || $comments != "") {
-            ?>&nbsp;<img src="images/information.png" style="cursor:help" onmouseover="Tip('<?php echo $LANINS_027?>:<br/><?php echo $comments?>', WIDTH, 300, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'))"><?php
+            ?>&nbsp;<img src="images/information.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_BANLIST_027?>:<br/><?php echo $comments?>', WIDTH, 300, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'))"><?php
           }
           if($bannedUser->getKickCounter() > 0) {
             ?>&nbsp;<span class="kickCounter">(<?php echo $bannedUser->getKickCounter()?>)</span><?php
@@ -450,9 +450,9 @@ if(count($bannedUsers) > 0) {
 
 		  // Advise Player Banned previously
 		  if($bannedUser->getOffenses() == 1) {
-		  		$bannedPreviously = " (1 ".$LANINS_036.")";
+		  		$bannedPreviously = " (1 ".$LAN_BANLIST_036.")";
 		  } else if($bannedUser->getOffenses() > 1) {
-		  		$bannedPreviously = " (".$bannedUser->getOffenses()." ".$LANINS_025.")";
+		  		$bannedPreviously = " (".$bannedUser->getOffenses()." ".$LAN_BANLIST_025.")";
 		  } else {
             	$bannedPreviously ="";
           }
@@ -465,7 +465,7 @@ if(count($bannedUsers) > 0) {
         <td class="colColor2" nowrap><div align="center"><?php echo $bannedUser->getBanner()?></div></td>
 		<?php
           if($bannedUser->getLength() != 0) {
-            ?><td class="colColor1" nowrap onmouseover="Tip('<?php echo $LANINS_059 ?><br/><?php echo $expireDate." ".$expireTime?>', WIDTH, 150, SHADOW, true, FADEIN, 150, FADEOUT, 150, STICKY, 1, OFFSETX, -20, CLOSEBTN, false, CLICKCLOSE, false, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'))"><?php
+            ?><td class="colColor1" nowrap onmouseover="Tip('<?php echo $LAN_BANLIST_059 ?><br/><?php echo $expireDate." ".$expireTime?>', WIDTH, 150, SHADOW, true, FADEIN, 150, FADEOUT, 150, STICKY, 1, OFFSETX, -20, CLOSEBTN, false, CLICKCLOSE, false, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'))"><?php
           } else {
             ?><td class="colColor1" nowrap><?php
           }
@@ -486,7 +486,7 @@ if(count($bannedUsers) > 0) {
         if($banManager || $fullPower) {
           ?>
           <td id="active-<?php echo $bannedUser->getBanId()?>" class="colColor2" style="cursor:pointer;"
-              onmouseover="if(<?php echo $bannedUser->getActive()?> == 0) { Tip('<?php echo $LANINS_039?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'));}else{Tip('<?php echo $LANINS_038?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'));}"><div align="center">
+              onmouseover="if(<?php echo $bannedUser->getActive()?> == 0) { Tip('<?php echo $LAN_BANLIST_039?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'));}else{Tip('<?php echo $LAN_BANLIST_038?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'));}"><div align="center">
           <?php if($bannedUser->getActive() == 0) {
             ?><img id="activeImg-<?php echo $bannedUser->getBanId()?>" src="images/cross.png"/><?php
           } else {
@@ -494,7 +494,7 @@ if(count($bannedUsers) > 0) {
           } ?>          </div></td>
           <td id="pending:<?php echo $bannedUser->getBanId()?>" class="colColor1"
               onclick="changePendingStatus(<?php echo $bannedUser->getBanId()?>, <?php echo $bannedUser->getPending()?>)" style="cursor:pointer;"
-              onmouseover="if(<?php echo $bannedUser->getPending()?> == 0) { Tip('<?php echo $LANINS_040 ?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'));}else{Tip('C<?php echo $LANINS_041?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'));}"><div align="center">
+              onmouseover="if(<?php echo $bannedUser->getPending()?> == 0) { Tip('<?php echo $LAN_BANLIST_040 ?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'));}else{Tip('C<?php echo $LAN_BANLIST_041?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'));}"><div align="center">
           <?php if($bannedUser->getPending() == 0) {
             ?><img id="pendingImg-<?php echo $bannedUser->getBanId()?>" src="images/cross.png"/><?php
           } else {
@@ -508,7 +508,7 @@ if(count($bannedUsers) > 0) {
             (($bannedUser->getBannerSteamId() == $_SESSION['steamId'] && !empty($_SESSION['steamId'])) && ($admin || $member))) {
             ?><td id="active:<?php echo $bannedUser->getBanId()?>" class="colColor2"
                   onclick="changeActiveStatus(<?php echo $bannedUser->getBanId()?>, <?php echo $bannedUser->getActive()?>);" style="cursor:pointer;"
-                  onmouseover="if(<?php echo $bannedUser->getActive() ?> == 0) { Tip('<?php echo $LANINS_039?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'));}else{Tip('<?php echo $LANINS_038?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'));}"><div align="center"><?php
+                  onmouseover="if(<?php echo $bannedUser->getActive() ?> == 0) { Tip('<?php echo $LAN_BANLIST_039?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'));}else{Tip('<?php echo $LAN_BANLIST_038?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'));}"><div align="center"><?php
           } else {
           ?><td id="active:<?php echo $bannedUser->getBanId() ?>" class="colColor2"><div align="center"><?php
           }
@@ -548,7 +548,7 @@ if(count($bannedUsers) > 0) {
       </div>
   </div>
 </div>
-<h5><?php echo $LANINS_042?></h5>
+<h5><?php echo $LAN_BANLIST_042?></h5>
 <br/>
 <?php
 	$banCountVigentes = $banQueries->getNumberOfBans($member, $admin, $banManager, $fullPower, "" , "4", "", "");
@@ -556,30 +556,30 @@ if(count($bannedUsers) > 0) {
 		
 	  <div class="tborder">
 		<div id="tableHead">
-	      <div><b><?php echo $LANINS_043?></b></div>
+	      <div><b><?php echo $LAN_BANLIST_043?></b></div>
 	    </div>
 	    <div>
 		<table id="banlistTable" class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
 	    <tr>
 	      <th class="colColor1" width="20%" nowrap>
 	        <div align="center"><a href="index.php?page=banlist&rsc=Motivo&rsd=DESC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
-	          <?php echo $LANINS_044?>
+	          <?php echo $LAN_BANLIST_044?>
 	        <a href="index.php?page=banlist&rsc=Motivo&rsd=ASC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
 	      <th class="colColor2" width="20%" nowrap COLSPAN=2>
 	        <div align="center"><a href="index.php?page=banlist&rsc=NumPermanentes&rsd=DESC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png"/></a>
-	          <?php echo $LANINS_003?>
+	          <?php echo $LAN_BANLIST_003?>
 	        <a href="index.php?page=banlist&rsc=NumPermanentes&rsd=ASC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png"/></a> </div></th>
 	      <th class="colColor1" width="20%" nowrap COLSPAN=2>
 	        <div align="center"><a href="index.php?page=banlist&rsc=NumCumpliendose&rsd=DESC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
-	          <?php echo $LANINS_004?>
+	          <?php echo $LAN_BANLIST_004?>
 	        <a href="index.php?page=banlist&rsc=NumCumpliendose&rsd=ASC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
 		  <th class="colColor2" width="20%" nowrap COLSPAN=2>
 	        <div align="center"><a href="index.php?page=banlist&rsc=NumCumplidos&rsd=DESC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
-	          <?php echo $LANINS_005?>
+	          <?php echo $LAN_BANLIST_005?>
 	        <a href="index.php?page=banlist&rsc=NumCumplidos&rsd=ASC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
 	      <th class="colColor1" width="20%" nowrap COLSPAN=3>
 	        <div align="center"><a href="index.php?page=banlist&rsc=NumBaneados&rsd=DESC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
-	          <?php echo $LANINS_045?>
+	          <?php echo $LAN_BANLIST_045?>
 	        <a href="index.php?page=banlist&rsc=NumBaneados&rsd=ASC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
 	    </tr>
 	
@@ -647,7 +647,7 @@ if(count($bannedUsers) > 0) {
 			    <tr>
 			      <td class="colColor1" width="20%" nowrap>
 			        <div align="center">
-			          <?php echo $LANINS_058 ?>
+			          <?php echo $LAN_BANLIST_058 ?>
 					</div></td>
 			      <td class="colColor2" width="10%" nowrap>
 			        <div align="right">
@@ -695,30 +695,30 @@ if(count($bannedUsers) > 0) {
   ?>
 	  <div class="tborder">
 		<div id="tableHead">
-	      <div><b><?php echo $LANINS_046?></b></div>
+	      <div><b><?php echo $LAN_BANLIST_046?></b></div>
 	    </div>
 	    <div>
 		<table id="banlistTable" class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
 	    <tr>
 	      <th class="colColor1" width="20%" nowrap>
 	        <div align="center"><a href="index.php?page=banlist&asc=Admin&asd=DESC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
-	          <?php echo $LANINS_017?>
+	          <?php echo $LAN_BANLIST_017?>
 	        <a href="index.php?page=banlist&asc=Admin&asd=ASC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
 	      <th class="colColor2" width="20%" nowrap COLSPAN=2>
 	        <div align="center"><a href="index.php?page=banlist&asc=NumPermanentes&asd=DESC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png"/></a>
-	          <?php echo $LANINS_003?>
+	          <?php echo $LAN_BANLIST_003?>
 	        <a href="index.php?page=banlist&asc=NumPermanentes&asd=ASC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png"/></a> </div></th>
 	      <th class="colColor1" width="20%" nowrap COLSPAN=2>
 	        <div align="center"><a href="index.php?page=banlist&asc=NumCumpliendose&asd=DESC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
-	          <?php echo $LANINS_004?>
+	          <?php echo $LAN_BANLIST_004?>
 	        <a href="index.php?page=banlist&asc=NumCumpliendose&asd=ASC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
 		  <th class="colColor2" width="20%" nowrap COLSPAN=2>
 	        <div align="center"><a href="index.php?page=banlist&asc=NumCumplidos&asd=DESC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
-	          <?php echo $LANINS_005?>
+	          <?php echo $LAN_BANLIST_005?>
 	        <a href="index.php?page=banlist&asc=NumCumplidos&asd=ASC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
 	      <th class="colColor1" width="20%" nowrap COLSPAN=3>
 	        <div align="center"><a href="index.php?page=banlist&asc=NumBaneados&asd=DESC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
-	          <?php echo $LANINS_045?>
+	          <?php echo $LAN_BANLIST_045?>
 	        <a href="index.php?page=banlist&asc=NumBaneados&asd=ASC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
 	    </tr>
 	
@@ -785,7 +785,7 @@ if(count($bannedUsers) > 0) {
 			    <tr>
 			      <td class="colColor1" width="20%" nowrap>
 			        <div align="center">
-			          <?php echo $LANINS_047?>
+			          <?php echo $LAN_BANLIST_047?>
 					</div></td>
 			      <td class="colColor2" width="10%" nowrap>
 			        <div align="right">
@@ -843,28 +843,28 @@ if(count($bannedUsers) > 0) {
       return true;
     }
 
-    alert($LANINS_048);
+    alert($LAN_BANLIST_048);
     return false;
   }
   </script>
   <div class="tborder">
     <div id="tableHead">
-      <div><b><?php echo $LANINS_049?></b></div>
+      <div><b><?php echo $LAN_BANLIST_049?></b></div>
     </div>
     <table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
     <form action="exportBans.php" method="post" id="form" onsubmit="return formVerify();">
     	<table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
         <tr>
           <td align="left" class="rowColor1">
-            <input type="checkbox" id="permaBans" name="permaBans" value="1" checked/> <?php echo $LANINS_050?>
-            <input type="checkbox" id="allBans" name="allBans" value="1"/> <?php echo $LANINS_051?>
-            <input type="checkbox" id="demosOnly" name="demosOnly" value="1"/> <?php echo $LANINS_052?>
-            <input type="checkbox" id="saveSQL" name="saveSQL" value="1"/> <?php echo $LANINS_053?>
+            <input type="checkbox" id="permaBans" name="permaBans" value="1" checked/> <?php echo $LAN_BANLIST_050?>
+            <input type="checkbox" id="allBans" name="allBans" value="1"/> <?php echo $LAN_BANLIST_051?>
+            <input type="checkbox" id="demosOnly" name="demosOnly" value="1"/> <?php echo $LAN_BANLIST_052?>
+            <input type="checkbox" id="saveSQL" name="saveSQL" value="1"/> <?php echo $LAN_BANLIST_053?>
           </td>
         </tr>
     		<tr>
     			<td align="left" class="rowColor2">
-    				<input type="submit" name="submit" value="<?php echo $LANINS_054?>" class="button" /></td>
+    				<input type="submit" name="submit" value="<?php echo $LAN_BANLIST_054?>" class="button" /></td>
     		</tr>
     </table>
   </div>
@@ -875,7 +875,7 @@ else {
 ?>
 <div class="tborder">
   <div id="tableHead">
-    <div><b><?php echo $LANINS_055?></b></div>
+    <div><b><?php echo $LAN_BANLIST_055?></b></div>
   </div>
 </div>
 <?php
@@ -890,7 +890,7 @@ function pageLinks($config, $startRange, $banCount, $sortDirection, $sortBy, $se
 
     // Show previous button
     if($currentPage != 1) {
-    ?><a href="index.php?page=banlist&sr=<?php echo ($startRange-$config->bansPerPage)?>&sd=<?php echo $sortDirection?>&sc=<?php echo $sortBy?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>">&lt;&lt;<?php echo $LANINS_056?></a> <?php
+    ?><a href="index.php?page=banlist&sr=<?php echo ($startRange-$config->bansPerPage)?>&sd=<?php echo $sortDirection?>&sc=<?php echo $sortBy?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>">&lt;&lt;<?php echo $LAN_BANLIST_056?></a> <?php
     }
 
     // Show Middle Links
@@ -934,7 +934,7 @@ function pageLinks($config, $startRange, $banCount, $sortDirection, $sortBy, $se
 
     // Show next button
     if(($page-1 > ($startRange/$config->bansPerPage)+1 || $currentPage == 1) && $banCount > $config->bansPerPage) {
-    ?><a href="index.php?page=banlist&sr=<?php echo ($startRange+$config->bansPerPage)?>&sd=<?php echo $sortDirection?>&sc=<?php echo $sortBy?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>"> <?php echo $LANINS_057?>&gt;&gt;</a> <?php
+    ?><a href="index.php?page=banlist&sr=<?php echo ($startRange+$config->bansPerPage)?>&sd=<?php echo $sortDirection?>&sc=<?php echo $sortBy?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>"> <?php echo $LAN_BANLIST_057?>&gt;&gt;</a> <?php
     }
   }
 }

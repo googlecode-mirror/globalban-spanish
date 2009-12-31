@@ -282,7 +282,7 @@ class BanQueries extends Config {
       $searchJoin .= " reason_id = '".$bansReason_id."' ";
 	} 
 	if ($bansAdmin != null && $bansAdmin != "") {
-      if($bansAdmin == "Desconocido"){
+      if($bansAdmin == "Unknown"){
 		$bansAdmin = "";
 	  }
    	  if($searchJoin != ""){
@@ -405,7 +405,7 @@ class BanQueries extends Config {
 	  
 	  $admin = $adminStatsArray[$i]['Admin'];
       if($admin == ""){
-		$admin = "Desconocido";
+		$admin = "Unknown";
 	  }
       $adminStat->setAdmin($admin);
       $adminStat->setNumBaneados(stripslashes($adminStatsArray[$i]['NumBaneados']));
@@ -458,7 +458,7 @@ class BanQueries extends Config {
       if(!empty($bansWhereSql)) {
     	  $bansWhereSql .= " AND ";
     	}
-      if($bansAdmin == "Desconocido"){
+      if($bansAdmin == "Unknown"){
 		$bansAdmin = "";
 	  }
 	  $bansWhereSql .= " b.banner = '".$bansAdmin."' ";
