@@ -135,14 +135,34 @@ class BanQueries extends Config {
     $steamId = trim($steamId);
     
     // Copy the ban from gban_ban to gban_ban_history
-    $sql = "INSERT INTO gban_ban_history (ban_id, steam_id, ip, name, length, time_scale, add_date, expire_date, reason_id, banner, banner_steam_id, active, pending, server_id, webpage, modified_by, comments)
-    SELECT ban_id, steam_id, ip, name, length, time_scale, add_date, expire_date, reason_id, banner, banner_steam_id, active, pending, server_id, webpage, modified_by, comments
+    $sql = "INSERT INTO gban_ban_history (ban_id, steam_id, ip, name, length, time_scale, add_date, kick_counter, expire_date, reason_id, banner, banner_steam_id, active, pending, server_id, webpage, modified_by, comments)
+    SELECT ban_id, steam_id, ip, name, length, time_scale, add_date, kick_counter, expire_date, reason_id, banner, banner_steam_id, active, pending, server_id, webpage, modified_by, comments
     FROM gban_ban WHERE steam_id = '".addslashes($steamId)."'";
 
     $this->db->sql_query($sql);
     
     // Delete the old ban from the gban_ban table as it is now in archive
-    $this->deleteBan($steamId);
+    $this->deleteBanArchived($steamId);
+  }
+  
+  function unArchiveBan($steamId) {
+    // Remove new line characters from steam id
+    $steamId = trim($steamId);
+    
+    $sql = "SELECT ban_id FROM gban_ban_history WHERE steam_id = '".addslashes($steamId)."' ORDER BY ban_id DESC LIMIT 0,1"; 
+    $this->db->sql_query($sql);
+    $banID = $this->db->get_row();
+    $banID = $banID['ban_id'];
+    
+    // Copy the ban from gban_ban_history to gban_ban
+    $sql = "INSERT INTO gban_ban (ban_id, steam_id, ip, name, length, time_scale, add_date, kick_counter, expire_date, reason_id, banner, banner_steam_id, active, pending, server_id, webpage, modified_by, comments)
+    SELECT ban_id, steam_id, ip, name, length, time_scale, add_date, kick_counter, expire_date, reason_id, banner, banner_steam_id, active, pending, server_id, webpage, modified_by, comments
+    FROM gban_ban_history WHERE ban_id = '".$banID."'";
+
+    $this->db->sql_query($sql);
+    
+    // Delete the old ban from the gban_ban_history table as it is now in gban_ban
+    $this->deleteArchiveBan($banID);
   }
   
   /************************************************************************
@@ -219,13 +239,37 @@ class BanQueries extends Config {
   
   /************************************************************************
 	Deletes a ban from the database based on steam id
-	THIS SHOULD ONLY BE USED BY THE ARCHIVEBAN METHOD
 	************************************************************************/
   function deleteBan($steamId) {
     $sql = "DELETE FROM gban_ban WHERE steam_id = '".addslashes($steamId)."'"; 
+    $this->db->sql_query($sql);
     
+    $sql = "SELECT * FROM gban_ban_history WHERE steam_id = '".addslashes($steamId)."'";
+    $this->db->sql_query($sql);
+    
+    if($this->db->num_rows() > 0) {
+       $this->unArchiveBan($steamId);
+    }
+  }
+
+  /************************************************************************
+	Deletes a ban from the database based on steam id
+	THIS SHOULD ONLY BE USED BY THE ARCHIVEBAN METHOD
+	************************************************************************/
+  function deleteBanArchived($steamId) {
+    $sql = "DELETE FROM gban_ban WHERE steam_id = '".addslashes($steamId)."'"; 
     $this->db->sql_query($sql);
   }
+    
+    /************************************************************************
+	Deletes a archive ban from the database based on archive ban ID
+	THIS SHOULD ONLY BE USED BY THE UNARCHIVEBAN METHOD
+	************************************************************************/
+  function deleteArchiveBan($banID) {
+    $sql = "DELETE FROM gban_ban_history WHERE ban_id = '".$banID."'";
+    $this->db->sql_query($sql);
+  }
+    
   
   /************************************************************************
 	Returns the date the ban was added in seconds
@@ -848,7 +892,7 @@ class BanQueries extends Config {
 	Get the ban history of a specific ban id
 	************************************************************************/
   function getBanHistory($banId) {
-    $query = "SELECT b.ban_id, h.steam_id, h.ip, h.name, h.server_id, COALESCE(s.name, h.webpage) AS servername, h.webpage, h.length,
+    $query = "SELECT b.ban_id, h.steam_id, h.ip, h.name, h.server_id, h.kick_counter, COALESCE(s.name, h.webpage) AS servername, h.webpage, h.length,
               h.time_scale, h.add_date,
 			  case when h.expire_date < NOW() then
       			'Expired'
@@ -885,6 +929,7 @@ class BanQueries extends Config {
       $bannedUser->setActive($bannedUsersArray[$i]['active']);
       $bannedUser->setPending($bannedUsersArray[$i]['pending']);
       $bannedUser->setServerId($bannedUsersArray[$i]['server_id']);
+      $bannedUser->setKickCounter($bannedUsersArray[$i]['kick_counter']);
       if($bannedUsersArray[$i]['servername'] == "") {
         $bannedUser->setServer("Bad Server ID");
       } else {

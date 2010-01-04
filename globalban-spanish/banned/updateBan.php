@@ -72,6 +72,34 @@ function confirmIpBan() {
 }
 //-->
 </script>
+  <style type="text/css">
+<!--
+.bannedPreviously {
+	color: #C4DE07;
+	font-style: italic;
+	font-weight: bold;
+}
+.longSelect {
+	color: #D5D39F;
+	font-weight: bold;
+	font-size: 15px;
+}
+.adminSelect {
+	color: #33CC33;
+	font-weight: bold;
+	font-size: 15px;
+}
+.reasonSelect {
+	color: #CC9900;
+	font-weight: bold;
+	font-size: 15px;
+}
+.kickCounter {
+	color: #CC9900;
+	font-weight: bold;
+}
+-->
+  </style>
 <div class="tborder">
 <div id="tableHead">
   <div><b><?php echo $LANUPDATEBAN_001; ?></b></div>
@@ -287,7 +315,11 @@ $length = $banLength->getReadable();
     
     ?>
     <tr>
-	  <td class="colColor1" nowrap align="center"><?php echo $banHistUser->getName()?></td>
+	  <td class="colColor1" nowrap align="center"><?php echo $banHistUser->getName();
+        if($banHistUser->getKickCounter() > 0) {
+            echo "&nbsp;<span class='kickCounter'>(".$banHistUser->getKickCounter().")</span>";
+        }
+      ?></td>
 	  <td class="colColor2" nowrap align="center"><?php echo $banHistUser->getReason()?></td>
       <td class="colColor1" nowrap align="center"><?php echo $length?></td>
       <td class="colColor2" nowrap align="center"><?php echo $banHistUser->getBanner()?></td>

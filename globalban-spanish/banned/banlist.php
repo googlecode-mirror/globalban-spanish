@@ -382,7 +382,11 @@ if(count($bannedUsers) > 0) {
     	  }
 
 		  $information2 .= " <tr>";
-		  $information2 .= "  <td class='colColor1' nowrap align='center'>".$banHistUser->getName()."</td>";
+		  $information2 .= "  <td class='colColor1' nowrap align='center'>".$banHistUser->getName();
+          if($banHistUser->getKickCounter() > 0) {
+            $information2 .= "&nbsp;<span class='kickCounter'>(".$banHistUser->getKickCounter().")</span>";
+          }
+          $information2 .= "</td>";
 		  $information2 .= "  <td class='colColor1' nowrap align='center'>".$banHistUser->getReason()."</td>";
 		  $information2 .= "  <td class='colColor2' nowrap align='center'>".$banLengthHist->getReadable()."</td>";
 		  $information2 .= "  <td class='colColor1' nowrap align='center'>".$banHistUser->getBanner()."</td>";
@@ -453,8 +457,6 @@ if(count($bannedUsers) > 0) {
 		  		$bannedPreviously = " (1 ".$LAN_BANLIST_036.")";
 		  } else if($bannedUser->getOffenses() > 1) {
 		  		$bannedPreviously = " (".$bannedUser->getOffenses()." ".$LAN_BANLIST_025.")";
-		  } else {
-            	$bannedPreviously ="";
           }
 		  if($bannedUser->getOffenses() > 0) {
 			?><span class="bannedPreviously"><?php echo $bannedPreviously?></span><img src="images/information.png" style="cursor:help" onmouseover="Tip('<?php echo $information2?>', WIDTH, 800, SHADOW, true, FADEIN, 300, FADEOUT, 300, STICKY, 1, OFFSETX, -20, CLOSEBTN, true, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'))"><?php
