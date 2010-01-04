@@ -91,12 +91,12 @@ $siteLogo = my_explode('.', $config->siteLogo , -2);
         ?>
         <script type="text/javascript" src="javascript/flash.js"></script>
         <script type="text/javascript">
-            show_flash("931", "210", "images/<?=$config->siteLogo?>", "", "team=Global Ban");
+            show_flash("931", "210", "images/<?php echo $config->siteLogo?>", "", "team=Global Ban");
         </script>
         <?php
     }else{
         ?>
-        <img alt="<?=$config->siteName?>" src="images/<?=$config->siteLogo?>"/>
+        <img alt="<?php echo $config->siteName?>" src="images/<?php echo $config->siteLogo?>"/>
         <?php   
     }
     ?>

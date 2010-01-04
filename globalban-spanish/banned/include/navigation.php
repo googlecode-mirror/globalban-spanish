@@ -29,7 +29,7 @@ include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_nav
   // Web
   if($config->enableWebLink) {
   ?>
-  <li><a href="<?=$config->webUrl?>"><span><?=$LANNAV_001?></span></a></li>
+  <li><a href="<?php echo $config->webUrl?>"><span><?php echo $LANNAV_001?></span></a></li>
   <?php
   }
   ?>
@@ -38,7 +38,7 @@ include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_nav
   // Forums Button
   if($config->enableForumLink) {
   ?>
-  <li><a href="<?=$config->forumURL?>"><span><?=$LANNAV_002?></span></a></li>
+  <li><a href="<?php echo $config->forumURL?>"><span><?php echo $LANNAV_002?></span></a></li>
   <?php
   }
   ?>
@@ -46,18 +46,18 @@ include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_nav
   <?php
   // Ban List button
   ?>
-  <li><a href="index.php?page=banlist&lg=<?=$LANGUAGE?>"><?=$LANNAV_003?></a></li>
+  <li><a href="index.php?page=banlist&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_003?></a></li>
 
   <?php
   // Ip List button
   ?>
-  <li><a href="index.php?page=ipbanlist&lg=<?=$LANGUAGE?>"><?=$LANNAV_004?></a></li>
+  <li><a href="index.php?page=ipbanlist&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_004?></a></li>
 
   <?php
   // Add Ban Button
   if($member || $admin || $banManager || $fullPower) {
   ?>
-  <li><a href="index.php?page=addBan&lg=<?=$LANGUAGE?>"><?=$LANNAV_005?></a></li>
+  <li><a href="index.php?page=addBan&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_005?></a></li>
   <?php
   }
   ?>
@@ -66,7 +66,7 @@ include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_nav
   // Add Ban Button
   if($fullPower) {
   ?>
-  <li><a href="index.php?page=importBans&lg=<?=$LANGUAGE?>"><?=$LANNAV_006?></a></li>
+  <li><a href="index.php?page=importBans&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_006?></a></li>
   <?php
   }
   ?>
@@ -74,17 +74,17 @@ include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_nav
   <?php
   // Demos Button
   ?>
-  <li><a href="index.php?page=demos&lg=<?=$LANGUAGE?>"><?=$LANNAV_018?></a></li>
+  <li><a href="index.php?page=demos&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_018?></a></li>
   
   <?php // Server List Button ?>
-  <li><a href="index.php?page=serverList&lg=<?=$LANGUAGE?>"><?=$LANNAV_007?></a></li>
+  <li><a href="index.php?page=serverList&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_007?></a></li>
 
   
   <?php
   // Profile Button
   if($member || $admin || $banManager || $fullPower) {
   ?>
-  <li><a href="index.php?page=profile&lg=<?=$LANGUAGE?>"><?=$LANNAV_008?></a></li>
+  <li><a href="index.php?page=profile&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_008?></a></li>
   <?php
   }
   ?>
@@ -96,14 +96,14 @@ include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_nav
   
     <li><a href="#"><?php echo $LANNAV_019 ?></a>
       <ul>
-        <li><a href="index.php?page=configuration&adminPage=1&lg=<?=$LANGUAGE?>"><?=$LANNAV_009?></li>
-        <li><a href="index.php?page=banReasons&adminPage=1&lg=<?=$LANGUAGE?>"><?=$LANNAV_010?></a></li>
-        <li><a href="index.php?page=banLengths&adminPage=1&lg=<?=$LANGUAGE?>"><?=$LANNAV_011?></a></li>
-        <li><a href="index.php?page=badNames&adminPage=1&lg=<?=$LANGUAGE?>"><?=$LANNAV_012?></a></li>
-        <li><a href="index.php?page=manageServers&adminPage=1&lg=<?=$LANGUAGE?>"><?=$LANNAV_013?></a></li>
-        <li><a href="index.php?page=manageServerGroups&adminPage=1&lg=<?=$LANGUAGE?>"><?=$LANNAV_014?></a></li>
-        <li><a href="index.php?page=manageAdminGroups&adminPage=1&lg=<?=$LANGUAGE?>"><?=$LANNAV_015?></a></li>
-        <li><a href="index.php?page=manageUsers&adminPage=1&lg=<?=$LANGUAGE?>"><?=$LANNAV_016?></a></li>
+        <li><a href="index.php?page=configuration&adminPage=1&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_009?></li>
+        <li><a href="index.php?page=banReasons&adminPage=1&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_010?></a></li>
+        <li><a href="index.php?page=banLengths&adminPage=1&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_011?></a></li>
+        <li><a href="index.php?page=badNames&adminPage=1&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_012?></a></li>
+        <li><a href="index.php?page=manageServers&adminPage=1&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_013?></a></li>
+        <li><a href="index.php?page=manageServerGroups&adminPage=1&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_014?></a></li>
+        <li><a href="index.php?page=manageAdminGroups&adminPage=1&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_015?></a></li>
+        <li><a href="index.php?page=manageUsers&adminPage=1&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_016?></a></li>
       </ul>
     </li>
   
@@ -115,7 +115,7 @@ include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_nav
   // Logout
   if(isset($_SESSION['accessLevel']) && $page != "logout" && !$config->enableSmfIntegration) {
   ?>
-  <li><a href="index.php?page=logout&lg=<?=$LANGUAGE?>"><?=$LANNAV_017?></a></li>
+  <li><a href="index.php?page=logout&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_017?></a></li>
   <?php
   }
   if ($adminPage==1) {
@@ -130,7 +130,7 @@ include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_nav
   </ul>
 </div>
 <ul>
-    <a href="index.php?page=<?=$page.$adPage?>&lg=English"><img src="images/flags/gb_large.png" width="32" height="19" alt="English" /></a>
-    <a href="index.php?page=<?=$page.$adPage?>&lg=Spanish"><img src="images/flags/es_large.png" width="32" height="19" alt="Spanish" /></a>
-    <a href="index.php?page=<?=$page.$adPage?>&lg=French"><img src="images/flags/fr_large.png" width="32" height="19" alt="Français" /></a>
+    <a href="index.php?page=<?php echo $page.$adPage?>&lg=English"><img src="images/flags/gb_large.png" width="32" height="19" alt="English" /></a>
+    <a href="index.php?page=<?php echo $page.$adPage?>&lg=Spanish"><img src="images/flags/es_large.png" width="32" height="19" alt="Spanish" /></a>
+    <a href="index.php?page=<?php echo $page.$adPage?>&lg=French"><img src="images/flags/fr_large.png" width="32" height="19" alt="Français" /></a>
 </ul>

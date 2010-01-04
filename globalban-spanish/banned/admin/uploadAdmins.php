@@ -29,7 +29,7 @@ $servers = $serverQueries->getServers();
 // Cycle through each server
 foreach($servers as $server) {
   ?>
-  <h3 id="server:<?=$server->getId()?>">Updating Admins List for <?=$server->getName()?> <img src="images/wait.gif"/></h3>
+  <h3 id="server:<?php echo $server->getId()?>">Updating Admins List for <?php echo $server->getName()?> <img src="images/wait.gif"/></h3>
   <?php
 }
 ?>
@@ -40,7 +40,7 @@ back too quickly can have odd results and require a new upload.</h5>
 <?php
 foreach($servers as $server) {
 ?>
-  uploadAdmins(<?=$server->getId()?>);
+  uploadAdmins(<?php echo $server->getId()?>);
 <?php
 }
 ?>

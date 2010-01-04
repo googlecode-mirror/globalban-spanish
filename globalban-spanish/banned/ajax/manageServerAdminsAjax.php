@@ -127,13 +127,13 @@ foreach($serverAdmins as $serverAdmin) {
 ?>
 <tr>
   <td class="colColor2">
-    <input type="checkbox" id="admin-<?=$serverAdmin->getId()?>"/>
-    <input type="hidden" id="serverId-<?=$serverAdmin->getId()?>" value="<?=$server->getId()?>"/>
-    <input type="hidden" id="groupId-<?=$serverAdmin->getId()?>" value="<?=$groupId?>"/>
+    <input type="checkbox" id="admin-<?php echo $serverAdmin->getId()?>"/>
+    <input type="hidden" id="serverId-<?php echo $serverAdmin->getId()?>" value="<?php echo $server->getId()?>"/>
+    <input type="hidden" id="groupId-<?php echo $serverAdmin->getId()?>" value="<?php echo $groupId?>"/>
   </td>
-  <td class="colColor1" nowrap><?=$serverAdmin->getName()?></td>
+  <td class="colColor1" nowrap><?php echo $serverAdmin->getName()?></td>
   <td class="colColor2">
-    <select id="adminGroupId-<?=$serverAdmin->getId()?>" onchange="updateAdminGroup('<?=$server->getId()?>', '<?=$groupId?>', this.value, '<?=$serverAdmin->getId()?>')">
+    <select id="adminGroupId-<?php echo $serverAdmin->getId()?>" onchange="updateAdminGroup('<?php echo $server->getId()?>', '<?php echo $groupId?>', this.value, '<?php echo $serverAdmin->getId()?>')">
     <option value="0">-- No Powers --</option>
     <?php
     foreach($adminGroups as $adminGroup) {
@@ -141,19 +141,19 @@ foreach($serverAdmins as $serverAdmin) {
       if($adminGroup->getId() == $serverAdmin->getAdminGroupId()) {
         $selected = " selected";
       }
-      ?><option value="<?=$adminGroup->getId()?>"<?=$selected?>><?=$adminGroup->getName()?></option><?php
+      ?><option value="<?php echo $adminGroup->getId()?>"<?php echo $selected?>><?php echo $adminGroup->getName()?></option><?php
     }
     ?>
     </select>
   </td>
   <td class="colColor1">
-    <form action="index.php?page=manageServerAdmins&adminPage=1" id="deleteUser:<?=$serverAdmin->getId()?>" name="deleteUser:<?=$serverAdmin->getId()?>" method="POST"
-    onclick="deleteVerify('<?=$serverAdmin->getId()?>', '<?=addslashes($serverAdmin->getName())?>');">
-      <input type="hidden" name="adminId" id="adminId" value="<?=$serverAdmin->getId()?>"/>
-      <input type="hidden" name="serverId" id="serverId" value="<?=$server->getId()?>"/>
-      <input type="hidden" name="groupId" id="groupId" value="<?=$groupId?>"/>
+    <form action="index.php?page=manageServerAdmins&adminPage=1" id="deleteUser:<?php echo $serverAdmin->getId()?>" name="deleteUser:<?php echo $serverAdmin->getId()?>" method="POST"
+    onclick="deleteVerify('<?php echo $serverAdmin->getId()?>', '<?=addslashes($serverAdmin->getName())?>');">
+      <input type="hidden" name="adminId" id="adminId" value="<?php echo $serverAdmin->getId()?>"/>
+      <input type="hidden" name="serverId" id="serverId" value="<?php echo $server->getId()?>"/>
+      <input type="hidden" name="groupId" id="groupId" value="<?php echo $groupId?>"/>
       <input type="hidden" name="submitDelete" value="1">
-      <img src="images/trash-full.png" style="cursor:pointer" onmouseover="Tip('Click to remove <?=$serverAdmin->getName()?> from this list', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('serverAdminsTable'));"/>
+      <img src="images/trash-full.png" style="cursor:pointer" onmouseover="Tip('Click to remove <?php echo $serverAdmin->getName()?> from this list', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('serverAdminsTable'));"/>
     </form>
   </td>
 </tr>

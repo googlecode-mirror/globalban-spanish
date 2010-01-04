@@ -108,12 +108,12 @@ $servers = $serverQueries->getServers();
     <?php foreach($servers as $server) {
           ?>
           <tr>
-            <td class="colColor1" width="1%" nowrap><?=$server->getId()?></td>
-            <td class="colColor2" width="1%" nowrap><input type="text" id="serverName:<?=$server->getId()?>" name="serverName:<?=$server->getId()?>" value="<?=$server->getName()?>" size="40" maxlength="128"/></td>
-            <td class="colColor1" width="1%" nowrap><input type="text" id="serverIp:<?=$server->getId()?>" name="serverIp:<?=$server->getId()?>" value="<?=$server->getIp()?>" size="18" maxlength="16"/></td>
-            <td class="colColor2" width="1%" nowrap><input type="text" id="serverPort:<?=$server->getId()?>" name="serverPort:<?=$server->getId()?>" value="<?=$server->getPort()?>" size="8" maxlength="8"/></td>
+            <td class="colColor1" width="1%" nowrap><?php echo $server->getId()?></td>
+            <td class="colColor2" width="1%" nowrap><input type="text" id="serverName:<?php echo $server->getId()?>" name="serverName:<?php echo $server->getId()?>" value="<?php echo $server->getName()?>" size="40" maxlength="128"/></td>
+            <td class="colColor1" width="1%" nowrap><input type="text" id="serverIp:<?php echo $server->getId()?>" name="serverIp:<?php echo $server->getId()?>" value="<?php echo $server->getIp()?>" size="18" maxlength="16"/></td>
+            <td class="colColor2" width="1%" nowrap><input type="text" id="serverPort:<?php echo $server->getId()?>" name="serverPort:<?php echo $server->getId()?>" value="<?php echo $server->getPort()?>" size="8" maxlength="8"/></td>
             <td class="colColor1" width="1%" nowrap>
-              <select id="serverType:<?=$server->getId()?>" name="serverType:<?=$server->getId()?>">
+              <select id="serverType:<?php echo $server->getId()?>" name="serverType:<?php echo $server->getId()?>">
                 <?php if(strtolower($server->getType()) == "cstrike") { ?>
                   <option value="cstrike" selected>CS:S</option>
                 <?php }else { ?>
@@ -141,20 +141,20 @@ $servers = $serverQueries->getServers();
                 <?php } ?>
               </select>
             </td>
-            <td class="colColor2" width="1%" nowrap><input type="password" id="currentServerRcon:<?=$server->getId()?>"name="currentServerRcon:<?=$server->getId()?>" value="" maxlength="40"/></td>
-            <td class="colColor1" width="1%" nowrap><input type="password" id="serverRcon:<?=$server->getId()?>"name="serverRcon:<?=$server->getId()?>" value="" maxlength="40"/></td>
-            <td class="colColor2" width="1%" nowrap style="cursor:pointer;" onclick="location.href='index.php?page=manageServerAdmins&adminPage=1&serverId=<?=$server->getId()?>&groupId=<?=$server->getGroupId()?>'"
-                onmouseover="Tip('Click to manage the admins for <?=$server->getName()?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('serverManagementTable'))">
+            <td class="colColor2" width="1%" nowrap><input type="password" id="currentServerRcon:<?php echo $server->getId()?>"name="currentServerRcon:<?php echo $server->getId()?>" value="" maxlength="40"/></td>
+            <td class="colColor1" width="1%" nowrap><input type="password" id="serverRcon:<?php echo $server->getId()?>"name="serverRcon:<?php echo $server->getId()?>" value="" maxlength="40"/></td>
+            <td class="colColor2" width="1%" nowrap style="cursor:pointer;" onclick="location.href='index.php?page=manageServerAdmins&adminPage=1&serverId=<?php echo $server->getId()?>&groupId=<?php echo $server->getGroupId()?>'"
+                onmouseover="Tip('Click to manage the admins for <?php echo $server->getName()?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('serverManagementTable'))">
                 <img src="images/group.png"/>
             </td>
-            <td id="save:<?=$server->getId()?>" class="colColor2" onclick="saveServer('<?=$server->getId()?>');" style="cursor:pointer;"
-                onmouseover="Tip('Click to save settings for <?=$server->getName()?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('serverManagementTable'))">
+            <td id="save:<?php echo $server->getId()?>" class="colColor2" onclick="saveServer('<?php echo $server->getId()?>');" style="cursor:pointer;"
+                onmouseover="Tip('Click to save settings for <?php echo $server->getName()?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('serverManagementTable'))">
             <img src="images/tick.png"/>
             </td>
-            <td class="colColor1" style="cursor:pointer;" onclick="deleteVerify('<?=$server->getId()?>', '<?=$server->getName()?>');"
-                onmouseover="Tip('Click to delete <?=$server->getName()?> from the server list', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('serverManagementTable'))">
-            <form action="index.php?page=manageServers&adminPage=1" id="deleteServer<?=$server->getId()?>" name="deleteServer<?=$server->getId()?>" method="POST">
-              <input type="hidden" name="serverId" id="serverId" value="<?=$server->getId()?>"/>
+            <td class="colColor1" style="cursor:pointer;" onclick="deleteVerify('<?php echo $server->getId()?>', '<?php echo $server->getName()?>');"
+                onmouseover="Tip('Click to delete <?php echo $server->getName()?> from the server list', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('serverManagementTable'))">
+            <form action="index.php?page=manageServers&adminPage=1" id="deleteServer<?php echo $server->getId()?>" name="deleteServer<?php echo $server->getId()?>" method="POST">
+              <input type="hidden" name="serverId" id="serverId" value="<?php echo $server->getId()?>"/>
               <input type="hidden" name="deleteServer" value="1">
               <img src="images/trash-full.png"/>
             </form>

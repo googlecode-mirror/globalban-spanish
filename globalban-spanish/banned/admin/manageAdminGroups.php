@@ -153,12 +153,12 @@ $groups = $adminGroupQueries->getAdminGroups();
       $missingPlugins = $adminGroupQueries->getUnaddedPluginList($group->getId());
       $pluginList = $adminGroupQueries->getPluginList($group->getId());
     ?>
-    <a class="ui-accordion-header"><?=$group->getName()?></a>
+    <a class="ui-accordion-header"><?php echo $group->getName()?></a>
     <div>
         <table class="bordercolor" width="99%" cellspacing="1" cellpadding="5" border="0" align="center" style="margin-top: 10px; margin-bottom: 10px;">
           <tr>
-            <td class="colColor1" width="1%" nowrap>Group Name: <input type="text" id="groupName-<?=$group->getId()?>" name="groupName-<?=$group->getId()?>" value="<?=$group->getName()?>" size="40" maxlength="255"/></td>
-            <td class="colColor2" width="1%" nowrap>Group Description: <input type="text" id="groupDescription-<?=$group->getId()?>" name="groupDescription-<?=$group->getId()?>" value="<?=$group->getDescription()?>" size="40" maxlength="255"/></td>
+            <td class="colColor1" width="1%" nowrap>Group Name: <input type="text" id="groupName-<?php echo $group->getId()?>" name="groupName-<?php echo $group->getId()?>" value="<?php echo $group->getName()?>" size="40" maxlength="255"/></td>
+            <td class="colColor2" width="1%" nowrap>Group Description: <input type="text" id="groupDescription-<?php echo $group->getId()?>" name="groupDescription-<?php echo $group->getId()?>" value="<?php echo $group->getDescription()?>" size="40" maxlength="255"/></td>
           </tr>
         </table>
       <?php if(count($missingPlugins) > 0) { ?>
@@ -166,28 +166,28 @@ $groups = $adminGroupQueries->getAdminGroups();
           <tr>
             <td class="colColor1">
               <form action="index.php?page=manageAdminGroups&adminPage=1" method="post">
-              <input type="hidden" name="addPluginGroupId" id="addPluginGroupId" value="<?=$group->getId()?>"/>
-              Plugin to Add: <select id="pluginList-<?=$group->getId()?>" name="plugin"><?php foreach($missingPlugins as $missingPlugin) { echo "<option value='".$missingPlugin->getId()."'>".$missingPlugin->getName()."</option>"; } ?></select>
-              <input type="button" name="addPlugin" id="addPlugin" value="Add Plugin" style="margin-left:10px" onclick="addAdminPlugin('<?=$group->getId()?>')">
+              <input type="hidden" name="addPluginGroupId" id="addPluginGroupId" value="<?php echo $group->getId()?>"/>
+              Plugin to Add: <select id="pluginList-<?php echo $group->getId()?>" name="plugin"><?php foreach($missingPlugins as $missingPlugin) { echo "<option value='".$missingPlugin->getId()."'>".$missingPlugin->getName()."</option>"; } ?></select>
+              <input type="button" name="addPlugin" id="addPlugin" value="Add Plugin" style="margin-left:10px" onclick="addAdminPlugin('<?php echo $group->getId()?>')">
               </form>
             </td>
           </tr>
         </table>
       <?php } ?>
-      <span id="pluginTables-<?=$group->getId()?>">
+      <span id="pluginTables-<?php echo $group->getId()?>">
       <?php
       // Now create each plugin table
       foreach($pluginList as $plugin) {
         $adminGroupQueries->addMissingAdminFlags($group->getId(), $plugin->getId());
         $flags = $adminGroupQueries->getGroupPluginPowers($group->getId(), $plugin->getId());
       ?>
-        <table id="pluginSection-<?=$group->getId()?>-<?=$plugin->getId()?>" class="bordercolor" width="99%" cellspacing="1" cellpadding="5" border="0" align="center" style="margin-bottom: 10px;">
+        <table id="pluginSection-<?php echo $group->getId()?>-<?php echo $plugin->getId()?>" class="bordercolor" width="99%" cellspacing="1" cellpadding="5" border="0" align="center" style="margin-bottom: 10px;">
           <tr>
             <th class="colColor1" colspan="3">
-              <?=$plugin->getName()?> &nbsp;
-              [<span class="actionLink" onclick="selectAllOfPlugin('<?=$plugin->getId()?>', '<?=$group->getId()?>')">Select All</span>] 
-              [<span class="actionLink" onclick="selectNoneOfPlugin('<?=$plugin->getId()?>', '<?=$group->getId()?>')">Select None</span>]
-              [<span class="actionLink" onclick="removePlugin('<?=$plugin->getId()?>', '<?=$group->getId()?>', '<?=$plugin->getName()?>')">Remove Plugin</span>]
+              <?php echo $plugin->getName()?> &nbsp;
+              [<span class="actionLink" onclick="selectAllOfPlugin('<?php echo $plugin->getId()?>', '<?php echo $group->getId()?>')">Select All</span>] 
+              [<span class="actionLink" onclick="selectNoneOfPlugin('<?php echo $plugin->getId()?>', '<?php echo $group->getId()?>')">Select None</span>]
+              [<span class="actionLink" onclick="removePlugin('<?php echo $plugin->getId()?>', '<?php echo $group->getId()?>', '<?php echo $plugin->getName()?>')">Remove Plugin</span>]
             </th>
           </tr>
           <tr>
@@ -203,8 +203,8 @@ $groups = $adminGroupQueries->getAdminGroups();
             }
           ?>
             <td class="colColor2">
-              <input type="hidden" id="<?=$plugin->getId()?>-flagValue-<?=$group->getId()?>" value="<?=$flag->getPluginFlagId()?>"/>
-              <input type="checkbox" id="<?=$plugin->getId()?>-flag-<?=$group->getId()?>-<?=$flag->getPluginFlagId()?>" onclick="updatePluginFlag('<?=$group->getId()?>', '<?=$flag->getPluginFlagId()?>', this)"<?=$checked?>/> <?="(".$flag->getFlag().") ".$flag->getDescription()?>
+              <input type="hidden" id="<?php echo $plugin->getId()?>-flagValue-<?php echo $group->getId()?>" value="<?php echo $flag->getPluginFlagId()?>"/>
+              <input type="checkbox" id="<?php echo $plugin->getId()?>-flag-<?php echo $group->getId()?>-<?php echo $flag->getPluginFlagId()?>" onclick="updatePluginFlag('<?php echo $group->getId()?>', '<?php echo $flag->getPluginFlagId()?>', this)"<?php echo $checked?>/> <?="(".$flag->getFlag().") ".$flag->getDescription()?>
             </td>
             <?php
               if(($i+1)%$flagsPerRow==0 && ($i+1) != count($flags)) {
@@ -245,14 +245,14 @@ $groups = $adminGroupQueries->getAdminGroups();
         <td class="colColor1" width="1%" nowrap>
           <input id="editPowers" type="button" value="Edit"/>
         </td>
-        <td class="colColor2" id="save:<?=$group->getId()?>" onclick="saveAdminGroup('<?=$group->getId()?>');" style="cursor:pointer;"
-            onmouseover="Tip('Click to save settings for <?=$group->getName()?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('adminGroup'))">
+        <td class="colColor2" id="save:<?php echo $group->getId()?>" onclick="saveAdminGroup('<?php echo $group->getId()?>');" style="cursor:pointer;"
+            onmouseover="Tip('Click to save settings for <?php echo $group->getName()?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('adminGroup'))">
         <img src="images/tick.png"/>
         </td>
-        <td class="colColor1" style="cursor:pointer;" onclick="deleteVerify('<?=$group->getId()?>', '<?=$group->getName()?>');"
-            onmouseover="Tip('Click to delete <?=$group->getName()?> from the server list', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('adminGroup'))">
-        <form action="index.php?page=manageAdminGroups&adminPage=1" id="adminGroup:<?=$group->getId()?>" name="deleteServer<?=$group->getId()?>" method="POST">
-          <input type="hidden" name="adminGroupId" id="adminGroupId" value="<?=$group->getId()?>"/>
+        <td class="colColor1" style="cursor:pointer;" onclick="deleteVerify('<?php echo $group->getId()?>', '<?php echo $group->getName()?>');"
+            onmouseover="Tip('Click to delete <?php echo $group->getName()?> from the server list', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('adminGroup'))">
+        <form action="index.php?page=manageAdminGroups&adminPage=1" id="adminGroup:<?php echo $group->getId()?>" name="deleteServer<?php echo $group->getId()?>" method="POST">
+          <input type="hidden" name="adminGroupId" id="adminGroupId" value="<?php echo $group->getId()?>"/>
           <input type="hidden" name="deleteAdminGroup" value="1">
           <img src="images/trash-full.png"/>
         </form>
@@ -260,7 +260,7 @@ $groups = $adminGroupQueries->getAdminGroups();
       </tr>
       <tr>
         <td class="colColor1" colspan="5">
-        <div id="powers:<?=$group->getId()?>">
+        <div id="powers:<?php echo $group->getId()?>">
         Test
         </div>
         </td>

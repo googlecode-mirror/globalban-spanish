@@ -79,14 +79,14 @@ if($fullPower) {
           $reasonText = $reason->getReason();
           ?>
           <tr>
-            <td class="colColor1" width="1%" nowrap><?=$reasonId?></td>
-            <td class="colColor2" width="1%" nowrap><input type="text" id="reasonText:<?=$reasonId?>" name="reasonText:<?=$reasonId?>" value="<?=$reasonText?>" size="60" maxlength="60"/></td>
-            <td id="save:<?=$reasonId?>" class="colColor1" onclick="saveBanReason('<?=$reasonId?>');" style="cursor:pointer;">
+            <td class="colColor1" width="1%" nowrap><?php echo $reasonId?></td>
+            <td class="colColor2" width="1%" nowrap><input type="text" id="reasonText:<?php echo $reasonId?>" name="reasonText:<?php echo $reasonId?>" value="<?php echo $reasonText?>" size="60" maxlength="60"/></td>
+            <td id="save:<?php echo $reasonId?>" class="colColor1" onclick="saveBanReason('<?php echo $reasonId?>');" style="cursor:pointer;">
             <img src="images/tick.png"/>
             </td>
-            <td class="colColor2" style="cursor:pointer;" onclick="deleteVerify('<?=$reasonId?>', '<?=$reasonText?>');">
-            <form action="index.php?page=banReasons&adminPage=1" id="deleteReason<?=$reasonId?>" name="deleteReason<?=$reasonId?>" method="POST">
-              <input type="hidden" name="reasonId" id="reasonId" value="<?=$reasonId?>"/>
+            <td class="colColor2" style="cursor:pointer;" onclick="deleteVerify('<?php echo $reasonId?>', '<?php echo $reasonText?>');">
+            <form action="index.php?page=banReasons&adminPage=1" id="deleteReason<?php echo $reasonId?>" name="deleteReason<?php echo $reasonId?>" method="POST">
+              <input type="hidden" name="reasonId" id="reasonId" value="<?php echo $reasonId?>"/>
               <input type="hidden" name="deleteReason" value="1">
               <img src="images/trash-full.png"/>
             </form>

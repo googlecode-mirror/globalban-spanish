@@ -211,7 +211,7 @@ if($fullPower) {
       ?>
       <tr>
   			<td class="rowColor1"><img src="images/bullet_star.png"/> Username:</td>
-  			<td class="rowColor1"><input type="text" name="username" value="<?=$username?>" size="40" maxlength="40" />
+  			<td class="rowColor1"><input type="text" name="username" value="<?php echo $username?>" size="40" maxlength="40" />
   			<?php if(!$valid['username'] && !$nopost) { ?><span class="error">Username already taken</span><?php } ?></td>
   		</tr>
   		<?php
@@ -225,7 +225,7 @@ if($fullPower) {
             <?php
             $smfUsers = $userQueries->getSMFUsers();
             foreach($smfUsers as $smfUser) {
-              ?><option value="<?=$smfUser->getId()?>"><?=$smfUser->getName()?></option><?php
+              ?><option value="<?php echo $smfUser->getId()?>"><?php echo $smfUser->getName()?></option><?php
             }
             ?>
           </select>
@@ -236,7 +236,7 @@ if($fullPower) {
       ?>
   		<tr>
   			<td class="rowColor2"><img src="images/bullet_star.png"/> Steam ID:</td>			
-  			<td class="rowColor2"><input name="steamId" id="steamdId" type="text" value="<?=$steamId?>" size="25" maxlength="25"/> (must be in <b>STEAM_X:X:XXXXXX</b> format)
+  			<td class="rowColor2"><input name="steamId" id="steamdId" type="text" value="<?php echo $steamId?>" size="25" maxlength="25"/> (must be in <b>STEAM_X:X:XXXXXX</b> format)
   			<?php if(!$valid['steamId'] && !$nopost) { ?><span class="error">Steam ID not in vaild format</span><?php } ?></td>
   		</tr>
   		<?php
@@ -284,7 +284,7 @@ if($fullPower) {
 // Power is the access level
 function userTable($users, $power) {
   ?>
-  <table id="adminUserTable-<?=$power?>" class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
+  <table id="adminUserTable-<?php echo $power?>" class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
     <tr>
       <th class="colColor2" nowrap>ID</th>
       <th class="colColor1" nowrap>Name</th>
@@ -304,15 +304,15 @@ function userTable($users, $power) {
           if($user->getAccessLevel() == $power) {
           ?>
           <tr>
-            <td class="colColor2" nowrap><?=$user->getId()?></td>
+            <td class="colColor2" nowrap><?php echo $user->getId()?></td>
             <?php if(!$config->enableSmfIntegration) { ?>
-            <td class="colColor1" nowrap><input type="text" id="username:<?=$user->getId()?>" name="username:<?=$user->getId()?>" value="<?=$user->getName()?>" size="40" maxlength="40"/></td>
+            <td class="colColor1" nowrap><input type="text" id="username:<?php echo $user->getId()?>" name="username:<?php echo $user->getId()?>" value="<?php echo $user->getName()?>" size="40" maxlength="40"/></td>
             <?php }
             else { ?>
-            <td class="colColor1" nowrap><input type="hidden" id="username:<?=$user->getId()?>" name="username:<?=$user->getId()?>" value="<?=$user->getName()?>"/><?=$user->getName()?></td>
+            <td class="colColor1" nowrap><input type="hidden" id="username:<?php echo $user->getId()?>" name="username:<?php echo $user->getId()?>" value="<?php echo $user->getName()?>"/><?php echo $user->getName()?></td>
             <?php } ?>
             <td class="colColor2" nowrap>
-              <select id="userAccessLevel:<?=$user->getId()?>" name="userAccessLevel:<?=$user->getId()?>">
+              <select id="userAccessLevel:<?php echo $user->getId()?>" name="userAccessLevel:<?php echo $user->getId()?>">
                 <option value="1" <?php if($user->getAccessLevel() == 1) { echo "selected"; } ?>>Super User</option>
                 <option value="2" <?php if($user->getAccessLevel() == 2) { echo "selected"; } ?>>Ban Manager</option>
                 <option value="3" <?php if($user->getAccessLevel() == 3) { echo "selected"; } ?>>Admin</option>
@@ -321,28 +321,28 @@ function userTable($users, $power) {
               </select>
             </td>
             <?php if(!$config->enableSmfIntegration) { ?>
-            <td class="colColor1" nowrap><input type="text" id="userEmail:<?=$user->getId()?>" name="userEmail:<?=$user->getId()?>" value="<?=$user->getEmail()?>" size="35" maxlength="80"/></td>
+            <td class="colColor1" nowrap><input type="text" id="userEmail:<?php echo $user->getId()?>" name="userEmail:<?php echo $user->getId()?>" value="<?php echo $user->getEmail()?>" size="35" maxlength="80"/></td>
             <?php }
             else { ?>
-            <td class="colColor1" nowrap><input type="hidden" id="userEmail:<?=$user->getId()?>" name="userEmail:<?=$user->getId()?>" value="<?=$user->getEmail()?>"/><?=$user->getEmail()?></td>
+            <td class="colColor1" nowrap><input type="hidden" id="userEmail:<?php echo $user->getId()?>" name="userEmail:<?php echo $user->getId()?>" value="<?php echo $user->getEmail()?>"/><?php echo $user->getEmail()?></td>
             <?php } ?>
-            <td class="colColor2" nowrap><input type="text" id="userSteamId:<?=$user->getId()?>"name="userSteamId:<?=$user->getId()?>" value="<?=$user->getSteamId()?>" size="25" maxlength="25"/></td>
-            <td id="save:<?=$user->getId()?>" class="colColor1" onclick="saveUser('<?=$user->getId()?>');" style="cursor:pointer;"
-                onmouseover="Tip('Click to save <?=$user->getName()?>\'s information', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('adminUserTable-<?=$power?>'))">
+            <td class="colColor2" nowrap><input type="text" id="userSteamId:<?php echo $user->getId()?>"name="userSteamId:<?php echo $user->getId()?>" value="<?php echo $user->getSteamId()?>" size="25" maxlength="25"/></td>
+            <td id="save:<?php echo $user->getId()?>" class="colColor1" onclick="saveUser('<?php echo $user->getId()?>');" style="cursor:pointer;"
+                onmouseover="Tip('Click to save <?php echo $user->getName()?>\'s information', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('adminUserTable-<?php echo $power?>'))">
             <img src="images/tick.png"/>
             </td>
-            <td id="active:<?=$user->getId()?>" class="colColor2" onclick="changeUserActiveStatus(<?=$user->getId()?>, <?=$user->getActive()?>);" style="cursor:pointer;"
-                onmouseover="if(<?=$user->getActive()?> == 0) { Tip('Click to activate <?=$user->getName()?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('adminUserTable-<?=$power?>'));}else{Tip('Click to de-activate <?=$user->getName()?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('adminUserTable'));}">
+            <td id="active:<?php echo $user->getId()?>" class="colColor2" onclick="changeUserActiveStatus(<?php echo $user->getId()?>, <?php echo $user->getActive()?>);" style="cursor:pointer;"
+                onmouseover="if(<?php echo $user->getActive()?> == 0) { Tip('Click to activate <?php echo $user->getName()?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('adminUserTable-<?php echo $power?>'));}else{Tip('Click to de-activate <?php echo $user->getName()?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('adminUserTable'));}">
             <?php if($user->getActive() == 0) {
               ?><img src="images/cross.png"/><?php
             } else {
               ?><img src="images/tick.png"/><?php
             } ?>
             </td>
-            <td class="colColor1" style="cursor:pointer;" onclick="deleteVerify('<?=$user->getId()?>', '<?=$user->getName()?>');"
-                onmouseover="Tip('Click to delete <?=$user->getName()?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('adminUserTable-<?=$power?>'))">
-            <form action="index.php?page=manageUsers&adminPage=1" id="deleteUser<?=$user->getId()?>" name="deleteUser<?=$user->getId()?>" method="POST">
-              <input type="hidden" name="userId" id="userId" value="<?=$user->getId()?>"/>
+            <td class="colColor1" style="cursor:pointer;" onclick="deleteVerify('<?php echo $user->getId()?>', '<?php echo $user->getName()?>');"
+                onmouseover="Tip('Click to delete <?php echo $user->getName()?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('adminUserTable-<?php echo $power?>'))">
+            <form action="index.php?page=manageUsers&adminPage=1" id="deleteUser<?php echo $user->getId()?>" name="deleteUser<?php echo $user->getId()?>" method="POST">
+              <input type="hidden" name="userId" id="userId" value="<?php echo $user->getId()?>"/>
               <input type="hidden" name="submitDelete" value="1">
               <img src="images/trash-full.png"/>
             </form>
@@ -352,8 +352,8 @@ function userTable($users, $power) {
             ?>
             <td class="colColor2">
               <form action="index.php?page=manageUsers&adminPage=1" method="post">
-                <input type="hidden" name="email" size="60" maxlength="80" value="<?=$user->getEmail()?>"/>
-                <input type="submit" name="forgotPassword" value="Reset Password" class="button" style="cursor:pointer;" onclick="alert('Password reset for <?=$user->getName()?>')">
+                <input type="hidden" name="email" size="60" maxlength="80" value="<?php echo $user->getEmail()?>"/>
+                <input type="submit" name="forgotPassword" value="Reset Password" class="button" style="cursor:pointer;" onclick="alert('Password reset for <?php echo $user->getName()?>')">
               </form>            
             </td>
             <?php } ?>

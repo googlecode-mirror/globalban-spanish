@@ -80,11 +80,11 @@ if($fullPower) {
           }
           ?>
           <tr>
-            <td class="colColor1" width="1%" nowrap><?=$length?></td>
-            <td class="colColor2" nowrap><?=$timeScale?></td>
-            <td class="colColor1" style="cursor:pointer;" onclick="deleteVerify('<?=$lengthId?>', '<?=$length?>', '<?=$timeScale?>');">
-            <form action="index.php?page=banLengths&adminPage=1" id="deleteLength<?=$lengthId?>" name="deleteLength<?=$lengthId?>" method="POST">
-              <input type="hidden" name="lengthId" id="lengthId" value="<?=$lengthId?>"/>
+            <td class="colColor1" width="1%" nowrap><?php echo $length?></td>
+            <td class="colColor2" nowrap><?php echo $timeScale?></td>
+            <td class="colColor1" style="cursor:pointer;" onclick="deleteVerify('<?php echo $lengthId?>', '<?php echo $length?>', '<?php echo $timeScale?>');">
+            <form action="index.php?page=banLengths&adminPage=1" id="deleteLength<?php echo $lengthId?>" name="deleteLength<?php echo $lengthId?>" method="POST">
+              <input type="hidden" name="lengthId" id="lengthId" value="<?php echo $lengthId?>"/>
               <input type="hidden" name="deleteLength" value="1">
               <img src="images/trash-full.png"/>
             </form>

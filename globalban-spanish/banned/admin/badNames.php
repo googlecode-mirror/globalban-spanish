@@ -95,40 +95,40 @@ $badNames = $badNameQueries->getBadNames();
       }
     ?>
       <tr>
-        <td class="<?=$rowStyle?>"><?=$badName->getBadName()?></td>
-        <td class="<?=$rowStyle?>" id="filter:<?=$badName->getId()?>">
+        <td class="<?php echo $rowStyle?>"><?php echo $badName->getBadName()?></td>
+        <td class="<?php echo $rowStyle?>" id="filter:<?php echo $badName->getId()?>">
           <?php if($badName->getFilter()) {
             ?>
               <img src="images/tick.png"
-                   onclick="changeBadNameFilter(<?=$badName->getId()?>, <?=$badName->getFilter()?>)" style="cursor:pointer;"
+                   onclick="changeBadNameFilter(<?php echo $badName->getId()?>, <?php echo $badName->getFilter()?>)" style="cursor:pointer;"
                    onmouseover="Tip('Click stop filtering this bad name/word.', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('badNamesTable'));"/>
             <?php
           } else {
             ?>
               <img src="images/cross.png"
-                   onclick="changeBadNameFilter(<?=$badName->getId()?>, <?=$badName->getFilter()?>)" style="cursor:pointer;"
+                   onclick="changeBadNameFilter(<?php echo $badName->getId()?>, <?php echo $badName->getFilter()?>)" style="cursor:pointer;"
                    onmouseover="Tip('Click start filtering this bad name/word.', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('badNamesTable'));"/>
             <?php
           }?>
         </td>
-        <td class="<?=$rowStyle?>"  id="kick:<?=$badName->getId()?>">
+        <td class="<?php echo $rowStyle?>"  id="kick:<?php echo $badName->getId()?>">
           <?php if($badName->getKick()) {
             ?>
               <img src="images/tick.png"
-                   onclick="changeBadNameKick(<?=$badName->getId()?>, <?=$badName->getFilter()?>)" style="cursor:pointer;"
+                   onclick="changeBadNameKick(<?php echo $badName->getId()?>, <?php echo $badName->getFilter()?>)" style="cursor:pointer;"
                    onmouseover="Tip('Click to stop kicking people that have this bad name/word in their name.', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('badNamesTable'));"/>
             <?php
           } else {
             ?>
               <img src="images/cross.png"
-                   onclick="changeBadNameKick(<?=$badName->getId()?>, <?=$badName->getFilter()?>)" style="cursor:pointer;"
+                   onclick="changeBadNameKick(<?php echo $badName->getId()?>, <?php echo $badName->getFilter()?>)" style="cursor:pointer;"
                    onmouseover="Tip('Click to start kicking people that have this bad name/word in their name.', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('badNamesTable'));"/>
             <?php
           }?>
         </td>
-        <td class="<?=$rowStyle?>">
+        <td class="<?php echo $rowStyle?>">
           <form action="index.php?page=badNames&adminPage=1" method="POST" onsubmit="return confirm('Are you sure you wish to delete this item?')">
-            <input type="hidden" id="idToDelete" name="idToDelete" value="<?=$badName->getId()?>"/>
+            <input type="hidden" id="idToDelete" name="idToDelete" value="<?php echo $badName->getId()?>"/>
             <input type="submit" id="deleteBadName" name="deleteBadName" value=""
                    style="background:transparent url(images/trash-full.png) no-repeat scroll 0%; border:0px; margin-bottom:3px;cursor:pointer;"
                    onmouseover="Tip('Click to delete bad name/word from the list.', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('badNamesTable'));"/>
