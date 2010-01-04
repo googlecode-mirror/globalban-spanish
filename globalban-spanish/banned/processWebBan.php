@@ -83,50 +83,53 @@ if($allowedToBan) {
     // Add the ban
     $banId = $banQueries->addBan($steamId, $length->getLength(), $length->getTimeScale(), $now, $reason, $username, $pending, $bannedName, $serverId, null, $user->getSteamId());
 
-	kickUser($steamId, $serverId, $config);
+    if ($banId > 0){
 
-    if($config->enableAutoPoste107Forum) {
-      // Use this to build the URL link (replace processWebBan with updateBan)
-      $url = "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-	  $url = str_replace("processWebBan", "banlist", $url);
-      $postId = NewPostForum_e107(addslashes($bannedName)." - ".addslashes($steamId),"[b]".$LAN_PROCESSWEBBAN_021."[/b] [color=#009900]".addslashes($username)."[/color]\r\n\r\n[b]".$LAN_PROCESSWEBBAN_022." [/b][color=#990000][link=".$url."&searchText=".addslashes($steamId)."]".addslashes($bannedName)." - ".addslashes($steamId)."[/link][/color]\r\n\r\n[b]".$LAN_PROCESSWEBBAN_023." [/b]".$reasonQueries->getReason($reason)."\r\n\r\n[b]".$LAN_PROCESSWEBBAN_024." [/b]".$length->getReadable(), time(),$config);
-	  UpdateBanWebpage ($postId , $banId, $config);
-	}
+        kickUser($steamId, $serverId, $config);
 
-	if($config->sendEmails) {
-      // Email
-	  $subject = $LAN_PROCESSWEBBAN_001;	
+        if($config->enableAutoPoste107Forum) {
+          // Use this to build the URL link (replace processWebBan with updateBan)
+          $url = "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+          $url = str_replace("processWebBan", "banlist", $url);
+          $postId = NewPostForum_e107(addslashes($bannedName)." - ".addslashes($steamId),"[b]".$LAN_PROCESSWEBBAN_021."[/b] [color=#009900]".addslashes($username)."[/color]\r\n\r\n[b]".$LAN_PROCESSWEBBAN_022." [/b][color=#990000][link=".$url."&searchText=".addslashes($steamId)."]".addslashes($bannedName)." - ".addslashes($steamId)."[/link][/color]\r\n\r\n[b]".$LAN_PROCESSWEBBAN_023." [/b]".$reasonQueries->getReason($reason)."\r\n\r\n[b]".$LAN_PROCESSWEBBAN_024." [/b]".$length->getReadable(), time(),$config);
+          UpdateBanWebpage ($postId , $banId, $config);
+        }
 
-      $body = "<html><body>";
-      $body .= $LAN_PROCESSWEBBAN_003 . "  ". $username ." ";
-      if($member) {
-        $body .= $LAN_PROCESSWEBBAN_004;
-      }
-      $body .= "\n\n";
+        if($config->sendEmails) {
+          // Email
+          $subject = $LAN_PROCESSWEBBAN_001;	
 
-      // Use this to build the URL link (replace processWebBan with updateBan)
-      $url = "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-      $url = str_replace("processWebBan", "updateBan", $url);
+          $body = "<html><body>";
+          $body .= $LAN_PROCESSWEBBAN_003 . "  ". $username ." ";
+          if($member) {
+            $body .= $LAN_PROCESSWEBBAN_004;
+          }
+          $body .= "\n\n";
 
-      $body .= "\n\n";
-      $body .= $LAN_PROCESSWEBBAN_005." <a href='".$url."&banId=".$banId."'>".$LAN_PROCESSWEBBAN_006."</a>";
-      $body .= "<p>".$bannedName." (".$steamId.") ".$LAN_PROCESSWEBBAN_007."</p>";  
-	  if($config->enableAutoPoste107Forum) {
-	    $body .= "<p>".$LAN_PROCESSWEBBAN_008." <a href='".$config->e107Url."e107_plugins/forum/forum_viewtopic.php?".$postId."'>".$LAN_PROCESSWEBBAN_009."</a></p>";
-      }
-      $body .= "</body></html>";
+          // Use this to build the URL link (replace processWebBan with updateBan)
+          $url = "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+          $url = str_replace("processWebBan", "updateBan", $url);
 
-      $banManagerEmails = $config->banManagerEmails;
-      for($i=0; $i<count($banManagerEmails); $i++) {
+          $body .= "\n\n";
+          $body .= $LAN_PROCESSWEBBAN_005." <a href='".$url."&banId=".$banId."'>".$LAN_PROCESSWEBBAN_006."</a>";
+          $body .= "<p>".$bannedName." (".$steamId.") ".$LAN_PROCESSWEBBAN_007."</p>";  
+          if($config->enableAutoPoste107Forum) {
+            $body .= "<p>".$LAN_PROCESSWEBBAN_008." <a href='".$config->e107Url."e107_plugins/forum/forum_viewtopic.php?".$postId."'>".$LAN_PROCESSWEBBAN_009."</a></p>";
+          }
+          $body .= "</body></html>";
 
-        // To send HTML mail, the Content-type header must be set
-        $headers  = "MIME-Version: 1.0" . "\r\n";
-        $headers .= "Content-type: text/html; charset=utf-8" . "\r\n";
-        // Additional headers
-        $headers .= "From: ".$config->siteName." ".$LAN_PROCESSWEBBAN_011." <".$config->emailFromHeader.">" . "\r\n";
-        mail($banManagerEmails[$i], $subject, $body, $headers);
-      }
-      // Finish Email
+          $banManagerEmails = $config->banManagerEmails;
+          for($i=0; $i<count($banManagerEmails); $i++) {
+
+            // To send HTML mail, the Content-type header must be set
+            $headers  = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type: text/html; charset=utf-8" . "\r\n";
+            // Additional headers
+            $headers .= "From: ".$config->siteName." ".$LAN_PROCESSWEBBAN_011." <".$config->emailFromHeader.">" . "\r\n";
+            mail($banManagerEmails[$i], $subject, $body, $headers);
+          }
+          // Finish Email
+        }
     }
   }
   

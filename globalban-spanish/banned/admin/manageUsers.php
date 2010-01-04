@@ -102,7 +102,29 @@ if(isset($_POST['submitAdd'])) {
 
     // Only a username and steam id are required for this
     if($valid['username'] && $valid['steamId']) {
-      $userQueries->addUser($username, $userQueries->createRandomPassword(), $_POST['userAccessLevel'], $steamId, $email);
+      
+      $pass = $userQueries->createRandomPassword();
+      
+      $userQueries->addUser($username, $pass, $_POST['userAccessLevel'], $steamId, $email);
+      
+      // Send the email
+      // To send HTML mail, the Content-type header must be set
+      $headers  = "MIME-Version: 1.0" . "\r\n";
+      $headers .= "Content-type: text/html; charset=utf-8" . "\r\n";			
+      // Additional headers
+      $headers .= "From: ".$config->siteName." Ban Management <".$config->emailFromHeader.">" . "\r\n";
+      
+      $subject = $config->siteName." Ban Management New User Created";
+      
+      $body = "<html><body>";
+      $body .= "<h2>".$config->siteName." Ban Management</h2>";
+      $body .= "<br/><p>Your username is ".$username."<br/>Your password is ".$pass."</p>";
+      $body .= "<br/><br/>Your account has now been activated, you may login in: <a href='".ROOTDIR."/index.php?page=login'>Admin Login</a>";;
+      $body .= "<br/><p>Please update your profile once logged in with a new password of your choice.</p>";
+      $body .= "</body></html>";
+      
+      mail($email, $subject, $body, $headers);
+            
       $username = "";
       $steamId = "";
       $email = "";
