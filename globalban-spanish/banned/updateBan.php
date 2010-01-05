@@ -140,7 +140,7 @@ function confirmIpBan() {
 
 <td class="rowColor2" width="1%" nowrap><?php echo $LANUPDATEBAN_007; ?></td>
   <td class="rowColor2">
-    <select name="admin">
+    <select name="admin_banner">
     <?php
       $fullPowerLevelEditUser = false;
       $userEdit = $userQuery->getUserInfo($bannedUser->getModifiedBy());
@@ -150,16 +150,21 @@ function confirmIpBan() {
 	
 	// Make sure we have a list of admis to display
     if(count($banAmins > 0)) {
-
+      $selectedAdmin = false;
+      
       for($i=0; $i<count($banAmins);$i++) {
-        $admin = $banAmins[$i]; 
-        if($admin->getAdmin() == $bannedUser->getBanner()) {
-          ?><option value="<?php echo $admin->getAdmin()?>" selected><?php echo $bannedUser->getBanner()?></option><?php
+        $admin_banner = $banAmins[$i]; 
+        if($admin_banner->getAdmin() == $bannedUser->getBanner()) {
+          $selectedAdmin = true;
+          ?><option value="<?php echo $admin_banner->getAdmin()?>" selected><?php echo $bannedUser->getBanner()?></option><?php
         } else if(!$fullPowerLevelEditUser && $userQuery->getUserInfo($bannedUser->getBanner())->getAccessLevel() != 1){
-          ?><option value="<?php echo $admin->getAdmin()?>"><?php echo $admin->getAdmin()?></option><?php
+          ?><option value="<?php echo $admin_banner->getAdmin()?>"><?php echo $admin_banner->getAdmin()?></option><?php
         } else if ($fullPower){
-		  ?><option value="<?php echo $admin->getAdmin()?>"><?php echo $admin->getAdmin()?></option><?php
+		  ?><option value="<?php echo $admin_banner->getAdmin()?>"><?php echo $admin_banner->getAdmin()?></option><?php
 		}
+      }
+      if(!$selectedAdmin){
+        ?><option value="<?php echo $bannedUser->getBanner()?>" selected><?php echo $bannedUser->getBanner()?></option><?php
       }
     } else {
     ?><option value="-1"><?php echo $LANUPDATEBAN_008; ?></option><?php

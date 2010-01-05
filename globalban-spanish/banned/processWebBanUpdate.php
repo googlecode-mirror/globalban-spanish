@@ -30,7 +30,7 @@ include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_pro
 $banId = $_POST['banId'];
 $bannedUser = $_POST['bannedUser'];
 $lengthId = $_POST['length']; // Length ID
-$admin = $_POST['admin']; // Admin Name
+$admin_banner = $_POST['admin_banner']; // Admin Name
 $reason = $_POST['reason']; // Reason id number
 $serverId = $_POST['serverId']; // Server ID of ban
 $comments = $_POST['comments']; // comments
@@ -68,7 +68,7 @@ if($allowedToBan) {
 
 	$userQueries = new UserQueries();
 
-	$user = $userQueries->getUserInfo($admin);
+	$user = $userQueries->getUserInfo($admin_banner);
     
     // Get add date of ban
     $addDate = $banQueries->getBanAddDate($banId);
@@ -77,7 +77,7 @@ if($allowedToBan) {
     $newExpireDate = $addDate + $lengthInSec;
 
     // Update ban
-    $banQueries->updateWebBanWithLength($length->getLength(), $length->getTimeScale(), $newExpireDate, $reason, $pending, $admin, $username, $serverId, $bannedUser,$user->getSteamId(), $banId, $comments, $bannedPost);
+    $banQueries->updateWebBanWithLength($length->getLength(), $length->getTimeScale(), $newExpireDate, $reason, $pending, $admin_banner, $username, $serverId, $bannedUser,$user->getSteamId(), $banId, $comments, $bannedPost);
     
     // Email
     $subject = $LAN_PROCESSWEBBANUPDATE_001." ".$bannedUser;
