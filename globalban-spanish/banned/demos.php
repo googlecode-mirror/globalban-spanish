@@ -63,9 +63,9 @@ if($_POST['submitDemo']) {
   $fileType = $_FILES['userfile']['type'];
 
   // We check for multiple page types as apache may be configured to support them
-  $filename = str_replace(".php", "", $filename);
-  $filename = str_replace(".jsp", "", $filename);
-  $filename = str_replace(".asp", "", $filename);
+  $filename = str_ireplace(".php", "_", $filename);
+  $filename = str_ireplace(".jsp", "_", $filename);
+  $filename = str_ireplace(".asp", "_", $filename);
   $extension = substr($filename, strlen($filename)-3, strlen($filename));
   $allowedExtensions = array("zip", "rar");
   if(in_array($extension, $allowedExtensions)) {
