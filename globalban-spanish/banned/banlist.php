@@ -410,7 +410,12 @@ if(count($bannedUsers) > 0) {
       $information2 = addslashes($information2);
 
 	  $steamArray = explode(':',str_replace(array("\t"," "), "", $bannedUser->getSteamId()));
-      $linkprofile = "http://steamcommunity.com/profiles/".bcadd((($steamArray[2]*2)+$steamArray[1]),'76561197960265728');
+      if ( extension_loaded('bcmath'))
+        {
+            $linkprofile = "http://steamcommunity.com/profiles/".bcadd((($steamArray[2]*2)+$steamArray[1]),'76561197960265728');
+        } else {
+            $linkprofile = false;
+        }
       ?>
       <tr>
         <td class="colColor1" nowrap>
@@ -419,9 +424,12 @@ if(count($bannedUsers) > 0) {
 		  if ($config->enableHLstatsLink && !empty($config->HLstatsUrl)) {
 		    ?> &nbsp;<a href='<?php echo $config->HLstatsUrl?>hlstats.php?mode=search&q=<?php echo str_replace(array("\t"," "), "", $bannedUser->getSteamId())?>&st=uniqueid&game='><img src='images/hxce.png' align='absmiddle'/></a><?php
 		  }
-		?>
+		
+        if ($linkprofile){
+        ?>
 		&nbsp;<a href='<?php echo $linkprofile?>'><img src='images/steam.png' align='absmiddle'/></a>&nbsp;
 		<?php
+        }
           // Fullpower admins and Ban Mangers can modify ALL bans
           // Members and Amdins can only edit their own bans (which is matched by either banner name or banner steam id)
           if($fullPower || $banManager || 
