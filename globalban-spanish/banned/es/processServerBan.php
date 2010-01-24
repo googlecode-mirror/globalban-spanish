@@ -107,7 +107,7 @@ if($hash == $config->matchHash) {
       $banId = $banQueries->addBan($steamId, $length->getLength(), $length->getTimeScale(), time(), $reason, $user->getName(), $pending, $nameOfBanned, $serverId, $ipOfBanned, $banner);
     }
 
-    $menssageTOplayer = eregi_replace("gb_time",$length->getReadable(),$config->banMessage);
+    $menssageTOplayer = eregi_replace("gb_reason",$reasonQueries->getReason($reason),eregi_replace("gb_time",$length->getReadable(),$config->banMessage));
     $menssageTOserver = "#multi #green ".$LAN_PROCESSBAN_014.": #lightgreen ".$nameOfBanned." #green ".$LAN_PROCESSBAN_015." #lightgreen ".$length->getReadable()." #green ".$LAN_PROCESSBAN_016." #lightgreen ".$reasonQueries->getReason($reason)." #green ".$LAN_PROCESSBAN_017." #lightgreen \"".$steamId."\" #green !!!";
     
     // Now kick the user

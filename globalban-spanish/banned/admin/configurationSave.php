@@ -126,6 +126,7 @@ class Config {
   var $"."allowAdminBans = ".$_POST['allowAdminBan']."; // Set to true to allow the banning of admins (Default off - false)
   var $"."teachAdmins = ".$_POST['teachAdmins']."; // Teach admins the !banmenu command
   var $"."removePendingOnUpload = ".$_POST['removePendingOnUpload']."; // Remove the pending status from a ban when a member uploads a demo for that ban
+  var $"."adviseInGame = \"all\";
   //var $"."numDemosToBan = -1; // The person uploading a demo needs to have X number of people banned from his demos before future uploads will auto-ban. (-1 is off)
 
   /**

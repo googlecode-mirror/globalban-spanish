@@ -739,7 +739,7 @@ function hideShowSuperUserBlock() {
     <tr>
       <td class="rowColor1" width="1%" nowrap>Ban Message <img src="images/help.png" style="cursor:help" onmouseover="Tip('The message that banned users will see when they attempt to connect to your servers. Use the Var \'gb_time\' to add the lenght of the ban in the message, example: You are banned gb_time. Visit www.yourweb.com/banned/ for more info.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor1" nowrap>
-        <input type="text" id="banMessage" name="banMessage" value="You are banned gb_time. Appeal at yourdomain.com" size="60" maxlength="255" onkeyup="removeSpecialCharacters(this)"/>
+        <input type="text" id="banMessage" name="banMessage" value="You are banned gb_time because gb_reason. Appeal at yourdomain.com" size="60" maxlength="255" onkeyup="removeSpecialCharacters(this)"/>
         <img src="images/warning.png" id="banMessageWarn" style="display:none"/>
       </td>
       <td class="rowColor2" width="1%" nowrap>Allow Admins to be Banned <img src="images/help.png" style="cursor:help" onmouseover="Tip('Set this to true to allow admins to ban other admins.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
