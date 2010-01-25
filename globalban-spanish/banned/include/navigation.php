@@ -29,7 +29,7 @@ include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_nav
   // Web
   if($config->enableWebLink) {
   ?>
-  <li><a href="<?php echo $config->webUrl?>"><span><?php echo $LANNAV_001?></span></a></li>
+  <li><div align="center"><a href="<?php echo $config->webUrl?>"><span><?php echo $LANNAV_001?></span></a></div></li>
   <?php
   }
   ?>
@@ -38,7 +38,7 @@ include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_nav
   // Forums Button
   if($config->enableForumLink) {
   ?>
-  <li><a href="<?php echo $config->forumURL?>"><span><?php echo $LANNAV_002?></span></a></li>
+  <li><div align="center"><a href="<?php echo $config->forumURL?>"><span><?php echo $LANNAV_002?></span></a></div></li>
   <?php
   }
   ?>
@@ -46,18 +46,18 @@ include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_nav
   <?php
   // Ban List button
   ?>
-  <li><a href="index.php?page=banlist&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_003?></a></li>
+  <li><div align="center"><a href="index.php?page=banlist&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_003?></a></div></li>
 
   <?php
   // Ip List button
   ?>
-  <li><a href="index.php?page=ipbanlist&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_004?></a></li>
+  <li><div align="center"><a href="index.php?page=ipbanlist&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_004?></a></div></li>
 
   <?php
   // Add Ban Button
   if($member || $admin || $banManager || $fullPower) {
   ?>
-  <li><a href="index.php?page=addBan&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_005?></a></li>
+  <li><div align="center"><a href="index.php?page=addBan&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_005?></a></div></li>
   <?php
   }
   ?>
@@ -66,7 +66,7 @@ include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_nav
   // Add Ban Button
   if($fullPower) {
   ?>
-  <li><a href="index.php?page=importBans&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_006?></a></li>
+  <li><div align="center"><a href="index.php?page=importBans&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_006?></a></div></li>
   <?php
   }
   ?>
@@ -74,17 +74,17 @@ include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_nav
   <?php
   // Demos Button
   ?>
-  <li><a href="index.php?page=demos&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_018?></a></li>
+  <li><div align="center"><a href="index.php?page=demos&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_018?></a></div></li>
   
   <?php // Server List Button ?>
-  <li><a href="index.php?page=serverList&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_007?></a></li>
+  <li><div align="center"><a href="index.php?page=serverList&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_007?></a></div></li>
 
   
   <?php
   // Profile Button
   if($member || $admin || $banManager || $fullPower) {
   ?>
-  <li><a href="index.php?page=profile&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_008?></a></li>
+  <li><div align="center"><a href="index.php?page=profile&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_008?></a></div></li>
   <?php
   }
   ?>
@@ -94,9 +94,9 @@ include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_nav
   if($fullPower) {
   ?>
   
-    <li><a href="#"><?php echo $LANNAV_019 ?></a>
+    <li><div align="center"><a href="#"><?php echo $LANNAV_019 ?></a></div>
       <ul>
-        <li><a href="index.php?page=configuration&adminPage=1&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_009?></li>
+        <li><a href="index.php?page=configuration&adminPage=1&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_009?></a></li>
         <li><a href="index.php?page=banReasons&adminPage=1&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_010?></a></li>
         <li><a href="index.php?page=banLengths&adminPage=1&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_011?></a></li>
         <li><a href="index.php?page=badNames&adminPage=1&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_012?></a></li>
@@ -115,7 +115,7 @@ include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_nav
   // Logout
   if(isset($_SESSION['accessLevel']) && $page != "logout" && !$config->enableSmfIntegration) {
   ?>
-  <li><a href="index.php?page=logout&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_017?></a></li>
+  <li><div align="center"><a href="index.php?page=logout&lg=<?php echo $LANGUAGE?>"><?php echo $LANNAV_017?></a></div></li>
   <?php
   }
   if ($adminPage==1) {
