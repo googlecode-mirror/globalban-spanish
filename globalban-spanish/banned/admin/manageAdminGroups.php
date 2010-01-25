@@ -247,7 +247,7 @@ $groups = $adminGroupQueries->getAdminGroups();
         </td>
         <td class="colColor2" id="save:<?php echo $group->getId()?>" onclick="saveAdminGroup('<?php echo $group->getId()?>');" style="cursor:pointer;"
             onmouseover="Tip('Click to save settings for <?php echo $group->getName()?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('adminGroup'))">
-        <img src="images/tick.png"/>
+        <img src="images/save.png"/>
         </td>
         <td class="colColor1" style="cursor:pointer;" onclick="deleteVerify('<?php echo $group->getId()?>', '<?php echo $group->getName()?>');"
             onmouseover="Tip('Click to delete <?php echo $group->getName()?> from the server list', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('adminGroup'))">

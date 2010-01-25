@@ -242,23 +242,24 @@ function deleteVerify(id, name) {
   <div id="serverAdminsList">
   <table id="serverAdminsTable" class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
     <tr>
-      <th class="colColor2" width="1%" nowrap><input type="checkbox" id="selectAll"/></th>
-      <th class="colColor1" width="25%" nowrap>Admin</th>
-      <th class="colColor2" width="25%" nowrap>Group</th>
-      <th class="colColor1" width="49%" nowrap>Remove</th>
+      <th class="colColor2" width="1%" nowrap><div align="center"><input type="checkbox" id="selectAll"/></div></th>
+      <th class="colColor1" width="10%" nowrap><div align="center">Admin</div></th>
+      <th class="colColor2" width="1%" nowrap><div align="center">Group</div></th>
+      <th class="colColor1" width="1%" nowrap><div align="center">Remove</div></th>
+      <th class="colColor2"></th>
     </tr>
     <?php
     foreach($serverAdmins as $serverAdmin) {
     ?>
     <tr>
       <td class="colColor2">
-        <input type="checkbox" id="admin-<?php echo $serverAdmin->getId()?>"/>
+        <div align="center"><input type="checkbox" id="admin-<?php echo $serverAdmin->getId()?>"/></div>
         <input type="hidden" id="serverId-<?php echo $serverAdmin->getId()?>" value="<?php echo $server->getId()?>"/>
         <input type="hidden" id="groupId-<?php echo $serverAdmin->getId()?>" value="<?php echo $groupId?>"/>
         <input type="hidden" id="adminName-<?php echo $serverAdmin->getId()?>" value="<?php echo $serverAdmin->getName()?>"/>
       </td>
       <td class="colColor1" nowrap><?php echo $serverAdmin->getName()?></td>
-      <td class="colColor2">
+      <td class="colColor2"><div align="center">
         <select id="adminGroupId-<?php echo $serverAdmin->getId()?>" onchange="updateAdminGroup('<?php echo $server->getId()?>', '<?php echo $groupId?>', this.value, '<?php echo $serverAdmin->getId()?>')">
         <option value="0">-- No Powers --</option>
         <?php
@@ -270,7 +271,7 @@ function deleteVerify(id, name) {
           ?><option value="<?php echo $adminGroup->getId()?>"<?php echo $selected?>><?php echo $adminGroup->getName()?></option><?php
         }
         ?>
-        </select>
+        </select></div>
       </td>
       <td class="colColor1">
         <form action="index.php?page=manageServerAdmins&adminPage=1" id="deleteUser:<?php echo $serverAdmin->getId()?>" name="deleteUser:<?php echo $serverAdmin->getId()?>" method="POST"
@@ -279,9 +280,10 @@ function deleteVerify(id, name) {
           <input type="hidden" name="serverId" id="serverId" value="<?php echo $server->getId()?>"/>
           <input type="hidden" name="groupId" id="groupId" value="<?php echo $groupId?>"/>
           <input type="hidden" name="submitDelete" value="1">
-          <img src="images/trash-full.png" style="cursor:pointer" onmouseover="Tip('Click to remove <?php echo $serverAdmin->getName()?> from this list', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('serverAdminsTable'));"/>
+          <div align="center"><img src="images/trash-full.png" style="cursor:pointer" onmouseover="Tip('Click to remove <?php echo $serverAdmin->getName()?> from this list', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('serverAdminsTable'));"/></div>
         </form>
       </td>
+      <td class="colColor2" nowrap></td>
     </tr>
     <?php
     }

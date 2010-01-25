@@ -94,25 +94,25 @@ $servers = $serverQueries->getServers();
   </div>
   <table id="serverManagementTable" class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
     <tr>
-      <th class="colColor1" width="1%" nowrap>ID</th>
-      <th class="colColor2" width="1%" nowrap>Server Name</th>
-      <th class="colColor1" width="1%" nowrap>IP</th>
-      <th class="colColor2" width="1%" nowrap>Port</th>
-      <th class="colColor1" width="1%" nowrap>Type</th>
-      <th class="colColor1" width="1%" nowrap>Current RCON Password</th>
-      <th class="colColor2" width="1%" nowrap>New RCON Password</th>
-      <th class="colColor1" width="1%" nowrap>Admins</th>
-      <th class="colColor2" width="1%" nowrap>Save</th>
-      <th class="colColor1" width="1%" nowrap>Delete</th>
+      <th class="colColor1" width="1%" nowrap><div align="center">ID</div></th>
+      <th class="colColor2" width="1%" nowrap><div align="center">Server Name</div></th>
+      <th class="colColor1" width="1%" nowrap><div align="center">IP</div></th>
+      <th class="colColor2" width="1%" nowrap><div align="center">Port</div></th>
+      <th class="colColor1" width="1%" nowrap><div align="center">Type</div></th>
+      <th class="colColor2" width="1%" nowrap><div align="center">Current RCON Password</div></th>
+      <th class="colColor1" width="1%" nowrap><div align="center">New RCON Password</div></th>
+      <th class="colColor2" width="1%" nowrap><div align="center">Admins</div></th>
+      <th class="colColor1" width="1%" nowrap><div align="center">Save</div></th>
+      <th class="colColor2" width="1%" nowrap><div align="center">Delete</div></th>
     </tr>
     <?php foreach($servers as $server) {
           ?>
           <tr>
-            <td class="colColor1" width="1%" nowrap><?php echo $server->getId()?></td>
-            <td class="colColor2" width="1%" nowrap><input type="text" id="serverName:<?php echo $server->getId()?>" name="serverName:<?php echo $server->getId()?>" value="<?php echo $server->getName()?>" size="40" maxlength="128"/></td>
-            <td class="colColor1" width="1%" nowrap><input type="text" id="serverIp:<?php echo $server->getId()?>" name="serverIp:<?php echo $server->getId()?>" value="<?php echo $server->getIp()?>" size="18" maxlength="16"/></td>
-            <td class="colColor2" width="1%" nowrap><input type="text" id="serverPort:<?php echo $server->getId()?>" name="serverPort:<?php echo $server->getId()?>" value="<?php echo $server->getPort()?>" size="8" maxlength="8"/></td>
-            <td class="colColor1" width="1%" nowrap>
+            <td class="colColor1" width="1%" nowrap><div align="center"><?php echo $server->getId()?></div></td>
+            <td class="colColor2" width="1%" nowrap><div align="center"><input type="text" id="serverName:<?php echo $server->getId()?>" name="serverName:<?php echo $server->getId()?>" value="<?php echo $server->getName()?>" size="50" maxlength="128"/></div></td>
+            <td class="colColor1" width="1%" nowrap><div align="center"><input type="text" id="serverIp:<?php echo $server->getId()?>" name="serverIp:<?php echo $server->getId()?>" value="<?php echo $server->getIp()?>" size="18" maxlength="16"/></div></td>
+            <td class="colColor2" width="1%" nowrap><div align="center"><input type="text" id="serverPort:<?php echo $server->getId()?>" name="serverPort:<?php echo $server->getId()?>" value="<?php echo $server->getPort()?>" size="8" maxlength="8"/></div></td>
+            <td class="colColor1" width="1%" nowrap><div align="center"><div align="center">
               <select id="serverType:<?php echo $server->getId()?>" name="serverType:<?php echo $server->getId()?>">
                 <?php if(strtolower($server->getType()) == "cstrike") { ?>
                   <option value="cstrike" selected>CS:S</option>
@@ -139,24 +139,24 @@ $servers = $serverQueries->getServers();
                 <?php }else { ?>
                   <option value="ZPS">ZPS</option>
                 <?php } ?>
-              </select>
+              </select></div>
             </td>
-            <td class="colColor2" width="1%" nowrap><input type="password" id="currentServerRcon:<?php echo $server->getId()?>"name="currentServerRcon:<?php echo $server->getId()?>" value="" maxlength="40"/></td>
-            <td class="colColor1" width="1%" nowrap><input type="password" id="serverRcon:<?php echo $server->getId()?>"name="serverRcon:<?php echo $server->getId()?>" value="" maxlength="40"/></td>
+            <td class="colColor2" width="1%" nowrap><div align="center"><input type="password" id="currentServerRcon:<?php echo $server->getId()?>"name="currentServerRcon:<?php echo $server->getId()?>" value="" maxlength="40"/></div></td>
+            <td class="colColor1" width="1%" nowrap><div align="center"><input type="password" id="serverRcon:<?php echo $server->getId()?>"name="serverRcon:<?php echo $server->getId()?>" value="" maxlength="40"/></div></td>
             <td class="colColor2" width="1%" nowrap style="cursor:pointer;" onclick="location.href='index.php?page=manageServerAdmins&adminPage=1&serverId=<?php echo $server->getId()?>&groupId=<?php echo $server->getGroupId()?>'"
                 onmouseover="Tip('Click to manage the admins for <?php echo $server->getName()?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('serverManagementTable'))">
-                <img src="images/group.png"/>
+                <div align="center"><img src="images/group.png"/></div>
             </td>
-            <td id="save:<?php echo $server->getId()?>" class="colColor2" onclick="saveServer('<?php echo $server->getId()?>');" style="cursor:pointer;"
+            <td id="save:<?php echo $server->getId()?>" class="colColor1" onclick="saveServer('<?php echo $server->getId()?>');" style="cursor:pointer;"
                 onmouseover="Tip('Click to save settings for <?php echo $server->getName()?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('serverManagementTable'))">
-            <img src="images/tick.png"/>
+                <div align="center"><img src="images/save.png"/></div>
             </td>
-            <td class="colColor1" style="cursor:pointer;" onclick="deleteVerify('<?php echo $server->getId()?>', '<?php echo $server->getName()?>');"
+            <td class="colColor2" style="cursor:pointer;" onclick="deleteVerify('<?php echo $server->getId()?>', '<?php echo $server->getName()?>');"
                 onmouseover="Tip('Click to delete <?php echo $server->getName()?> from the server list', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('serverManagementTable'))">
             <form action="index.php?page=manageServers&adminPage=1" id="deleteServer<?php echo $server->getId()?>" name="deleteServer<?php echo $server->getId()?>" method="POST">
               <input type="hidden" name="serverId" id="serverId" value="<?php echo $server->getId()?>"/>
               <input type="hidden" name="deleteServer" value="1">
-              <img src="images/trash-full.png"/>
+              <div align="center"><img src="images/trash-full.png"/></div>
             </form>
             </td>
           </tr>

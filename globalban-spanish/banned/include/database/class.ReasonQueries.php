@@ -72,8 +72,10 @@ class ReasonQueries {
 	Gets the admins list with their admin id
 	************************************************************************/
   function getAdminsList() {  
-    // $adminsQuery = "SELECT admin_id, name FROM gban_admins ORDER BY admin_id";
-    $adminsQuery = "(SELECT admin_id, name FROM gban_admins ORDER BY admin_id) UNION (SELECT 0 admin_id, b.banner name FROM gban_ban b WHERE b.banner NOT IN (SELECT a.name banner FROM gban_admins a))";
+    $adminsQuery = "(SELECT c.admin_id admin_id, c.name name FROM gban_admins c)
+                    UNION
+                    (SELECT 0 admin_id, b.banner name FROM gban_ban b WHERE b.banner NOT IN (SELECT a.name banner FROM gban_admins a))
+                    ORDER BY name";
     $this->db->sql_query($adminsQuery);    
     
     $adminsList = array();

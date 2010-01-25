@@ -66,9 +66,10 @@ if($fullPower) {
   </div>
   <table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
     <tr>
-      <th class="colColor1" width="1%" nowrap>Length</th>
-      <th class="colColor2" width="1%" nowrap>Time Scale</th>
-      <th class="colColor1" nowrap align="left">Delete</th>
+      <th class="colColor1" width="1%" nowrap><div align="center">Length</div></th>
+      <th class="colColor2" width="1%" nowrap><div align="center">Time Scale</div></th>
+      <th class="colColor1" width="1%" nowrap align="left"><div align="center">Delete</div></th>
+      <th class="colColor2" nowrap></th>
     </tr>
     <?php foreach($banLengths as $banLength) {
           $lengthId = $banLength->getId();
@@ -80,22 +81,24 @@ if($fullPower) {
           }
           ?>
           <tr>
-            <td class="colColor1" width="1%" nowrap><?php echo $length?></td>
-            <td class="colColor2" nowrap><?php echo $timeScale?></td>
-            <td class="colColor1" style="cursor:pointer;" onclick="deleteVerify('<?php echo $lengthId?>', '<?php echo $length?>', '<?php echo $timeScale?>');">
+            <td class="colColor1" width="1%" nowrap><div align="center"><?php echo $length?></div></td>
+            <td class="colColor2" width="1%" nowrap><div align="center"><?php echo $timeScale?></div></td>
+            <td class="colColor1" width="1%" style="cursor:pointer;" onclick="deleteVerify('<?php echo $lengthId?>', '<?php echo $length?>', '<?php echo $timeScale?>');">
             <form action="index.php?page=banLengths&adminPage=1" id="deleteLength<?php echo $lengthId?>" name="deleteLength<?php echo $lengthId?>" method="POST">
               <input type="hidden" name="lengthId" id="lengthId" value="<?php echo $lengthId?>"/>
               <input type="hidden" name="deleteLength" value="1">
-              <img src="images/trash-full.png"/>
+              <div align="center"><img src="images/trash-full.png"/></div>
             </form>
             </td>
+            <th class="colColor2" nowrap></th>
           </tr>
     <?php } ?>
 
     <tr>
-      <td class="colColor1" width="1%" nowrap>&nbsp;</td>
-      <td class="colColor2" nowrap></td>
+      <td class="colColor1">&nbsp;</td>
+      <td class="colColor2"></td>
       <td class="colColor1"></td>
+      <th class="colColor2"></th>
     </tr>
 
     </table>
