@@ -121,5 +121,13 @@ $LAN_CONFIGURATION_108 = "ID Category Forum";
 $LAN_CONFIGURATION_109 = "For example if your Banned e107 Forum category link is \'http://www.youre107.com/e107_plugins/forum/forum_viewforum.php?19\' you must set it to \'19\'";
 $LAN_CONFIGURATION_110 = "Database Name";
 $LAN_CONFIGURATION_111 = "MySQL Database Name used by your e107 website.";
+$LAN_CONFIGURATION_112 = 'Warrnings About Ex-Banned Player To';
+$LAN_CONFIGURATION_113 = 'Allows you to select which players will be advised during the game when you connect a player who was banned temporarily by a ban already expired.';
+$LAN_CONFIGURATION_114 = 'Every Player';
+$LAN_CONFIGURATION_115 = 'Admins And Ex-Banned';
+$LAN_CONFIGURATION_116 = 'Only Admins (Chat)';
+$LAN_CONFIGURATION_117 = 'Only Ex-Banned (Panel)';
+$LAN_CONFIGURATION_118 = 'Nobody';
+
 
 ?>

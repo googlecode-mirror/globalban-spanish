@@ -31,6 +31,9 @@ require_once(ROOTDIR."/include/php4functions.php");
 
 session_start();
 
+$lan_file = ROOTDIR.'/languages/English/lan_configuration.php';
+include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_configuration.php");
+
 $installAndUpgrade = new InstallAndUpgradeQueries();
 
 function selfURL() {
@@ -190,6 +193,8 @@ class Config {
   var $"."allowAdminBans = ".$_POST['allowAdminBan']."; // Set to true to allow the banning of admins (Default off - false)
   var $"."teachAdmins = ".$_POST['teachAdmins']."; // Teach admins the !banmenu command
   var $"."removePendingOnUpload = ".$_POST['removePendingOnUpload']."; // Remove the pending status from a ban when a member uploads a demo for that ban
+  var $"."adviseInGame = ".$_POST['adviseInGame']."; // Allows you to select which players will be advised during the game when you connect a player who was banned temporarily by a ban already expired: 1 - All (Panel), 2 - Only Admins Chat & Ex-Banned Player; 3 - Only Admins Chat; 4 - Only Ex-Banned (Panel); 5 - NoBody
+
   //var $"."numDemosToBan = -1; // The person uploading a demo needs to have X number of people banned from his demos before future uploads will auto-ban. (-1 is off)
 
   /**
@@ -778,6 +783,20 @@ function hideShowSuperUserBlock() {
           <option value="0">No</option>
         </select>
       </td>
+    </tr>
+    <tr>
+      <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_112 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_113 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor2" width="1%" nowrap>
+        <select name="adviseInGame">
+          <option value="1" selected><?php echo $LAN_CONFIGURATION_114 ?></option>
+          <option value="2"><?php echo $LAN_CONFIGURATION_115 ?></option>
+          <option value="3"><?php echo $LAN_CONFIGURATION_116 ?></option>
+          <option value="4"><?php echo $LAN_CONFIGURATION_117 ?></option>
+          <option value="5"><?php echo $LAN_CONFIGURATION_118 ?></option>
+        </select>
+      </td>
+      <td class="rowColor2" width="1%" nowrap></td>
+      <td class="rowColor2" width="1%" nowrap></td>
     </tr>
     </table>
   </div>

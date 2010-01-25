@@ -126,7 +126,7 @@ class Config {
   var $"."allowAdminBans = ".$_POST['allowAdminBan']."; // Set to true to allow the banning of admins (Default off - false)
   var $"."teachAdmins = ".$_POST['teachAdmins']."; // Teach admins the !banmenu command
   var $"."removePendingOnUpload = ".$_POST['removePendingOnUpload']."; // Remove the pending status from a ban when a member uploads a demo for that ban
-  var $"."adviseInGame = \"all\";
+  var $"."adviseInGame = ".$_POST['adviseInGame']."; // Allows you to select which players will be advised during the game when you connect a player who was banned temporarily by a ban already expired: 1 - All (Panel), 2 - Only Admins Chat & Ex-Banned Player; 3 - Only Admins Chat; 4 - Only Ex-Banned (Panel); 5 - NoBody
   //var $"."numDemosToBan = -1; // The person uploading a demo needs to have X number of people banned from his demos before future uploads will auto-ban. (-1 is off)
 
   /**

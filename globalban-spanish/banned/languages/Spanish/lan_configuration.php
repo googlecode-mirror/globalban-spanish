@@ -121,5 +121,13 @@ $LAN_CONFIGURATION_108 = "ID Sub-Foro";
 $LAN_CONFIGURATION_109 = "Por ejemplo si el link a la Categoria de tu Sub-Foro de baneados fuera \'http://www.youre107.com/e107_plugins/forum/forum_viewforum.php?19\' entonces deberias establecer este valor a \'19\'";
 $LAN_CONFIGURATION_110 = "Nombre BaseDatos";
 $LAN_CONFIGURATION_111 = "Nombre de la Base de Datos de MySQL usada por tu web e107.";
+$LAN_CONFIGURATION_112 = 'Avisos Sobre Jugadores Ex-Baneados a';
+$LAN_CONFIGURATION_113 = 'Permite seleccionar a que jugadores se advertira en el juego cuando entre un jugador que estuvo baneado temporalmente por un ban ya no vigente.';
+$LAN_CONFIGURATION_114 = 'Todos los Jugadores';
+$LAN_CONFIGURATION_115 = 'Solo a los Admins y Ex-Baneado';
+$LAN_CONFIGURATION_116 = 'Solo Admins (Chat)';
+$LAN_CONFIGURATION_117 = 'Solo al ExBaneado (Panel)';
+$LAN_CONFIGURATION_118 = 'Ninguno';
+
 
 ?>

@@ -454,6 +454,20 @@ if(file_get_contents("http://code.google.com/p/globalban-spanish/source/list")) 
         </select>
       </td>
     </tr>
+    <tr>
+      <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_112 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_113 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor2" width="1%" nowrap>
+        <select name="adviseInGame">
+          <option value="1"<?php if($config->adviseInGame == 1) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_114 ?></option>
+          <option value="2"<?php if($config->adviseInGame == 2) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_115 ?></option>
+          <option value="3"<?php if($config->adviseInGame == 3) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_116 ?></option>
+          <option value="4"<?php if($config->adviseInGame == 4) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_117 ?></option>
+          <option value="5"<?php if($config->adviseInGame == 5) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_118 ?></option>
+        </select>
+      </td>
+      <td class="rowColor2" width="1%" nowrap></td>
+      <td class="rowColor2" width="1%" nowrap></td>
+    </tr>
     </table>
   </div>
   
