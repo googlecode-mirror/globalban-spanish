@@ -865,6 +865,11 @@ class InstallAndUpgradeQueries {
     $sql = "ALTER TABLE `gban_ban` ADD `kick_counter` int(10) NOT NULL DEFAULT '0' AFTER `add_date` ;";
 
     $this->sql_query($sql);
+    
+    $sql = "ALTER TABLE `gban_ban_history` ADD `kick_counter` int(10) NOT NULL DEFAULT '0' AFTER `add_date` ;";
+
+    $this->sql_query($sql);
+    
   }
 }
 ?>
