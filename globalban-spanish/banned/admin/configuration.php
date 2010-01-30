@@ -294,7 +294,7 @@ if(file_get_contents("http://code.google.com/p/globalban-spanish/source/list")) 
       <td class="rowColor2" width="1%" nowrap>
         <select name="enableWebLink">
           <option value="true"<?php if($config->enableWebLink) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_025 ?></option>
-          <option value="false"<?php if(!$config->enableWebLink) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_026 ?></option>
+          <option value="false"<?php if(!$config->enableWebLink || empty($config->enableWebLink)) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_026 ?></option>
         </select>
       </td>
       <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_085 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_086 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
@@ -316,7 +316,7 @@ if(file_get_contents("http://code.google.com/p/globalban-spanish/source/list")) 
       <td class="rowColor2" width="1%" nowrap>
         <select name="enableHLstatsLink">
           <option value="true"<?php if($config->enableHLstatsLink) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_025 ?></option>
-          <option value="false"<?php if(!$config->enableHLstatsLink) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_026 ?></option>
+          <option value="false"<?php if(!$config->enableHLstatsLink || empty($config->enableHLstatsLink)) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_026 ?></option>
         </select>
       </td>
       <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_089 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_090 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
@@ -349,7 +349,7 @@ if(file_get_contents("http://code.google.com/p/globalban-spanish/source/list")) 
       <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_091 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_092 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor1" width="1%" nowrap>
         <select name="LANGUAGE">
-          <option value="English"<?php if($config->LANGUAGE == "English") echo " selected"; ?>>English</option>
+          <option value="English"<?php if($config->LANGUAGE == "English" || empty($config->LANGUAGE)) echo " selected"; ?>>English</option>
           <option value="Spanish"<?php if($config->LANGUAGE == "Spanish") echo " selected"; ?>>Spanish</option>
           <option value="French"<?php if($config->LANGUAGE == "French") echo " selected"; ?>>French</option>
         </select>
@@ -458,7 +458,7 @@ if(file_get_contents("http://code.google.com/p/globalban-spanish/source/list")) 
       <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_112 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_113 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor2" width="1%" nowrap>
         <select name="adviseInGame">
-          <option value="1"<?php if($config->adviseInGame == 1) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_114 ?></option>
+          <option value="1"<?php if($config->adviseInGame == 1 || empty($config->adviseInGame)) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_114 ?></option>
           <option value="2"<?php if($config->adviseInGame == 2) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_115 ?></option>
           <option value="3"<?php if($config->adviseInGame == 3) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_116 ?></option>
           <option value="4"<?php if($config->adviseInGame == 4) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_117 ?></option>
@@ -542,7 +542,7 @@ if(file_get_contents("http://code.google.com/p/globalban-spanish/source/list")) 
       <td class="rowColor1" width="1%" nowrap>
         <select id="enableAutoPoste107Forum" name="enableAutoPoste107Forum">
           <option value="true"<?php if($config->enableAutoPoste107Forum) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_025 ?></option>
-          <option value="false"<?php if(!$config->enableAutoPoste107Forum) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_026 ?></option>
+          <option value="false"<?php if(!$config->enableAutoPoste107Forum || empty($config->enableAutoPoste107Forum)) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_026 ?></option>
         </select>
       </td>
       <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_096 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_097 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>

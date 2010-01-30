@@ -572,25 +572,25 @@ if(count($bannedUsers) > 0) {
 		<table id="banlistTable" class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
 	    <tr>
 	      <th class="colColor1" width="20%" nowrap>
-	        <div align="center"><a href="index.php?page=banlist&rsc=Motivo&rsd=DESC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
+	        <div align="center"><a href="index.php?page=banlist&rsc=Motivo&rsd=ASC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
 	          <?php echo $LAN_BANLIST_044?>
-	        <a href="index.php?page=banlist&rsc=Motivo&rsd=ASC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
+	        <a href="index.php?page=banlist&rsc=Motivo&rsd=DESC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
 	      <th class="colColor2" width="20%" nowrap COLSPAN=2>
-	        <div align="center"><a href="index.php?page=banlist&rsc=NumPermanentes&rsd=DESC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png"/></a>
+	        <div align="center"><a href="index.php?page=banlist&rsc=NumPermanentes&rsd=ASC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png"/></a>
 	          <?php echo $LAN_BANLIST_003?>
-	        <a href="index.php?page=banlist&rsc=NumPermanentes&rsd=ASC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png"/></a> </div></th>
+	        <a href="index.php?page=banlist&rsc=NumPermanentes&rsd=DESC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png"/></a> </div></th>
 	      <th class="colColor1" width="20%" nowrap COLSPAN=2>
-	        <div align="center"><a href="index.php?page=banlist&rsc=NumCumpliendose&rsd=DESC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
+	        <div align="center"><a href="index.php?page=banlist&rsc=NumCumpliendose&rsd=ASC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
 	          <?php echo $LAN_BANLIST_004?>
-	        <a href="index.php?page=banlist&rsc=NumCumpliendose&rsd=ASC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
+	        <a href="index.php?page=banlist&rsc=NumCumpliendose&rsd=DESC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
 		  <th class="colColor2" width="20%" nowrap COLSPAN=2>
-	        <div align="center"><a href="index.php?page=banlist&rsc=NumCumplidos&rsd=DESC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
+	        <div align="center"><a href="index.php?page=banlist&rsc=NumCumplidos&rsd=ASC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
 	          <?php echo $LAN_BANLIST_005?>
-	        <a href="index.php?page=banlist&rsc=NumCumplidos&rsd=ASC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
+	        <a href="index.php?page=banlist&rsc=NumCumplidos&rsd=DESC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
 	      <th class="colColor1" width="20%" nowrap COLSPAN=3>
-	        <div align="center"><a href="index.php?page=banlist&rsc=NumBaneados&rsd=DESC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
+	        <div align="center"><a href="index.php?page=banlist&rsc=NumBaneados&rsd=ASC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
 	          <?php echo $LAN_BANLIST_045?>
-	        <a href="index.php?page=banlist&rsc=NumBaneados&rsd=ASC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
+	        <a href="index.php?page=banlist&rsc=NumBaneados&rsd=DESC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
 	    </tr>
 	
 	    <?php
@@ -711,25 +711,25 @@ if(count($bannedUsers) > 0) {
 		<table id="banlistTable" class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
 	    <tr>
 	      <th class="colColor1" width="20%" nowrap>
-	        <div align="center"><a href="index.php?page=banlist&asc=Admin&asd=DESC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
+	        <div align="center"><a href="index.php?page=banlist&asc=Admin&asd=ASC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
 	          <?php echo $LAN_BANLIST_017?>
-	        <a href="index.php?page=banlist&asc=Admin&asd=ASC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
+	        <a href="index.php?page=banlist&asc=Admin&asd=DESC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
 	      <th class="colColor2" width="20%" nowrap COLSPAN=2>
-	        <div align="center"><a href="index.php?page=banlist&asc=NumPermanentes&asd=DESC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png"/></a>
+	        <div align="center"><a href="index.php?page=banlist&asc=NumPermanentes&asd=ASC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png"/></a>
 	          <?php echo $LAN_BANLIST_003?>
-	        <a href="index.php?page=banlist&asc=NumPermanentes&asd=ASC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png"/></a> </div></th>
+	        <a href="index.php?page=banlist&asc=NumPermanentes&asd=DESC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png"/></a> </div></th>
 	      <th class="colColor1" width="20%" nowrap COLSPAN=2>
-	        <div align="center"><a href="index.php?page=banlist&asc=NumCumpliendose&asd=DESC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
+	        <div align="center"><a href="index.php?page=banlist&asc=NumCumpliendose&asd=ASC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
 	          <?php echo $LAN_BANLIST_004?>
-	        <a href="index.php?page=banlist&asc=NumCumpliendose&asd=ASC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
+	        <a href="index.php?page=banlist&asc=NumCumpliendose&asd=DESC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
 		  <th class="colColor2" width="20%" nowrap COLSPAN=2>
-	        <div align="center"><a href="index.php?page=banlist&asc=NumCumplidos&asd=DESC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
+	        <div align="center"><a href="index.php?page=banlist&asc=NumCumplidos&asd=ASC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
 	          <?php echo $LAN_BANLIST_005?>
-	        <a href="index.php?page=banlist&asc=NumCumplidos&asd=ASC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
+	        <a href="index.php?page=banlist&asc=NumCumplidos&asd=DESC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
 	      <th class="colColor1" width="20%" nowrap COLSPAN=3>
-	        <div align="center"><a href="index.php?page=banlist&asc=NumBaneados&asd=DESC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
+	        <div align="center"><a href="index.php?page=banlist&asc=NumBaneados&asd=ASC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
 	          <?php echo $LAN_BANLIST_045?>
-	        <a href="index.php?page=banlist&asc=NumBaneados&asd=ASC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
+	        <a href="index.php?page=banlist&asc=NumBaneados&asd=DESC&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
 	    </tr>
 	
 	    <?php

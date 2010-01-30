@@ -1,4 +1,156 @@
+These are the files that are not yet in multi-language mode (Only in English):
+
+        Public Area:
+            - All Completed.
+
+        Install and Upgrade Area:
+            - /banned/install.php
+            - /banned/installComplete.php
+            - /banned/upgrade.php
+            - /banned/upgradeComplete.php
+
+        Admin Area:
+            - /banned/admin/badNames.php
+            - /banned/admin/banLengths.php
+            - /banned/admin/banReasons.php
+            - /banned/admin/manageAdminGroups.php
+            - /banned/admin/manageServerAdmins.php
+            - /banned/admin/manageServers.php
+            - /banned/admin/manageUsers.php
+            - /banned/admin/uploadAdmins.php
+            - /banned/admin/uploadBanLengths.php
+            - /banned/admin/uploadBanReasons.php
+
+
 Changelog:
+
+    * 28/01/2009 - v3.4.1 r90
+
+          o  r89 ALTER TABLE `gban_ban_history` ADD `kick_counter` in Upgrade -> Jan 28, 2010
+          o  r88 Add <div align="center"> </DIV> to center field in navigation.php menus. Add images/configuration_r87.png screenshot configuration page. -> Jan 25, 2010
+          o  r87 Add to configuration.php the new opction of who players advise about ex-banned join. -> Jan 25, 2010
+          o  r86 Admins list in UpdateBan now is orden by admin name ASC. Add new image save.png Add <div align="center"> </DIV> to center field in admin tables. Delete clan LDS Flash Logo (cabezera.swf). -> Jan 25, 2010
+          o  r85 Add gb_reason VAR to ban message to allow show the ban reason in every kick. Add adviseInGame VAR to allow set who players will be advise when join a ex-baner player: All, Admin and Ex-Banned, Only Ex-Banned.  -> Jan 24, 2010
+          o  r84 Fix "Fatal error: Call to undefined function bcadd()" when no extension_loaded('bcmath') -> Jan 23, 2010
+          o  r83 Fix to the .Php.rar & .pphphp.rar file upload exploit. Strip out case-insensitive .php, .jsp, and .asp from uploaded filenames. -> Jan 09, 2010
+          o  r82 Fix didn't allow to keep original deleted admin when some manager update a ban. -> Jan 05, 2010
+          o  r81 Fix some php open tag -> Jan 04, 2010
+          o  r80 Fix send email a newpost only if ban could be set in processWebBan.php Fix manageUsers.php don´t send password to new user registered by fullpower admin. -> Jan 04, 2010
+          o  r79 Fix when delete ban didn´t unArchive bans from bans story of previous offenses Fix show kick_counter in bans story. -> Jan 03, 2010
+          o  r78 Add older /config/class.ConfigOdonel.php to install.php Change admin "Desconocido" to "Unknown" in class.BanQueries.php Change admin "Sin Post" to $LAN_BANLIST_034 in banlist.php -> Dec 31, 2009
+          o  r77 Delete config/class.ConfigOdonel.php Fix admin/configuration.php class="rowColor1" or "rowColor2" -> Dec 28, 2009
+          o  r76 Add /config/class.ConfigOdonel.php to /admin/configuration.php and /admin/configurationSave.php  -> Dec 28, 2009
+          o  r75 Fix check new version -> Dec 27, 2009
+          o  r74 Fix some php open tag -> Dec 27, 2009
+          o  r73 Add multilanguage support to /admin/configuration.php Add English and Spanish Languages to /admin/configuration.php -> Dec 27, 2009
+          o  r72 Fix in banlist.php don´t close comment Tip when mouse out -> Dec 27, 2009
+          o  r71 Add multilanguage support to /admin/configurationSave.php Add English and Spanish Languages to /admin/configurationSave.php -> Dec 27, 2009
+          o  r70 Add multilanguage support to processWebBanUpdate.php Add English and Spanish Languages to processWebBanUpdate.php  -> Dec 26, 2009
+          o  r69 Add multilanguage support to processWebBan.php Add English and Spanish Languages to processWebBan.php  -> Dec 26, 2009
+          o  r68 Add multilanguage support to profile.php Add English and Spanish Languages to profile.php  -> Dec 26, 2009
+          o  r67 Fix "Join Server" link in serverList.php new format steam://connect/213.149.245.86:27015 -> Dec 26, 2009
+          o  r66 Add multilanguage support to serverList.php Add English and Spanish Languages to serverList.php  -> Dec 26, 2009
+          o  r65 Add multilanguage support to importBans.php Add English and Spanish Languages to importBans.php  -> Dec 26, 2009
+          o  r64 Fix select reason to cfg bans in importBans.php -> Dec 26, 2009
+          o  r63 Fix link HLstats:CE to find in all games and not only CS:S  -> Dec 22, 2009
+          o  r62 Fix replace quotes with the HTML code in banlist.php comments -> Dec 22, 2009
+          o  r61 Fix multilanguage support to banlist.php Fix French Var Languages to newuser.php  -> Dec 22, 2009
+          o  r60 Fix Wiki images file names (remove spaces). -> Dec 20, 2009
+          o  r59 Fix In-Game Multi-Languages Messages -> Dec 20, 2009
+          o  r58 Fix French Var Languages to newuser.php  -> Dec 20, 2009
+          o  r57 Add multilanguage support to newuser.php Add English and Spanish Languages to newuser.php  -> Dec 20, 2009
+          o  r56 Fix PHP open tag generateBanReasonDB.php -> Dec 19, 2009
+          o  r55 Add multilanguage support to processServerBan.php Add English and Spanish Languages to processServerBan.php  -> Dec 19, 2009
+          o  r54 Add multilanguage support to checkUser.php Add English and Spanish Languages to checkUser.php  -> Dec 19, 2009
+          o  r53 Add multilanguage support to login.php and logout.php Add English and Spanish Languages to login.php and logout.php  -> Dec 19, 2009
+          o  r52 Add screenshots to /wiki/ folder -> Nov 23, 2009
+          o  r51 Fix $url in link to search new ban and post in e107 -> Oct 12, 2009
+          o  r50 Fix _GET['banId'] in updateBan.php Fix English and Spanish Languages to banlist.php -> Oct 10, 2009
+          o  r49 Add English and Spanish Languages to updateBan.php -> Oct 08, 2009
+          o  r48 Add multilanguage support to updateBan.php -> Oct 08, 2009
+          o  r47 Fix multilanguage support to banlist.php -> Oct 07, 2009
+          o  r46 Fix English and Spanish Languages to banlist.php -> Oct 07, 2009
+          o  r45 Add English and Spanish Languages to header.php -> Oct 07, 2009
+          o  r44 Add multilanguage support to header.php -> Oct 07, 2009
+          o  r43 Add English and Spanish Languages to footer.php -> Oct 07, 2009
+          o  r42 Add multilanguage support to footer.php -> Oct 07, 2009
+          o  r41 Fix Open PHP Tag -> Oct 07, 2009
+          o  r40 Fix Open PHP Tag -> Oct 07, 2009
+          o  r39 Fix demos.php -> Oct 07, 2009
+          o  r38 Fix Open PHP Tag -> Oct 07, 2009
+          o  r37 Fix Open PHP Tag -> Oct 07, 2009
+          o  r36 Fix Open PHP Tag -> Oct 07, 2009
+          o  r35 Fix Open PHP Tag -> Oct 07, 2009
+          o  r34 Add new ajax funtions by Fantole -> Oct 07, 2009
+          o  r33 Add edit by Fantole -> Oct 07, 2009
+          o  r32 Fix English, French and Spanish Languages to manageServerGroups.php -> Oct 07, 2009
+          o  r31 Add English and Spanish Languages to manageServerGroups.php -> Oct 07, 2009
+          o  r30 Add multilanguage support to manageServerGroups.php and fix that not allowed edit/delete groups. -> Oct 07, 2009
+          o  r29 Add English and Spanish Languages to demos.php -> Oct 07, 2009
+          o  r28 Add multilanguage support to demos.php -> Oct 07, 2009
+          o  r27 Add English and Spanish Languages to ipbanlist.php -> Oct 07, 2009
+          o  r26 Add multilanguage support to ipbanlist.php -> Oct 07, 2009
+          o  r25 Add English and Spanish Languages to addBan.php -> Oct 07, 2009
+          o  r24 Add multilanguage support to addBan.php -> Oct 07, 2009
+          o  r23 Fix var in use Fix French translate navigation menu to be shorter -> Oct 04, 2009
+          o  r22 Edit Translate to add "Admin" -> Oct 04, 2009
+          o  r21 Add Frenh Flasg to Navigation Menu -> Oct 04, 2009
+          o  r20 Add French Language -> Oct 04, 2009
+          o  r19 Add Fantole function deleteServerGroup() and updateServerGroup() -> Oct 04, 2009
+          o  r18 Add link to code.gloogle repository in config page. -> Oct 04, 2009
+          o  r17 Fix display in red color your version if not equal offial version. -> Oct 04, 2009
+          o  r16 Use this repository to check official vesion and not http://unbuinc.net -> Oct 04, 2009
+          o  r15 Add &lg=<?=$LANGUAGE?> to all navigation menu. -> Oct 04, 2009
+          o  r14 Fix SiteLogo auto check if logo file is .swf (Flash Player) -> Oct 04, 2009
+          o  r13 Fix display error in banlist when comments have " inside -> Oct 04, 2009
+          o  r12 Add gb_time var to ban message -> Sep 30, 2009
+          o  r11 Fix function NewPostForum_e107 -> Sep 30, 2009
+          o  r10 Remove the call to css/print.css style used when the document is printed.  -> Jul 14, 2009
+          o  r9 Fix Web Link on Navigation Menu -> Jul 07, 2009
+          o  r8 navigation.php -> Multi-Language Support (English, Spanish)  -> Jul 07, 2009
+          o  r7 Languages Choise by Icons Flags -> Jul 04, 2009
+          o  r6 Add global variable LANGUAGE to OdonelConfig.php -> Jul 04, 2009
+          o  r5 class.Length.php and getBanLengthList.php -> Multi languajes Support (English, Spanish) -> Jul 02, 2009
+          o  r4 Fix Removing all the &amp; inserted in the links by error -> Jul 02, 2009
+          o  r3 banlist.php -> Multi languajes Support (English, Spanish) -> Jul 02, 2009
+          o  r2 Spanish Translate + Updates -> Jul 01, 2009
+            o  Changes in web:
+                o  Spanish / French translate
+                o  Link Orange color to bans with demo.
+                o  Yellow advice for banner with previus offenses and blue icon for more info when mouse over.
+                o  Show time in the date.
+                o  Blue icon for show the comments when mouse over.
+                o  Link to HLstatsX Community Edition searching this Steam_ID.
+                o  Link to Steam Comunity Profile Steam_ID.
+                o  Auto post of GlobalBan in e107 CMS forum with the ban info and link using the website link of the import bans. Because maybe the banned person may want to do a reply.
+                o  Delete Ban buttom (only acces to superadministrator users).
+                o  Kicks Counter for every banned player with every try of connect while the ban period.
+                o  Added statistics according to admin or reasons and type of ban: permanent, temporary or expired.
+                o  Allow to change admin name, website link, server in the ban edit page.
+                o  No allow .dem demos files, only .rar and .zip.
+                o  Fix don´t allow ban other admin.
+                o  Fix link to update new ban in the email that advise new ban added.
+                o  Added new config file for the new features: ./config/class.ConfigOdonel.php (allow set the URL of your HLstatsX Community Edition Website, enable the e107 auto post option and your own website)
+            o  Changes in game:
+                o  Advise in game when connect a expired baned player, show left panel menu with previus nick name, reason, period, admin...
+                o  Kick mesage with reason and period
+                o  Permanent ban period is to the end of the list period.
+                o  Upgrade to the last Wget version for Windows server
+          o  r1 GlobalBan 3.4.1 Original Ver 244 http://code.google.com/p/esglobalban/source/browse/?r=244 -> Jul 01, 2009
+
+
+    * 12/01/2008 - v3.4.1
+
+          o Fix to the .php.rar file upload exploit.
+
+    * 07/05/2008 - v3.4
+
+          o GlobanBan works with the orangebox now.
+          o Servers can now be grouped together with server groups. This allows you to apply 1 list of admins to multiple servers.
+          o Admin Groups are now implemented. You can specify GlobalBan, Mani, and SourceMod powers within a group. You then can set an admin to this group. Click on the admins icon on the Server Page to edit their powers.
+          o A new Bad Name list has been added. Any names that contain the bad name will be auto-kicked. For example, you can add myg0t to have anyone that connects with that tag to be kicked.
+          o New script command gb_consoleBanUser allows a scripter to use this command to autoban. This lets GlobalBan know it was done by a script rather than an admin. Refer to GlobalBan.py to see an example.
+          o Mani and SourceMod support is in place. If you plan to use it, you must disable Mani's database usage. The same is true for SourceMod. GlobalBan writes the admins lists to flat files. Please be sure to backup those files before using GlobalBan to manage your lists.
 
     * 01/25/2008 - v3.3
           o Threading removed. Replaced with wget and requires your webserver to be able to send rcon commands to your servers.

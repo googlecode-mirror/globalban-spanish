@@ -63,6 +63,32 @@ if(empty($smfNoPowerGroup)) {
   $smfNoPowerGroup = 0;
 }
 
+$enableAutoPoste107Forum = $_POST['enableAutoPoste107Forum'];
+if(empty($enableAutoPoste107Forum)) {
+  $enableAutoPoste107Forum = false;
+}
+
+$adviseInGame = $_POST['adviseInGame'];
+if(empty($adviseInGame)) {
+  $adviseInGame = 1;
+}
+
+$enableWebLink = $_POST['enableWebLink'];
+if(empty($enableWebLink)) {
+  $enableWebLink = false;
+}
+
+$enableHLstatsLink = $_POST['enableHLstatsLink'];
+if(empty($enableHLstatsLink)) {
+  $enableHLstatsLink = false;
+}
+
+$LANGUAGE = $_POST['LANGUAGE'];
+if(empty($LANGUAGE)) {
+  $LANGUAGE = "English";
+}
+
+
 // Generate the php config file
 $configData = "<?php
 /**
@@ -81,7 +107,7 @@ class Config {
   /**
    * Site specific settings
    */
-  var $"."LANGUAGE = \"".$_POST['LANGUAGE']."\"; // Default Language (English, Spanish, French, ...)   
+  var $"."LANGUAGE = \"".$LANGUAGE."\"; // Default Language (English, Spanish, French, ...)   
   var $"."bansPerPage = ".$bansPerPage."; // Number of bans to display on ban list page for each page (-1 show all)
   var $"."maxPageLinks = ".$_POST['numPageLinks']."; // Number of links to show before and after selected page (IE: set at 2 you would see 1 2 ... 10 11 [12] 13 14 ... 23 24)
   var $"."demoRootDir = \"".$_POST['demoDir']."\"; // Folder to save demos to (folder must be relative to banned dir)
@@ -108,7 +134,7 @@ class Config {
   /**
    * e107 integration settings
    */
-  var $"."enableAutoPoste107Forum = ".$_POST['enableAutoPoste107Forum'].";  // Whether to enable e107 integration, just generate Auto-Post in the e107 Forum with each new ban.
+  var $"."enableAutoPoste107Forum = ".$enableAutoPoste107Forum.";  // Whether to enable e107 integration, just generate Auto-Post in the e107 Forum with each new ban.
   var $"."e107TablePrefix = \"".$_POST['e107TablePrefix']."\"; // The prefix of the e107 tables
   var $"."e107Url = \"".$_POST['e107Url']."\"; // Your e107 web site Ej: \"http://www.e107.com/\"
   var $"."e107_dbName = \"".$_POST['e107_dbName']."\"; //  Set the e107 Database Name to access
@@ -126,7 +152,7 @@ class Config {
   var $"."allowAdminBans = ".$_POST['allowAdminBan']."; // Set to true to allow the banning of admins (Default off - false)
   var $"."teachAdmins = ".$_POST['teachAdmins']."; // Teach admins the !banmenu command
   var $"."removePendingOnUpload = ".$_POST['removePendingOnUpload']."; // Remove the pending status from a ban when a member uploads a demo for that ban
-  var $"."adviseInGame = ".$_POST['adviseInGame']."; // Allows you to select which players will be advised during the game when you connect a player who was banned temporarily by a ban already expired: 1 - All (Panel), 2 - Only Admins Chat & Ex-Banned Player; 3 - Only Admins Chat; 4 - Only Ex-Banned (Panel); 5 - NoBody
+  var $"."adviseInGame = ".$adviseInGame."; // Allows you to select which players will be advised during the game when you connect a player who was banned temporarily by a ban already expired: 1 - All (Panel), 2 - Only Admins Chat & Ex-Banned Player; 3 - Only Admins Chat; 4 - Only Ex-Banned (Panel); 5 - NoBody
   //var $"."numDemosToBan = -1; // The person uploading a demo needs to have X number of people banned from his demos before future uploads will auto-ban. (-1 is off)
 
   /**
@@ -140,14 +166,14 @@ class Config {
    * Web Settings
    * Very simple web integration (Just adds a link button)
    */
-  var $"."enableWebLink = ".$_POST['enableWebLink'].";
+  var $"."enableWebLink = ".$enableWebLink.";
   var $"."webUrl = \"".$_POST['webUrl']."\"; // Link to your forums
   
   /**
    * HLstatsX Settings
    * Very simple web integration (Just adds a link button)
    */
-  var $"."enableHLstatsLink = ".$_POST['enableHLstatsLink'].";
+  var $"."enableHLstatsLink = ".$enableHLstatsLink.";
   var $"."HLstatsUrl = \"".$_POST['HLstatsUrl']."\"; // Link to your forums
 
   /**

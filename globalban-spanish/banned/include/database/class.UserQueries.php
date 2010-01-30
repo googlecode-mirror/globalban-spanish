@@ -229,6 +229,7 @@ class UserQueries extends Config {
 	Get everything about the user and store it to a user object
 	************************************************************************/
 	function getUserInfoById($id) {
+    
     if($this->enableSmfIntegration) {
       $this->db->sql_query("SELECT gas.admin_id, sm.memberName, sm.ID_GROUP, sm.additionalGroups, sm.emailAddress
                             FROM gban_admin_steam gas, ".$this->smfTablePrefix."members sm
@@ -250,27 +251,34 @@ class UserQueries extends Config {
   			return new User();
   		}
     } else {
-  		$this->db->sql_query("SELECT ga.admin_id, ga.name, ga.password, ga.access_level, ga.email, gas.steam_id
-  		                      FROM gban_admins ga, gban_admin_steam gas
-                            WHERE ga.admin_id='".$id."'
-                            AND ga.admin_id = gas.admin_id");
+        if($id==-1){
+            $this->user->setId('-1');
+            $this->user->setName('Console');
+            $this->user->setBannerSteamId('N/A');
+            
+            return $this->user;
+        } else {
+            $this->db->sql_query("SELECT ga.admin_id, ga.name, ga.password, ga.access_level, ga.email, gas.steam_id
+                                  FROM gban_admins ga, gban_admin_steam gas
+                                WHERE ga.admin_id='".$id."'
+                                AND ga.admin_id = gas.admin_id");
 
-  		$info = $this->db->get_row();
+            $info = $this->db->get_row();
 
-  		if($info) {
-  			// Set variables in user object
-  			$this->user->setId($info['admin_id']);
-  			$this->user->setName($info['name']);
-  			$this->user->setPassword($info['password']);
-  			$this->user->setAccessLevel($info['access_level']);
-  			$this->user->setEmail($info['email']);
+            if($info) {
+                // Set variables in user object
+                $this->user->setId($info['admin_id']);
+                $this->user->setName($info['name']);
+                $this->user->setPassword($info['password']);
+                $this->user->setAccessLevel($info['access_level']);
+                $this->user->setEmail($info['email']);
 
-  			return $this->user; // Return user object
-  		}
-  		else {
-  			return new User();
-  		}
-		}
+                return $this->user; // Return user object
+            } else {
+                return new User();
+            }
+        }    
+	}
 	}
 	
 	/************************************************************************
