@@ -245,9 +245,14 @@ if(file_get_contents("http://unbuinc.net/gbanversion.php")) {
 */
 // Make sure we can read data from another URL
 if(file_get_contents("http://code.google.com/p/globalban-spanish/source/list")) {
-  $officialVersion = "3.4.1 r".substr(strstr(file_get_contents("http://code.google.com/p/globalban-spanish/source/list"), '<td class="id"><a href="detail?r='),strlen('<td class="id"><a href="detail?r='),2);
+  $officialVersion = "3.4.1 r".str_replace('"', '',substr(strstr(file_get_contents("http://code.google.com/p/globalban-spanish/source/list"), '<td class="id"><a href="detail?r='),strlen('<td class="id"><a href="detail?r='),3));
 } else {
   $officialVersion = "N/A";
+}
+
+
+if(!is_writable("config/class.Config.php")) {
+    echo "<h4 style='color:red; margin-bottom:0px'><i>The file config/class.Config.php is not writable. Please check your web server's permissions before continuing.</i></h4></br>";
 }
 ?>
 
@@ -324,9 +329,9 @@ if(file_get_contents("http://code.google.com/p/globalban-spanish/source/list")) 
     </tr>
     <tr>
       <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_029 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_030 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
-      <td class="rowColor1" width="1%" nowrap><input type="text" name="bansPerPage" value="<?php echo $config->bansPerPage ?>" size="10" maxlength="5" onkeyup="removeCharacters(this)"/></td>
+      <td class="rowColor1" width="1%" nowrap><input type="text" name="bansPerPage" value="<?php echo $config->bansPerPage ?>" size="5" maxlength="3" onkeyup="removeCharacters(this)"/></td>
       <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_031 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_032 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
-      <td class="rowColor1" width="1%" nowrap><input type="text" name="numPageLinks" value="<?php echo $config->maxPageLinks ?>" size="5" maxlength="2" onkeyup="removeCharacters(this)"/></td>
+      <td class="rowColor1" width="1%" nowrap><input type="text" name="numPageLinks" value="<?php echo $config->maxPageLinks ?>" size="3" maxlength="2" onkeyup="removeCharacters(this)"/></td>
     </tr>
     <tr>
       <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_033 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_034 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
@@ -336,7 +341,7 @@ if(file_get_contents("http://code.google.com/p/globalban-spanish/source/list")) 
       </td>
       <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_035 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_036 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor2" width="1%" nowrap>
-        <input type="text" id="demoSizeLimit" name="demoSizeLimit" value="<?php echo $config->demoSizeLimit ?>" size="10" maxlength="5" onkeyup="removeCharacters(this)"/>
+        <input type="text" id="demoSizeLimit" name="demoSizeLimit" value="<?php echo $config->demoSizeLimit ?>" size="3" maxlength="3" onkeyup="removeCharacters(this)"/><?php echo " post_max_size: ".ini_get("post_max_size")." and upload_max_filesize: ".ini_get("upload_max_filesize") ?>
         <img src="images/warning.png" id="demoSizeLimitWarn" style="display:none"/>
       </td>
     </tr>
@@ -378,11 +383,11 @@ if(file_get_contents("http://code.google.com/p/globalban-spanish/source/list")) 
     <tr>
       <td class="rowColor2" width="1%" nowrap valign="top"><?php echo $LAN_CONFIGURATION_045 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_046 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor2" width="1%" valign="top" nowrap>
-        <input type="text" id="email" name="email" value="" size="40" maxlength="255"/>
+        <input type="text" id="email" name="email" value="" size="40" maxlength="255"/><br/><br/>
         <input type="button" value="<?php echo $LAN_CONFIGURATION_047 ?>" onclick="addEmail()"/>
-        <input type="button" value="<?php echo $LAN_CONFIGURATION_048 ?>" onclick="removeEmail()"/>
       </td>
       <td class="rowColor2" width="1%" nowrap colspan="2">
+        <input type="button" value="<?php echo $LAN_CONFIGURATION_048 ?>" onclick="removeEmail()"/>
         <select id="emailList" name="emailList" size="5">
           <?php
           for($i=0; $i<count($config->banManagerEmails); $i++) {
@@ -414,7 +419,7 @@ if(file_get_contents("http://code.google.com/p/globalban-spanish/source/list")) 
     <tr>
       <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_050 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_051 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor1" width="1%" nowrap>
-        <input type="text" id="banMessage" name="banMessage" value="<?php echo $config->banMessage ?>" size="60" maxlength="255" onkeyup="removeSpecialCharacters(this)"/>
+        <input type="text" id="banMessage" name="banMessage" value="<?php echo $config->banMessage ?>" size="70" maxlength="255" onkeyup="removeSpecialCharacters(this)"/>
         <img src="images/warning.png" id="banMessageWarn" style="display:none"/>
       </td>
       <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_052 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_053 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>

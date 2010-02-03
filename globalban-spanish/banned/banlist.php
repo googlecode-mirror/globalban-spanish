@@ -598,6 +598,7 @@ if(count($bannedUsers) > 0) {
 		$SumPermanentes=0;
 		$SumCumpliendose=0;
 		$SumCumplidos=0;
+        $t=0;
 	    // Loop through reason stats and display them
 	    foreach($reasonStats as $reasonStat) {
 				$i += 1;
@@ -616,7 +617,12 @@ if(count($bannedUsers) > 0) {
 			         </div></td>
 			      <td class="colColor2" width="10%" nowrap>
 			        <div align="right">
-			          <?php echo number_format($reasonStat->getNumPermanentes()/$reasonStat->getNumBaneados()*100, 0, ",", ".")." %"?>
+			          <?php if($reasonStat->getNumBaneados()==0){
+                                $t=0;
+                            }else{
+                                $t=$reasonStat->getNumPermanentes()/$reasonStat->getNumBaneados()*100;
+                            }
+                            echo number_format($t, 0, ",", ".")." %"; ?>
 			         </div></td>
 			      <td class="colColor1" width="10%" nowrap>
 			        <div align="right">
@@ -624,7 +630,12 @@ if(count($bannedUsers) > 0) {
 			        </div></td>
 				  <td class="colColor1" width="10%" nowrap>
 			        <div align="right">
-			          <?php echo number_format($reasonStat->getNumCumpliendose()/$reasonStat->getNumBaneados()*100, 0, ",", ".")." %"?>
+			          <?php if($reasonStat->getNumBaneados() == 0){
+                                $t=0;
+                            }else{
+                                $t=$reasonStat->getNumCumpliendose()/$reasonStat->getNumBaneados()*100;
+                            }
+                            echo number_format($t, 0, ",", ".")." %"; ?>
 			        </div></td>
 				  <td class="colColor2" width="10%" nowrap>
 			        <div align="right">
@@ -632,7 +643,12 @@ if(count($bannedUsers) > 0) {
 			        </div></td>
 				  <td class="colColor2" width="10%" nowrap>
 			        <div align="right">
-			          <?php echo number_format($reasonStat->getNumCumplidos()/$reasonStat->getNumBaneados()*100, 0, ",", ".")." %"?>
+			          <?php if($reasonStat->getNumBaneados() == 0){
+                                $t=0;
+                            }else{
+                                $t=$reasonStat->getNumCumplidos()/$reasonStat->getNumBaneados()*100;
+                            }
+                            echo number_format($t, 0, ",", ".")." %"; ?>
 			        </div></td>
 			      <td class="colColor1" width="7%" nowrap>
 			        <div align="right">
@@ -644,7 +660,12 @@ if(count($bannedUsers) > 0) {
 			        </div></td>
 				  <td class="colColor1" width="6%" nowrap>
 			        <div align="right">
-			          <?php echo number_format(($reasonStat->getNumCumpliendose()+$reasonStat->getNumPermanentes())/$banCountVigentes*100, 2, ",", ".")." %"?>
+			          <?php if($banCountVigentes == 0){
+                                $t=0;
+                            }else{
+                                $t=($reasonStat->getNumCumpliendose()+$reasonStat->getNumPermanentes())/$banCountVigentes*100;
+                            }
+                            echo number_format($t, 0, ",", ".")." %"; ?>
 			        </div></td>
 
 			    </tr>
@@ -665,7 +686,12 @@ if(count($bannedUsers) > 0) {
 			         </div></td>
 			      <td class="colColor2" width="10%" nowrap>
 			        <div align="right">
-			          <?php echo number_format($SumPermanentes/$SumBaneados*100, 0, ",", ".")." %"?>
+			          <?php if($SumBaneados == 0){
+                                $t=0;
+                            }else{
+                                $t=$SumPermanentes/$SumBaneados*100;
+                            }
+                            echo number_format($t, 0, ",", ".")." %"; ?>
 			         </div></td>
 			      <td class="colColor1" width="10%" nowrap>
 			        <div align="right">
@@ -673,7 +699,12 @@ if(count($bannedUsers) > 0) {
 			        </div></td>
 				  <td class="colColor1" width="10%" nowrap>
 			        <div align="right">
-			          <?php echo number_format($SumCumpliendose/$SumBaneados*100, 0, ",", ".")." %"?>
+			          <?php if($SumBaneados == 0){
+                                $t=0;
+                            }else{
+                                $t=$SumCumpliendose/$SumBaneados*100;
+                            }
+                            echo number_format($t, 0, ",", ".")." %"; ?>
 			        </div></td>
 				  <td class="colColor2" width="10%" nowrap>
 			        <div align="right">
@@ -681,11 +712,16 @@ if(count($bannedUsers) > 0) {
 			        </div></td>
 				  <td class="colColor2" width="10%" nowrap>
 			        <div align="right">
-			          <?php echo number_format($SumCumplidos/$SumBaneados*100, 0, ",", ".")." %"?>
+			          <?php if($SumBaneados == 0){
+                                $t=0;
+                            }else{
+                                $t=$SumCumplidos/$SumBaneados*100;
+                            }
+                            echo number_format($t, 0, ",", ".")." %"; ?>
 			        </div></td>
 			      <td class="colColor1" width="7%" nowrap>
 			        <div align="right">
-			          <?php echo number_format($SumBaneados, 0, ",", ".")?>
+			          <a href="index.php?page=banlist&lg=<?php echo $LANGUAGE?>"><?php echo number_format($SumBaneados, 0, ",", ".")?></a>
 			        </div></td>
 			      <td class="colColor1" width="7%" nowrap>
 			        <div align="right">
@@ -693,7 +729,12 @@ if(count($bannedUsers) > 0) {
 			        </div></td>
 			      <td class="colColor1" width="6%" nowrap>
 			        <div align="right">
-			          <?php echo number_format($SumVigentes/$SumBaneados*100, 0, ",", ".")." %"?>
+			          <?php if($SumBaneados == 0){
+                                $t=0;
+                            }else{
+                                $t=$SumVigentes/$SumBaneados*100;
+                            }
+                            echo number_format($t, 0, ",", ".")." %"; ?>
 			        </div></td>
 			    </tr>
 		</table>
@@ -756,7 +797,12 @@ if(count($bannedUsers) > 0) {
 			         </div></td>
 			      <td class="colColor2" width="10%" nowrap>
 			        <div align="right">
-			          <?php echo number_format($adminStat->getNumPermanentes()/$adminStat->getNumBaneados()*100, 0, ",", ".")." %"?>
+			          <?php if($reasonStat->getNumBaneados() == 0){
+                                $t=0;
+                            }else{
+                                $t=$adminStat->getNumPermanentes()/$adminStat->getNumBaneados()*100;
+                            }
+                            echo number_format($t, 0, ",", ".")." %"; ?>
 			         </div></td>
 			      <td class="colColor1" width="10%" nowrap>
 			        <div align="right">
@@ -764,7 +810,12 @@ if(count($bannedUsers) > 0) {
 			        </div></td>
 				  <td class="colColor1" width="10%" nowrap>
 			        <div align="right">
-			          <?php echo number_format($adminStat->getNumCumpliendose()/$adminStat->getNumBaneados()*100, 0, ",", ".")." %"?>
+			          <?php if($reasonStat->getNumBaneados() == 0){
+                                $t=0;
+                            }else{
+                                $t=$adminStat->getNumCumpliendose()/$adminStat->getNumBaneados()*100;
+                            }
+                            echo number_format($t, 0, ",", ".")." %"; ?>
 			        </div></td>
 				  <td class="colColor2" width="10%" nowrap>
 			        <div align="right">
@@ -772,7 +823,12 @@ if(count($bannedUsers) > 0) {
 			        </div></td>
 				  <td class="colColor2" width="10%" nowrap>
 			        <div align="right">
-			          <?php echo number_format($adminStat->getNumCumplidos()/$adminStat->getNumBaneados()*100, 0, ",", ".")." %"?>
+			          <?php if($reasonStat->getNumBaneados() == 0){
+                                $t=0;
+                            }else{
+                                $t=$adminStat->getNumCumplidos()/$adminStat->getNumBaneados()*100;
+                            }
+                            echo number_format($t, 0, ",", ".")." %"; ?>
 			        </div></td>
 			      <td class="colColor1" width="7%" nowrap>
 			        <div align="right">
@@ -784,7 +840,12 @@ if(count($bannedUsers) > 0) {
 			        </div></td>
 			      <td class="colColor1" width="6%" nowrap>
 			        <div align="right">
-			          <?php echo number_format(($adminStat->getNumCumpliendose()+$adminStat->getNumPermanentes())/$banCountVigentes*100, 2, ",", ".")." %"?>
+			          <?php if($banCountVigentes == 0){
+                                $t=0;
+                            }else{
+                                $t=($adminStat->getNumCumpliendose()+$adminStat->getNumPermanentes())/$banCountVigentes*100;
+                            }
+                            echo number_format($t, 0, ",", ".")." %"; ?>
 			        </div></td>
 			    </tr>
 	      		<?php
@@ -803,7 +864,12 @@ if(count($bannedUsers) > 0) {
 			         </div></td>
 			      <td class="colColor2" width="10%" nowrap>
 			        <div align="right">
-			          <?php echo number_format($SumPermanentes/$SumBaneados*100, 0, ",", ".")." %"?>
+			          <?php if($SumBaneados == 0){
+                                $t=0;
+                            }else{
+                                $t=$SumPermanentes/$SumBaneados*100;
+                            }
+                            echo number_format($t, 0, ",", ".")." %"; ?>
 			         </div></td>
 			      <td class="colColor1" width="10%" nowrap>
 			        <div align="right">
@@ -811,7 +877,12 @@ if(count($bannedUsers) > 0) {
 			        </div></td>
 				  <td class="colColor1" width="10%" nowrap>
 			        <div align="right">
-			          <?php echo number_format($SumCumpliendose/$SumBaneados*100, 0, ",", ".")." %"?>
+			          <?php if($SumBaneados == 0){
+                                $t=0;
+                            }else{
+                                $t=$SumCumpliendose/$SumBaneados*100;
+                            }
+                            echo number_format($t, 0, ",", ".")." %"; ?>
 			        </div></td>
 				  <td class="colColor2" width="10%" nowrap>
 			        <div align="right">
@@ -819,11 +890,16 @@ if(count($bannedUsers) > 0) {
 			        </div></td>
 				  <td class="colColor2" width="10%" nowrap>
 			        <div align="right">
-			          <?php echo number_format($SumCumplidos/$SumBaneados*100, 0, ",", ".")." %"?>
+			          <?php if($SumBaneados == 0){
+                                $t=0;
+                            }else{
+                                $t=$SumCumplidos/$SumBaneados*100;
+                            }
+                            echo number_format($t, 0, ",", ".")." %"; ?>
 			        </div></td>
 			      <td class="colColor1" width="7%" nowrap>
 			        <div align="right">
-			          <?php echo number_format($SumBaneados, 0, ",", ".")?>
+			          <a href="index.php?page=banlist&lg=<?php echo $LANGUAGE?>"><?php echo number_format($SumBaneados, 0, ",", ".")?></a> 
 			        </div></td>
 			      <td class="colColor1" width="7%" nowrap>
 			        <div align="right">
@@ -831,7 +907,12 @@ if(count($bannedUsers) > 0) {
 			        </div></td>
 			      <td class="colColor1" width="6%" nowrap>
 			        <div align="right">
-			          <?php echo number_format($SumVigentes/$SumBaneados*100, 0, ",", ".")." %"?>
+			          <?php if($SumBaneados == 0){
+                                $t=0;
+                            }else{
+                                $t=$SumVigentes/$SumBaneados*100;
+                            }
+                            echo number_format($t, 0, ",", ".")." %"; ?>
 			        </div></td>
 			    </tr>
 

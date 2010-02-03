@@ -1,24 +1,4 @@
 <?php
-/*
-    This file is part of GlobalBan.
-
-    Written by Stefan Jonasson <soynuts@unbuinc.net>
-    Copyright 2008 Stefan Jonasson
-    
-    GlobalBan is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    GlobalBan is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with GlobalBan.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
 /**
  *  This makes it easier to include configuration variables to other classes
  *  by simply extending the class with the Config class.  Any new variables that
@@ -35,12 +15,13 @@ class Config {
   /**
    * Site specific settings
    */
-  var $bansPerPage = 50; // Number of bans to display on ban list page for each page (-1 show all)
+  var $LANGUAGE = "English"; // Default Language (English, Spanish, French, ...)   
+  var $bansPerPage = 100; // Number of bans to display on ban list page for each page (-1 show all)
   var $maxPageLinks = 2; // Number of links to show before and after selected page (IE: set at 2 you would see 1 2 ... 10 11 [12] 13 14 ... 23 24)
   var $demoRootDir = "demos"; // Folder to save demos to (folder must be relative to banned dir)
   var $demoSizeLimit = "30"; // Demo size limit in MB
-  var $siteName = "Your clan name"; // The name of your website
-  var $siteUrl = "http://yourdomain.com"; // Your clan/server's home page
+  var $siteName = "GlobalBan"; // The name of your website
+  var $siteUrl = "http://localhost/banned/"; // Your clan/server's home page
   var $siteLogo = "logo.png"; // Found in images directory; you must save your logo to the images dir!!
 
   /**
@@ -56,15 +37,31 @@ class Config {
   var $adminGroup = 0; // The SMF group id that contains all your admins
   var $banManagerGroup = 0; // The SMF group id that contains all your ban managers
   var $fullPowerGroup = 0; // The SMF group id that is allowed full access to the GlobalBan site and admin tools
+  var $noPowerGroup = 0; // The SMF group id that has no power unless given by an admin group
+
+  /**
+   * e107 integration settings
+   */
+  var $enableAutoPoste107Forum = false;  // Whether to enable e107 integration, just generate Auto-Post in the e107 Forum with each new ban.
+  var $e107TablePrefix = "e107_"; // The prefix of the e107 tables
+  var $e107Url = "http://www.your_e107_web.com/"; // Your e107 web site Ej: "http://www.e107.com/"
+  var $e107_dbName = "db_e107"; //  Set the e107 Database Name to access
+  var $e107_dbUserName = "db_e107_UserName";  // Set the Database's user name login (recommend a user with only select and insert privs)
+  var $e107_dbPassword = "db_e107_Password";  // Set the Database user's password login
+  var $e107_dbHostName = "localhost";  // Set the Database's host
+  var $e107_bans_forum_category_number = "1";  //  For example if your Banned forum category link is http://www.youre107.com/e107_plugins/forum/forum_viewforum.php?19 you must set it to "19"
+  var $e107_GlobalBan_user = "5.GlobalBan";  // e107 user to use like post owner, format must be "user_number_ID.user_name", Ex: "5.GlobalBan"
 
   /**
    * Ban specific settings
    */
-  var $banMessage = "You are banned. Appeal at yourdomain.com"; // Message to display to those banned
+  var $banMessage = "You are banned gb_time because gb_reason. Appeal at yourdomain.com"; // Message to display to those banned
   var $daysBanPending = 5; // Number of days to keep someone with a "pending" ban off the server (0 to let the person come back after being "banned"); this only affects "members" who do bans longer than 1 day
-  var $allowAdminBans = false; // Set to true to allow the banning of admins (Default off - false)
-  var $teachAdmins = 0; // Teach admins the !banmenu command
-  var $removePendingOnUpload = false; // Remove the pending status from a ban when a member uploads a demo for that ban
+  var $allowAdminBans = true; // Set to true to allow the banning of admins (Default off - false)
+  var $teachAdmins = 1; // Teach admins the !banmenu command
+  var $removePendingOnUpload = true; // Remove the pending status from a ban when a member uploads a demo for that ban
+  var $adviseInGame = 1; // Allows you to select which players will be advised during the game when you connect a player who was banned temporarily by a ban already expired: 1 - All (Panel), 2 - Only Admins Chat & Ex-Banned Player; 3 - Only Admins Chat; 4 - Only Ex-Banned (Panel); 5 - NoBody
+
   //var $numDemosToBan = -1; // The person uploading a demo needs to have X number of people banned from his demos before future uploads will auto-ban. (-1 is off)
 
   /**
@@ -72,16 +69,30 @@ class Config {
    * Very simple forum integration (Just adds a link button)
    */
   var $enableForumLink = true;
-  var $forumURL = "http://yourdomain.com/Forums"; // Link to your forums
+  var $forumURL = "http://www.yourdomain.com/forum/"; // Link to your forums
+  
+  /**
+   * Web Settings
+   * Very simple web integration (Just adds a link button)
+   */
+  var $enableWebLink = true;
+  var $webUrl = "http://www.yourdomain.com"; // Link to your forums
+  
+  /**
+   * HLstatsX Settings
+   * Very simple web integration (Just adds a link button)
+   */
+  var $enableHLstatsLink = true;
+  var $HLstatsUrl = "http://www.yourweb.com/HLstats/"; // Link to your forums
 
   /**
    * Database Block
    */
-  var $dbName = "gban"; // Set the Database to access (where all gban tables are located, change if you place your gban tables in a different db)
-  var $dbUserName = "gban"; // Set the Database's user name login (recommend a user with only select, insert, update, and delete privs)
-  var $dbPassword = "dbpass"; // Set the Database user's password login
+  var $dbName = "DB_Name"; // Set the Database to access (where all gban tables are located, change if you place your gban tables in a different db)
+  var $dbUserName = "DB_User"; // Set the Database's user name login (recommend a user with only select, insert, update, and delete privs)
+  var $dbPassword = "DB_Pass"; // Set the Database user's password login
   var $dbHostName = "localhost"; // Set the Database's host
-  var $matchHash = "yoursecrethash"; // This must match the has found in the ES script (prevent's people from accessing the page outside)
+  var $matchHash = "pmZTa9qDGDlCroTy"; // This must match the has found in the ES script (prevent's people from accessing the page outside)
   var $createUserCode = "CREATEBASICUSERCODE"; // This code must be entered for someone to create a new basic user
 
   /**
@@ -91,7 +102,7 @@ class Config {
   var $sendEmails = true; // Send an email whenever a ban is added or updated (does not include imports)
   var $sendDemoEmails = true; // Send an email whenever a new demo is added
   var $emailFromHeader = "email@email.com"; // The from email address
-  var $banManagerEmails = array("email1@eamil.com", "email2@email.com"); // Who recieves emails when new bans are added
+  var $banManagerEmails = array("email2@email.com"); // Who recieves emails when new bans are added
 
   function __construct() {
   }
