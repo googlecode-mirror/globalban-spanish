@@ -372,7 +372,7 @@ def banReasonList():
       if badAccess.has_key(event_var['es_steamid']):
         del badAccess[es.getplayersteamid(playerid)]
       # Kick the player
-      es.server.cmd('kickid ' + str(playerid) + ' You were kicked for attempting to use an admin command');
+      es.server.queuecmd('kickid ' + str(playerid) + ' You were kicked for attempting to use an admin command');
 
 ################################################################################
 # This method brings up the ban length menu, which is displayed after the admin
@@ -404,15 +404,15 @@ def banPlayerMenu(playerid, selectedBanLength, popupid):
   es.keysetvalue('clanMembers', es.getplayersteamid(playerid), 'banLength', selectedBanLength)
 
   if es.exists('keygroup', 'playerlist'):
-    es.server.cmd('es_xkeygroupdelete playerlist')
-  es.server.cmd('es_xcreateplayerlist playerlist')
+    es.server.queuecmd('es_xkeygroupdelete playerlist')
+  es.server.queuecmd('es_xcreateplayerlist playerlist')
 
   # Create keymenu called banmenu for admin to select a player from
   banmenu = keymenulib.create("banmenu", "userToBan", banInGame, "playerlist", "#keyvalue name", "#key", "Player List")
   banmenu.send(playerid)
 
   # Delete the playerlist
-  es.server.cmd('es_xkeygroupdelete playerlist')
+  es.server.queuecmd('es_xkeygroupdelete playerlist')
 
 ################################################################################
 # This is the ban method used by this script
@@ -532,16 +532,16 @@ def banUser(callerId, bannedSteamId, banReason, banLength, timeScale, nameOfBann
     gbanLog('GBAN: Ban User URL:' + banUserURL)
 
     # Add them to the banned_users.cfg file for 1 minute to prevent instant rejoin
-    es.server.cmd('banid ' +  str(5) + ' ' + bannedSteamId)
+    es.server.queuecmd('banid ' +  str(5) + ' ' + bannedSteamId)
 
     # Write the ban list
-    es.server.cmd('writeid')
+    es.server.queuecmd('writeid')
     
     if debugMode:
       gbanLog('GBAN-DEBUG: ' + bannedSteamId + ' added to local ban list for 5 minute')
 
     # Use the player object to kick the user with a ban appeal message
-    # es.server.cmd('kickid "' + bannedSteamId + '" ' + banAppealMessage);
+    # es.server.queuecmd('kickid "' + bannedSteamId + '" ' + banAppealMessage);
     
     if debugMode:
       gbanLog('GBAN-DEBUG: ' + bannedSteamId + ' has been kicked')
@@ -688,13 +688,13 @@ def updateAdminModLists():
 # This will force the mani admin list to reload after the new clients.txt file has been downloaded
 ################################################################################
 def reloadMani():
-  es.server.cmd('ma_reloadclients')
+  es.server.queuecmd('ma_reloadclients')
 
 ################################################################################
 # This will force the sourcemod admin list to reload after the new admins_simple.ini and admin_group.cfg files have been downloaded
 ################################################################################
 def reloadSourceMod():
-  es.server.cmd('sm_reloadadmins')
+  es.server.queuecmd('sm_reloadadmins')
   
 ################################################################################
 # This method will log messages to the gban.log file.

@@ -24,5 +24,5 @@ $LAN_IMPORTBANS_011 = 'Note: Le processus peut prendre quelques minutes selon la
 $LAN_IMPORTBANS_012 = 'existent déjà dans la base de donnée.';
 $LAN_IMPORTBANS_013 = "Echec pour l'ajout";
 $LAN_IMPORTBANS_014 = "car il éxiste déjà.";
-$LAN_IMPORTBANS_015 = 'Already exist: ';
+$LAN_IMPORTBANS_015 = 'il éxiste déjà: ';
 ?>

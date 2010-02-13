@@ -47,5 +47,6 @@ $LANMANAGEUSERS_034 = "Niveau d'accès :";
 $LANMANAGEUSERS_035 = "Soumettre";
 $LANMANAGEUSERS_036 = 'Les champs indiqués avec une <img src="images/bullet_star.png"/>  sont <font color="red">OBLIGATOIRE</font> !';
 $LANMANAGEUSERS_037 = "Accès refusé !";
-
+$LANMANAGEUSERS_038 = "Réinitialiser";
+$LANMANAGEUSERS_039 = "Cliquez pour désactiver";
 ?>
