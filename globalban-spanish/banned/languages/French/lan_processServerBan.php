@@ -3,7 +3,7 @@
 + ----------------------------------------------------------------------------+
 |     esGlobalBan - Language File.
 |
-|     $Source: /cvsroot/banned/languages/French/lan_processServerBan.php,v $
+|     $Source: /cvsroot/banned/languages/French/lan_processban.php,v $
 |     $Revision: 1.0 $
 |     $Date: 2009/07/02 30:36:39 $
 |     $Author: Odonel $
@@ -27,4 +27,8 @@ $LAN_PROCESSBAN_014 = 'GlobalBan';
 $LAN_PROCESSBAN_015 = 'a été banni';
 $LAN_PROCESSBAN_016 = 'par';
 $LAN_PROCESSBAN_017 = 'avec';
+$LAN_PROCESSBAN_018 = "Impossible de se connecter à la base de donnée";
+$LAN_PROCESSBAN_019 = "Connexion réussi avec succès !";
+$LAN_PROCESSBAN_020 = "Impossible de sélectionner la base de donnée";
+
 ?>

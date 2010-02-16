@@ -166,11 +166,11 @@ if($endRange > $banCount) {
   
   <div id="search" align="right">
   <form action="" method="get">
-  <input name="searchText" id="searchText" type="text" value="<?php echo $searchText?>" size="40" maxLength="40"/>
+  <input name="searchText" id="searchText" type="text" value="<?php echo $searchText ?>" size="40" maxLength="40"/>
   <input type="hidden" name="bf" size=2 value="<?php echo $bansFilter?>">
   <input type="hidden" name="bri" size=2 value="<?php echo $bansReason_id?>"> 
   <input type="hidden" name="ba" size=2 value="<?php echo $bansAdmin?>"> 
-  <input type="submit" value="<?php echo $LAN_BANLIST_001?>">
+  <input type="submit" value="<?php echo $LAN_BANLIST_001 ?>">
   </form>
   </div>
 
@@ -179,44 +179,44 @@ if(count($bannedUsers) > 0) {
   ?>
   <div class="tborder">
     <div id="tableHead">
-      <div><b><?php echo $LAN_BANLIST_002?>
+      <div><b><?php echo $LAN_BANLIST_002 ?>
 <?php
   if(!empty($bansFilter)) {
 	  switch ($bansFilter) {
 	    case 1:
 			?>
-			 <span class="longSelect"> <?php echo $LAN_BANLIST_003?> </span>
+			 <span class="longSelect"> <?php echo $LAN_BANLIST_003 ?> </span>
 			<?php
 	        break;
 	    case 2:
 			?>
-			 <span class="longSelect"> <?php echo $LAN_BANLIST_004?> </span>
+			 <span class="longSelect"> <?php echo $LAN_BANLIST_004 ?> </span>
 			<?php
 	        break;
 	    case 3:
 			?>
-			 <span class="longSelect"> <?php echo $LAN_BANLIST_005?> </span>
+			 <span class="longSelect"> <?php echo $LAN_BANLIST_005 ?> </span>
 			<?php
 	        break;
 		case 4:
 			?>
-			 <span class="longSelect"> <?php echo $LAN_BANLIST_006?> </span>
+			 <span class="longSelect"> <?php echo $LAN_BANLIST_006 ?> </span>
 			<?php
 	        break;
 	  }
   } 
 ?>
-  <?php echo $LAN_BANLIST_007?>
+  <?php echo $LAN_BANLIST_007 ?>
 <?php
   if(!empty($bansAdmin)) {
 ?>
-  <?php echo $LAN_BANLIST_008?> <span class="adminSelect"><?php echo $bansAdmin?></span> 
+  <?php echo $LAN_BANLIST_008 ?> <span class="adminSelect"><?php echo $bansAdmin ?></span> 
 <?php
   }
   if(!empty($bansReason_id)) {
     $reasonQueries = new ReasonQueries();
 ?>
-  <?php echo $LAN_BANLIST_009?> <span class="reasonSelect"><?php echo $reasonQueries->getReason($bansReason_id);?></span> 
+  <?php echo $LAN_BANLIST_009 ?> <span class="reasonSelect"><?php echo $reasonQueries->getReason($bansReason_id); ?></span> 
 <?php
   }
 ?>
@@ -232,25 +232,25 @@ if(count($bannedUsers) > 0) {
     <tr>
       <th class="colColor1" width="1%" nowrap>
         <div align="center"><a href="index.php?page=banlist&sc=b.steam_id&sd=ASC&sr=<?php echo $startRange?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
-          <?php echo $LAN_BANLIST_013?>
+          <?php echo $LAN_BANLIST_013 ?>
         <a href="index.php?page=banlist&sc=b.steam_id&sd=DESC&sr=<?php echo $startRange?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
       <th class="colColor2" width="1%" nowrap>
         <div align="center"><a href="index.php?page=banlist&sc=name&sd=ASC&sr=<?php echo $startRange?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
-          <?php echo $LAN_BANLIST_014?>
+          <?php echo $LAN_BANLIST_014 ?>
         <a href="index.php?page=banlist&sc=name&sd=DESC&sr=<?php echo $startRange?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
 	  <th class="colColor1" width="1%" nowrap>
         <div align="center"><a href="index.php?page=banlist&sc=length&sd=ASC&sr=<?php echo $startRange?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
-          <?php echo $LAN_BANLIST_016?>
+          <?php echo $LAN_BANLIST_016 ?>
         <a href="index.php?page=banlist&sc=length&sd=DESC&sr=<?php echo $startRange?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
       <th class="colColor2" width="1%" nowrap><div align="center"><a href="index.php?page=banlist&sc=banner&sd=ASC&sr=<?php echo $startRange?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>Admin
         <a href="index.php?page=banlist&sc=banner&sd=DESC&sr=<?php echo $startRange?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
       <th class="colColor1" width="1%" nowrap>
         <div align="center"><a href="index.php?page=banlist&sc=add_date&sd=ASC&sr=<?php echo $startRange?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
-          <?php echo $LAN_BANLIST_018?>
+          <?php echo $LAN_BANLIST_018 ?>
         <a href="index.php?page=banlist&sc=add_date&sd=DESC&sr=<?php echo $startRange?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
       <th class="colColor2" width="1%" nowrap>
         <div align="center"><a href="index.php?page=banlist&sc=b.reason_id&sd=ASC&sr=<?php echo $startRange?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png"/></a>
-          <?php echo $LAN_BANLIST_020?>
+          <?php echo $LAN_BANLIST_020 ?>
         <a href="index.php?page=banlist&sc=b.reason_id&sd=DESC&sr=<?php echo $startRange?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png"/></a> </div></th>
       <th class="colColor1" width="1%" nowrap>
         <div align="center">Post</div></th>
@@ -260,17 +260,17 @@ if(count($bannedUsers) > 0) {
         ?>
         <th class="colColor2" width="1%" nowrap>
           <div align="center"><a href="index.php?page=banlist&sc=active&sd=ASC&sr=<?php echo $startRange?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
-		  <?php echo $LAN_BANLIST_021?>
+		  <?php echo $LAN_BANLIST_021 ?>
           <a href="index.php?page=banlist&sc=active&sd=DESC&sr=<?php echo $startRange?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a> </div></th>
         <th class="colColor1" width="1%" nowrap>
           <div align="center"><a href="index.php?page=banlist&sc=pending&sd=ASC&sr=<?php echo $startRange?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
-          <?php echo $LAN_BANLIST_022?>
+          <?php echo $LAN_BANLIST_022 ?>
           <a href="index.php?page=banlist&sc=pending&sd=DESC&sr=<?php echo $startRange?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE?>"><img src="images/arrow_down.png" style="cursor:pointer;"/>        </div></th>
       	<?php
 		if($fullPower) {
           ?>
 		  <th class="colColor2" width="1%" nowrap>
-        <div align="center"><?php echo $LAN_BANLIST_037?></div></th>
+        <div align="center"><?php echo $LAN_BANLIST_037 ?></div></th>
 		<?php
       	}
       	?>

@@ -120,7 +120,7 @@ $servers = $serverQueries->getServers();
                   <option value="cstrike">CS:S</option>
                 <?php } ?>
                 <?php if(strtolower($server->getType()) == "tf2") { ?>
-                  <option value="cstrike" selected>TF2</option>
+                  <option value="tf2" selected>TF2</option>
                 <?php }else { ?>
                   <option value="tf2">TF2</option>
                 <?php } ?>

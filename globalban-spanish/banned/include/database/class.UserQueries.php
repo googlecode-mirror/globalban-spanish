@@ -618,23 +618,26 @@ class UserQueries extends Config {
       }
     } else { // Standalone query
       if($groupId > 0) {
+               
         $sql = "SELECT a.admin_id, a.name
                 FROM gban_admins a
-                WHERE a.access_level <> '5' AND a.admin_id NOT IN (
-                  SELECT sa.admin_id
-                  FROM gban_group_admin sa
-                  WHERE server_group_id = '".addslashes($groupId)."'
-                  )
-                ORDER BY name ASC";
+                Inner Join gban_admin_steam s ON a.admin_id = s.admin_id
+                WHERE s.active = '1' AND a.admin_id NOT IN (
+                    SELECT sa.admin_id
+                    FROM gban_group_admin sa
+                    WHERE server_group_id = '".addslashes($groupId)."'
+                    )
+                ORDER BY a.name ASC";
       } else {
         $sql = "SELECT a.admin_id, a.name
                 FROM gban_admins a
-                WHERE a.access_level <> '5' AND a.admin_id NOT IN (
-                  SELECT sa.admin_id
-                  FROM gban_server_admin sa
-                  WHERE server_id = '".addslashes($serverId)."'
-                  )
-                ORDER BY name ASC";
+                Inner Join gban_admin_steam s ON a.admin_id = s.admin_id
+                WHERE s.active = '1' AND a.admin_id NOT IN (
+                    SELECT sa.admin_id
+                    FROM gban_group_admin sa
+                    WHERE server_id = '".addslashes($serverId)."'
+                    )
+                ORDER BY a.name ASC";
       }
     }
     $this->db->sql_query($sql);
