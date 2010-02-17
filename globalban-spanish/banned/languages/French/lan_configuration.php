@@ -10,7 +10,7 @@
 +----------------------------------------------------------------------------+
 */
 
-$LANCONFIGURATION_001 = "Veuillez entrer une adresse mail valide !";
+$LAN_CONFIGURATION_001 = "Veuillez entrer une adresse mail valide !";
 $LAN_CONFIGURATION_002 = "existe déjà";
 $LAN_CONFIGURATION_003 = "Vous devez spécifiez un dossier pour les démos.";
 $LAN_CONFIGURATION_004 = 'Vous devez spécifiez une taille limite pour les démos.';
