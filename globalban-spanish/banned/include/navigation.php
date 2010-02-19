@@ -133,4 +133,5 @@ include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_nav
     <a href="index.php?page=<?php echo $page.$adPage?>&lg=English"><img src="images/flags/gb_large.png" width="32" height="19" alt="English" /></a>
     <a href="index.php?page=<?php echo $page.$adPage?>&lg=Spanish"><img src="images/flags/es_large.png" width="32" height="19" alt="Spanish" /></a>
     <a href="index.php?page=<?php echo $page.$adPage?>&lg=French"><img src="images/flags/fr_large.png" width="32" height="19" alt="Français" /></a>
+    <a href="index.php?page=<?php echo $page.$adPage?>&lg=Russian"><img src="images/flags/ru_large.png" width="32" height="19" alt="Français" /></a>
 </ul>
