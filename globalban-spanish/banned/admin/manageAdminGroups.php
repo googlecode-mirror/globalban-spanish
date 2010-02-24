@@ -233,7 +233,7 @@ $groups = $adminGroupQueries->getAdminGroups();
     <?php } ?>
   </div>
   <br/>
-  <table id="adminGroup" class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px">
+  <table id="adminGroup" class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px; display:none">
     <tr>
       <th class="colColor1" width="1%" nowrap><?php echo $LAN_MANAGEADMINGROUPS_009?></th>
       <th class="colColor2" width="1%" nowrap><?php echo $LAN_MANAGEADMINGROUPS_010?></th>
