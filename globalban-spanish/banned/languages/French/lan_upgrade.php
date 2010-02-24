@@ -7,6 +7,7 @@
 |     $Revision: 1.0 $
 |     $Date: 2009/07/02 30:36:39 $
 |     $Author: Odonel $
+|     $Traducteur: Eric0279 $
 +----------------------------------------------------------------------------+
 */
 
@@ -30,7 +31,7 @@ $LANUPGRADE_017 = '3.1 à 3.4';
 $LANUPGRADE_018 = '3.2 à 3.3';
 $LANUPGRADE_019 = '3.2 à 3.4';
 $LANUPGRADE_020 = '3.3 à 3.4';
-$LANUPGRADE_021 = '3.4 à Odonel.1';
+$LANUPGRADE_021 = '3.4.1 à 3.4.1 r90';
 $LANUPGRADE_022 = "Faire la mise à jour !";
 
 ?>

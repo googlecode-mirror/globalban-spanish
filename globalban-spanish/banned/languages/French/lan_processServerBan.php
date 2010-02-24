@@ -3,13 +3,12 @@
 + ----------------------------------------------------------------------------+
 |     esGlobalBan - Language File.
 |
-|     $Source: /cvsroot/banned/languages/French/lan_processban.php,v $
+|     $Source: /cvsroot/banned/languages/French/lan_processServerBan.php,v $
 |     $Revision: 1.0 $
 |     $Date: 2009/07/02 30:36:39 $
 |     $Author: Odonel $
 +----------------------------------------------------------------------------+
 */
-
 $LAN_PROCESSBAN_001 = "Admin";
 $LAN_PROCESSBAN_002 = 'Pseudo Bannie';
 $LAN_PROCESSBAN_003 = "Raison";

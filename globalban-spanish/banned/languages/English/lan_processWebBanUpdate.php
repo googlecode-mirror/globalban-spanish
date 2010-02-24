@@ -18,6 +18,5 @@ $LAN_PROCESSWEBBANUPDATE_005 = "a Ban Manager:";
 $LAN_PROCESSWEBBANUPDATE_006 = 'Click on the following link to review the change:';
 $LAN_PROCESSWEBBANUPDATE_007 = 'Updated Ban';
 $LAN_PROCESSWEBBANUPDATE_008 = 'Ban Management';
-$LAN_PROCESSWEBBANUPDATE_009 = 'You haven´t the permissions to update a ban.';
-
+$LAN_PROCESSWEBBANUPDATE_009 = "You don't have permission to update a ban.";
 ?>

@@ -3,7 +3,7 @@
 + ----------------------------------------------------------------------------+
 |     esGlobalBan - Language File.
 |
-|     $Source: /cvsroot/banned/languages/English/lan_nuser.php,v $
+|     $Source: /cvsroot/banned/languages/French/lan_newuser.php,v $
 |     $Revision: 1.0 $
 |     $Date: 2009/07/02 30:36:39 $
 |     $Author: Odonel $
@@ -31,9 +31,8 @@ $LAN_NEWUSER_018 = 'Envoyer';
 $LAN_NEWUSER_019 = 'Champs obligatoire.';
 $LAN_NEWUSER_020 = 'Le mot de passe doit contenir 6 Lettres et 1 chiffres minimum.';
 $LAN_NEWUSER_021 = 'Réinitialiser';
-$LAN_NEWUSER_022 = "L'utilisateur a été créer avec succès :";
-$LAN_NEWUSER_023 = '<p>Vous pouvez utiliser votre compte immédiatement.</p>';
-$LAN_NEWUSER_024 = 'De :';
-$LAN_NEWUSER_025 = 'GlobalBan Management';
-$LAN_NEWUSER_026 = '(Nouvel utilisateur)';
+$LAN_NEWUSER_022 = "Votre compte a été créé avec succès, votre pseudo ";
+$LAN_NEWUSER_023 = 'Vous pouvez vous connectez immédiatement.';
+$LAN_NEWUSER_025 = '  Gestionnaire de Bans';
+$LAN_NEWUSER_026 = '- (Nouvel utilisateur)';
 ?>

@@ -3,7 +3,7 @@
 + ----------------------------------------------------------------------------+
 |     esGlobalBan - Language File.
 |
-|     $Source: /cvsroot/banned/languages/french/lan_checkuser.php,v $
+|     $Source: /cvsroot/banned/languages/French/lan_checkuser.php,v $
 |     $Revision: 1.0 $
 |     $Date: 2009/07/02 30:36:39 $
 |     $Author: Odonel $
@@ -11,7 +11,7 @@
 */
 
 $LANCHECKUSER_001 = 'Votre nom contient le mot ';
-$LANCHECKUSER_002 = 'qui n\'est pas autorisé sur le serveur';
+$LANCHECKUSER_002 = "qui n'est pas autorisé sur le serveur";
 $LANCHECKUSER_003 = ' par IP';
 $LANCHECKUSER_004 = 'GB: Il a été kické et bannie:';
 $LANCHECKUSER_005 = ' avec le ';

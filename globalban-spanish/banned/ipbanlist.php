@@ -111,7 +111,7 @@ if(count($bannedIps) > 0) {
           <?php if($bannedIp->getActive() == 0) {
             ?><img src="images/cross.png"/><?php
           } else {
-            ?><img src="images/tick.png"/><?php
+            ?><div align="center"><img src="images/tick.png"/></div><?php
           } ?>
           </td>
           <?php

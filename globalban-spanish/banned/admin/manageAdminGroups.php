@@ -22,10 +22,13 @@
 require_once(ROOTDIR."/include/database/class.AdminGroupQueries.php");
 require_once(ROOTDIR."/include/objects/class.AdminGroup.php");
 
+$lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_manageAdminGroups.php';
+include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_manageAdminGroups.php");
+
 ?>
 <script type="text/javascript">
 function deleteVerify(serverId, serverName) {
-  if(confirm("Do you really want to delete "+serverName+"?")) {
+  if(confirm("<?php echo $LAN_MANAGEADMINGROUPS_014 ?> "+serverName+"<?php echo $LAN_MANAGEADMINGROUPS_015 ?>")) {
     document.getElementById("deleteServer"+serverId).submit();
   }
 }
@@ -64,7 +67,7 @@ $groups = $adminGroupQueries->getAdminGroups();
   $(window).bind("load",function(){
 	 $('#adminGroupList').accordion({autoHeight: false });
   });
-    
+  
   $(document).ready(function(){
     // When focus is lost, update the group name field
     $("input[id^='groupName-']").blur(function() {
@@ -116,7 +119,7 @@ $groups = $adminGroupQueries->getAdminGroups();
   
   // This will remove a plugin from a group
   function removePlugin(plugin, groupId, pluginName) {
-    if(confirm("Are you sure you want to remove " + pluginName + " from this group?")) {
+    if(confirm("<?php echo $LAN_MANAGEADMINGROUPS_022 ?> " + pluginName + " <?php echo $LAN_MANAGEADMINGROUPS_023 ?>")) {
       $.post("index.php?page=removePlugin&ajax=1", { groupId: groupId, plugin: plugin} );
       // Now delete the DOM object
       $("#pluginSection-"+groupId+"-"+plugin).remove();
@@ -146,7 +149,7 @@ $groups = $adminGroupQueries->getAdminGroups();
 </script>
 <div class="tborder">
   <div id="tableHead">
-    <div><b>Admin Group List</b></div>
+    <div><b><?php echo $LAN_MANAGEADMINGROUPS_001 ?></b></div>
   </div>
   <div id="adminGroupList" class="accordianStyle ui-accordion-container ui-accordion" style="width:100%;margin-bottom:-16px;">
     <?php foreach($groups as $group) {
@@ -157,8 +160,8 @@ $groups = $adminGroupQueries->getAdminGroups();
     <div>
         <table class="bordercolor" width="99%" cellspacing="1" cellpadding="5" border="0" align="center" style="margin-top: 10px; margin-bottom: 10px;">
           <tr>
-            <td class="colColor1" width="1%" nowrap>Group Name: <input type="text" id="groupName-<?php echo $group->getId()?>" name="groupName-<?php echo $group->getId()?>" value="<?php echo $group->getName()?>" size="40" maxlength="255"/></td>
-            <td class="colColor2" width="1%" nowrap>Group Description: <input type="text" id="groupDescription-<?php echo $group->getId()?>" name="groupDescription-<?php echo $group->getId()?>" value="<?php echo $group->getDescription()?>" size="40" maxlength="255"/></td>
+            <td class="colColor1" width="1%" nowrap><?php echo $LAN_MANAGEADMINGROUPS_002 ?> <input type="text" id="groupName-<?php echo $group->getId()?>" name="groupName-<?php echo $group->getId()?>" value="<?php echo $group->getName()?>" size="40" maxlength="255"/></td>
+            <td class="colColor2" width="1%" nowrap><?php echo $LAN_MANAGEADMINGROUPS_003 ?> <input type="text" id="groupDescription-<?php echo $group->getId()?>" name="groupDescription-<?php echo $group->getId()?>" value="<?php echo $group->getDescription()?>" size="40" maxlength="255"/></td>
           </tr>
         </table>
       <?php if(count($missingPlugins) > 0) { ?>
@@ -167,8 +170,8 @@ $groups = $adminGroupQueries->getAdminGroups();
             <td class="colColor1">
               <form action="index.php?page=manageAdminGroups&adminPage=1" method="post">
               <input type="hidden" name="addPluginGroupId" id="addPluginGroupId" value="<?php echo $group->getId()?>"/>
-              Plugin to Add: <select id="pluginList-<?php echo $group->getId()?>" name="plugin"><?php foreach($missingPlugins as $missingPlugin) { echo "<option value='".$missingPlugin->getId()."'>".$missingPlugin->getName()."</option>"; } ?></select>
-              <input type="button" name="addPlugin" id="addPlugin" value="Add Plugin" style="margin-left:10px" onclick="addAdminPlugin('<?php echo $group->getId()?>')">
+              <?php echo $LAN_MANAGEADMINGROUPS_004?> <select id="pluginList-<?php echo $group->getId()?>" name="plugin"><?php foreach($missingPlugins as $missingPlugin) { echo "<option value='".$missingPlugin->getId()."'>".$missingPlugin->getName()."</option>"; } ?></select>
+              <input type="button" name="addPlugin" id="addPlugin" value="<?php echo $LAN_MANAGEADMINGROUPS_005?>" style="margin-left:10px" onclick="addAdminPlugin('<?php echo $group->getId()?>')">
               </form>
             </td>
           </tr>
@@ -185,9 +188,9 @@ $groups = $adminGroupQueries->getAdminGroups();
           <tr>
             <th class="colColor1" colspan="3">
               <?php echo $plugin->getName()?> &nbsp;
-              [<span class="actionLink" onclick="selectAllOfPlugin('<?php echo $plugin->getId()?>', '<?php echo $group->getId()?>')">Select All</span>] 
-              [<span class="actionLink" onclick="selectNoneOfPlugin('<?php echo $plugin->getId()?>', '<?php echo $group->getId()?>')">Select None</span>]
-              [<span class="actionLink" onclick="removePlugin('<?php echo $plugin->getId()?>', '<?php echo $group->getId()?>', '<?php echo $plugin->getName()?>')">Remove Plugin</span>]
+              [<span class="actionLink" onclick="selectAllOfPlugin('<?php echo $plugin->getId()?>', '<?php echo $group->getId()?>')"><?php echo $LAN_MANAGEADMINGROUPS_006?></span>] 
+              [<span class="actionLink" onclick="selectNoneOfPlugin('<?php echo $plugin->getId()?>', '<?php echo $group->getId()?>')"><?php echo $LAN_MANAGEADMINGROUPS_007?></span>]
+              [<span class="actionLink" onclick="removePlugin('<?php echo $plugin->getId()?>', '<?php echo $group->getId()?>', '<?php echo $plugin->getName()?>')"><?php echo $LAN_MANAGEADMINGROUPS_008?></span>]
             </th>
           </tr>
           <tr>
@@ -204,7 +207,7 @@ $groups = $adminGroupQueries->getAdminGroups();
           ?>
             <td class="colColor2">
               <input type="hidden" id="<?php echo $plugin->getId()?>-flagValue-<?php echo $group->getId()?>" value="<?php echo $flag->getPluginFlagId()?>"/>
-              <input type="checkbox" id="<?php echo $plugin->getId()?>-flag-<?php echo $group->getId()?>-<?php echo $flag->getPluginFlagId()?>" onclick="updatePluginFlag('<?php echo $group->getId()?>', '<?php echo $flag->getPluginFlagId()?>', this)"<?php echo $checked?>/> <?="(".$flag->getFlag().") ".$flag->getDescription()?>
+              <input type="checkbox" id="<?php echo $plugin->getId()?>-flag-<?php echo $group->getId()?>-<?php echo $flag->getPluginFlagId()?>" onclick="updatePluginFlag('<?php echo $group->getId()?>', '<?php echo $flag->getPluginFlagId()?>', this)"<?php echo $checked?>/> <?php echo $flag->getDescription()?>
             </td>
             <?php
               if(($i+1)%$flagsPerRow==0 && ($i+1) != count($flags)) {
@@ -230,13 +233,13 @@ $groups = $adminGroupQueries->getAdminGroups();
     <?php } ?>
   </div>
   <br/>
-  <table id="adminGroup" class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px; display:none">
+  <table id="adminGroup" class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px">
     <tr>
-      <th class="colColor1" width="1%" nowrap>Group Name</th>
-      <th class="colColor2" width="1%" nowrap>Description</th>
-      <th class="colColor1" width="1%" nowrap>Edit Powers</th>
-      <th class="colColor2" width="1%" nowrap>Save</th>
-      <th class="colColor1" width="1%" nowrap>Delete</th>
+      <th class="colColor1" width="1%" nowrap><?php echo $LAN_MANAGEADMINGROUPS_009?></th>
+      <th class="colColor2" width="1%" nowrap><?php echo $LAN_MANAGEADMINGROUPS_010?></th>
+      <th class="colColor1" width="1%" nowrap><?php echo $LAN_MANAGEADMINGROUPS_011?></th>
+      <th class="colColor2" width="1%" nowrap><?php echo $LAN_MANAGEADMINGROUPS_012?></th>
+      <th class="colColor1" width="1%" nowrap><?php echo $LAN_MANAGEADMINGROUPS_013?></th>
     </tr>
     <?php foreach($groups as $group) {
       ?>
@@ -246,11 +249,11 @@ $groups = $adminGroupQueries->getAdminGroups();
           <input id="editPowers" type="button" value="Edit"/>
         </td>
         <td class="colColor2" id="save:<?php echo $group->getId()?>" onclick="saveAdminGroup('<?php echo $group->getId()?>');" style="cursor:pointer;"
-            onmouseover="Tip('Click to save settings for <?php echo $group->getName()?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('adminGroup'))">
+            onmouseover="Tip('<?php echo $LAN_MANAGEADMINGROUPS_016?> <?php echo $group->getName()?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('adminGroup'))">
         <img src="images/save.png"/>
         </td>
         <td class="colColor1" style="cursor:pointer;" onclick="deleteVerify('<?php echo $group->getId()?>', '<?php echo $group->getName()?>');"
-            onmouseover="Tip('Click to delete <?php echo $group->getName()?> from the server list', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('adminGroup'))">
+            onmouseover="Tip('<?php echo $LAN_MANAGEADMINGROUPS_017?> <?php echo $group->getName()?> <?php echo $LAN_MANAGEADMINGROUPS_018?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('adminGroup'))">
         <form action="index.php?page=manageAdminGroups&adminPage=1" id="adminGroup:<?php echo $group->getId()?>" name="deleteServer<?php echo $group->getId()?>" method="POST">
           <input type="hidden" name="adminGroupId" id="adminGroupId" value="<?php echo $group->getId()?>"/>
           <input type="hidden" name="deleteAdminGroup" value="1">
@@ -275,23 +278,23 @@ $groups = $adminGroupQueries->getAdminGroups();
     <!-- This row is for adding a new group -->
     <div class="tborder">
     <div id="tableHead">
-      <div><b>Add New Group</b></div>
+      <div><b><?php echo $LAN_MANAGEADMINGROUPS_019?></b></div>
     </div>
     <form action="index.php?page=manageAdminGroups&adminPage=1" method="POST" onsubmit="return formVerify();">
     <table id="newGroupTable" class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
     <tr>
-      <td class="colColor1" width="1%" nowrap>Group Name:</td>
+      <td class="colColor1" width="1%" nowrap><?php echo $LAN_MANAGEADMINGROUPS_002 ?></td>
       <td class="colColor1" nowrap><input type="text" name="groupName" id="groupName" value="" size="40" maxlength="255"/></td>
     </tr>
     <tr>
-      <td class="colColor2" width="1%" nowrap>Description:</td>
+      <td class="colColor2" width="1%" nowrap><?php echo $LAN_MANAGEADMINGROUPS_003 ?></td>
       <td class="colColor2" nowrap><input type="text" name="description" id="description" value="" size="40" maxlength="255"/></td>
     </tr>
-      <td class="colColor1" colspan="2"><input type="submit" name="submitAdd" id="submitAdd" value="Add Group"/></td>
+      <td class="colColor1" colspan="2"><input type="submit" name="submitAdd" id="submitAdd" value="<?php echo $LAN_MANAGEADMINGROUPS_020 ?>"/></td>
     </tr>
     <?php
       if($error) {
-      ?><tr><td class="colColor1" colspan="2"><span class="error">Group Name Already Exists</span></td></tr><?php
+      ?><tr><td class="colColor1" colspan="2"><span class="error"><?php echo $LAN_MANAGEADMINGROUPS_021 ?></span></td></tr><?php
       }
     ?>
   </table>

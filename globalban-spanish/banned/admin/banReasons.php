@@ -22,12 +22,15 @@
 require_once(ROOTDIR."/include/database/class.ReasonQueries.php");
 require_once(ROOTDIR."/include/objects/class.Reason.php");
 
+$lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_banReasons.php';
+include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_banReasons.php");
+
 ?>
 <script src="javascript/ajax.js" language="javascript" type="text/javascript"></script>
 <script src="javascript/functions.js" language="javascript" type="text/javascript"></script>
 <script type="text/javascript">
 function deleteVerify(id, reason) {
-  if(confirm("Do you really want to delete the reason: "+reason+"?")) {
+  if(confirm("<?php echo $LAN_BANREASON_001 ?> "+reason+" <?php echo $LAN_BANREASON_002 ?>")) {
     document.getElementById("deleteReason"+id).submit();
   }
 }
@@ -65,14 +68,14 @@ if($fullPower) {
 ?>
 <div class="tborder">
   <div id="tableHead">
-    <div><b>Ban Reason List</b></div>
+    <div><b><?php echo $LAN_BANREASON_003 ?> </b></div>
   </div>
   <table id="serverManagementTable" class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
     <tr>
-      <th class="colColor2" width="1%" nowrap><div align="center">Ban Reason ID</div></th>
-      <th class="colColor1" width="1%" nowrap><div align="center">Reason</div></th>
-      <th class="colColor2" width="1%" nowrap><div align="center">Save</div></th>
-      <th class="colColor1" width="1%" nowrap><div align="center">Delete</div></th>    
+      <th class="colColor2" width="1%" nowrap><div align="center"><?php echo $LAN_BANREASON_004 ?></div></th>
+      <th class="colColor1" width="1%" nowrap><div align="center"><?php echo $LAN_BANREASON_005 ?></div></th>
+      <th class="colColor2" width="1%" nowrap><div align="center"><?php echo $LAN_BANREASON_006 ?></div></th>
+      <th class="colColor1" width="1%" nowrap><div align="center"><?php echo $LAN_BANREASON_007 ?></div></th>    
     </tr>
     <?php foreach($reasons as $reason) {           
           $reasonId = $reason->getId();
@@ -80,13 +83,13 @@ if($fullPower) {
           ?>
           <tr>
             <td class="colColor2" width="1%" nowrap><div align="center"><?php echo $reasonId?></div></td>
-            <td class="colColor1" width="1%" nowrap><div align="center"><input type="text" id="reasonText:<?php echo $reasonId?>" name="reasonText:<?php echo $reasonId?>" value="<?php echo $reasonText?>" size="60" maxlength="60"/></div></td>
-            <td id="save:<?php echo $reasonId?>" class="colColor2" onclick="saveBanReason('<?php echo $reasonId?>');" style="cursor:pointer;">
+            <td class="colColor1" width="1%" nowrap><div align="center"><input type="text" id="reasonText:<?php echo $reasonId ?>" name="reasonText:<?php echo $reasonId ?>" value="<?php echo $reasonText ?>" size="60" maxlength="60"/></div></td>
+            <td id="save:<?php echo $reasonId ?>" class="colColor2" onclick="saveBanReason('<?php echo $reasonId ?>');" style="cursor:pointer;">
             <div align="center"><img src="images/save.png"/></div>
             </td>
-            <td class="colColor1" style="cursor:pointer;" onclick="deleteVerify('<?php echo $reasonId?>', '<?php echo $reasonText?>');">
-            <form action="index.php?page=banReasons&adminPage=1" id="deleteReason<?php echo $reasonId?>" name="deleteReason<?php echo $reasonId?>" method="POST">
-              <input type="hidden" name="reasonId" id="reasonId" value="<?php echo $reasonId?>"/>
+            <td class="colColor1" style="cursor:pointer;" onclick="deleteVerify('<?php echo $reasonId ?>', '<?php echo $reasonText ?>');">
+            <form action="index.php?page=banReasons&adminPage=1" id="deleteReason<?php echo $reasonId ?>" name="deleteReason<?php echo $reasonId ?>" method="POST">
+              <input type="hidden" name="reasonId" id="reasonId" value="<?php echo $reasonId ?>"/>
               <input type="hidden" name="deleteReason" value="1">
               <div align="center"><img src="images/trash-full.png"/></div>
             </form>
@@ -104,22 +107,22 @@ if($fullPower) {
     <!-- This row is for adding a new reason -->
     <tr>
       <form action="index.php?page=banReasons&adminPage=1" method="POST" onsubmit="return formVerify();">
-      <td class="colColor2" width="1%" nowrap><div align="center">Add New Reason</div></td>
+      <td class="colColor2" width="1%" nowrap><div align="center"><?php echo $LAN_BANREASON_008 ?></div></td>
       <td class="colColor1" width="1%" nowrap><div align="center"><input type="text" name="reasonText" id="reasonText" value="" size="60" maxlength="60"/></div></td>
-      <td class="colColor2" ><div align="center"><input type="submit" name="submitAdd" id="submitAdd" value="Add"/></div></td>
+      <td class="colColor2" ><div align="center"><input type="submit" name="submitAdd" id="submitAdd" value="<?php echo $LAN_BANREASON_009 ?>"/></div></td>
       <td class="colColor1"></td>
       </form>
     </tr>
     <?php
       if($error) {
-      ?><tr><td class="colColor1" colspan="9"><span class="error">Reason Already Exists</span></td></tr><?php
+      ?><tr><td class="colColor1" colspan="9"><span class="error"><?php echo $LAN_BANREASON_010 ?></span></td></tr><?php
       }
     ?>
   </table>
 </div>
 <br/>
 <br/>
-<input type="button" value="Save Ban Reasons to Servers" class="button" onclick="location.href='index.php?page=uploadBanReasons&adminPage=1'" />
+<input type="button" value="<?php echo $LAN_BANREASON_011 ?>" class="button" onclick="location.href='index.php?page=uploadBanReasons&adminPage=1'" />
 
 <?php
 }

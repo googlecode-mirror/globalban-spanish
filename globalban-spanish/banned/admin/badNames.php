@@ -22,6 +22,9 @@
 require_once(ROOTDIR."/include/database/class.BadNameQueries.php");
 require_once(ROOTDIR."/include/objects/class.BadName.php");
 
+$lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_badNames.php';
+include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_badNames.php");
+
 // Only full power admins can access this page
 if($fullPower) {
 
@@ -51,22 +54,22 @@ $badNames = $badNameQueries->getBadNames();
 <script src="javascript/ajax.js" language="javascript" type="text/javascript"></script>
 <div class="tborder">
   <div id="tableHead">
-    <div><b>Add Bad Name/Word</b></div>
+    <div><b><?php echo $LAN_BADNAMES_001 ?></b></div>
   </div>
   <form action="index.php?page=badNames&adminPage=1" method="POST">
   <table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
     <tr>
       <td class="rowColor1" width="1%" valign="top" nowrap>
         <input type="text" id="badName" name="badName" value="" size="40" maxlength="40"/>
-        <span onmouseover="Tip('Check to filter this name/word from the Ban List and Demo pages.', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('badNamesTable'));">
-          <input type="checkbox" id="filter" name="filter" value="1"/>Filter
+        <span onmouseover="Tip('<?php echo $LAN_BADNAMES_002 ?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('badNamesTable'));">
+          <input type="checkbox" id="filter" name="filter" value="1"/><?php echo $LAN_BADNAMES_003 ?>
         </span>
-        <span onmouseover="Tip('Check to kick anyone that has this name/word in their name.', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('badNamesTable'));">
-          <input type="checkbox" id="kick" name="kick" value="1">Kick
+        <span onmouseover="Tip('<?php echo $LAN_BADNAMES_004 ?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('badNamesTable'));">
+          <input type="checkbox" id="kick" name="kick" value="1"><?php echo $LAN_BADNAMES_005 ?>
         </span>
       </td>
       <td class="rowColor1" nowrap>
-        <input type="submit" id="add" name="add" value="Add"/>
+        <input type="submit" id="add" name="add" value="<?php echo $LAN_BADNAMES_006 ?>"/>
       </td>
     </tr>
   </table>
@@ -77,14 +80,14 @@ $badNames = $badNameQueries->getBadNames();
 
 <div class="tborder">
   <div id="tableHead">
-    <div><b>Bad Names/Words</b></div>
+    <div><b><?php echo $LAN_BADNAMES_007 ?></b></div>
   </div>
   <table id="badNamesTable" class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
     <tr>
-      <th class="rowColor1">Name/Word</th>
-      <th class="rowColor1">Filter</th>
-      <th class="rowColor1">Kick</th>
-      <th class="rowColor1">Delete</th>
+      <th class="rowColor1"><?php echo $LAN_BADNAMES_008 ?></th>
+      <th class="rowColor1"><?php echo $LAN_BADNAMES_003 ?></th>
+      <th class="rowColor1"><?php echo $LAN_BADNAMES_005 ?></th>
+      <th class="rowColor1"><?php echo $LAN_BADNAMES_009 ?></th>
     </tr>
     <?php
     $i = 0;
@@ -101,13 +104,13 @@ $badNames = $badNameQueries->getBadNames();
             ?>
               <img src="images/tick.png"
                    onclick="changeBadNameFilter(<?php echo $badName->getId()?>, <?php echo $badName->getFilter()?>)" style="cursor:pointer;"
-                   onmouseover="Tip('Click stop filtering this bad name/word.', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('badNamesTable'));"/>
+                   onmouseover="Tip('<?php echo $LAN_BADNAMES_010 ?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('badNamesTable'));"/>
             <?php
           } else {
             ?>
               <img src="images/cross.png"
                    onclick="changeBadNameFilter(<?php echo $badName->getId()?>, <?php echo $badName->getFilter()?>)" style="cursor:pointer;"
-                   onmouseover="Tip('Click start filtering this bad name/word.', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('badNamesTable'));"/>
+                   onmouseover="Tip('<?php echo $LAN_BADNAMES_011 ?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('badNamesTable'));"/>
             <?php
           }?>
         </td>
@@ -116,22 +119,22 @@ $badNames = $badNameQueries->getBadNames();
             ?>
               <img src="images/tick.png"
                    onclick="changeBadNameKick(<?php echo $badName->getId()?>, <?php echo $badName->getFilter()?>)" style="cursor:pointer;"
-                   onmouseover="Tip('Click to stop kicking people that have this bad name/word in their name.', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('badNamesTable'));"/>
+                   onmouseover="Tip('<?php echo $LAN_BADNAMES_012 ?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('badNamesTable'));"/>
             <?php
           } else {
             ?>
               <img src="images/cross.png"
                    onclick="changeBadNameKick(<?php echo $badName->getId()?>, <?php echo $badName->getFilter()?>)" style="cursor:pointer;"
-                   onmouseover="Tip('Click to start kicking people that have this bad name/word in their name.', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('badNamesTable'));"/>
+                   onmouseover="Tip('<?php echo $LAN_BADNAMES_013 ?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('badNamesTable'));"/>
             <?php
           }?>
         </td>
         <td class="<?php echo $rowStyle?>">
-          <form action="index.php?page=badNames&adminPage=1" method="POST" onsubmit="return confirm('Are you sure you wish to delete this item?')">
+          <form action="index.php?page=badNames&adminPage=1" method="POST" onsubmit="return confirm('<?php echo $LAN_BADNAMES_014 ?>')">
             <input type="hidden" id="idToDelete" name="idToDelete" value="<?php echo $badName->getId()?>"/>
             <input type="submit" id="deleteBadName" name="deleteBadName" value=""
                    style="background:transparent url(images/trash-full.png) no-repeat scroll 0%; border:0px; margin-bottom:3px;cursor:pointer;"
-                   onmouseover="Tip('Click to delete bad name/word from the list.', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('badNamesTable'));"/>
+                   onmouseover="Tip('<?php echo $LAN_BADNAMES_015 ?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('badNamesTable'));"/>
           </form>
         </td>
       </tr>
@@ -142,7 +145,7 @@ $badNames = $badNameQueries->getBadNames();
   </table>
 </div>
 
-<h5>Note: Avoid using short words/names for kicking.  For example, adding "a" will kick anyone with an "a" in their name.</h5>
+<h5><?php echo $LAN_BADNAMES_016 ?></h5>
 <?php
 }
 ?>

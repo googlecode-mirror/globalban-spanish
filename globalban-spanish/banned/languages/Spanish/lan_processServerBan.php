@@ -26,5 +26,7 @@ $LAN_PROCESSBAN_014 = 'GlobalBan';
 $LAN_PROCESSBAN_015 = 'ha sido baneado';
 $LAN_PROCESSBAN_016 = 'por';
 $LAN_PROCESSBAN_017 = 'con la';
-
+$LAN_PROCESSBAN_018 = "No se puede conectar a la base de datos";
+$LAN_PROCESSBAN_019 = "Conexión con éxito!";
+$LAN_PROCESSBAN_020 = "No se puede seleccionar la base de datos";
 ?>

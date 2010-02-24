@@ -10,26 +10,28 @@
 +----------------------------------------------------------------------------+
 */
 
-$LANMANAGEADMINGROUPS_001 = "Liste des groupes (Admin)";
-$LANMANAGEADMINGROUPS_002 = 'Nom du groupe :';
-$LANMANAGEADMINGROUPS_003 = 'Description du groupe :';
-$LANMANAGEADMINGROUPS_004 = 'Ajouter le plugin :';
-$LANMANAGEADMINGROUPS_005 = 'Ajouter le plugin';
-$LANMANAGEADMINGROUPS_006 = 'Tout sélectionner';
-$LANMANAGEADMINGROUPS_007 = 'Tout désélectionner';
-$LANMANAGEADMINGROUPS_008 = 'Effacer le Plugin';
-$LANMANAGEADMINGROUPS_009 = 'Nom du groupe';
-$LANMANAGEADMINGROUPS_010 = 'Description';
-$LANMANAGEADMINGROUPS_011 = 'Modifier droits';
-$LANMANAGEADMINGROUPS_012 = 'Sauvegarder';
-$LANMANAGEADMINGROUPS_013 = 'Effacer';
-$LANMANAGEADMINGROUPS_014 = 'Voulez-vous vraiment supprimer';
-$LANMANAGEADMINGROUPS_015 = '?';
-$LANMANAGEADMINGROUPS_016 = 'Cliquez pour sauvegarder les paramètres de';
-$LANMANAGEADMINGROUPS_017 = 'Cliquez pour supprimer';
-$LANMANAGEADMINGROUPS_018 = 'de la liste des serveurs';
-$LANMANAGEADMINGROUPS_019 = 'Ajouter un nouveau groupe';
-$LANMANAGEADMINGROUPS_020 = 'Ajouter le nouveau Groupe';
-$LANMANAGEADMINGROUPS_021 = 'Le nom du groupe éxiste déjà,veuillez en choisir un autre.';
+$LAN_MANAGEADMINGROUPS_001 = "Liste des groupes (Admin)";
+$LAN_MANAGEADMINGROUPS_002 = 'Nom du groupe :';
+$LAN_MANAGEADMINGROUPS_003 = 'Description du groupe :';
+$LAN_MANAGEADMINGROUPS_004 = 'Ajouter le plugin :';
+$LAN_MANAGEADMINGROUPS_005 = 'Ajouter le plugin';
+$LAN_MANAGEADMINGROUPS_006 = 'Tout sélectionner';
+$LAN_MANAGEADMINGROUPS_007 = 'Tout désélectionner';
+$LAN_MANAGEADMINGROUPS_008 = 'Effacer le Plugin';
+$LAN_MANAGEADMINGROUPS_009 = 'Nom du groupe';
+$LAN_MANAGEADMINGROUPS_010 = 'Description';
+$LAN_MANAGEADMINGROUPS_011 = 'Modifier droits';
+$LAN_MANAGEADMINGROUPS_012 = 'Sauvegarder';
+$LAN_MANAGEADMINGROUPS_013 = 'Effacer';
+$LAN_MANAGEADMINGROUPS_014 = 'Voulez-vous vraiment supprimer';
+$LAN_MANAGEADMINGROUPS_015 = '?';
+$LAN_MANAGEADMINGROUPS_016 = 'Cliquez pour sauvegarder les paramètres de';
+$LAN_MANAGEADMINGROUPS_017 = 'Cliquez pour supprimer';
+$LAN_MANAGEADMINGROUPS_018 = 'de la liste des serveurs';
+$LAN_MANAGEADMINGROUPS_019 = 'Ajouter un nouveau groupe';
+$LAN_MANAGEADMINGROUPS_020 = 'Ajouter le nouveau Groupe';
+$LAN_MANAGEADMINGROUPS_021 = 'Le nom du groupe éxiste déjà,veuillez en choisir un autre.';
+$LAN_MANAGEADMINGROUPS_022 = 'Voulez-vous vraiment supprimer';
+$LAN_MANAGEADMINGROUPS_023 = 'du le groupe?';
 
 ?>

@@ -32,7 +32,7 @@ unset($_SESSION['name']);
 unset($_SESSION['password']);
 session_destroy();
 
-$lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_navigation.php';
+$lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_loginout.php';
 include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_loginout.php");
 ?>
 

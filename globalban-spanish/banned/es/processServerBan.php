@@ -190,9 +190,9 @@ function NewPostForum_e107($TituloPost, $AsuntoPost, $now, $config) {
 
 	// Connecting, selecting database
     $link = mysql_connect($config->e107_dbHostName, $config->e107_dbUserName, $config->e107_dbPassword)
-	    or die('No se pudo conectar a la BD_e107: ' . mysql_error());
-	echo 'Connected successfully';
-	mysql_select_db($config->e107_dbName) or die('Could not select database');
+	    or die($LAN_PROCESSBAN_018." ".mysql_error());
+	echo $LAN_PROCESSBAN_019;
+	mysql_select_db($config->e107_dbName) or die($LAN_PROCESSBAN_020);
 	
 	// Performing SQL query
 	$query = "INSERT INTO `".$config->e107TablePrefix."forum_t` (`thread_id`, `thread_name`, `thread_thread`, `thread_forum_id`, `thread_datestamp`, `thread_parent`, `thread_user`, `thread_views`, `thread_active`, `thread_lastpost`, `thread_s`, `thread_edit_datestamp`, `thread_lastuser`, `thread_total_replies`) ";

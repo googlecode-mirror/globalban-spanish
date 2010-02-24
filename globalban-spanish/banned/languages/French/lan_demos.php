@@ -3,14 +3,15 @@
 + ----------------------------------------------------------------------------+
 |     esGlobalBan - Language File.
 |
-|     $Source: /cvsroot/banned/languages/English/lan_DEMOS.php,v $
+|     $Source: /cvsroot/banned/languages/French/lan_demos.php,v $
 |     $Revision: 1.0 $
 |     $Date: 2009/07/02 30:36:39 $
 |     $Author: Odonel $
 +----------------------------------------------------------------------------+
 */
 
-$LANDEMOS_001 = "Démo uploadé avec succès !";
+$LANDEMOS_001 = "La Démo ";
+$LANDEMOS_001_0 = " a été uploadé avec succès !";
 $LANDEMOS_002 = 'ERREUR!! La démo éxiste déjà.';
 $LANDEMOS_003 = "ERREUR!! Seul les fichiers aux formats .zip, et .rar sont autorisés.";
 $LANDEMOS_004 = 'Démo supprimé avec succès !';
@@ -35,16 +36,16 @@ $LANDEMOS_022 = "Ce processus peut prendre un certain temps en fonction de la ta
 $LANDEMOS_023 = 'NOTE :';
 $LANDEMOS_024 = 'Si une';
 $LANDEMOS_025 = 'est affichée alors le champs est obligatoire.';
-$LANDEMOS_026 = "Seul les fichiers dont l'extension est .zip ou .rar et dont la taille sera de (";
-$LANDEMOS_027 = 'MB max) seront acceptés.';
-$LANDEMOS_028 = 'Liste des démos de';
+$LANDEMOS_026 = "Vous ne pouvez envoyer que des fichiers au format .rar ou .zip et dont la taille n'excédera pas (<font color='#FF0000'><b>";
+$LANDEMOS_027 = 'MB maximum</b></font>) seront acceptés.';
+$LANDEMOS_028 = 'Liste des démos de la page';
 $LANDEMOS_029 = 'à';
-$LANDEMOS_030 = 'sur';
-$LANDEMOS_031 = 'Pseudo';
-$LANDEMOS_032 = 'Démo';
-$LANDEMOS_033 = 'Date';
-$LANDEMOS_034 = 'Serveur';
-$LANDEMOS_035 = 'Bannie par';
+$LANDEMOS_030 = 'pour un totale de';
+$LANDEMOS_031 = 'Pseudo :';
+$LANDEMOS_032 = 'Démo :';
+$LANDEMOS_033 = 'Date :';
+$LANDEMOS_034 = 'Serveur :';
+$LANDEMOS_035 = 'Status du Ban :';
 $LANDEMOS_036 = 'Ajouter';
 $LANDEMOS_037 = 'Effacer';
 $LANDEMOS_038 = 'Cliquez pour bannir un utilisateur';

@@ -252,7 +252,7 @@ if(file_get_contents("http://code.google.com/p/globalban-spanish/source/list")) 
 
 
 if(!is_writable("config/class.Config.php")) {
-    echo "<h4 style='color:red; margin-bottom:0px'><i>The file config/class.Config.php is not writable. Please check your web server's permissions before continuing.</i></h4></br>";
+    echo "<h4 style='color:red; margin-bottom:0px'><i>".$LAN_CONFIGURATION_080."</i></h4></br>";
 }
 ?>
 
@@ -267,7 +267,7 @@ if(!is_writable("config/class.Config.php")) {
           // if((float)$currentVersionTemp[0] < (float)$officialVersion) {
           if($currentVersion <> $officialVersion) {
         ?>
-        <td class="rowColor1" width="1%" nowrap><b>Your Version: </b><font color="red"><?php echo $currentVersion ?></font></td>
+        <td class="rowColor1" width="1%" nowrap><b><?php echo $LAN_CONFIGURATION_016 ?> : </b><font color="red"><?php echo $currentVersion ?></font></td>
         <?php
           } else {
         ?>
@@ -354,10 +354,10 @@ if(!is_writable("config/class.Config.php")) {
       <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_091 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_092 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor1" width="1%" nowrap>
         <select name="LANGUAGE">
-          <option value="English"<?php if($config->LANGUAGE == "English" || empty($config->LANGUAGE)) echo " selected"; ?>>English</option>
-          <option value="Spanish"<?php if($config->LANGUAGE == "Spanish") echo " selected"; ?>>Spanish</option>
-          <option value="French"<?php if($config->LANGUAGE == "French") echo " selected"; ?>>French</option>
-          <option value="French"<?php if($config->LANGUAGE == "Russian") echo " selected"; ?>>Russian</option>
+          <option value="English"<?php if($config->LANGUAGE == "English" || empty($config->LANGUAGE)) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_119 ?></option>
+          <option value="Spanish"<?php if($config->LANGUAGE == "Spanish") echo " selected"; ?>><?php echo $LAN_CONFIGURATION_120 ?></option>
+          <option value="French"<?php if($config->LANGUAGE == "French") echo " selected"; ?>><?php echo $LAN_CONFIGURATION_121 ?></option>
+          <option value="Russian"<?php if($config->LANGUAGE == "Russian") echo " selected"; ?>><?php echo $LAN_CONFIGURATION_150 ?></option>
         </select>
       </td>
     </tr>

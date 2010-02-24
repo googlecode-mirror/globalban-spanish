@@ -69,4 +69,6 @@ $LAN_BANLIST_056 = 'Anterior';
 $LAN_BANLIST_057 = 'Siguiente';
 $LAN_BANLIST_058 = 'TOTAL';
 $LAN_BANLIST_059 = 'Hasta:';
+$LAN_BANLIST_060 = '(';
+$LAN_BANLIST_061 = 'demo)';
 ?>

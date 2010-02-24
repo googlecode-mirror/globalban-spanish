@@ -224,7 +224,7 @@ if($bansAdded) {
   </form>
 </div>
 <br/>
-<h5><?php echo $LANIMPORTBANS_011 ?></h5>
+<h5><?php echo $LAN_IMPORTBANS_011 ?></h5>
 <?php
 }
 ?>

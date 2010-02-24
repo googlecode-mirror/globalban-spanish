@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /*
 + ----------------------------------------------------------------------------+
 |     esGlobalBan - Language File.
@@ -10,15 +10,16 @@
 +----------------------------------------------------------------------------+
 */
 
-$LANBANREASON_001 = "Voulez-vous vraiment supprimer la raison ";
-$LANBANREASON_002 = '?';
-$LANBANREASON_003 = "Liste des bannis pour la raison";
-$LANBANREASON_004 = 'ID';
-$LANBANREASON_005 = 'Raison';
-$LANBANREASON_006 = 'Sauvegarder';
-$LANBANREASON_007 = 'Effacer';
-$LANBANREASON_008 = 'Ajouter une nouvelle raison';
-$LANBANREASON_009 = 'Envoyer';
-$LANBANREASON_010 = 'La raison éxiste déjà.';
+$LAN_BANREASONS_001 = "Voulez-vous vraiment supprimer la raison ";
+$LAN_BANREASONS_002 = '?';
+$LAN_BANREASONS_003 = "Liste des bannis pour la raison";
+$LAN_BANREASONS_004 = 'ID';
+$LAN_BANREASONS_005 = 'Raison';
+$LAN_BANREASONS_006 = 'Sauvegarder';
+$LAN_BANREASONS_007 = 'Effacer';
+$LAN_BANREASONS_008 = 'Ajouter une nouvelle raison';
+$LAN_BANREASONS_009 = 'Envoyer';
+$LAN_BANREASONS_010 = 'La raison éxiste déjà.';
+$LAN_BANREASONS_011 = 'Sauvegarder';
 
 ?>

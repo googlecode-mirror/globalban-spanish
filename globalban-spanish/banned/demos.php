@@ -455,7 +455,6 @@ function uploadFile($filename, $tempName, $config, $demoQueries) {
       */
       if($config->sendDemoEmails) {
         // Email
-        //$subject = "Nouvelle démo uploadé";
 		$subject = $LANDEMOS_040;
 
         $body = "<html><body>";
@@ -473,7 +472,7 @@ function uploadFile($filename, $tempName, $config, $demoQueries) {
           $headers  = "MIME-Version: 1.0" . "\r\n";
           $headers .= "Content-type: text/html; charset=utf-8" . "\r\n";
           // Additional headers
-          $headers .= "From: ".$config->siteName. $LANDEMOS_043 .$config->emailFromHeader . "\r\n"; 
+          $headers .= "From: ".$config->siteName." ".$LANDEMOS_043." <".$config->emailFromHeader.">" . "\r\n";
 
           // Send an email message to those that wish to recieve a notice of a newly added ban
           mail($banManagerEmails[$i], $subject, $body, $headers);

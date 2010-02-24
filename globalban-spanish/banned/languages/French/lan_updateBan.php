@@ -3,10 +3,11 @@
 + ----------------------------------------------------------------------------+
 |     esGlobalBan - Language File.
 |
-|     $Source: /cvsroot/banned/languages/French/lan_updateban.php,v $
+|     $Source: /cvsroot/banned/languages/French/lan_updateBan.php,v $
 |     $Revision: 1.0 $
 |     $Date: 2009/07/02 30:36:39 $
 |     $Author: Odonel $
+|     $Traducteur: Eric0279 $
 +----------------------------------------------------------------------------+
 */
 

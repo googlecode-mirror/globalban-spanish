@@ -20,4 +20,5 @@ $LANIPBAN_007 = 'Download IP List';
 $LANIPBAN_008 = 'IP List is Empty';
 $LANIPBAN_009 = 'Previous';
 $LANIPBAN_010 = 'Next';
+$LANIPBAN_011 = 'Search';
 ?>

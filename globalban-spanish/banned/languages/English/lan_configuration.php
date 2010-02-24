@@ -3,7 +3,7 @@
 + ----------------------------------------------------------------------------+
 |     esGlobalBan - Language File.
 |
-|     $Source: /cvsroot/banned/languages/French/lan_configuration.php,v $
+|     $Source: /cvsroot/banned/languages/English/lan_configuration.php,v $
 |     $Revision: 1.0 $
 |     $Date: 2009/07/02 30:36:39 $
 |     $Author: Odonel $
@@ -89,7 +89,7 @@ $LAN_CONFIGURATION_076 = 'Enter the group ID that you wish to associate with tha
 $LAN_CONFIGURATION_077 = 'Save Configuration';
 $LAN_CONFIGURATION_078 = 'Note: Saving the configuration will also update GlobalBan.cfg on all active servers.';
 $LAN_CONFIGURATION_079 = 'Access Denied.';
-$LAN_CONFIGURATION_080 = '';
+$LAN_CONFIGURATION_080 = "The file config/class.Config.php is not writable. Please check your web server's permissions before continuing.";
 $LAN_CONFIGURATION_081 = '';
 $LAN_CONFIGURATION_082 = 'Generate';
 $LAN_CONFIGURATION_083 = 'Enable Web Link';
@@ -128,6 +128,8 @@ $LAN_CONFIGURATION_115 = 'Admins And Ex-Banned';
 $LAN_CONFIGURATION_116 = 'Only Admins (Chat)';
 $LAN_CONFIGURATION_117 = 'Only Ex-Banned (Panel)';
 $LAN_CONFIGURATION_118 = 'Nobody';
-
-
+$LAN_CONFIGURATION_119 = "English";
+$LAN_CONFIGURATION_120 = "Spanish";
+$LAN_CONFIGURATION_121 = "French";
+$LAN_CONFIGURATION_122 = "Russian";
 ?>

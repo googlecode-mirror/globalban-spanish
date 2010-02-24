@@ -69,4 +69,6 @@ $LAN_BANLIST_056 = 'Previous';
 $LAN_BANLIST_057 = 'Next';
 $LAN_BANLIST_058 = 'TOTAL';
 $LAN_BANLIST_059 = 'Expirate Date:';
+$LAN_BANLIST_060 = '(';
+$LAN_BANLIST_061 = 'demo)';
 ?>

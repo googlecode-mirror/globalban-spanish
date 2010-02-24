@@ -89,7 +89,7 @@ $LAN_CONFIGURATION_076 = 'Introducca la ID del grupo que desea asociar al grupo 
 $LAN_CONFIGURATION_077 = 'Guardar Configuracion';
 $LAN_CONFIGURATION_078 = 'Nota: Guardando la configuracion tambien se actualizara el archivo GlobalBan.cfg en todos los servidores de HL2 activos.';
 $LAN_CONFIGURATION_079 = 'Acceso Denegado.';
-$LAN_CONFIGURATION_080 = '';
+$LAN_CONFIGURATION_080 = "El archico config/class.Config.php no es escribible. Por favor revise los permisos de escritura de su servidor web sobre este archivo antes de continuar.";
 $LAN_CONFIGURATION_081 = '';
 $LAN_CONFIGURATION_082 = 'Generar';
 $LAN_CONFIGURATION_083 = 'Activar Boton a la Web';
@@ -128,6 +128,8 @@ $LAN_CONFIGURATION_115 = 'Solo a los Admins y Ex-Baneado';
 $LAN_CONFIGURATION_116 = 'Solo Admins (Chat)';
 $LAN_CONFIGURATION_117 = 'Solo al ExBaneado (Panel)';
 $LAN_CONFIGURATION_118 = 'Ninguno';
-
-
+$LAN_CONFIGURATION_119 = 'Ingles';
+$LAN_CONFIGURATION_120 = 'Espa&ntilde;ol';
+$LAN_CONFIGURATION_121 = 'Frances';
+$LAN_CONFIGURATION_122 = 'Ruso';
 ?>

@@ -1,18 +1,17 @@
-﻿<?php
+<?php
 /*
 + ----------------------------------------------------------------------------+
 |     esGlobalBan - Language File.
 |
-|     $Source: /cvsroot/banned/languages/English/lan_navigation.php,v $
+|     $Source: /cvsroot/banned/languages/French/lan_ipbanlist.php,v $
 |     $Revision: 1.0 $
-|     $Date: 2009/07/02 30:36:39 $
+|     $Date: 2009/10/07 11:56:39 $
 |     $Author: Odonel $
 +----------------------------------------------------------------------------+
 */
-// Login
-$LANIPBAN_001 = "Liste des Ip's bannis ";
-$LANIPBAN_002 = ' de ';
-$LANIPBAN_003 = ' à ';
+$LANIPBAN_001 = "Liste des Ip's bannis de ";
+$LANIPBAN_002 = ' à';
+$LANIPBAN_003 = ' sur un total de ';
 $LANIPBAN_004 = 'Adresse IP';
 $LANIPBAN_005 = 'Active';
 $LANIPBAN_006 = "NOTE: Les IP bannis s'appliquent pour tout serveur présent dans la liste.";

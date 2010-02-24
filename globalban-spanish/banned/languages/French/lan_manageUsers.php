@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /*
 + ----------------------------------------------------------------------------+
 |     esGlobalBan - Language File.
@@ -10,13 +10,13 @@
 +----------------------------------------------------------------------------+
 */
 
-$LANMANAGEUSERS_001 = "Voulez-vous vraiment supprimer";
+$LANMANAGEUSERS_001 = "Voulez-vous vraiment supprimer l'utilisateur";
 $LANMANAGEUSERS_002 = '?';
-$LANMANAGEUSERS_003 = 'Vous n\'êtes pas autorisé à supprimer le super utilisateur !';
+$LANMANAGEUSERS_003 = "Vous n'êtes pas autorisé à supprimer le super utilisateur !";
 $LANMANAGEUSERS_004 = 'Liste des Administrateurs';
 $LANMANAGEUSERS_005 = 'ID';
-$LANMANAGEUSERS_006 = 'Nom';
-$LANMANAGEUSERS_007 = 'Niveau d\'accès';
+$LANMANAGEUSERS_006 = 'Pseudo';
+$LANMANAGEUSERS_007 = "Niveau d'accès";
 $LANMANAGEUSERS_008 = 'Email';
 $LANMANAGEUSERS_009 = 'Steam ID';
 $LANMANAGEUSERS_010 = 'Sauvegarder';
@@ -39,7 +39,7 @@ $LANMANAGEUSERS_026 = "Ajouter un nouvel Admin";
 $LANMANAGEUSERS_027 = "Pseudo :";
 $LANMANAGEUSERS_028 = "Ce pseudo éxiste déjà.";
 $LANMANAGEUSERS_029 = "Steam ID :";
-$LANMANAGEUSERS_030 = "(Le format du Steam ID doit être <b>STEAM_X:X:XXXXXX</b>)";
+$LANMANAGEUSERS_030 = "(Le format du Steam ID doit être : <font color='#FF0000'><b>STEAM_X:X:XXXXXX</b></font>)";
 $LANMANAGEUSERS_031 = "Le format du Steam ID est invalide.";
 $LANMANAGEUSERS_032 = "Email :";
 $LANMANAGEUSERS_033 = "Entrer une adresse email valide.";
@@ -49,4 +49,8 @@ $LANMANAGEUSERS_036 = 'Les champs indiqués avec une <img src="images/bullet_sta
 $LANMANAGEUSERS_037 = "Accès refusé !";
 $LANMANAGEUSERS_038 = "Réinitialiser";
 $LANMANAGEUSERS_039 = "Cliquez pour désactiver";
+$LANMANAGEUSERS_040 = "De :";
+$LANMANAGEUSERS_041 = " Gestionnaires de Bannes";
+$LANMANAGEUSERS_042 = "L'utilisateur a été créé avec succès !";
+
 ?>

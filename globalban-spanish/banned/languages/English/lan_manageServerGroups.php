@@ -29,7 +29,6 @@ $LANMANAGESERVERGROUPS_016 = 'Group Name:';
 $LANMANAGESERVERGROUPS_017 = 'Description:';
 $LANMANAGESERVERGROUPS_018 = 'Group Name Already Exists';
 $LANMANAGESERVERGROUPS_019 = 'Add Group';
-$LANMANAGESERVERGROUPS_020 = '';
 $LANMANAGESERVERGROUPS_021 = 'Note: If you add or delete a group then you should save your changes by clicking <b>&quot;Save Configuration&quot;</b> of the page ';
 $LANMANAGESERVERGROUPS_022 = 'Configuration';
 $LANMANAGESERVERGROUPS_023 = '.';

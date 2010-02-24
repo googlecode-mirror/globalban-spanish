@@ -3,9 +3,9 @@
 + ----------------------------------------------------------------------------+
 |     esGlobalBan - Language File.
 |
-|     $Source: /cvsroot/banned/languages/English/lan_getBanLengthList.php,v $
+|     $Source: /cvsroot/banned/languages/French/lan_getBanLengthList.php,v $
 |     $Revision: 1.0 $
-|     $Date: 2009/07/02 30:36:39 $
+|     $Date: 2009/07/02 20:36:39 $
 |     $Author: Odonel $
 +----------------------------------------------------------------------------+
 */
