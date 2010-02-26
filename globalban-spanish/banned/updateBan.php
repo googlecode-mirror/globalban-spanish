@@ -66,7 +66,7 @@ $banHistory = $banQueries->getBanHistory($banId);
 <script type="text/javascript">
 <!--
 function confirmIpBan() {
-	if (confirm('<?php echo $LANUPDATEBAN_032 ?>')){
+	if (confirm('<?php echo $LANUPDATEBAN_032; ?>')){
     document.getElementById('banIpForm').submit()
 	}
 }
@@ -151,7 +151,7 @@ function confirmIpBan() {
 	// Make sure we have a list of admis to display
     if(count($banAmins > 0)) {
       $selectedAdmin = false;
-      
+
       for($i=0; $i<count($banAmins);$i++) {
         $admin_banner = $banAmins[$i]; 
         if($admin_banner->getAdmin() == $bannedUser->getBanner()) {

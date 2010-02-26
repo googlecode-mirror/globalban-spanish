@@ -219,11 +219,11 @@ $servers = $serverQueries->getServers();
 // Cycle through each server
 foreach($servers as $server) {
   ?>
-  <h3 id="server:<?php echo $server->getId()?>"><?php echo $LANCONFIGURATIONSAVE_001 ?> <?php echo $server->getName()?> <img src="images/wait.gif"/></h3>
+  <h3 id="server:<?php echo $server->getId()?>"><?php echo $LANCONFIGURATIONSAVE_001; ?> <?php echo $server->getName()?> <img src="images/wait.gif"/></h3>
   <?php
 }
 ?>
-<h5><?php echo $LANCONFIGURATIONSAVE_002 ?></h5>
+<h5><?php echo $LANCONFIGURATIONSAVE_002; ?></h5>
 <script src="javascript/ajax.js" language="javascript" type="text/javascript"></script>
 <script language="Javascript" type="text/javascript">
 <?php

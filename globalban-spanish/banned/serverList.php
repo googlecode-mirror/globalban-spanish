@@ -36,7 +36,7 @@ $servers = $serverQueries->getServers();
 ?>
 <div class="tborder">
   <div id="tableHead">
-    <div><b><?php echo $LAN_SERVERLIST_001 ?></b></div>
+    <div><b><?php echo $LAN_SERVERLIST_001; ?></b></div>
   </div>
   
   <table id="serverListTable" class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
@@ -53,9 +53,9 @@ $servers = $serverQueries->getServers();
           <td class="colColor1" valign="top">
           <?php
             if($r->isValid()) {
-              ?><img src="images/connect.png" onmouseover="Tip('<?php echo $LAN_SERVERLIST_002 ?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('serverListTable'))"/><?php
+              ?><img src="images/connect.png" onmouseover="Tip('<?php echo $LAN_SERVERLIST_002; ?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('serverListTable'))"/><?php
             } else {
-              ?><img src="images/disconnect.png" onmouseover="Tip('<?php echo $LAN_SERVERLIST_003 ?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('serverListTable'))"/><?php
+              ?><img src="images/disconnect.png" onmouseover="Tip('<?php echo $LAN_SERVERLIST_003; ?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('serverListTable'))"/><?php
             }
           ?>
           <b><?php echo $server->getName() ?></b><br/>
@@ -112,7 +112,7 @@ $servers = $serverQueries->getServers();
               $appNumber = 300;
             }
           ?>
-		    <a href='steam://connect/<?php echo $server->getIp()?>:<?php echo $server->getPort() ?>'><?php echo $LAN_SERVERLIST_007 ?></a>
+		    <a href='steam://connect/<?php echo $server->getIp()?>:<?php echo $server->getPort() ?>'><?php echo $LAN_SERVERLIST_007; ?></a>
           </td>
           <?php
             if(($i+1)%$serversPerRow==0 && ($i+1) != count($servers)) {

@@ -13,7 +13,7 @@
 $LANCHECKUSER_001 = 'Votre nom contient le mot ';
 $LANCHECKUSER_002 = "qui n'est pas autorisé sur le serveur";
 $LANCHECKUSER_003 = ' par IP';
-$LANCHECKUSER_004 = 'GB: Il a été kické et bannie:';
+$LANCHECKUSER_004 = 'GB: Il a kické et bannie';
 $LANCHECKUSER_005 = ' avec le ';
 $LANCHECKUSER_006 = 'EX-BANNIE';
 $LANCHECKUSER_007 = 'Raison';

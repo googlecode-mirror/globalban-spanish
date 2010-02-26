@@ -153,10 +153,10 @@ if(isset($_POST['submitXMLImport'])) {
 <?php
 // Display that the changes were successful
 if($bansAdded) {
-  ?><h5 class="error"><?php echo $count ?> <?php echo $LAN_IMPORTBANS_001 ?><br/>
+  ?><h5 class="error"><?php echo $count ?> <?php echo $LAN_IMPORTBANS_001; ?><br/>
   <?php
     if($alreadyAdded > 0) {
-      echo $alreadyAdded . $LAN_IMPORTBANS_012 . "<br/><br/>";
+      echo $alreadyAdded . $LAN_IMPORTBANS_012; . "<br/><br/>";
     }
     if($failed > 0) {
       echo $LAN_IMPORTBANS_013 . $failed.$LAN_IMPORTBANS_014 . "<br/><br/>";
@@ -175,15 +175,15 @@ if($bansAdded) {
   <form action="index.php?page=importBans" method="POST" enctype="multipart/form-data">
   <table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
     <tr class="rowColor2">
-      <th style="text-align: left;"><?php echo $LAN_IMPORTBANS_003 ?></th>
-      <th style="text-align: left;"><?php echo $LAN_IMPORTBANS_004 ?></th>
+      <th style="text-align: left;"><?php echo $LAN_IMPORTBANS_003; ?></th>
+      <th style="text-align: left;"><?php echo $LAN_IMPORTBANS_004; ?></th>
     </tr>
     <tr class="rowColor1">
-      <td><?php echo $LAN_IMPORTBANS_005 ?></td>
-      <td><?php echo $LAN_IMPORTBANS_006 ?></td>
+      <td><?php echo $LAN_IMPORTBANS_005; ?></td>
+      <td><?php echo $LAN_IMPORTBANS_006; ?></td>
     </tr>
     <tr class="rowColor2">
-    <td width="1%" nowrap><?php echo $LAN_IMPORTBANS_007 ?>
+    <td width="1%" nowrap><?php echo $LAN_IMPORTBANS_007; ?>
       <select name="reason">
       <?php
       if(count($banReasons > 0)) {
@@ -192,12 +192,12 @@ if($bansAdded) {
           ?><option value="<?php echo $reason->getId() ?>"><?php echo $reason->getReason() ?></option><?php
         }
       } else {
-      ?><option value="-1"><?php echo $LAN_IMPORTBANS_008 ?></option><?php
+      ?><option value="-1"><?php echo $LAN_IMPORTBANS_008; ?></option><?php
       }
       ?>
       </select>
     </td>
-    <td width="1%" nowrap><?php echo $LAN_IMPORTBANS_007 ?>
+    <td width="1%" nowrap><?php echo $LAN_IMPORTBANS_007; ?>
       <select name="reasonXML">
       <?php
       if(count($banReasons > 0)) {
@@ -206,7 +206,7 @@ if($bansAdded) {
           ?><option value="<?php echo $reason->getId() ?>"><?php echo $reason->getReason() ?></option><?php
         }
       } else {
-      ?><option value="-1"><?php echo $LAN_IMPORTBANS_008 ?></option><?php
+      ?><option value="-1"><?php echo $LAN_IMPORTBANS_008; ?></option><?php
       }
       ?>
       </select>
@@ -217,14 +217,14 @@ if($bansAdded) {
       <td><input id="file" name="file" size="40" type="file" /></td>
     </tr>
     <tr class="rowColor2">
-      <td><input type="submit" name="submitImport" value="<?php echo $LAN_IMPORTBANS_009 ?>"/></td>
-      <td><input type="submit" name="submitXMLImport" value="<?php echo $LAN_IMPORTBANS_010 ?>"/></td>
+      <td><input type="submit" name="submitImport" value="<?php echo $LAN_IMPORTBANS_009; ?>"/></td>
+      <td><input type="submit" name="submitXMLImport" value="<?php echo $LAN_IMPORTBANS_010; ?>"/></td>
     </tr>
   </table>
   </form>
 </div>
 <br/>
-<h5><?php echo $LAN_IMPORTBANS_011 ?></h5>
+<h5><?php echo $LAN_IMPORTBANS_011; ?></h5>
 <?php
 }
 ?>

@@ -41,7 +41,7 @@ $siteLogo = my_explode('.', $config->siteLogo , -2);
   <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title><?php echo $config->siteName ?><?php echo $LANHEAD_001 ?></title>
+    <title><?php echo $config->siteName ?><?php echo $LANHEAD_001; ?></title>
     <link rel="icon" href="images/favicon.ico" type="image/vnd.microsoft.icon">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/vnd.microsoft.icon">
     <link rel="stylesheet" type="text/css" href="css/banned.css" />

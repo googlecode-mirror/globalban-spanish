@@ -178,7 +178,7 @@ else if($success == "error"){
 
 if($demoDeleted != "" || $demoDelete != null) {
 ?>
-<h5><?php echo $demoDeleted?> <?php echo $LANDEMOS_004 ?></h5>
+<h5><?php echo $demoDeleted?> <?php echo $LANDEMOS_004; ?></h5>
 <?php
 }
 ?>

@@ -29,7 +29,7 @@ include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_ban
 <script src="javascript/functions.js" language="javascript" type="text/javascript"></script>
 <script type="text/javascript">
 function deleteVerify(id, length, timeScale) {
-  if(confirm("<?php echo $LAN_BANLENGHTS_001 ?> " + length + " " + timeScale + "<?php echo $LAN_BANLENGHTS_019 ?>")) {
+  if(confirm("<?php echo $LAN_BANLENGHTS_001; ?> " + length + " " + timeScale + "<?php echo $LAN_BANLENGHTS_019; ?>")) {
     document.getElementById("deleteLength"+id).submit();
   }
 }
@@ -64,13 +64,13 @@ if($fullPower) {
 ?>
 <div class="tborder">
   <div id="tableHead">
-    <div><b><?php echo $LAN_BANLENGHTS_002 ?></b></div>
+    <div><b><?php echo $LAN_BANLENGHTS_002; ?></b></div>
   </div>
   <table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
     <tr>
-      <th class="colColor1" width="1%" nowrap><div align="center"><?php echo $LAN_BANLENGHTS_003 ?></div></th>
-      <th class="colColor2" width="1%" nowrap><div align="center"><?php echo $LAN_BANLENGHTS_004 ?></div></th>
-      <th class="colColor1" width="1%" nowrap><div align="center"><?php echo $LAN_BANLENGHTS_005 ?></div></th>
+      <th class="colColor1" width="1%" nowrap><div align="center"><?php echo $LAN_BANLENGHTS_003; ?></div></th>
+      <th class="colColor2" width="1%" nowrap><div align="center"><?php echo $LAN_BANLENGHTS_004; ?></div></th>
+      <th class="colColor1" width="1%" nowrap><div align="center"><?php echo $LAN_BANLENGHTS_005; ?></div></th>
       <th class="colColor2" nowrap></th>
     </tr>
     <?php foreach($banLengths as $banLength) {
@@ -111,40 +111,40 @@ if($fullPower) {
     
 <div class="tborder">
   <div id="tableHead">
-    <div><b><?php echo $LAN_BANLENGHTS_007 ?></b></div>
+    <div><b><?php echo $LAN_BANLENGHTS_007; ?></b></div>
   </div>
     <table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
 
     <tr>
       <form action="index.php?page=banLengths&adminPage=1" method="POST" onsubmit="return formVerify();">
-      <td class="colColor1" width="1%" nowrap><?php echo $LAN_BANLENGHTS_008 ?></td>
+      <td class="colColor1" width="1%" nowrap><?php echo $LAN_BANLENGHTS_008; ?></td>
       <td class="colColor1" nowrap><input type="text" id="length" name="length" value="" size="5" maxlength="5" onkeyup="removeCharacters(this)"/></td>
     </tr>
     <tr>
-      <td class="colColor2" width="1%" nowrap><?php echo $LAN_BANLENGHTS_009 ?></td>
+      <td class="colColor2" width="1%" nowrap><?php echo $LAN_BANLENGHTS_009; ?></td>
       <td class="colColor2" nowrap>
         <select id="timeScale" name="timeScale">
-          <option value="minutes"><?php echo $LAN_BANLENGHTS_010 ?></option>
-          <option value="hours"><?php echo $LAN_BANLENGHTS_011 ?></option>
-          <option value="days"><?php echo $LAN_BANLENGHTS_012 ?></option>
-          <option value="weeks"><?php echo $LAN_BANLENGHTS_013 ?></option>
-          <option value="months"><?php echo $LAN_BANLENGHTS_014 ?></option>
+          <option value="minutes"><?php echo $LAN_BANLENGHTS_010; ?></option>
+          <option value="hours"><?php echo $LAN_BANLENGHTS_011; ?></option>
+          <option value="days"><?php echo $LAN_BANLENGHTS_012; ?></option>
+          <option value="weeks"><?php echo $LAN_BANLENGHTS_013; ?></option>
+          <option value="months"><?php echo $LAN_BANLENGHTS_014; ?></option>
         </select>
       </td>
     <tr>
-      <td class="colColor1" colspan="2"><input type="submit" name="submitAdd" id="submitAdd" value="<?php echo $LAN_BANLENGHTS_015 ?>"/></td>
+      <td class="colColor1" colspan="2"><input type="submit" name="submitAdd" id="submitAdd" value="<?php echo $LAN_BANLENGHTS_015; ?>"/></td>
       </form>
     </tr>
     <?php
       if($error) {
-      ?><tr><td class="colColor1" colspan="9"><span class="error"><?php echo $LAN_BANLENGHTS_016 ?></span></td></tr><?php
+      ?><tr><td class="colColor1" colspan="9"><span class="error"><?php echo $LAN_BANLENGHTS_016; ?></span></td></tr><?php
       }
     ?>
   </table>
 </div>
 
-<h5><?php echo $LAN_BANLENGHTS_017 ?></h5>
-<input type="button" value="<?php echo $LAN_BANLENGHTS_018 ?>" class="button" onclick="location.href='index.php?page=uploadBanLengths&adminPage=1'" />
+<h5><?php echo $LAN_BANLENGHTS_017; ?></h5>
+<input type="button" value="<?php echo $LAN_BANLENGHTS_018; ?>" class="button" onclick="location.href='index.php?page=uploadBanLengths&adminPage=1'" />
 
 <?php
 }
