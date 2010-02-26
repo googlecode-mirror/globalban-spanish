@@ -1,0 +1,408 @@
+/*
+Theme colors mostly borrowed from the SMF theme created by crip called
+BlackRain.
+crip@tinyportal.net
+
+If the colors do not suit you, feel free to change them.  My main focus of the
+application is the functionality, not how pretty it looks.  You are more than
+welcome to change any style found here.
+*/
+
+/* Standard HTML */
+body
+{
+  background-color: #333;
+	margin: 0px;
+	padding: 0px;
+}
+
+/* No image should have a border when linked */
+a img{ border: 0; }
+/* Normal, standard links. */
+a:link, a:visited
+{
+	color: #ea7500;
+	text-decoration: none;
+}
+a:hover
+{
+	color: #FFF;
+	text-decoration: none;
+}
+
+/* Tables should show empty cells. */
+table
+{
+	empty-cells: show;
+}
+
+/* By default (td, body..) use verdana in black. */
+body, td, th, tr
+{
+	color: #FFFFFF;
+	font-size: small;
+	font-family: verdana, sans-serif;
+}
+/* The main body of the entire forum. */
+
+/* Input boxes - just a bit smaller than normal so they align well. */
+input, textarea, button
+{
+	background: #333333;
+	border: 1px solid #000000;
+	color: white;
+	font-family: verdana, helvetica, sans-serif;
+	font-size: 10px;
+}
+input, button
+{
+	font-size: 90%;
+}
+textarea
+{
+	font-size: 100%;
+	color: #FFFFFF;
+	font-family: verdana, sans-serif;
+}
+/* All input elements that are checkboxes or radio buttons. */
+input.check
+{
+}
+/* Selects are a bit smaller, because it makes them look even better 8). */
+select
+{
+	background: #3d3d3d;
+	border: 1px solid #000000;
+	color: white;
+	font-family: verdana, helvetica, sans-serif;
+	font-size: 10px;
+	margin: 0px;
+	padding: 0px;
+}
+/* Standard horizontal rule.. ([hr], etc.) */
+hr, .hrcolor
+{
+  height: 1px;
+  border: 0;
+  color: #666666;
+  background-color: #666666;
+}
+
+form {
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  background-color: none;
+}
+
+/* End Standard HTML */
+
+#container {
+  margin: 0px 25px 0px 25px;
+  text-align: left;
+  border: 1px solid #000000;
+  background-color: #222222;
+  padding: 0px 30px 30px 30px;
+}
+
+#logo {
+  margin: 4px;
+  text-align: left;
+}
+
+#footer {
+  margin: 20px 0px 5px 0px;
+  padding: 5px 5px 5px 10px;
+  border: 1px solid #696464;
+  background-color: #3B3B3B;
+  text-align: center;
+  font-size: 10px;
+}
+
+#tableHead {
+  padding: 5px 5px 5px 10px;
+  background-color: #3B3B3B;
+}
+
+#tableBottom {
+  position: relative;
+  padding: 5px 5px 5px 10px;
+  background-color: #3B3B3B;
+}
+
+#search {
+  padding: 5px 0px 10px 0px;
+}
+
+.error {
+  color: red;
+}
+
+.rowColor1, .colColor1 {
+  color: #f3ecdd;
+	background-color: #3a3e42;
+	font-family: "Trebuchet MS",verdana, sans-serif;
+}
+
+.rowColor2, .colColor2 {
+  color: #d4d8dc;
+	background-color: #3b4248;
+	font-family: "Trebuchet MS",verdana, sans-serif;
+}
+
+
+
+/* This is used for categories, page indexes, and several other areas in the forum.
+.catbg and .catbg2 is for boardindex, while .catbg3 is for messageindex and display headers*/
+.catbg , tr.catbg td , .catbg3 , tr.catbg3 td
+{
+	font-weight: bold;
+	background-color: transparent;
+	background-image: url(images/catbg.jpg);
+	background-repeat: x-repeat;
+	color: #FFF;
+	height: 17px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.catbg2 , tr.catbg2 td
+{
+	background-image: url(images/catbg.jpg);
+	background-color: #A1BFD9;
+	color: #FFF;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.catbg, .catbg2, .catbg3
+{
+	background-repeat: repeat-x;
+}
+.catbg, .catbg2
+{
+	font-weight: bold;
+}
+.catbg3, tr.catbg3 td, .catbg3 a:link, .catbg3 a:visited
+{
+	font-size: 95%;
+	color: #FFF;
+	text-decoration: none;
+}
+.catbg a:link, .catbg a:visited , .catbg2 a:link, .catbg2 a:visited
+{
+	color: #FFF;
+	text-decoration: none;
+}
+.catbg a:hover, .catbg2 a:hover, .catbg3 a:hover
+{
+	color: #e0e0ff;
+}
+/* This is used for tables that have a grid/border background color (such as the topic listing.) */
+.bordercolor
+{
+	background-color: #696464;
+	padding: 0px;
+}
+/* This is used on tables that should just have a border around them. */
+.tborder
+{
+	padding: 1px;
+	border: 1px solid #696464;
+	margin-top: 0pt;
+	/*
+	width: 100%;
+	*/
+}
+
+/* Menu Styles */
+#menu {
+  padding-bottom: 40px;
+}
+
+#nav, #nav ul {
+	padding: 0px;
+	margin: 0px;
+	list-style: none;
+	line-height: 1;
+}
+
+#nav a {
+  white-space: nowrap;
+  padding: 2px;
+	display: block;
+	/*width: 8em;*/
+	border: 1px solid #696464;
+	color: #EA7500;
+
+	padding-left: 10px;
+	padding-right: 10px;
+
+  background-color: #3B3B3B;
+}
+
+#nav a:hover {
+  border: 1px solid #696464;
+  background-color: #1F1F1F;
+  color: #fff;
+}
+
+#nav li {
+	float: left;
+	width: 13em;
+}
+
+#nav li ul {
+	position: absolute;
+	left: -999em;
+	width: 8em;
+}
+
+#nav li ul ul { /* third-and-above-level lists */
+	margin: -1em 0 0 8em;
+}
+
+#nav li:hover ul ul, #nav li:hover ul ul ul, #nav li.sfhover ul ul, #nav li.sfhover ul ul ul {
+	left: -999em;
+}
+
+#nav li:hover ul, #nav li li:hover ul, #nav li li li:hover ul, #nav li.sfhover ul, #nav li li.sfhover ul, #nav li li li.sfhover ul { /* lists nested under hovered list items */
+	left: auto;
+}
+
+
+/* Accordion Styles */
+.accordianStyle {
+  width: 100%;
+  border: 1px solid #696464;
+}
+.accordianStyle div {
+  background-color: #3A3E42;
+}
+.accordianStyle p {
+  border: none;
+  margin: 10px;
+  padding: 10px;
+}
+.accordianStyle a {
+  cursor:pointer;
+  display:block;
+  padding:5px;
+  margin-top: 0;
+  text-decoration: none;
+  font-weight: bold;
+  border: 1px solid #696464;
+	color: #EA7500;
+  background-color: #3B3B3B;
+}
+.accordianStyle a:hover {
+  border: 1px solid #696464;
+  background-color: #1F1F1F;
+  color: #fff;
+}
+.accordianStyle a.selected {
+  border: 1px solid #696464;
+  background-color: #1F1F1F;
+  color: #fff;
+}
+
+.actionLink {
+  font-size: 8pt;
+  text-decoration: underline;
+  font-weight: none;
+  cursor: pointer;
+}
+
+
+
+
+
+/* Skin */
+.ui-tabs-nav, .ui-tabs-panel {
+    font-family: "Trebuchet MS", Trebuchet, Verdana, Helvetica, Arial, sans-serif;
+    font-size: 12px;
+}
+.ui-tabs-nav {
+    list-style: none;
+    margin: 0;
+    padding: 5px 0 0 3px;
+}
+.ui-tabs-nav:after { /* clearing without presentational markup, IE gets extra treatment */
+    display: block;
+    clear: both;
+    content: " ";
+}
+.ui-tabs-nav li {
+    float: left;
+    margin: 0 0 0 2px;
+    font-weight: bold;
+}
+.ui-tabs-nav a, .ui-tabs-nav a span {
+    float: left; /* fixes dir=ltr problem and other quirks IE */
+    padding: 0 12px;
+    background: url(../images/tabs.png) no-repeat;
+}
+.ui-tabs-nav a {
+    margin: 5px 0 0; /* position: relative makes opacity fail for disabled tab in IE */
+    padding-left: 0;
+    background-position: 100% 0;
+    text-decoration: none;
+    white-space: nowrap; /* @ IE 6 */
+    outline: 0; /* @ Firefox, prevent dotted border after click */    
+}
+.ui-tabs-nav a:link, .ui-tabs-nav a:visited {
+    color: #fff;
+}
+.ui-tabs-nav .ui-tabs-selected a {
+    position: relative;
+    top: 1px;
+    z-index: 2;
+    margin-top: 0;
+    background-position: 100% -23px;
+    color: #EA7500;
+}
+.ui-tabs-nav a span {
+    padding-top: 1px;
+    padding-right: 0;
+    height: 20px;
+    background-position: 0 0;
+    line-height: 20px;
+}
+.ui-tabs-nav .ui-tabs-selected a span {
+    padding-top: 0;
+    height: 27px;
+    background-position: 0 -23px;
+    line-height: 27px;
+}
+.ui-tabs-nav .ui-tabs-selected a:link, .ui-tabs-nav .ui-tabs-selected a:visited,
+.ui-tabs-nav .ui-tabs-disabled a:link, .ui-tabs-nav .ui-tabs-disabled a:visited { /* @ Opera, use pseudo classes otherwise it confuses cursor... */
+    cursor: text;
+}
+.ui-tabs-nav a:hover, .ui-tabs-nav a:focus, .ui-tabs-nav a:active,
+.ui-tabs-nav .ui-tabs-unselect a:hover, .ui-tabs-nav .ui-tabs-unselect a:focus, .ui-tabs-nav .ui-tabs-unselect a:active { /* @ Opera, we need to be explicit again here now... */
+    cursor: pointer;
+}
+.ui-tabs-disabled {
+    opacity: .4;
+    filter: alpha(opacity=40);
+}
+.ui-tabs-nav .ui-tabs-disabled a:link, .ui-tabs-nav .ui-tabs-disabled a:visited {
+    color: #000;
+}
+.ui-tabs-panel {
+    border: 1px solid #696464;
+    padding: 10px;
+    background: #3A3E42; /* declare background color for container to avoid distorted fonts in IE while fading */
+}
+/*.ui-tabs-loading em {
+    padding: 0 0 0 20px;
+    background: url(loading.gif) no-repeat 0 50%;
+}*/
+
+/* Additional IE specific bug fixes... */
+* html .ui-tabs-nav { /* auto clear @ IE 6 & IE 7 Quirks Mode */
+    display: inline-block;
+}
+*:first-child+html .ui-tabs-nav  { /* auto clear @ IE 7 Standards Mode - do not group selectors, otherwise IE 6 will ignore complete rule (because of the unknown + combinator)... */
+    display: inline-block;
+}
+
+.ui-tabs-hide { display: none; }
