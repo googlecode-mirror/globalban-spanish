@@ -10,24 +10,24 @@
 +----------------------------------------------------------------------------+
 */
 
-$LAN_BANLENGHTS_001 = 'Do you really want to delete the length:';
-$LAN_BANLENGHTS_002 = 'Ban Lengths';
-$LAN_BANLENGHTS_003 = 'Length';
-$LAN_BANLENGHTS_004 = 'Time Scale';
-$LAN_BANLENGHTS_005 = 'Delete';
-$LAN_BANLENGHTS_006 = 'Forever';
-$LAN_BANLENGHTS_007 = 'Add New Ban Length';
-$LAN_BANLENGHTS_008 = 'Length:';
-$LAN_BANLENGHTS_009 = 'Time Scale:';
-$LAN_BANLENGHTS_010 = 'Minutes';
-$LAN_BANLENGHTS_011 = 'Hours';
-$LAN_BANLENGHTS_012 = 'Days';
-$LAN_BANLENGHTS_013 = 'Weeks';
-$LAN_BANLENGHTS_014 = 'Months';
-$LAN_BANLENGHTS_015 = 'Add Ban Length';
-$LAN_BANLENGHTS_016 = 'Ban Length Already Exists';
-$LAN_BANLENGHTS_017 = 'Note: 0 Minutes = Perma Ban';
-$LAN_BANLENGHTS_018 = 'Save Ban Lengths to Servers';
+$LAN_BANLENGHTS_001 = 'Вы действительно хотите удалить:';
+$LAN_BANLENGHTS_002 = 'Длительность банов';
+$LAN_BANLENGHTS_003 = 'Длительность';
+$LAN_BANLENGHTS_004 = 'Шкала времени';
+$LAN_BANLENGHTS_005 = 'Удалить';
+$LAN_BANLENGHTS_006 = 'Навсегда';
+$LAN_BANLENGHTS_007 = 'Добавить длительность';
+$LAN_BANLENGHTS_008 = 'Длительность:';
+$LAN_BANLENGHTS_009 = 'Шкала времени:';
+$LAN_BANLENGHTS_010 = 'Минуты';
+$LAN_BANLENGHTS_011 = 'Часы';
+$LAN_BANLENGHTS_012 = 'Дни';
+$LAN_BANLENGHTS_013 = 'Недели';
+$LAN_BANLENGHTS_014 = 'Месеца';
+$LAN_BANLENGHTS_015 = 'Добавить';
+$LAN_BANLENGHTS_016 = 'Заданная длительность уже существует';
+$LAN_BANLENGHTS_017 = 'Внимание: 0 мин. = Постоянный бан';
+$LAN_BANLENGHTS_018 = 'Сохранить информацую на игровых серверах';
 $LAN_BANLENGHTS_019 = '?';
 
 ?>

@@ -1,37 +1,37 @@
-﻿<?php
+<?php
 /*
 + ----------------------------------------------------------------------------+
 |     esGlobalBan - Language File.
 |
-|     $Source: /cvsroot/banned/languages/English/lan_demos.php,v $
+|     $Source: /cvsroot/banned/languages/English/lan_navigation.php,v $
 |     $Revision: 1.0 $
-|     $Date: 2009/10/07 11:56:39 $
+|     $Date: 2009/07/02 30:36:39 $
 |     $Author: Odonel $
-|     $Translated from English to Russian: ВаДяРа from Dagunchi's Gaming Arena $
 +----------------------------------------------------------------------------+
 */
 
-$LANNAV_001 = 'Веб';
+$LANNAV_001 = 'Портал';
 $LANNAV_002 = 'Форум';
-$LANNAV_003 = 'список банов';
-$LANNAV_004 = 'баны по IP';
-$LANNAV_005 = 'Добавить бан';
-$LANNAV_006 = 'вставить бан';
-$LANNAV_007 = 'Список серв.';
+$LANNAV_003 = 'STEAM баны';
+$LANNAV_004 = 'IP баны';
+$LANNAV_005 = 'Забанить';
+$LANNAV_006 = 'Импорт банов';
+$LANNAV_007 = 'Наши сервера';
 $LANNAV_008 = 'Профиль';
-$LANNAV_009 = 'Конфигурация';
-$LANNAV_010 = 'причина бана';
-$LANNAV_011 = 'длина Бана';
-$LANNAV_012 = 'матам';
+$LANNAV_009 = 'Настройки';
+$LANNAV_010 = 'Причины банов';
+$LANNAV_011 = 'Длительность';
+$LANNAV_012 = 'Фильтры';
 $LANNAV_013 = 'Сервера';
 $LANNAV_014 = 'Группы серв.';
-$LANNAV_015 = 'груп. Админов';
-$LANNAV_016 = 'Пользователь';
-$LANNAV_017 = 'Выйти';
+$LANNAV_015 = 'Адм. группы';
+$LANNAV_016 = 'Пользователи';
+$LANNAV_017 = 'Выход';
 $LANNAV_018 = 'Демо';
 $LANNAV_019 = 'Админ';
-$LANNAV_020 = 'Язык';
+$LANNAV_020 = 'Форум HlstatsX:CE';
 $LANNAV_021 = 'Английский';
 $LANNAV_022 = 'Испанский';
-$LANNAV_023 = 'Француский';
+$LANNAV_023 = 'Французский';
+$LANNAV_024 = 'Русский';
 ?>
