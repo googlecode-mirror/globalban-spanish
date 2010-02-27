@@ -124,6 +124,10 @@ include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_nav
       ?>
       <li><div align="center"><a href="index.php?page=logout&lg=<?php echo $LANGUAGE; ?>"><?php echo $LANNAV_017; ?></a></div></li>
       <?php
+  }else if(!$config->enableSmfIntegration) {
+      ?>
+      <li><div align="center"><a href="index.php?page=login&lg=<?php echo $LANGUAGE; ?>"><?php echo $LANNAV_025; ?></a></div></li>
+      <?php
   }
   if ($adminPage==1) {
       $adPage = "&adminPage=1";

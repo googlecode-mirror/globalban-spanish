@@ -3,7 +3,7 @@
 + ----------------------------------------------------------------------------+
 |     esGlobalBan - Language File.
 |
-|     $Source: /cvsroot/banned/languages/English/lan_navigation.php,v $
+|     $Source: /cvsroot/banned/languages/Russian/lan_navigation.php,v $
 |     $Revision: 1.0 $
 |     $Date: 2009/07/02 30:36:39 $
 |     $Author: Odonel $
@@ -34,4 +34,5 @@ $LANNAV_021 = 'Английский';
 $LANNAV_022 = 'Испанский';
 $LANNAV_023 = 'Французский';
 $LANNAV_024 = 'Русский';
+$LANNAV_025 = 'Login';
 ?>

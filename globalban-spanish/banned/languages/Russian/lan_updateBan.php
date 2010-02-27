@@ -3,7 +3,7 @@
 + ----------------------------------------------------------------------------+
 |     esGlobalBan - Language File.
 |
-|     $Source: /cvsroot/banned/languages/English/lan_updateBan.php,v $
+|     $Source: /cvsroot/banned/languages/Russian/lan_updateBan.php,v $
 |     $Revision: 1.0 $
 |     $Date: 2009/10/08 11:15:39 $
 |     $Author: Odonel $

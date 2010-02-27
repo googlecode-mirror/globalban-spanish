@@ -30,4 +30,5 @@ $LANNAV_017 = 'Salir';
 $LANNAV_018 = 'Demos';
 $LANNAV_019 = 'Admin';
 $LANNAV_020 = 'HlstatsX:CE';
+$LANNAV_025 = 'Login';
 ?>

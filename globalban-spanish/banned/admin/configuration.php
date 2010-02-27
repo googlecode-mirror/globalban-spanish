@@ -357,7 +357,7 @@ if(!is_writable("config/class.Config.php")) {
           <option value="English"<?php if($config->LANGUAGE == "English" || empty($config->LANGUAGE)) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_119; ?></option>
           <option value="Spanish"<?php if($config->LANGUAGE == "Spanish") echo " selected"; ?>><?php echo $LAN_CONFIGURATION_120; ?></option>
           <option value="French"<?php if($config->LANGUAGE == "French") echo " selected"; ?>><?php echo $LAN_CONFIGURATION_121; ?></option>
-          <option value="Russian"<?php if($config->LANGUAGE == "Russian") echo " selected"; ?>><?php echo $LAN_CONFIGURATION_150; ?></option>
+          <option value="Russian"<?php if($config->LANGUAGE == "Russian") echo " selected"; ?>><?php echo $LAN_CONFIGURATION_122; ?></option>
         </select>
       </td>
     </tr>

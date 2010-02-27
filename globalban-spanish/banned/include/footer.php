@@ -25,7 +25,7 @@ include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_foo
 ?>
 <div id="footer">
 <a href='http://code.google.com/p/globalban-spanish/'><?php echo "GlobalBan  ".$version; ?></a> - <?php echo $copyright; ?>
-<?php if(!$config->enableSmfIntegration) { ?> - <a href="index.php?page=login"><span><?php echo $LANFOOTER_001; ?></span></a><?php } ?>
+<?php if(!$config->enableSmfIntegration) { ?> - <a href="index.php?page=login&lg=<?php echo $LANGUAGE; ?>"><span><?php echo $LANFOOTER_001; ?></span></a><?php } ?>
 <br/><?php echo $translators; ?>
 </div>
 </div>

@@ -694,6 +694,7 @@ function hideShowSuperUserBlock() {
           <option value="English" selected>English</option>
           <option value="Spanish">Spanish</option>
           <option value="French">French</option>
+          <option value="Russian">Russian</option>
         </select>
       </td>
     </tr>
