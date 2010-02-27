@@ -175,9 +175,9 @@ class BanQueries extends Config {
     $sql = "";
     
     if($active > -1) {
-      $sql = "SELECT * FROM gban_ban WHERE steam_id = '".$steamId."' AND active = '".$active."'";
+      $sql = "SELECT * FROM gban_ban WHERE steam_id = '".addslashes($steamId)."' AND active = '".$active."'";
     } else {
-      $sql = "SELECT * FROM gban_ban WHERE steam_id = '".$steamId."'";
+      $sql = "SELECT * FROM gban_ban WHERE steam_id = '".addslashes($steamId)."'";
     }
     
     $this->db->sql_query($sql);
@@ -294,6 +294,9 @@ class BanQueries extends Config {
     
     $searchText = trim($searchText); // Remove whitespace from search text
     $searchText = addslashes($searchText); // Prevent SQL Injection
+    $bansFilter = addslashes($bansFilter); // Prevent SQL Injection
+    $bansReason_id = addslashes($bansReason_id); // Prevent SQL Injection
+    $bansAdmin = addslashes($bansAdmin); // Prevent SQL Injection
     $searchJoin = "";
     
 	if($searchText != null && $searchText != "") {  
@@ -361,6 +364,11 @@ class BanQueries extends Config {
 	************************************************************************/
 
   function getReasonStats($reasonSortBy, $reasonSortDirection, $reasonSearchText) {
+    
+    $reasonSortBy = addslashes($reasonSortBy); // Prevent SQL Injection
+    $reasonSortDirection = addslashes($reasonSortDirection); // Prevent SQL Injection
+    $reasonSearchText = addslashes($reasonSearchText); // Prevent SQL Injection
+    
 	$sql = "SELECT
 				r.reason AS Motivo,
 				r.reason_id AS Motivo_id,
@@ -414,7 +422,11 @@ class BanQueries extends Config {
 	************************************************************************/
 
   function getAminStats($adminSortBy, $adminSortDirection, $adminSearchText) {
-
+    
+    $adminSortBy = addslashes($adminSortBy); // Prevent SQL Injection
+    $adminSortDirection = addslashes($adminSortDirection); // Prevent SQL Injection
+    $adminSearchText = addslashes($adminSearchText); // Prevent SQL Injection
+    
 	$sql = "SELECT
 				b.banner AS Admin,
 				Count(b.ban_id) AS NumBaneados,
@@ -473,6 +485,9 @@ class BanQueries extends Config {
     $searchJoin = "";
 	$bansWhereSql = "";
     $searchText = addslashes($searchText); // Prevent SQL Injection
+    $bansFilter = addslashes($bansFilter); // Prevent SQL Injection
+    $bansReason_id = addslashes($bansReason_id); // Prevent SQL Injection
+    $bansAdmin = addslashes($bansAdmin); // Prevent SQL Injection
     if($searchText != null && $searchText != "") {
       $searchJoin = " (b.steam_id LIKE '%".$searchText."%' OR b.name LIKE '%".$searchText."%') ";
     }
