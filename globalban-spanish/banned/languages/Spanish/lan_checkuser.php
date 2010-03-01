@@ -10,11 +10,11 @@
 +----------------------------------------------------------------------------+
 */
 
-$LANCHECKUSER_001 = 'Tu Nick contiene la palabra ';
-$LANCHECKUSER_002 = ' que no esta permitida en este servidor.';
+$LANCHECKUSER_001 = 'Tu Nick contiene la palabra [';
+$LANCHECKUSER_002 = '] que no esta permitida en este servidor.';
 $LANCHECKUSER_003 = ' mediante IP';
 $LANCHECKUSER_004 = 'Se ha expulsado al baneado:';
-$LANCHECKUSER_005 = ' con la ';
+$LANCHECKUSER_005 = 'con la';
 $LANCHECKUSER_006 = 'EX-BANEADO';
 $LANCHECKUSER_007 = 'Motivo';
 $LANCHECKUSER_008 = 'Admin';
