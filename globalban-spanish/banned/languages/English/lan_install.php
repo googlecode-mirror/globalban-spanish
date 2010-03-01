@@ -24,9 +24,6 @@ $LAN_INSTALL_011 = "You must specify a directory for demos.";
 $LAN_INSTALL_012 = "You must specify a demo size limit.";
 $LAN_INSTALL_013 = "You must specify ban message";
 $LAN_INSTALL_014 = "You must specify the number of days to keep a pending ban banned for";
-/*
-;$LAN_INSTALL_014 = "You must specify the number of days to keep a pending ban banned for";
-*/
 $LAN_INSTALL_015 = "You must specify a hash code for security reasons.";
 $LAN_INSTALL_016 = "You must specify a SMF table prefix.";
 $LAN_INSTALL_017 = "You must specify a SMF group that will have full power privileges.";
@@ -81,7 +78,7 @@ $LAN_INSTALL_066 = "e107 Table Prefix";;
 $LAN_INSTALL_067 = "Database Username";
 $LAN_INSTALL_068 = "MySQL user with access to the database used by e107.";
 $LAN_INSTALL_069 = "e107 Username";
-$LAN_INSTALL_070= "e107 Registered User that we wish listed as author of the post GlobalBan generated. We introduce it using the format \'ID.UserName\' for example \'5.Globalban\'.";
+$LAN_INSTALL_070 = "e107 Registered User that we wish listed as author of the post GlobalBan generated. We introduce it using the format \'ID.UserName\' for example \'5.Globalban\'.";
 $LAN_INSTALL_071 = "Database Password";
 $LAN_INSTALL_072 = "MySQL Password to access e107 database.";
 $LAN_INSTALL_073 = "ID Category Forum";

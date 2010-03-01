@@ -42,7 +42,7 @@ if($fullPower) {
 header('Content-Type: text/xml');
 header("Cache-Control: no-cache, must-revalidate");
 ?>
-<?echo "<?xml version=\"1.0\" ?>";?>
+<?php echo "<?xml version=\"1.0\"?>"; ?>
 <root>
   <id><?php echo $id; ?></id>
 	<update><?php echo $filter; ?></update>

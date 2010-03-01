@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /*
 + ----------------------------------------------------------------------------+
 |     esGlobalBan - Language File.
@@ -20,7 +20,7 @@ $LANCHECKUSER_007 = 'Reason';
 $LANCHECKUSER_008 = 'Admin';
 $LANCHECKUSER_009 = 'Length';
 $LANCHECKUSER_010 = 'Date';
-$LANCHECKUSER_011 = 'Hello ';
+$LANCHECKUSER_011 = 'Hello';
 $LANCHECKUSER_012 = 'we remind you that you were already banned by';
 $LANCHECKUSER_013 = 'the';
 $LANCHECKUSER_014 = 'be good and do not give us reason to ban you again, thanks.';

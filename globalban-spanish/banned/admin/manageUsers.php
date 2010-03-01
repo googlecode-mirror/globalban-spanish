@@ -332,7 +332,13 @@ function userTable($users, $power) {
                 <div align="center"><img src="images/save.png"/></div>
             </td>
             <td id="active:<?php echo $user->getId()?>" class="colColor2" onclick="changeUserActiveStatus(<?php echo $user->getId()?>, <?php echo $user->getActive()?>);" style="cursor:pointer;"
-                onmouseover="if(<?php echo $user->getActive()?> == 0) { Tip('Click to activate <?php echo $user->getName()?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('adminUserTable-<?php echo $power?>'));}else{Tip('Click to de-activate <?php echo $user->getName()?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('adminUserTable'));}"><div align="center">
+                onmouseover=" 
+                <?php if($user->getActive() == 0) {
+                        echo "Tip('Click to activate ".$user->getName()."', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('adminUserTable-".$power."'))";
+                      }else{
+                        echo "Tip('Click to de-activate ".$user->getName()."', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('adminUserTable-".$power."'))";
+                      }?> ">
+            <div align="center">
             <?php if($user->getActive() == 0) {
               ?><img src="images/cross.png"/><?php
             } else {

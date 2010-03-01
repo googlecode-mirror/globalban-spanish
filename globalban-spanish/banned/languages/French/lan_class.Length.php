@@ -10,7 +10,7 @@
 +----------------------------------------------------------------------------+
 */
 
-$LANLENGTH_001 = 'Non respect des règles';
+$LANLENGTH_001 = 'Non respect des rÃ¨gles';
 $LANLENGTH_002 = 'minute';
 $LANLENGTH_003 = 'heure';
 $LANLENGTH_004 = 'jour';

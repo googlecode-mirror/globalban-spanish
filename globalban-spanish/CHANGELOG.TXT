@@ -35,15 +35,15 @@ Changelog:
           o  r83 Fix to the .Php.rar & .pphphp.rar file upload exploit. Strip out case-insensitive .php, .jsp, and .asp from uploaded filenames. -> Jan 09, 2010
           o  r82 Fix didn't allow to keep original deleted admin when some manager update a ban. -> Jan 05, 2010
           o  r81 Fix some php open tag -> Jan 04, 2010
-          o  r80 Fix send email a newpost only if ban could be set in processWebBan.php Fix manageUsers.php don´t send password to new user registered by fullpower admin. -> Jan 04, 2010
-          o  r79 Fix when delete ban didn´t unArchive bans from bans story of previous offenses Fix show kick_counter in bans story. -> Jan 03, 2010
+          o  r80 Fix send email a newpost only if ban could be set in processWebBan.php Fix manageUsers.php dont send password to new user registered by fullpower admin. -> Jan 04, 2010
+          o  r79 Fix when delete ban didnÂ´t unArchive bans from bans story of previous offenses Fix show kick_counter in bans story. -> Jan 03, 2010
           o  r78 Add older /config/class.ConfigOdonel.php to install.php Change admin "Desconocido" to "Unknown" in class.BanQueries.php Change admin "Sin Post" to $LAN_BANLIST_034 in banlist.php -> Dec 31, 2009
           o  r77 Delete config/class.ConfigOdonel.php Fix admin/configuration.php class="rowColor1" or "rowColor2" -> Dec 28, 2009
           o  r76 Add /config/class.ConfigOdonel.php to /admin/configuration.php and /admin/configurationSave.php  -> Dec 28, 2009
           o  r75 Fix check new version -> Dec 27, 2009
           o  r74 Fix some php open tag -> Dec 27, 2009
           o  r73 Add multilanguage support to /admin/configuration.php Add English and Spanish Languages to /admin/configuration.php -> Dec 27, 2009
-          o  r72 Fix in banlist.php don´t close comment Tip when mouse out -> Dec 27, 2009
+          o  r72 Fix in banlist.php donÂ´t close comment Tip when mouse out -> Dec 27, 2009
           o  r71 Add multilanguage support to /admin/configurationSave.php Add English and Spanish Languages to /admin/configurationSave.php -> Dec 27, 2009
           o  r70 Add multilanguage support to processWebBanUpdate.php Add English and Spanish Languages to processWebBanUpdate.php  -> Dec 26, 2009
           o  r69 Add multilanguage support to processWebBan.php Add English and Spanish Languages to processWebBan.php  -> Dec 26, 2009
@@ -128,7 +128,7 @@ Changelog:
                 o  Added statistics according to admin or reasons and type of ban: permanent, temporary or expired.
                 o  Allow to change admin name, website link, server in the ban edit page.
                 o  No allow .dem demos files, only .rar and .zip.
-                o  Fix don´t allow ban other admin.
+                o  Fix donÂ´t allow ban other admin.
                 o  Fix link to update new ban in the email that advise new ban added.
                 o  Added new config file for the new features: ./config/class.ConfigOdonel.php (allow set the URL of your HLstatsX Community Edition Website, enable the e107 auto post option and your own website)
             o  Changes in game:

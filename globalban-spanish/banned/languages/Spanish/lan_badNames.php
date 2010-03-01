@@ -23,7 +23,7 @@ $LAN_BADNAMES_010 = 'Haga click para dejar de filtrar esta Palabra.';
 $LAN_BADNAMES_011 = 'Haga click para comenzar a filtrar esta Palabra.';
 $LAN_BADNAMES_012 = 'Haga click para dejar de kikear gente que tenga esta palabra en su nombre de jugador.';
 $LAN_BADNAMES_013 = 'Haga click para comenzar a kikear gente que tenga esta palabra en su nombre de jugador.';
-$LAN_BADNAMES_014 = '¿Seguro que desea eliminar este elemento?';
+$LAN_BADNAMES_014 = 'Â¿Seguro que desea eliminar este elemento?';
 $LAN_BADNAMES_015 = 'Haga click para borrar esta palabra de la lista.';
 $LAN_BADNAMES_016 = "Nota: Evite usar palabras cortas para los Kick. Por ejemplo, a&ntilde;adiendo \"a\" seran kickeados todos aquellos con una letra \"a\" en sus nombres.";
 

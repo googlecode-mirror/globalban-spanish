@@ -84,7 +84,7 @@ $url = substr($url, 0, strrpos($url, "/")) . "/";
 
 if($saveSQL) {
 ?>
-<?php echo "<?php echo xml version=\"1.0\" encoding=\"UTF-8\" ?>";?>
+<?php echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>";?>
 
 <GlobalBans>
 <?php

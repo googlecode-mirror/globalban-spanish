@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /*
 + ----------------------------------------------------------------------------+
 |     esGlobalBan - Language File.
@@ -10,7 +10,7 @@
 +----------------------------------------------------------------------------+
 */
 
-$LANCONFIGURATIONSAVE_001 = "Sauvegarde de la configuration de";
-$LANCONFIGURATIONSAVE_002 = 'Note: La configuration continuera à enregistrer si vous naviguez sur cette page. Toutefois, le rechargement de cette page ou un retour en arrière peut ne pas fonctionner correctement.';
+$LAN_CONFIGURATIONSAVE_001 = "Sauvegarde de la configuration de";
+$LAN_CONFIGURATIONSAVE_002 = 'Note: La configuration continuera à enregistrer si vous naviguez sur cette page. Toutefois, le rechargement de cette page ou un retour en arrière peut ne pas fonctionner correctement.';
 
 ?>

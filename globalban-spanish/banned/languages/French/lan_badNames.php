@@ -26,6 +26,4 @@ $LAN_BADNAMES_013 = 'Cliquez pour démarrer le kick.';
 $LAN_BADNAMES_014 = "Voulez-vous réellement supprimer ?";
 $LAN_BADNAMES_015 = "Cliquez pour effacer de la liste.";
 $LAN_BADNAMES_016 = "Note: Evitez d'utiliser des mots ou des noms courts.<br> Par exemple, l'ajout de la lettre A fera que tous les joueurs qui auront leurs pseudos qui commenceront par A seront kickés.";
-
-
 ?>

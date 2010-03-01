@@ -10,7 +10,7 @@
 +----------------------------------------------------------------------------+
 */
 
-$LAN_BANREASONS_001 = '¿Realmente desea aliminar el motivo:';
+$LAN_BANREASONS_001 = 'Â¿Realmente desea aliminar el motivo:';
 $LAN_BANREASONS_002 = '?';
 $LAN_BANREASONS_003 = 'Lista de Motivos de Ban';
 $LAN_BANREASONS_004 = 'ID';

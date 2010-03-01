@@ -30,5 +30,9 @@ $LANNAV_017 = 'Salir';
 $LANNAV_018 = 'Demos';
 $LANNAV_019 = 'Admin';
 $LANNAV_020 = 'HlstatsX:CE';
+$LANNAV_021 = 'Ingles';
+$LANNAV_022 = 'Español';
+$LANNAV_023 = 'Frances';
+$LANNAV_024 = 'Ruso';
 $LANNAV_025 = 'Login';
 ?>

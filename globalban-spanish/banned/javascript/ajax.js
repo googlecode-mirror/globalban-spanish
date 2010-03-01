@@ -543,10 +543,10 @@ function htmlUpdateUserActiveStatus(xml) {
 
     if(active == 0) {
       //html = "<img src=\"images/cross.png\"/>";
-      document.getElementById("active:"+id).childNodes[1].src = "images/cross.png";
+      document.getElementById("active:"+id).childNodes[1].childNodes[1].src = "images/cross.png";
     } else {
       //html = "<img src=\"images/tick.png\"/>";
-      document.getElementById("active:"+id).childNodes[1].src = "images/tick.png";
+      document.getElementById("active:"+id).childNodes[1].childNodes[1].src = "images/tick.png";
     }
 
     // Change the html/image

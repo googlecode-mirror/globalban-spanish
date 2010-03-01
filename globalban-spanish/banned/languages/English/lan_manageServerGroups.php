@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /*
 + ----------------------------------------------------------------------------+
 |     esGlobalBan - Language File.
@@ -10,28 +10,28 @@
 |     $Author: Odonel $
 +----------------------------------------------------------------------------+
 */
-$LANMANAGESERVERGROUPS_001 = 'Do you really want to delete ';
-$LANMANAGESERVERGROUPS_002 = '?';
-$LANMANAGESERVERGROUPS_003 = 'Server Group List';
-$LANMANAGESERVERGROUPS_004 = 'Group Name';
-$LANMANAGESERVERGROUPS_005 = 'Description';
-$LANMANAGESERVERGROUPS_006 = 'Servers';
-$LANMANAGESERVERGROUPS_007 = 'Admins';
-$LANMANAGESERVERGROUPS_008 = 'Save';
-$LANMANAGESERVERGROUPS_009 = 'Delete';
-$LANMANAGESERVERGROUPS_010 = "Servers";
-$LANMANAGESERVERGROUPS_011 = 'No Servers';
-$LANMANAGESERVERGROUPS_012 = 'Click to manage the admins for ';
-$LANMANAGESERVERGROUPS_013 = 'Click to save settings for ';
-$LANMANAGESERVERGROUPS_014 = 'Click to delete ';
-$LANMANAGESERVERGROUPS_015 = 'Add New Group';
-$LANMANAGESERVERGROUPS_016 = 'Group Name:';
-$LANMANAGESERVERGROUPS_017 = 'Description:';
-$LANMANAGESERVERGROUPS_018 = 'Group Name Already Exists';
-$LANMANAGESERVERGROUPS_019 = 'Add Group';
-$LANMANAGESERVERGROUPS_021 = 'Note: If you add or delete a group then you should save your changes by clicking <b>&quot;Save Configuration&quot;</b> of the page ';
-$LANMANAGESERVERGROUPS_022 = 'Configuration';
-$LANMANAGESERVERGROUPS_023 = '.';
+$LAN_MANAGESERVERGROUPS_001 = 'Do you really want to delete ';
+$LAN_MANAGESERVERGROUPS_002 = '?';
+$LAN_MANAGESERVERGROUPS_003 = 'Server Group List';
+$LAN_MANAGESERVERGROUPS_004 = 'Group Name';
+$LAN_MANAGESERVERGROUPS_005 = 'Description';
+$LAN_MANAGESERVERGROUPS_006 = 'Servers';
+$LAN_MANAGESERVERGROUPS_007 = 'Admins';
+$LAN_MANAGESERVERGROUPS_008 = 'Save';
+$LAN_MANAGESERVERGROUPS_009 = 'Delete';
+$LAN_MANAGESERVERGROUPS_010 = "Servers";
+$LAN_MANAGESERVERGROUPS_011 = 'No Servers';
+$LAN_MANAGESERVERGROUPS_012 = 'Click to manage the admins for ';
+$LAN_MANAGESERVERGROUPS_013 = 'Click to save settings for ';
+$LAN_MANAGESERVERGROUPS_014 = 'Click to delete ';
+$LAN_MANAGESERVERGROUPS_015 = 'Add New Group';
+$LAN_MANAGESERVERGROUPS_016 = 'Group Name:';
+$LAN_MANAGESERVERGROUPS_017 = 'Description:';
+$LAN_MANAGESERVERGROUPS_018 = 'Group Name Already Exists';
+$LAN_MANAGESERVERGROUPS_019 = 'Add Group';
+$LAN_MANAGESERVERGROUPS_021 = 'Note: If you add or delete a group then you should save your changes by clicking <b>&quot;Save Configuration&quot;</b> of the page ';
+$LAN_MANAGESERVERGROUPS_022 = 'Configuration';
+$LAN_MANAGESERVERGROUPS_023 = '.';
 
 
 ?>

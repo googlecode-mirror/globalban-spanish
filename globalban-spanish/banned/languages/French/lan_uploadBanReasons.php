@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /*
 + ----------------------------------------------------------------------------+
 |     esGlobalBan - Language File.
@@ -12,6 +12,6 @@
 */
 
 $LANUPLOADBANREASONS_001 = "Mise à jour des raisons des bannes pour";
-$LANUPLOADBANREASONS_002 = 'Note: Ne quitter pas ou ne recharger pas cette page lorsque le processus est en cours sous peine de dysfonctionnement. Vous devrez ré-exécuté le processus ultérieurement !';
+$LANUPLOADBANREASONS_002 = 'Note: Ne quitter pas ou ne recharger pas cette page lorsque le processus est en cours sous peine de dysfonctionnement. Vous devrez rÃ©-exÃ©cutÃ© le processus ultÃ©rieurement !';
 
 ?>

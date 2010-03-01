@@ -28,6 +28,10 @@
   $admin = false;
   $member = false;
   
+  if(!isset($accessLevel)){
+   $accessLevel = -1;
+  }
+  
   switch($accessLevel) {
   case 1:
     $fullPower = true;// Allowed EVERYTHING regarding the server

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /*
 + ----------------------------------------------------------------------------+
 |     esGlobalBan - Language File.
@@ -11,6 +11,4 @@
 */
 
 $LANFOOTER_001 = "[Panneau d'Administration]";
-$LANFOOTER_002 = "- Traduis par <a href='mailto:alpha.cssupport@gmail.com'>Owned</a> - &copy;2007-2010<br />";
-
 ?>

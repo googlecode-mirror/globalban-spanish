@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /*
 + ----------------------------------------------------------------------------+
 |     esGlobalBan - Language File.
@@ -13,5 +13,4 @@
 
 $LANUPLOADADMINS_001 = "Mise à jour de la liste des admins pour";
 $LANUPLOADADMINS_002 = 'Note: Ne quitter pas ou ne recharger pas cette page lorsque le processus est en cours sous peine de dysfonctionnement. Vous devrez ré-exécuté le processus ultérieurement !';
-
 ?>

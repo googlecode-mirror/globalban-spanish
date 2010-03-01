@@ -9,28 +9,28 @@
 |     $Author: Odonel $
 +----------------------------------------------------------------------------+
 */
-$LANMANAGESERVERGROUPS_001 = 'Действительно удалить ';
-$LANMANAGESERVERGROUPS_002 = '?';
-$LANMANAGESERVERGROUPS_003 = 'Список групп серверов';
-$LANMANAGESERVERGROUPS_004 = 'Имя группы';
-$LANMANAGESERVERGROUPS_005 = 'Описание';
-$LANMANAGESERVERGROUPS_006 = 'Сервера';
-$LANMANAGESERVERGROUPS_007 = 'Админы';
-$LANMANAGESERVERGROUPS_008 = 'Сохранить';
-$LANMANAGESERVERGROUPS_009 = 'Удалить';
-$LANMANAGESERVERGROUPS_010 = "Сервера";
-$LANMANAGESERVERGROUPS_011 = 'Нет серверов';
-$LANMANAGESERVERGROUPS_012 = 'Редактировать админов для  ';
-$LANMANAGESERVERGROUPS_013 = 'Сохранить настройки для ';
-$LANMANAGESERVERGROUPS_014 = 'Удалить ';
-$LANMANAGESERVERGROUPS_015 = 'Добавить новую группу';
-$LANMANAGESERVERGROUPS_016 = 'Имя группы:';
-$LANMANAGESERVERGROUPS_017 = 'Описаание:';
-$LANMANAGESERVERGROUPS_018 = 'Данное имя уже используется';
-$LANMANAGESERVERGROUPS_019 = 'Добавить группу';
-$LANMANAGESERVERGROUPS_021 = 'Внимание: Если вы добавите или удалите группу не забудьте обновить ';
-$LANMANAGESERVERGROUPS_022 = 'Настройки';
-$LANMANAGESERVERGROUPS_023 = '.';
+$LAN_MANAGESERVERGROUPS_001 = 'Действительно удалить ';
+$LAN_MANAGESERVERGROUPS_002 = '?';
+$LAN_MANAGESERVERGROUPS_003 = 'Список групп серверов';
+$LAN_MANAGESERVERGROUPS_004 = 'Имя группы';
+$LAN_MANAGESERVERGROUPS_005 = 'Описание';
+$LAN_MANAGESERVERGROUPS_006 = 'Сервера';
+$LAN_MANAGESERVERGROUPS_007 = 'Админы';
+$LAN_MANAGESERVERGROUPS_008 = 'Сохранить';
+$LAN_MANAGESERVERGROUPS_009 = 'Удалить';
+$LAN_MANAGESERVERGROUPS_010 = "Сервера";
+$LAN_MANAGESERVERGROUPS_011 = 'Нет серверов';
+$LAN_MANAGESERVERGROUPS_012 = 'Редактировать админов для  ';
+$LAN_MANAGESERVERGROUPS_013 = 'Сохранить настройки для ';
+$LAN_MANAGESERVERGROUPS_014 = 'Удалить ';
+$LAN_MANAGESERVERGROUPS_015 = 'Добавить новую группу';
+$LAN_MANAGESERVERGROUPS_016 = 'Имя группы:';
+$LAN_MANAGESERVERGROUPS_017 = 'Описаание:';
+$LAN_MANAGESERVERGROUPS_018 = 'Данное имя уже используется';
+$LAN_MANAGESERVERGROUPS_019 = 'Добавить группу';
+$LAN_MANAGESERVERGROUPS_021 = 'Внимание: Если вы добавите или удалите группу не забудьте обновить ';
+$LAN_MANAGESERVERGROUPS_022 = 'Настройки';
+$LAN_MANAGESERVERGROUPS_023 = '.';
 
 
 ?>
