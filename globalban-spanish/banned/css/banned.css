@@ -8,10 +8,50 @@ application is the functionality, not how pretty it looks.  You are more than
 welcome to change any style found here.
 */
 
+/* RESET by Eric Meyer
+   Don't forget to set a foreground and background color 
+   on the 'html' or 'body' element! */
+/*
+html, body, div, span,
+applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dd, dl, dt, li, ol, ul,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	line-height: 1;
+	font-family: inherit;
+	text-align: left;
+	vertical-align: baseline;
+}
+a img, :link img, :visited img {
+	border: 0;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+ol, ul {
+	list-style: none;
+}
+q:before, q:after,
+blockquote:before, blockquote:after {
+	content: "";
+}
+*/
+
 /* Standard HTML */
 body
 {
-  background-color: #333;
+  	background-color: #333;
 	margin: 0px;
 	padding: 0px;
 }
@@ -92,7 +132,7 @@ form {
   margin: 0px;
   padding: 0px;
   border: 0px;
-  background-color: none;
+  background-color: transparent;
 }
 
 /* End Standard HTML */
@@ -208,7 +248,9 @@ form {
 	padding: 1px;
 	border: 1px solid #696464;
 	margin-top: 0pt;
+	/*
 	width: 100%;
+	*/
 }
 
 /* Menu Styles */
@@ -227,9 +269,13 @@ form {
   white-space: nowrap;
   padding: 2px;
 	display: block;
-	width: 8em;
+	/*width: 8em;*/
 	border: 1px solid #696464;
 	color: #EA7500;
+	padding-top: 5px;
+    padding-bottom: 6px;
+	padding-left: 10px;
+	padding-right: 10px;
   background-color: #3B3B3B;
 }
 
@@ -241,7 +287,7 @@ form {
 
 #nav li {
 	float: left;
-	width: 8em;
+	/*width: 8em;*/
 }
 
 #nav li ul {
@@ -375,8 +421,11 @@ form {
     cursor: pointer;
 }
 .ui-tabs-disabled {
-    opacity: .4;
+    /* CSS3 standard */
+    opacity: 0.4;
+    /* for IE */
     filter: alpha(opacity=40);
+
 }
 .ui-tabs-nav .ui-tabs-disabled a:link, .ui-tabs-nav .ui-tabs-disabled a:visited {
     color: #000;

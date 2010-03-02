@@ -337,9 +337,8 @@ function userTable($users, $power) {
                         echo "Tip('Click to activate ".$user->getName()."', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('adminUserTable-".$power."'))";
                       }else{
                         echo "Tip('Click to de-activate ".$user->getName()."', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('adminUserTable-".$power."'))";
-                      }?> ">
-            <div align="center">
-            <?php if($user->getActive() == 0) {
+                      }?> "><div align="center"><?php 
+            if($user->getActive() == 0) {
               ?><img src="images/cross.png"/><?php
             } else {
               ?><img src="images/tick.png"/><?php

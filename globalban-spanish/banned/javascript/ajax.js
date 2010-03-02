@@ -150,10 +150,10 @@ function htmlUpdatePendingStatus(xml) {
     
     if(pending == 1) {
       //html = "<img src=\"images/hourglass.png\"/>";
-      document.getElementById("pending:"+id).childNodes[0].childNodes[1].src = "images/hourglass.png";
+      document.getElementById("pending:"+id).childNodes[0].childNodes[0].src = "images/hourglass.png";
     } else {
       //html = "<img src=\"images/cross.png\"/>";
-      document.getElementById("pending:"+id).childNodes[0].childNodes[1].src = "images/cross.png";
+      document.getElementById("pending:"+id).childNodes[0].childNodes[0].src = "images/cross.png";
     }
     
     // Change the html/image
@@ -543,10 +543,10 @@ function htmlUpdateUserActiveStatus(xml) {
 
     if(active == 0) {
       //html = "<img src=\"images/cross.png\"/>";
-      document.getElementById("active:"+id).childNodes[1].childNodes[1].src = "images/cross.png";
+      document.getElementById("active:"+id).firstChild.firstChild.src = "images/cross.png";
     } else {
       //html = "<img src=\"images/tick.png\"/>";
-      document.getElementById("active:"+id).childNodes[1].childNodes[1].src = "images/tick.png";
+      document.getElementById("active:"+id).firstChild.firstChild.src = "images/tick.png";
     }
 
     // Change the html/image
