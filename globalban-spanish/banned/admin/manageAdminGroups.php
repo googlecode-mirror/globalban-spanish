@@ -207,7 +207,7 @@ $groups = $adminGroupQueries->getAdminGroups();
           ?>
             <td class="colColor2">
               <input type="hidden" id="<?php echo $plugin->getId()?>-flagValue-<?php echo $group->getId()?>" value="<?php echo $flag->getPluginFlagId()?>"/>
-              <input type="checkbox" id="<?php echo $plugin->getId()?>-flag-<?php echo $group->getId()?>-<?php echo $flag->getPluginFlagId()?>" onclick="updatePluginFlag('<?php echo $group->getId()?>', '<?php echo $flag->getPluginFlagId()?>', this)"<?php echo $checked?>/> <?php echo $flag->getDescription()?>
+              <input type="checkbox" id="<?php echo $plugin->getId()?>-flag-<?php echo $group->getId()?>-<?php echo $flag->getPluginFlagId()?>" onclick="updatePluginFlag('<?php echo $group->getId()?>', '<?php echo $flag->getPluginFlagId()?>', this)"<?php echo $checked?>/> <?php echo "(".$flag->getFlag().") ".$flag->getDescription()?>
             </td>
             <?php
               if(($i+1)%$flagsPerRow==0 && ($i+1) != count($flags)) {
