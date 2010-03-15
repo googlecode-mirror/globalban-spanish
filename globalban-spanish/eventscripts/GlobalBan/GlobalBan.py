@@ -77,11 +77,14 @@ from configobj import ConfigObj
 #plugin information
 info = es.AddonInfo()
 info.name = "GlobalBan"
-info.version = "3.4 RC3"
+info.version = "3.4.1 r110"
 info.author = "Soynuts"
 info.url = "http://www.unbuinc.net"
 info.description = "Bans are stored in a mySQL database on a webserver"
 info.basename = "GlobalBan"
+
+es.set("GlobalBan", info.version)
+es.makepublic("GlobalBan")
 
 # Default config values
 serverId = 1
@@ -94,6 +97,9 @@ allowAdminBanning = 1
 wgetPath = "wget"
 pluginMani = 0
 pluginSourceMod = 0
+
+es.set("GlobalBan_Web", websiteAddy)
+es.makepublic("GlobalBan_Web")
 
 # Variables that will be global
 playersChecked = {} # Initialize the dictionary of players checked
@@ -167,6 +173,7 @@ def loadConfig():
     teachAdmins = int(cfg['teachAdmins'])
     clanName = cfg['clanName']
     allowAdminBanning = cfg['allowAdminBanning']
+    es.set("GlobalBan_Web", websiteAddy)
   else:
     es.dbgmsg(0, 'GlobalBan: Unable to load GlobalBan.cfg! Please ensure it is in the ./GlobalBan/ directory.')
     gbanLog('GBAN: The GlobalBan.cfg file is not set up correctly!!')
@@ -353,6 +360,10 @@ def banReasonList():
   # Get the userid of the person calling this menu
   playerid = es.getcmduserid()
   
+  if es.exists('keygroup', 'playerlist'):
+    es.server.queuecmd('es_xkeygroupdelete playerlist')
+  es.server.queuecmd('es_xcreateplayerlist playerlist')
+  
   # Member check only needs to be performed on this menu
   if isMember(es.getplayersteamid(playerid)):
     if es.exists('keygroup', 'GlobalBan_Reason'):
@@ -402,10 +413,6 @@ def banPlayerMenu(playerid, selectedBanLength, popupid):
   # Stored to the keylist so that it can be "passed" on
   # And to prevent other admins from stomping on each other
   es.keysetvalue('clanMembers', es.getplayersteamid(playerid), 'banLength', selectedBanLength)
-
-  if es.exists('keygroup', 'playerlist'):
-    es.server.queuecmd('es_xkeygroupdelete playerlist')
-  es.server.queuecmd('es_xcreateplayerlist playerlist')
 
   # Create keymenu called banmenu for admin to select a player from
   banmenu = keymenulib.create("banmenu", "userToBan", banInGame, "playerlist", "#keyvalue name", "#key", "Player List")
@@ -576,6 +583,7 @@ def saveConfig():
   teachAdmins = int(p_teachAdmins)
   clanName = p_clanName
   allowAdminBanning = p_allowAdminBanning
+  es.set("GlobalBan_Web", websiteAddy)
 
   # Open the GlobalBan.cfg file for writing
   cfg = open(es.getAddonPath('GlobalBan') + '/GlobalBan.cfg',"w")
