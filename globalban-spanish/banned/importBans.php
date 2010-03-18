@@ -156,7 +156,7 @@ if($bansAdded) {
   ?><h5 class="error"><?php echo $count ?> <?php echo $LAN_IMPORTBANS_001; ?><br/>
   <?php
     if($alreadyAdded > 0) {
-      echo $alreadyAdded . $LAN_IMPORTBANS_012; . "<br/><br/>";
+      echo $alreadyAdded . $LAN_IMPORTBANS_012 . "<br/><br/>";
     }
     if($failed > 0) {
       echo $LAN_IMPORTBANS_013 . $failed.$LAN_IMPORTBANS_014 . "<br/><br/>";
@@ -170,7 +170,7 @@ if($bansAdded) {
 ?>
 <div class="tborder">
   <div id="tableHead">
-    <div><b><?php echo $LAN_IMPORTBANS_002 ?></b></div>
+    <div><b><?php echo $LAN_IMPORTBANS_002; ?></b></div>
   </div>
   <form action="index.php?page=importBans" method="POST" enctype="multipart/form-data">
   <table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
@@ -189,7 +189,7 @@ if($bansAdded) {
       if(count($banReasons > 0)) {
         for($i=0; $i<count($banReasons);$i++) {
           $reason = $banReasons[$i];
-          ?><option value="<?php echo $reason->getId() ?>"><?php echo $reason->getReason() ?></option><?php
+          ?><option value="<?php echo $reason->getId(); ?>"><?php echo $reason->getReason(); ?></option><?php
         }
       } else {
       ?><option value="-1"><?php echo $LAN_IMPORTBANS_008; ?></option><?php
@@ -203,7 +203,7 @@ if($bansAdded) {
       if(count($banReasons > 0)) {
         for($i=0; $i<count($banReasons);$i++) {
           $reason = $banReasons[$i];
-          ?><option value="<?php echo $reason->getId() ?>"><?php echo $reason->getReason() ?></option><?php
+          ?><option value="<?php echo $reason->getId(); ?>"><?php echo $reason->getReason(); ?></option><?php
         }
       } else {
       ?><option value="-1"><?php echo $LAN_IMPORTBANS_008; ?></option><?php
