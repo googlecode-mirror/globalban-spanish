@@ -143,6 +143,7 @@ if($endRange > $banCount) {
         var active = 0;
         if(img == "images/tick.png") {
           active = 1;
+          $("#activeImg-"+banId).attr("src", "images/progressbar3.gif");
         }
         $.post("index.php?page=changeActiveStatus&ajax=1", {id: banId, active: active}, 
           function(data) {
@@ -519,16 +520,15 @@ if(count($bannedUsers) > 0) {
         if($banManager || $fullPower) {
           ?>
           <td id="active-<?php echo $bannedUser->getBanId()?>" class="colColor2" style="cursor:pointer;"
-              onmouseover="if(<?php echo $bannedUser->getActive()?> == 0) { Tip('<?php echo $LAN_BANLIST_039; ?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'));}else{Tip('<?php echo $LAN_BANLIST_038?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'));}"><div align="center">
-          <?php if($bannedUser->getActive() == 0) {
+              onmouseover="if(<?php echo $bannedUser->getActive()?> == 0) { Tip('<?php echo $LAN_BANLIST_039; ?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'));}else{Tip('<?php echo $LAN_BANLIST_038?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'));}"><div align="center"><?php
+           if($bannedUser->getActive() == 0) {
             ?><img id="activeImg-<?php echo $bannedUser->getBanId()?>" src="images/cross.png"/><?php
           } else {
             ?><img id="activeImg-<?php echo $bannedUser->getBanId()?>" src="images/tick.png"/><?php
-          } ?>          </div></td>
-          <td id="pending:<?php echo $bannedUser->getBanId()?>" class="colColor1"
+          } ?></div></td><td id="pending:<?php echo $bannedUser->getBanId()?>" class="colColor1"
               onclick="changePendingStatus(<?php echo $bannedUser->getBanId()?>, <?php echo $bannedUser->getPending()?>)" style="cursor:pointer;"
-              onmouseover="if(<?php echo $bannedUser->getPending()?> == 0) { Tip('<?php echo $LAN_BANLIST_040; ?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'));}else{Tip('C<?php echo $LAN_BANLIST_041?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'));}"><div align="center">
-          <?php if($bannedUser->getPending() == 0) {
+              onmouseover="if(<?php echo $bannedUser->getPending()?> == 0) { Tip('<?php echo $LAN_BANLIST_040; ?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'));}else{Tip('C<?php echo $LAN_BANLIST_041?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'));}"><div align="center"><?php
+          if($bannedUser->getPending() == 0) {
             ?><img id="pendingImg-<?php echo $bannedUser->getBanId()?>" src="images/cross.png"/><?php
           } else {
             ?><img id="pendingImg-<?php echo $bannedUser->getBanId() ?>" src="images/hourglass.png"/><?php
@@ -549,15 +549,12 @@ if(count($bannedUsers) > 0) {
             ?><img src="images/cross.png" align="absmiddle"/><?php
           } else {
             ?><img src="images/tick.png" align="absmiddle"/><?php
-          } ?>
-          </td>
-          <td id="pending:<?php echo $bannedUser->getBanId() ?>" class="colColor1">
-          <?php if($bannedUser->getPending() == 0) {
+          } ?></td><td id="pending:<?php echo $bannedUser->getBanId() ?>" class="colColor1"><?php
+           if($bannedUser->getPending() == 0) {
             ?><img src="images/cross.png" align="absmiddle"/><?php
           } else {
             ?><div align="center"><img src="images/hourglass.png"/></div><?php
-          } ?>          </div></td>
-        <?php
+          } ?></div></td><?php
         }
         ?>
 		<?php
