@@ -21,10 +21,13 @@
 
 include_once(ROOTDIR."/include/database/class.BanQueries.php");
 include_once(ROOTDIR."/include/database/class.ReasonQueries.php");
+require_once(ROOTDIR."/include/database/class.ServerQueries.php");
 include_once(ROOTDIR."/include/objects/class.BannedUser.php");
 include_once(ROOTDIR."/include/objects/class.AdminStats.php");
 include_once(ROOTDIR."/include/objects/class.ReasonStats.php");
 include_once(ROOTDIR."/include/objects/class.Length.php");
+require_once(ROOTDIR."/include/class.rcon.php");
+
 
 // Page gets (for range and sorts and other things)
 $startRange = $_GET['sr']; // Start Range
@@ -61,9 +64,29 @@ if($fullPower) {
   // A full power admin executed a ban delete
   if($_GET['process'] == "delete") {
     if($_GET['steamId'] != null || $_GET['steamId'] != "") {
+      $deleteBannedUser = $banQueries->getBannedUserBySteamId($_GET['steamId']);
+      unBanUser($deleteBannedUser->getSteamId(), $deleteBannedUser->getIp());
       $banQueries->deleteBan($_GET['steamId']);
     }
   }
+}
+
+function unBanUser($steamId, $bannedIP) {
+    // This will send an RCON command to the server
+    $serverQueries = new ServerQueries();
+
+    // Get the list of servers
+    $servers = $serverQueries->getServers();
+
+    // Cycle through each server
+    foreach($servers as $server) {
+        $r = new rcon($server->getIp(),$server->getPort(),$server->getRcon());
+        if($r->isValid()) {
+            $r->Auth();
+            $r->sendRconCommand("removeid ".$steamId);
+            $r->sendRconCommand("removeip ".$bannedIP);
+        }
+    }
 }
 
 if(empty($bansFilter)) {
@@ -222,7 +245,7 @@ if(count($bannedUsers) > 0) {
 ?>
  <?php echo $LAN_BANLIST_010.number_format(($startRange+1), 0, ",", ".")." ".$LAN_BANLIST_011.number_format($endRange, 0, ",", ".")." ".$LAN_BANLIST_012.number_format($banCount, 0, ",", ".")?></b></div>
       <div>
-        <?php pageLinks($config, $startRange, $banCount, $sortDirection, $sortBy, $searchText, $bansFilter, $bansReason_id, $bansAdmin, $LANGUAGE); ?>
+        <?php pageLinks($config, $startRange, $banCount, $sortDirection, $sortBy, $searchText, $bansFilter, $bansReason_id, $bansAdmin, $LANGUAGE, $LAN_BANLIST_056, $LAN_BANLIST_057); ?>
       </div>
     </div>
     
@@ -290,7 +313,7 @@ if(count($bannedUsers) > 0) {
       } else {
         $expireDate = "<i>".$LAN_BANLIST_023."</i>";
       }
-      list($addDate, $addTime, $year) = split(' ', $bannedUser->getAddDate());
+      list($addDate, $addTime) = split(' ', $bannedUser->getAddDate());
       $comments = str_replace(array("\r\n", "\n", "\r"), "<br>", $bannedUser->getComments()); // Convert newlines into html line breaks
       $comments = str_replace('"', '&#34;', $comments); // Replace quotes with the HTML code
       $comments = str_replace("'", "&#34;", $comments); // Replace quotes with the HTML code
@@ -363,7 +386,7 @@ if(count($bannedUsers) > 0) {
 	  // Loop through banned users and display them
 	  foreach($banHistory as $banHistUser) {
 	      list($expireDateHist, $expireTimeHist) = split(' ', $banHistUser->getExpireDate());
-	      list($addDateHist, $addTimeHist, $yearHist) = split(' ', $banHistUser->getAddDate());
+	      list($addDateHist, $addTimeHist) = split(' ', $banHistUser->getAddDate());
 	      $commentsHist = str_replace(array("\r\n", "\n", "\r"), "<br>", $banHistUser->getComments()); // Convert newlines into html line breaks
           $commentsHist = str_replace("\"", "&#34;", $commentsHist); // Replace quotes with the HTML code
           $commentsHist = str_replace("'", "&#34;", $commentsHist); // Replace quotes with the HTML code
@@ -554,7 +577,7 @@ if(count($bannedUsers) > 0) {
   </div>
   <div id="tableBottom">
       <div>
-        <?php pageLinks($config, $startRange, $banCount, $sortDirection, $sortBy, $searchText, $bansFilter, $bansReason_id, $bansAdmin, $LANGUAGE); ?>
+        <?php pageLinks($config, $startRange, $banCount, $sortDirection, $sortBy, $searchText, $bansFilter, $bansReason_id, $bansAdmin, $LANGUAGE, $LAN_BANLIST_056, $LAN_BANLIST_057); ?>
       </div>
   </div>
 </div>
@@ -972,7 +995,7 @@ else {
 <?php
 }
 
-function pageLinks($config, $startRange, $banCount, $sortDirection, $sortBy, $searchText, $bansFilter, $bansReason_id, $bansAdmin, $LANGUAGE) {
+function pageLinks($config, $startRange, $banCount, $sortDirection, $sortBy, $searchText, $bansFilter, $bansReason_id, $bansAdmin, $LANGUAGE, $LAN_BANLIST_056, $LAN_BANLIST_057) {
   if($config->bansPerPage > 0) {
 
     $y=0;

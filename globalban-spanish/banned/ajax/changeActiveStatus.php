@@ -20,6 +20,10 @@
 */
 
 require_once(ROOTDIR."/include/database/class.BanQueries.php");
+require_once(ROOTDIR."/include/database/class.ServerQueries.php");
+require_once(ROOTDIR."/include/class.rcon.php");
+
+// require_once(ROOTDIR."/include/objects/class.BannedUser.php");
 
 $id = $_POST['id'];
 $active = $_POST['active'];
@@ -37,4 +41,28 @@ $banQueries = new BanQueries();
 // Must be logged in to change the status
 if($member || $admin || $banManager || $fullPower) {
   $banQueries->updateBanActiveStatus($active, $id);
+  if($active == 0) {
+      //$bannedUser = new BannedUser();
+      $bannedUser = $banQueries->getBannedUser($id);
+      unBanUser($bannedUser->getSteamId(), $bannedUser->getIp());
+  }
 }
+
+function unBanUser($steamId, $bannedIP) {
+    // This will send an RCON command to the server
+    $serverQueries = new ServerQueries();
+
+    // Get the list of servers
+    $servers = $serverQueries->getServers();
+
+    // Cycle through each server
+    foreach($servers as $server) {
+        $r = new rcon($server->getIp(),$server->getPort(),$server->getRcon());
+        if($r->isValid()) {
+            $r->Auth();
+            $r->sendRconCommand("removeid ".$steamId);
+            $r->sendRconCommand("removeip ".$bannedIP);
+        }
+    }
+}
+?>

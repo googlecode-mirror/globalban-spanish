@@ -873,7 +873,7 @@ class BanQueries extends Config {
   function getBannedUserBySteamId($steamId) {
     $bannedUser = new BannedUser();
     
-    $steamId = trim($steamId);
+    $steamId = addslashes(trim($steamId));
 
     $bannedQuery = "SELECT ban_id, steam_id, ip, length, time_scale, reason_id, server_id, name, banner, banner_steam_id, modified_by, webpage,
                     UNIX_TIMESTAMP(expire_date) as expire_date, UNIX_TIMESTAMP(add_date) as add_date, pending, comments
