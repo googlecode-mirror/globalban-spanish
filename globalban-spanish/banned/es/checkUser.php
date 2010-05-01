@@ -115,7 +115,7 @@ if($hash == $config->matchHash) {
           }
         }
       }
-      if(!$kickedByBan) {
+      if(!$kickedByBan && $config->adviseInGame != 5 && ($lengthInSec >= $config->adviseInGameLenght || $lengthInSec == 0 )) {
         if($banQueries->doesBanExist($steamId)) {
             $reasonQueries = new ReasonQueries();
             $bannedUser = $banQueries->getBannedUserBySteamId($steamId);
@@ -130,7 +130,7 @@ if($hash == $config->matchHash) {
             if($config->adviseInGame == 1) {
                 $r->sendRconCommand("ma_msay 10 #ALL -> ** GlobalBan: ".$LANCHECKUSER_006." **\\n ".$nameOfBanned."\\n ".$bannedUser->getName()."\\n ".$steamId."\\n-> ********************\\n\\n ".$LANCHECKUSER_007.": ".$reasonQueries->getReason($bannedUser->getReasonId())."\\n ".$LANCHECKUSER_010.": ".gmdate('d M Y H:i:s', $bannedUser->getAddDate())." \\n ".$LANCHECKUSER_008.": ".$bannedUser->getBanner()."\\n ".$LANCHECKUSER_009.": ".$length->getReadable()."\\n-> ********************");
             }
-            if($config->adviseInGame != 3 && $config->adviseInGame != 5) {
+            if($config->adviseInGame != 3) {
                 $r->sendRconCommand("ma_psay ".$steamId." ** GlobalBan: ".$LANCHECKUSER_011." ".$nameOfBanned." ".$steamId." ".$LANCHECKUSER_012.": ".$reasonQueries->getReason($bannedUser->getReasonId()));
                 $r->sendRconCommand("ma_psay ".$steamId." ** GlobalBan: ".$LANCHECKUSER_013." ".gmdate('d M Y H:i:s', $bannedUser->getAddDate())." ".$LANCHECKUSER_014);
                 $r->sendRconCommand("ma_msay 10 ".$steamId." -> GlobalBan: ".$LANCHECKUSER_006."\\n \\n ".$LANCHECKUSER_011.": ".$nameOfBanned." - ".$steamId."\\n \\n ".$LANCHECKUSER_012."\\n \\n  ".$LANCHECKUSER_007.": ".$reasonQueries->getReason($bannedUser->getReasonId())."\\n  ".$LANCHECKUSER_010.": ".gmdate('d M Y H:i:s', $bannedUser->getAddDate())." \\n \\n ".$LANCHECKUSER_014);

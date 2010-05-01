@@ -25,6 +25,15 @@ $lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_configuration.php';
 include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_configuration.php");
 
 if($fullPower) {
+
+include_once(ROOTDIR."/include/database/class.LengthQueries.php");
+
+// Initialize Objects
+$lengthQueries = new LengthQueries();
+
+// List of Ban Lengths
+$banLengths = $lengthQueries->getLengthList();
+
 ?>
 <script language="javascript">
 // This adds a new email address to the email list textarea
@@ -471,8 +480,20 @@ if(!is_writable("config/class.Config.php")) {
           <option value="5"<?php if($config->adviseInGame == 5) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_118; ?></option>
         </select>
       </td>
-      <td class="rowColor2" width="1%" nowrap></td>
-      <td class="rowColor2" width="1%" nowrap></td>
+      <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_123; ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_124; ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor2" width="1%" nowrap>
+        <select name="adviseInGameLenght">
+          <?php
+            foreach($banLengths as $banLength) {
+                if($banLength->getLengthInSeconds() == $config->adviseInGameLenght ) {
+                        ?><option value="<?php echo $banLength->getLengthInSeconds()?>" selected><?php echo $banLength->getReadable()?></option><?php
+                } else {
+                        ?><option value="<?php echo $banLength->getLengthInSeconds()?>"><?php echo $banLength->getReadable()?></option><?php
+                }
+              }
+          ?>
+        </select>
+      </td>
     </tr>
     </table>
   </div>

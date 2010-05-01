@@ -87,6 +87,11 @@ class LengthQueries {
     $lengthList = $this->combineLengthLists($lengthList, $weeksList);
     $lengthList = $this->combineLengthLists($lengthList, $monthsList);
 
+    if ($lengthList[0]->getTimeScale() == "minutes" && $lengthList[0]->getLength() == 0) {
+        // Order Permanent Ban Length to the end of array
+        $fruit = array_shift($lengthList);
+        array_push($lengthList, $fruit);
+    }
     return $lengthList;
   }
   

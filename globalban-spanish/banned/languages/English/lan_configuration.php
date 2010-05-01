@@ -132,4 +132,6 @@ $LAN_CONFIGURATION_119 = "English";
 $LAN_CONFIGURATION_120 = "Spanish";
 $LAN_CONFIGURATION_121 = "French";
 $LAN_CONFIGURATION_122 = "Russian";
+$LAN_CONFIGURATION_123 = "Only Warrnings Ex-Banned Min Length";
+$LAN_CONFIGURATION_124 = "Allows you to select required Min Ban Lenght to advise in game about this Ex-Banned when he joins.";
 ?>

@@ -384,13 +384,19 @@ class InstallAndUpgradeQueries {
     $sql = "INSERT INTO `gban_length` (`length_id`, `length`, `time_scale`) VALUES
             (1, 0, 'minutes'),
             (2, 5, 'minutes'),
-            (3, 1, 'hours'),
-            (4, 6, 'hours'),
-            (5, 1, 'days'),
-            (6, 1, 'weeks'),
-            (7, 2, 'weeks'),
-            (8, 1, 'months'),
-            (9, 6, 'months');";
+            (3, 15, 'minutes'),
+            (4, 30, 'minutes'),
+            (5, 1, 'hours'),
+            (6, 3, 'hours'),
+            (7, 6, 'hours'),
+            (8, 12, 'hours'),
+            (9, 1, 'days'),
+            (10, 3, 'days'),
+            (11, 1, 'weeks'),
+            (12, 2, 'weeks'),
+            (13, 1, 'months'),
+            (14, 3, 'months'),
+            (15, 6, 'months');";
 
     $this->sql_query($sql);
 

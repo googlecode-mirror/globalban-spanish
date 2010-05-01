@@ -194,6 +194,7 @@ class Config {
   var $"."teachAdmins = ".$_POST['teachAdmins']."; // Teach admins the !banmenu command
   var $"."removePendingOnUpload = ".$_POST['removePendingOnUpload']."; // Remove the pending status from a ban when a member uploads a demo for that ban
   var $"."adviseInGame = ".$_POST['adviseInGame']."; // Allows you to select which players will be advised during the game when you connect a player who was banned temporarily by a ban already expired: 1 - All (Panel), 2 - Only Admins Chat & Ex-Banned Player; 3 - Only Admins Chat; 4 - Only Ex-Banned (Panel); 5 - NoBody
+  var $"."adviseInGameLenght = ".$_POST['adviseInGameLenght']."; // Allows you to select required Min Ban Lenght in seconds to advise.
 
   //var $"."numDemosToBan = -1; // The person uploading a demo needs to have X number of people banned from his demos before future uploads will auto-ban. (-1 is off)
 
@@ -796,8 +797,25 @@ function hideShowSuperUserBlock() {
           <option value="5"><?php echo $LAN_CONFIGURATION_118 ?></option>
         </select>
       </td>
-      <td class="rowColor2" width="1%" nowrap></td>
-      <td class="rowColor2" width="1%" nowrap></td>
+      <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_123; ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_124; ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor2" width="1%" nowrap>
+        <select name="adviseInGameLenght">
+            <option value="300">5 Minutes</option>
+            <option value="900">15 Minutes</option>
+            <option value="1800">30 Minutes</option>
+            <option value="3600">1 Hour</option>
+            <option value="10800">3 Hours</option>
+            <option value="21600" selected>6 Hours</option>
+            <option value="43200">12 Hours</option>
+            <option value="86400">1 Day</option>
+            <option value="259200">3 Days</option>
+            <option value="604800">1 Week</option>
+            <option value="1209600">2 Weeks</option>
+            <option value="2419200">1 Month</option>
+            <option value="7257600">3 Months</option>
+            <option value="14515200">6 Months</option>
+        </select>
+      </td>>
     </tr>
     </table>
   </div>
