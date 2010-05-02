@@ -34,7 +34,9 @@ $admin_banner = $_POST['admin_banner']; // Admin Name
 $reason = $_POST['reason']; // Reason id number
 $serverId = $_POST['serverId']; // Server ID of ban
 $comments = $_POST['comments']; // comments
-$bannedPost = $_POST['bannedPost']; // comments
+$bannedPost = $_POST['bannedPost']; // Link to Post about ban 
+$ModifiedBy = $_POST['ModifiedBy'];
+$fullPowerLevelEditUser = $_POST['fullPowerLevelEditUser'];
 
 // Make sure the user is an UNBU member, admin, or ban manager
 if($member || $admin || $banManager || $fullPower) {
@@ -59,6 +61,10 @@ if($allowedToBan) {
     } else {
       $username = $_SESSION['name'];
     }
+    
+    if (!$fullPowerLevelEditUser || $fullPower) {
+        $ModifiedBy = $username;
+    }
 
     if($member) {
       $pending = 1;
@@ -77,7 +83,7 @@ if($allowedToBan) {
     $newExpireDate = $addDate + $lengthInSec;
 
     // Update ban
-    $banQueries->updateWebBanWithLength($length->getLength(), $length->getTimeScale(), $newExpireDate, $reason, $pending, $admin_banner, $username, $serverId, $bannedUser,$user->getSteamId(), $banId, $comments, $bannedPost);
+    $banQueries->updateWebBanWithLength($length->getLength(), $length->getTimeScale(), $newExpireDate, $reason, $pending, $admin_banner, $ModifiedBy, $serverId, $bannedUser,$user->getSteamId(), $banId, $comments, $bannedPost);
     
     // Email
     $subject = $LAN_PROCESSWEBBANUPDATE_001." ".$bannedUser;

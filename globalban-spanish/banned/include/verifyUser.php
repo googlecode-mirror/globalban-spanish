@@ -23,9 +23,9 @@
 session_start();
 // Check if ALL cookies exist, if they do proceed to have them as "logged in" (remember me feature)
 // Otherwise, check the session to see if they have logged in "this" session
-if((isset($_COOKIE['gbu']) && isset($_COOKIE['gbp'])) || ($_SESSION['accessLevel'] && $_SESSION['name']))
+if((isset($_COOKIE['gbu']) && isset($_COOKIE['gbp'])) || (isset($_SESSION['accessLevel']) && isset($_SESSION['name'])))
 {	
-	if(!$_SESSION['accessLevel'] && !$_SESSION['name'] && $page != "logout") // If session is not a "valid" session
+	if(!isset($_SESSION['accessLevel']) && !isset($_SESSION['name']) && $page != "logout") // If session is not a "valid" session
 	{
 		// Do a database verify before registering values
 		require_once(ROOTDIR."/include/database/class.UserQueries.php");

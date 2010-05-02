@@ -128,12 +128,24 @@ function confirmIpBan() {
     } else {
       ?><?php echo $LANUPDATEBAN_005; ?>  <?php echo $bannedUser->getSteamId() ?><?php
     }
+    
+    $userEdit = $userQuery->getUserInfo($bannedUser->getModifiedBy());
+    $fullPowerLevelEditUser = false;
+    if($userEdit->getAccessLevel() == 1) {
+        $fullPowerLevelEditUser = true;
+    }
   ?>
   </td>
 </tr>
 <tr>
   <td class="rowColor1" width="1%" nowrap><?php echo $LANUPDATEBAN_006; ?></td>
-  <td class="rowColor1"><input type="text" name="bannedUser" size="40" maxlength="128" value="<?php echo $bannedUser->getName() ?>"/></td>
+  <?php
+  if ($fullPowerLevelEditUser && !$fullPower){ 
+    ?><td class="rowColor1"><input type="hidden" name="bannedUser" value="<?php echo $bannedUser->getName(); ?>"><?php echo $bannedUser->getName(); ?></td><?php
+  } else {
+    ?><td class="rowColor1"><input type="text" name="bannedUser" size="40" maxlength="128" value="<?php echo $bannedUser->getName(); ?>"/></td><?php
+  }
+?>
 </tr>
 <tr>
 
@@ -142,11 +154,7 @@ function confirmIpBan() {
   <td class="rowColor2">
     <select name="admin_banner">
     <?php
-      $fullPowerLevelEditUser = false;
-      $userEdit = $userQuery->getUserInfo($bannedUser->getModifiedBy());
-      if($userEdit->getAccessLevel() == 1){
-	    $fullPowerLevelEditUser = true;
-	  }
+
 	
 	// Make sure we have a list of admis to display
     if(count($banAmins > 0)) {
@@ -157,7 +165,7 @@ function confirmIpBan() {
         if($admin_banner->getAdmin() == $bannedUser->getBanner()) {
           $selectedAdmin = true;
           ?><option value="<?php echo $admin_banner->getAdmin()?>" selected><?php echo $bannedUser->getBanner()?></option><?php
-        } else if(!$fullPowerLevelEditUser && $userQuery->getUserInfo($bannedUser->getBanner())->getAccessLevel() != 1){
+        } else if(!$fullPowerLevelEditUser && $userQuery->getUserInfo($bannedUser->getBanner())->getAccessLevel() != 1 && $banManager){
           ?><option value="<?php echo $admin_banner->getAdmin()?>"><?php echo $admin_banner->getAdmin()?></option><?php
         } else if ($fullPower){
 		  ?><option value="<?php echo $admin_banner->getAdmin()?>"><?php echo $admin_banner->getAdmin()?></option><?php
@@ -183,7 +191,7 @@ function confirmIpBan() {
 
         if($bannedUser->getLength() == $banLength->getLength() && $bannedUser->getTimeScale() == $banLength->getTimeScale()) {
 				?><option value="<?php echo $banLength->getId()?>" selected><?php echo $banLength->getReadable()?></option><?php
-        } else if(!$fullPowerLevelEditUser && $userQuery->getUserInfo($bannedUser->getBanner())->getAccessLevel() != 1) {
+        } else if(!$fullPowerLevelEditUser && $userQuery->getUserInfo($bannedUser->getBanner())->getAccessLevel() != 1 && $banManager) {
 				?><option value="<?php echo $banLength->getId()?>"><?php echo $banLength->getReadable()?></option><?php
 		} else if ($fullPower){
 				?><option value="<?php echo $banLength->getId()?>"><?php echo $banLength->getReadable()?></option><?php
@@ -226,7 +234,9 @@ function confirmIpBan() {
         $reason = $banReasons[$i]; 
         if($reason->getId() == $bannedUser->getReasonId()) {
           ?><option value="<?php echo $reason->getId() ?>" selected><?php echo $reason->getReason() ?></option><?php
-        } else {
+        } else if(!$fullPowerLevelEditUser && $userQuery->getUserInfo($bannedUser->getBanner())->getAccessLevel() != 1 && $banManager){
+          ?><option value="<?php echo $reason->getId() ?>"><?php echo $reason->getReason() ?></option><?php
+        } else if($fullPower){
           ?><option value="<?php echo $reason->getId() ?>"><?php echo $reason->getReason() ?></option><?php
         }
       }
@@ -244,7 +254,7 @@ function confirmIpBan() {
 </tr>
 <tr>
   <td class="rowColor1" width="1%" nowrap><?php echo $LANUPDATEBAN_015; ?></td>
-  <td class="rowColor1"><input type="text" name="bannedPost" size="100" maxlength="128" value="<?php echo $bannedUser->getWebpage()?>"/></td>
+  <td class="rowColor1"><input type="text" name="bannedPost" size="100" maxlength="128" value="<?php echo $bannedUser->getWebpage(); ?>"/></td>
 </tr>
 <tr>
 <tr>
@@ -252,11 +262,11 @@ function confirmIpBan() {
   <?php
   if($bannedUser->getModifiedBy() == "") { 
   ?>
-    <td class="rowColor2"><?php echo $bannedUser->getBanner() ?></td>
+    <td class="rowColor2"><?php echo $bannedUser->getBanner(); ?></td>
   <?php
   } else {
   ?>
-    <td class="rowColor2"><?php echo $bannedUser->getModifiedBy() ?></td>
+    <td class="rowColor2"><?php echo $bannedUser->getModifiedBy(); ?></td>
   <?php
   }
   ?>
@@ -265,6 +275,8 @@ function confirmIpBan() {
   <td colspan="2" class="rowColor1"><input type="submit" name="updateBan" value="<?php echo $LANUPDATEBAN_017; ?>"></td>
 </tr>
 </table>
+<input type="hidden" name="ModifiedBy" id="ModifiedBy" value="<?php echo $bannedUser->getModifiedBy(); ?>"/>
+<input type="hidden" name="fullPowerLevelEditUser" id="fullPowerLevelEditUser" value="<?php echo $fullPowerLevelEditUser; ?>"/>
 </form>
 <form name="bandIpForm" id="banIpForm" action="index.php?page=processWebBanUpdate" method="POST">
   <input type="hidden" name="banIp" id="banIp" value="1"/>
