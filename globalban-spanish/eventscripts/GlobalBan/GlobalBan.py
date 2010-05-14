@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 """
 This file is part of GlobalBan.
@@ -139,6 +140,7 @@ def load():
   es.regcmd('gb_refreshAdmins', 'GlobalBan/refreshAdmins', 'Used to get a new admin list from the web')
   es.regcmd('gb_refreshBanReasons', 'GlobalBan/refreshBanReasons', 'Used to get a new ban reasons from the web')
   es.regcmd('gb_refreshBanLengths', 'GlobalBan/refreshBanLengths', 'Used to get a new ban lengths from the web')
+  es.regcmd('gb_refreshAdminsMod', 'GlobalBan/updateAdminMod', 'Used to get a new admin Mod list from the web')
 
   # Load the config file
   loadConfig()
@@ -232,21 +234,26 @@ def unload():
 # Refresh all lists
 ################################################################################
 def refreshLists():
-  gamethread.delayed(5, refreshAdmins)
+  gamethread.delayed(1, refreshAdmins)
   gamethread.delayed(5, refreshBanReasons)
-  gamethread.delayed(5, refreshBanLengths)
+  gamethread.delayed(8, refreshBanLengths)
 
 ################################################################################
 # On every map change we want to get the latest admin, ban reason, and ban length
 # lists.
 ################################################################################
 def es_map_start(event_var):
+ 
+  refreshLists()
+  
+################################################################################
+# Get the latest admin Mod
+################################################################################
+  
+def updateAdminMod():
   # Get the list of plugins this server is enabled for
   os.system(wgetPath + " -b --quiet -O " + es.getAddonPath('GlobalBan') + "/plugins.cfg -a " + es.getAddonPath('GlobalBan') + "/gban.log \"" + websiteAddy + "index.php?page=getPluginConfig&es=1&serverId=" + serverId + "\"")
-  gamethread.delayed(10, loadPluginConfig)
-  
-  refreshLists()
-  gamethread.delayed(12, updateAdminModLists)
+  gamethread.delayed(5, refreshAdmins)
 
 ################################################################################
 # On player active (when the player connects to the server), check to see if they
@@ -538,7 +545,7 @@ def banUser(callerId, bannedSteamId, banReason, banLength, timeScale, nameOfBann
     # Log the URL used for banning
     gbanLog('GBAN: Ban User URL:' + banUserURL)
 
-    # Add them to the banned_users.cfg file for 1 minute to prevent instant rejoin
+    # Add them to the banned_users.cfg file for 5 minute to prevent instant rejoin
     es.server.queuecmd('banid ' +  str(5) + ' ' + bannedSteamId)
 
     # Write the ban list
@@ -615,6 +622,10 @@ def refreshAdmins():
   gbanLog('GBAN: Updating Admin List')
   gamethread.delayed(10, reloadAdminKeyGroup)
   
+  # Get the list of plugins this server is enabled for
+  os.system(wgetPath + " -b --quiet -O " + es.getAddonPath('GlobalBan') + "/plugins.cfg -a " + es.getAddonPath('GlobalBan') + "/gban.log \"" + websiteAddy + "index.php?page=getPluginConfig&es=1&serverId=" + serverId + "\"")
+  gamethread.delayed(12, loadPluginConfig)
+  
 ################################################################################
 # This will reload the admin keygroup
 ################################################################################
@@ -675,9 +686,10 @@ def updateAdminModLists():
   # Mani Detection
   # See if cfg/mani_admin_plugin/clients.txt exists
   if pluginMani == 1:
+    # es.server.queuecmd('servsecurity_allowfilemodification 30 your_servsecurity_password')
     maniPath = basePath + "cfg/mani_admin_plugin/"
-    os.system(wgetPath + " -b --quiet -O " + maniPath + "clients.txt -a " + es.getAddonPath('GlobalBan') + "/gban.log \"" + websiteAddy + "index.php?page=getManiList&es=1&serverId=" + serverId + "\"")
     os.system(wgetPath + " -b --quiet -O " + maniPath + "reserveslots.txt -a " + es.getAddonPath('GlobalBan') + "/gban.log \"" + websiteAddy + "index.php?page=getManiReservedSlots&es=1&serverId=" + serverId + "\"")
+    os.system(wgetPath + " -b --quiet -O " + maniPath + "clients.txt -a " + es.getAddonPath('GlobalBan') + "/gban.log \"" + websiteAddy + "index.php?page=getManiList&es=1&serverId=" + serverId + "\"")
     # Execute mani command to refresh admin list
     gamethread.delayed(10, reloadMani);
     gbanLog('GBAN: Updating Mani clients.txt file.')

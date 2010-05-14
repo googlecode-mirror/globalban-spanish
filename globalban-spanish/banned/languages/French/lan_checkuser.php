@@ -23,5 +23,5 @@ $LANCHECKUSER_010 = 'Date';
 $LANCHECKUSER_011 = 'Bonjour ';
 $LANCHECKUSER_012 = 'nous vous rappelons que vous étiez déjà banne par';
 $LANCHECKUSER_013 = 'le';
-$LANCHECKUSER_014 = "Ressaisissez-vous ! Et ne nous donnez pas de raisons de vous bannir à nouveau, Merci.';
+$LANCHECKUSER_014 = "Ressaisissez-vous ! Et ne nous donnez pas de raisons de vous bannir à nouveau, Merci.";
 ?>

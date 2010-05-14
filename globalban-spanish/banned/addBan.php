@@ -198,7 +198,7 @@ if($admin || $banManager || $fullPower) {
 ?>
 <div class="tborder">
   <div id="tableHead">
-    <div><b><?php echo $LANADDBAN_017; ?></b</div>
+    <div><b><?php echo $LANADDBAN_017; ?></b></div>
   </div>
 </div>
 <?php

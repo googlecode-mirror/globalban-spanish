@@ -191,7 +191,7 @@ function confirmIpBan() {
 
         if($bannedUser->getLength() == $banLength->getLength() && $bannedUser->getTimeScale() == $banLength->getTimeScale()) {
 				?><option value="<?php echo $banLength->getId()?>" selected><?php echo $banLength->getReadable()?></option><?php
-        } else if(!$fullPowerLevelEditUser && $userQuery->getUserInfo($bannedUser->getBanner())->getAccessLevel() != 1 && $banManager) {
+        } else if(!$fullPowerLevelEditUser && $userQuery->getUserInfo($bannedUser->getBanner())->getAccessLevel() != 1) {
 				?><option value="<?php echo $banLength->getId()?>"><?php echo $banLength->getReadable()?></option><?php
 		} else if ($fullPower){
 				?><option value="<?php echo $banLength->getId()?>"><?php echo $banLength->getReadable()?></option><?php
@@ -234,7 +234,7 @@ function confirmIpBan() {
         $reason = $banReasons[$i]; 
         if($reason->getId() == $bannedUser->getReasonId()) {
           ?><option value="<?php echo $reason->getId() ?>" selected><?php echo $reason->getReason() ?></option><?php
-        } else if(!$fullPowerLevelEditUser && $userQuery->getUserInfo($bannedUser->getBanner())->getAccessLevel() != 1 && $banManager){
+        } else if(!$fullPowerLevelEditUser && $userQuery->getUserInfo($bannedUser->getBanner())->getAccessLevel() != 1){
           ?><option value="<?php echo $reason->getId() ?>"><?php echo $reason->getReason() ?></option><?php
         } else if($fullPower){
           ?><option value="<?php echo $reason->getId() ?>"><?php echo $reason->getReason() ?></option><?php
@@ -363,7 +363,7 @@ $length = $banLength->getReadable();
 ?>
 <div class="tborder">
   <div id="tableHead">
-    <div><b><?php echo $LANUPDATEBAN_030; ?></b</div>
+    <div><b><?php echo $LANUPDATEBAN_030; ?></b></div>
   </div>
 </div>
 <?php
