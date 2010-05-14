@@ -78,7 +78,7 @@ from configobj import ConfigObj
 #plugin information
 info = es.AddonInfo()
 info.name = "GlobalBan"
-info.version = "3.4.1 r110"
+info.version = "3.4.1 r117"
 info.author = "Soynuts"
 info.url = "http://www.unbuinc.net"
 info.description = "Bans are stored in a mySQL database on a webserver"
