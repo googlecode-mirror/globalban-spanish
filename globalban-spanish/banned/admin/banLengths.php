@@ -131,6 +131,7 @@ if($fullPower) {
           <option value="months"><?php echo $LAN_BANLENGHTS_014; ?></option>
         </select>
       </td>
+    </tr>
     <tr>
       <td class="colColor1" colspan="2"><input type="submit" name="submitAdd" id="submitAdd" value="<?php echo $LAN_BANLENGHTS_015; ?>"/></td>
       </form>

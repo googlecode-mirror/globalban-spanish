@@ -94,7 +94,7 @@ $LAN_INSTALL_082 = "This will add a link per each Steam_ID at Ban List, that wil
 $LAN_INSTALL_083 = "HlstatsX Address";
 $LAN_INSTALL_084 = "Enter in the URL of your HlstatsX web if you have enabled the HlstatsX link. Ex: http://www.yourdomain.com/HlstatsX/";
 $LAN_INSTALL_085 = "e107 Integration Settings";
-$LAN_INSTALL_086 = "The prefix of your e107 tables (normally \'e107_\' by default)."
+$LAN_INSTALL_086 = "The prefix of your e107 tables (normally \'e107_\' by default).";
 $LAN_INSTALL_105 = "Yes";
 $LAN_INSTALL_106 = "No";
 ?>

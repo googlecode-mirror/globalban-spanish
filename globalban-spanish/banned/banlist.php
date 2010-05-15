@@ -289,7 +289,7 @@ if(count($bannedUsers) > 0) {
         <th class="colColor1" width="1%" nowrap>
           <div align="center"><a href="index.php?page=banlist&sc=pending&sd=ASC&sr=<?php echo $startRange?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE; ?>"><img src="images/arrow_up.png" style="cursor:pointer;"/></a>
           <?php echo $LAN_BANLIST_022; ?>
-          <a href="index.php?page=banlist&sc=pending&sd=DESC&sr=<?php echo $startRange?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE; ?>"><img src="images/arrow_down.png" style="cursor:pointer;"/>        </div></th>
+          <a href="index.php?page=banlist&sc=pending&sd=DESC&sr=<?php echo $startRange?>&bf=<?php echo $bansFilter?>&bri=<?php echo $bansReason_id?>&ba=<?php echo $bansAdmin?>&searchText=<?php echo $searchText?>&lg=<?php echo $LANGUAGE; ?>"><img src="images/arrow_down.png" style="cursor:pointer;"/></a>        </div></th>
       	<?php
 		if($fullPower) {
           ?>
@@ -646,7 +646,7 @@ if(count($bannedUsers) > 0) {
 			         </div></td>
 			      <td class="colColor1" width="10%" nowrap>
 			        <div align="right">
-			          <a href="index.php?page=banlist&bf=2&bri=<?php echo $reasonStat->getMotivo_id()?>&lg=<?php echo $LANGUAGE; ?>"><?php echo number_format($reasonStat->getNumCumpliendose(), 0, ",", ".")?>
+			          <a href="index.php?page=banlist&bf=2&bri=<?php echo $reasonStat->getMotivo_id()?>&lg=<?php echo $LANGUAGE; ?>"><?php echo number_format($reasonStat->getNumCumpliendose(), 0, ",", ".")?></a>
 			        </div></td>
 				  <td class="colColor1" width="10%" nowrap>
 			        <div align="right">
@@ -659,7 +659,7 @@ if(count($bannedUsers) > 0) {
 			        </div></td>
 				  <td class="colColor2" width="10%" nowrap>
 			        <div align="right">
-			          <a href="index.php?page=banlist&bf=3&bri=<?php echo $reasonStat->getMotivo_id()?>&lg=<?php echo $LANGUAGE; ?>"><?php echo number_format($reasonStat->getNumCumplidos(), 0, ",", ".")?>
+			          <a href="index.php?page=banlist&bf=3&bri=<?php echo $reasonStat->getMotivo_id()?>&lg=<?php echo $LANGUAGE; ?>"><?php echo number_format($reasonStat->getNumCumplidos(), 0, ",", ".")?></a>
 			        </div></td>
 				  <td class="colColor2" width="10%" nowrap>
 			        <div align="right">
@@ -672,11 +672,11 @@ if(count($bannedUsers) > 0) {
 			        </div></td>
 			      <td class="colColor1" width="7%" nowrap>
 			        <div align="right">
-			          <a href="index.php?page=banlist&bri=<?php echo $reasonStat->getMotivo_id()?>&lg=<?php echo $LANGUAGE; ?>"><?php echo number_format($reasonStat->getNumBaneados(), 0, ",", ".")?>
+			          <a href="index.php?page=banlist&bri=<?php echo $reasonStat->getMotivo_id()?>&lg=<?php echo $LANGUAGE; ?>"><?php echo number_format($reasonStat->getNumBaneados(), 0, ",", ".")?></a>
 			        </div></td>
 			      <td class="colColor1" width="7%" nowrap>
 			        <div align="right">
-			          <a href="index.php?page=banlist&bf=4&bri=<?php echo $reasonStat->getMotivo_id()?>&lg=<?php echo $LANGUAGE; ?>"><?php echo number_format(($reasonStat->getNumCumpliendose()+$reasonStat->getNumPermanentes()), 0, ",", ".")?>
+			          <a href="index.php?page=banlist&bf=4&bri=<?php echo $reasonStat->getMotivo_id()?>&lg=<?php echo $LANGUAGE; ?>"><?php echo number_format(($reasonStat->getNumCumpliendose()+$reasonStat->getNumPermanentes()), 0, ",", ".")?></a>
 			        </div></td>
 				  <td class="colColor1" width="6%" nowrap>
 			        <div align="right">
@@ -973,10 +973,11 @@ if(count($bannedUsers) > 0) {
             <input type="checkbox" id="saveSQL" name="saveSQL" value="1"/> <?php echo $LAN_BANLIST_053; ?>
           </td>
         </tr>
-    		<tr>
-    			<td align="left" class="rowColor2">
-    				<input type="submit" name="submit" value="<?php echo $LAN_BANLIST_054; ?>" class="button" /></td>
-    		</tr>
+    	<tr>
+    		<td align="left" class="rowColor2">
+    			<input type="submit" name="submit" value="<?php echo $LAN_BANLIST_054; ?>" class="button" /></td>
+    	</tr>
+    </form>
     </table>
   </div>
 <?php

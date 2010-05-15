@@ -645,7 +645,7 @@ if(!is_writable("config/class.Config.php")) {
   <div id="tableHead">
     <div><b><?php echo $LAN_CONFIGURATION_079; ?></b></div>
   </div>
-<div class="tborder">
+</div>
 <?php
 }
 ?>

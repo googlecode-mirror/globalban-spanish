@@ -815,7 +815,7 @@ function hideShowSuperUserBlock() {
             <option value="7257600">3 Months</option>
             <option value="14515200">6 Months</option>
         </select>
-      </td>>
+      </td>
     </tr>
     </table>
   </div>
