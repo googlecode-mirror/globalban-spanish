@@ -451,10 +451,12 @@ class InstallAndUpgradeQueries {
     
     $sql = "-- Mani Flags
             INSERT INTO `gban_plugin_flag` (`plugin`, `flag`, `description`) VALUES
-            ('mani', 'j', 'Gimp'),
+            ('mani', 'j', 'Gimp obsolete < Mani 1.2T'),
             ('mani', 'k', 'Kick'),
             ('mani', 'r', 'Rcon'),
             ('mani', 'q', 'Rcon Menu Level 1'),
+            ('mani', 'q2', 'Rcon Menu Level 2'),
+            ('mani', 'q3', 'Rcon Menu Level 3'),
             ('mani', 'e', 'Explode'),
             ('mani', 'm', 'Slay'),
             ('mani', 'b', 'Non Permanent Ban'),
@@ -505,8 +507,7 @@ class InstallAndUpgradeQueries {
             ('mani', 'pban', 'Permanent Ban'),
             ('mani', 'spray', 'Spray Tag Tracking'),
             ('mani', 'grav', 'Adjust Player Gravity'),
-            ('mani', 'q2', 'Rcon Menu Level 2'),
-            ('mani', 'reserved', 'Reserved Slot');";
+            ('mani', 'reserved', 'Reserved Slot obsolete < Mani 1.2T');";
             
       $this->sql_query($sql);
       $sql = "-- Sourcemod flags
@@ -535,7 +536,7 @@ class InstallAndUpgradeQueries {
       $this->sql_query($sql);
       
       $sql = "INSERT INTO `gban_plugin_flag` (`plugin`, `flag`, `description`) VALUES
-            ('mani-immunity', 'j', 'Gimp Immunity'),
+            ('mani-immunity', 'j', 'Gimp Immunity obsolete < Mani 1.2T'),
             ('mani-immunity', 'k', 'Kick Immunity'),
             ('mani-immunity', 'm', 'Slay Immunity'),
             ('mani-immunity', 'b', 'Ban Immunity'),
@@ -560,7 +561,7 @@ class InstallAndUpgradeQueries {
             ('mani-immunity', 'v', 'Ghost Immunity'),
             ('mani-immunity', 'w', 'Give Item Immunity'),
             ('mani-immunity', 'y', 'Color Change Immunity'),
-            ('mani-immunity', 'Immunity', 'Basic Immunity'),
+            ('mani-immunity', 'Immunity', 'Basic Immunity obsolete < Mani 1.2T'),
             ('mani-immunity', 'grav', 'Per Player Gravity Immunity'),
             ('mani-immunity', 'autojoin', 'Autojoin Immunity'),
             ('mani-immunity', 'afk', 'AFK Kick Immunity'),
@@ -741,10 +742,12 @@ class InstallAndUpgradeQueries {
     
     $sql = "-- Mani Flags
             INSERT INTO `gban_plugin_flag` (`plugin`, `flag`, `description`) VALUES
-            ('mani', 'j', 'Gimp'),
+            ('mani', 'j', 'Gimp obsolete < Mani 1.2T'),
             ('mani', 'k', 'Kick'),
             ('mani', 'r', 'Rcon'),
             ('mani', 'q', 'Rcon Menu Level 1'),
+            ('mani', 'q2', 'Rcon Menu Level 2'),
+            ('mani', 'q3', 'Rcon Menu Level 3'),
             ('mani', 'e', 'Explode'),
             ('mani', 'm', 'Slay'),
             ('mani', 'b', 'Non Permanent Ban'),
@@ -795,8 +798,7 @@ class InstallAndUpgradeQueries {
             ('mani', 'pban', 'Permanent Ban'),
             ('mani', 'spray', 'Spray Tag Tracking'),
             ('mani', 'grav', 'Adjust Player Gravity'),
-            ('mani', 'q2', 'Rcon Menu Level 2'),
-            ('mani', 'reserved', 'Reserved Slot');";
+            ('mani', 'reserved', 'Reserved Slot obsolete < Mani 1.2T');";
             
       $this->sql_query($sql);
       $sql = "-- Sourcemod flags
@@ -825,7 +827,7 @@ class InstallAndUpgradeQueries {
       $this->sql_query($sql);
       
       $sql = "INSERT INTO `gban_plugin_flag` (`plugin`, `flag`, `description`) VALUES
-            ('mani-immunity', 'j', 'Gimp Immunity'),
+            ('mani-immunity', 'j', 'Gimp Immunity obsolete < Mani 1.2T'),
             ('mani-immunity', 'k', 'Kick Immunity'),
             ('mani-immunity', 'm', 'Slay Immunity'),
             ('mani-immunity', 'b', 'Ban Immunity'),
@@ -850,7 +852,7 @@ class InstallAndUpgradeQueries {
             ('mani-immunity', 'v', 'Ghost Immunity'),
             ('mani-immunity', 'w', 'Give Item Immunity'),
             ('mani-immunity', 'y', 'Color Change Immunity'),
-            ('mani-immunity', 'Immunity', 'Basic Immunity'),
+            ('mani-immunity', 'Immunity', 'Basic Immunity obsolete < Mani 1.2T'),
             ('mani-immunity', 'grav', 'Per Player Gravity Immunity'),
             ('mani-immunity', 'autojoin', 'Autojoin Immunity'),
             ('mani-immunity', 'afk', 'AFK Kick Immunity'),
