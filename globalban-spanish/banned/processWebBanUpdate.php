@@ -45,85 +45,95 @@ if($member || $admin || $banManager || $fullPower) {
 
 if($allowedToBan) {
   
-  $banQueries = new BanQueries();
+    $banQueries = new BanQueries();
+
+    $lengthQueries = new LengthQueries();
+    $length = $lengthQueries->getBanLength($lengthId);
+    
+    // Banned user information
+    $bannedUser = $banQueries->getBannedUser($banId);
+
+    if($fullPower || $banManager || 
+            (($bannedUser->getBanner() == $_SESSION['name'] && !empty($_SESSION['name'])) && ($admin || $member)) || 
+            (($bannedUser->getBannerSteamId() == $_SESSION['steamId'] && !empty($_SESSION['steamId'])) && ($admin || $member))) {
   
-  $lengthQueries = new LengthQueries();
-  $length = $lengthQueries->getBanLength($lengthId);
-  
-  // We are banning an IP
-  if(isset($_POST['banIp'])) {
-    $banQueries->addIpBan($_POST['ip']);
-    header("Location: index.php?page=updateBan&banId=".$banId);
-  } else if(isset($_POST['updateBan'])) { // We are updating ban information
-  
-    if($config->enableSmfIntegration) {
-      $username = $user_info['username'];
+        // We are banning an IP
+        if(isset($_POST['banIp'])) {
+            $banQueries->addIpBan($_POST['ip']);
+            header("Location: index.php?page=updateBan&banId=".$banId);
+        } else if(isset($_POST['updateBan'])) { // We are updating ban information
+      
+            if($config->enableSmfIntegration) {
+                $username = $user_info['username'];
+            } else {
+                $username = $_SESSION['name'];
+            }
+        
+            if (!$fullPowerLevelEditUser || $fullPower) {
+                $ModifiedBy = $username;
+            }
+
+            if($member) {
+                $pending = 1;
+            } else {
+                $pending = 0;
+            }
+
+            $userQueries = new UserQueries();
+
+            $user = $userQueries->getUserInfo($admin_banner);
+            
+            // Get add date of ban
+            $addDate = $banQueries->getBanAddDate($banId);
+            $lengthInSec = $length->getLengthInSeconds();
+
+            $newExpireDate = $addDate + $lengthInSec;
+
+            // Update ban
+            $banQueries->updateWebBanWithLength($length->getLength(), $length->getTimeScale(), $newExpireDate, $reason, $pending, $admin_banner, $ModifiedBy, $serverId, $bannedUser,$user->getSteamId(), $banId, $comments, $bannedPost);
+            
+            // Email
+            $subject = $LAN_PROCESSWEBBANUPDATE_001." ".$bannedUser;
+
+            $body = "<html><body>";
+            $body .= $LAN_PROCESSWEBBANUPDATE_002." ";
+            if($member) {
+                $body .= $LAN_PROCESSWEBBANUPDATE_003;
+            } else if($admin) {
+                $body .= $LAN_PROCESSWEBBANUPDATE_004;
+            } else if($banManager || $fullPower) {
+                $body .= $LAN_PROCESSWEBBANUPDATE_005;
+            }
+            $body .= " ".$username;
+
+            // Use this to build the URL link (replace processWebBanUpdate with updateBan)
+            $url = "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+            str_replace("processWebBanUpdate", "updateBan", "$url");
+
+            $body .= "\n\n";
+            $body .= $LAN_PROCESSWEBBANUPDATE_006." <a href='".$url."&banId=".$banId."'>".$LAN_PROCESSWEBBANUPDATE_007."</a>";
+            $body .= "</body></html>";
+
+            if($config->sendEmails) {
+                $banManagerEmails = $config->banManagerEmails;
+                for($i=0; $i<count($banManagerEmails); $i++) {
+
+                    // To send HTML mail, the Content-type header must be set
+                    $headers  = "MIME-Version: 1.0" . "\r\n";
+                    $headers .= "Content-type: text/html; charset=utf-8" . "\r\n";
+                    // Additional headers
+                    $headers .= "From: ".$config->siteName." ".$LAN_PROCESSWEBBANUPDATE_008." <".$config->emailFromHeader.">" . "\r\n";
+
+                    // Send an email to those who wish to be notified of updated bans
+                    mail($banManagerEmails[$i], $subject, $body, $headers);
+                }
+            }
+            header( 'Location: index.php?page=banlist' );
+        }
     } else {
-      $username = $_SESSION['name'];
+        echo $LAN_PROCESSWEBBANUPDATE_009;
     }
-    
-    if (!$fullPowerLevelEditUser || $fullPower) {
-        $ModifiedBy = $username;
-    }
-
-    if($member) {
-      $pending = 1;
-    } else {
-      $pending = 0;
-    }
-
-	$userQueries = new UserQueries();
-
-	$user = $userQueries->getUserInfo($admin_banner);
-    
-    // Get add date of ban
-    $addDate = $banQueries->getBanAddDate($banId);
-    $lengthInSec = $length->getLengthInSeconds();
-
-    $newExpireDate = $addDate + $lengthInSec;
-
-    // Update ban
-    $banQueries->updateWebBanWithLength($length->getLength(), $length->getTimeScale(), $newExpireDate, $reason, $pending, $admin_banner, $ModifiedBy, $serverId, $bannedUser,$user->getSteamId(), $banId, $comments, $bannedPost);
-    
-    // Email
-    $subject = $LAN_PROCESSWEBBANUPDATE_001." ".$bannedUser;
-
-    $body = "<html><body>";
-    $body .= $LAN_PROCESSWEBBANUPDATE_002." ";
-    if($member) {
-      $body .= $LAN_PROCESSWEBBANUPDATE_003;
-    } else if($admin) {
-      $body .= $LAN_PROCESSWEBBANUPDATE_004;
-    } else if($banManager || $fullPower) {
-      $body .= $LAN_PROCESSWEBBANUPDATE_005;
-    }
-	 $body .= " ".$username;
-
-    // Use this to build the URL link (replace processWebBanUpdate with updateBan)
-    $url = "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-    str_replace("processWebBanUpdate", "updateBan", "$url");
-
-    $body .= "\n\n";
-    $body .= $LAN_PROCESSWEBBANUPDATE_006." <a href='".$url."&banId=".$banId."'>".$LAN_PROCESSWEBBANUPDATE_007."</a>";
-    $body .= "</body></html>";
-
-    if($config->sendEmails) {
-      $banManagerEmails = $config->banManagerEmails;
-      for($i=0; $i<count($banManagerEmails); $i++) {
-
-        // To send HTML mail, the Content-type header must be set
-        $headers  = "MIME-Version: 1.0" . "\r\n";
-        $headers .= "Content-type: text/html; charset=utf-8" . "\r\n";
-        // Additional headers
-        $headers .= "From: ".$config->siteName." ".$LAN_PROCESSWEBBANUPDATE_008." <".$config->emailFromHeader.">" . "\r\n";
-
-        // Send an email to those who wish to be notified of updated bans
-        mail($banManagerEmails[$i], $subject, $body, $headers);
-      }
-    }
-    header( 'Location: index.php?page=banlist' );
-  }
 } else {
-  echo $LAN_PROCESSWEBBANUPDATE_009;
+    echo $LAN_PROCESSWEBBANUPDATE_009;
 }
 ?>
