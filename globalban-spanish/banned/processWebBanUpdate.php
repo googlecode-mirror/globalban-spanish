@@ -51,11 +51,11 @@ if($allowedToBan) {
     $length = $lengthQueries->getBanLength($lengthId);
     
     // Banned user information
-    $bannedUser = $banQueries->getBannedUser($banId);
+    $bannedUserO = $banQueries->getBannedUser($banId);
 
     if($fullPower || $banManager || 
-            (($bannedUser->getBanner() == $_SESSION['name'] && !empty($_SESSION['name'])) && ($admin || $member)) || 
-            (($bannedUser->getBannerSteamId() == $_SESSION['steamId'] && !empty($_SESSION['steamId'])) && ($admin || $member))) {
+            (($bannedUserO->getBanner() == $_SESSION['name'] && !empty($_SESSION['name'])) && ($admin || $member)) || 
+            (($bannedUserO->getBannerSteamId() == $_SESSION['steamId'] && !empty($_SESSION['steamId'])) && ($admin || $member))) {
   
         // We are banning an IP
         if(isset($_POST['banIp'])) {
@@ -93,10 +93,10 @@ if($allowedToBan) {
             $banQueries->updateWebBanWithLength($length->getLength(), $length->getTimeScale(), $newExpireDate, $reason, $pending, $admin_banner, $ModifiedBy, $serverId, $bannedUser,$user->getSteamId(), $banId, $comments, $bannedPost);
             
             // Email
-            $subject = $LAN_PROCESSWEBBANUPDATE_001." ".$bannedUser;
+            $subject = $LAN_PROCESSWEBBANUPDATE_001." ".$bannedUser." ".$LAN_PROCESSWEBBANUPDATE_010." ".$username;
 
-            $body = "<html><body>";
-            $body .= $LAN_PROCESSWEBBANUPDATE_002." ";
+            $body = "<html><body><br/><h2>".$subject."</h2><br/><br/>";
+            $body .= $LAN_PROCESSWEBBANUPDATE_002." <b>";
             if($member) {
                 $body .= $LAN_PROCESSWEBBANUPDATE_003;
             } else if($admin) {
@@ -104,14 +104,15 @@ if($allowedToBan) {
             } else if($banManager || $fullPower) {
                 $body .= $LAN_PROCESSWEBBANUPDATE_005;
             }
-            $body .= " ".$username;
+            $body .= "</b>.";
+            // $body .= " <b>".$username."</b>";
 
             // Use this to build the URL link (replace processWebBanUpdate with updateBan)
-            $url = "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-            str_replace("processWebBanUpdate", "updateBan", "$url");
-
+            $link = "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+            $link = str_replace("processWebBanUpdate", "updateBan", $link);
+         
             $body .= "\n\n";
-            $body .= $LAN_PROCESSWEBBANUPDATE_006." <a href='".$url."&banId=".$banId."'>".$LAN_PROCESSWEBBANUPDATE_007."</a>";
+            $body .= "<br/><br/>".$LAN_PROCESSWEBBANUPDATE_006." <a href='".$link."&banId=".$banId."'>".$LAN_PROCESSWEBBANUPDATE_007."</a>";
             $body .= "</body></html>";
 
             if($config->sendEmails) {

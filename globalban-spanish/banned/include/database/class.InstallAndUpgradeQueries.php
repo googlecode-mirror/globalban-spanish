@@ -877,7 +877,26 @@ class InstallAndUpgradeQueries {
     $sql = "ALTER TABLE `gban_ban_history` ADD `kick_counter` int(10) NOT NULL DEFAULT '0' AFTER `add_date` ;";
 
     $this->sql_query($sql);
+
+	$sql = "INSERT INTO `gban_plugin_flag` (`plugin`, `flag`, `description`) VALUES	('mani', 'q3', 'Rcon Menu Level 3');";
+
+	$this->sql_query($sql);
     
+	$sql = "UPDATE `gban_plugin_flag` SET `description`='Gimp obsolete < Mani 1.2T' WHERE (`plugin` = 'mani' AND `flag` = 'j');";
+
+	$this->sql_query($sql);
+
+	$sql = "UPDATE `gban_plugin_flag` SET `description`='Reserved Slot obsolete < Mani 1.2T' WHERE (`plugin` = 'mani' AND `flag` = 'reserved');";
+
+	$this->sql_query($sql);
+
+	$sql = "UPDATE `gban_plugin_flag` SET `description`='Gimp Immunity obsolete < Mani 1.2T' WHERE (`plugin` = 'mani-immunity' AND `flag` = 'j');";
+
+	$this->sql_query($sql);
+
+	$sql = "UPDATE `gban_plugin_flag` SET `description`='Basic Immunity obsolete < Mani 1.2T' WHERE (`plugin` = 'mani-immunity' AND `flag` = 'Immunity');";
+
+	$this->sql_query($sql);
   }
 }
 ?>

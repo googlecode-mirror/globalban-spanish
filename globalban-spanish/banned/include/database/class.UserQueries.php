@@ -517,6 +517,10 @@ class UserQueries extends Config {
       $username = $this->db->get_row();
       $username = $username['name'];
       
+      // Use this to build the URL link (replace processWebBanUpdate with updateBan)
+      $url = "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+      $url = str_replace('manageUsers&adminPage=1', 'login', $url);
+      
       // Send the email
       // To send HTML mail, the Content-type header must be set
       $headers  = "MIME-Version: 1.0" . "\r\n";
@@ -527,8 +531,9 @@ class UserQueries extends Config {
       $subject = $this->siteName." Ban Management Password Reset";
       
       $body = "<html><body>";
-      $body .= "<h2>".$this->siteName." Ban Management Password Reset</h2>";
-      $body .= "<p>Your username is ".$username."<br/>Your new password is ".$pass."</p>";
+      $body .= "<h2>".$this->siteName."- GlobalBan Password Reset</h2>";
+      $body .= "<br/><p>Username: ".$username."<br/><br/>New Random Password: ".$pass."</p>";
+      $body .= "<br/><br/>You may login in you accont following the new link: <a href='".$url."'>Admin Login</a>";
       $body .= "<p>Please update your profile once logged in with a new password of your choice.</p>";
       $body .= "</body></html>";
       
