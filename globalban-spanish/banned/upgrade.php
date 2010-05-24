@@ -198,7 +198,7 @@ if(!$complete) {
                   <option value="32to33">3.2 to 3.3</option>
                   <option value="32to34">3.2 to 3.4</option>
                   <option value="33to34">3.3 to 3.4</option>
-                  <option value="34to341r90" selected>3.4.1 to 3.4.1 r90</option>
+                  <option value="34to341r90" selected>3.4.1 or 3.4.1 rXXX to 3.4.1 r123</option>
                 </select>
   <input type="submit" name="submit" value="Upgrade!">
 </form>

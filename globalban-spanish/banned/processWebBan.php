@@ -86,35 +86,29 @@ if($allowedToBan) {
     if ($banId > 0){
 
         kickUser($steamId, $serverId, $config);
+        
+        // Use this to build the URL link (replace processWebBan with updateBan)
+        $url = "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+        $url = str_replace("processWebBan", "banlist", $url)."&searchText=".addslashes($steamId);
 
         if($config->enableAutoPoste107Forum) {
-          // Use this to build the URL link (replace processWebBan with updateBan)
-          $url = "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-          $url = str_replace("processWebBan", "banlist", $url);
-          $postId = NewPostForum_e107(addslashes($bannedName)." - ".addslashes($steamId),"[b]".$LAN_PROCESSWEBBAN_021."[/b] [color=#009900]".addslashes($username)."[/color]\r\n\r\n[b]".$LAN_PROCESSWEBBAN_022." [/b][color=#990000][link=".$url."&searchText=".addslashes($steamId)."]".addslashes($bannedName)." - ".addslashes($steamId)."[/link][/color]\r\n\r\n[b]".$LAN_PROCESSWEBBAN_023." [/b]".$reasonQueries->getReason($reason)."\r\n\r\n[b]".$LAN_PROCESSWEBBAN_024." [/b]".$length->getReadable(), time(),$config);
+          $postId = NewPostForum_e107(addslashes($bannedName)." - ".addslashes($steamId),"[b]".$LAN_PROCESSWEBBAN_021."[/b] [color=#009900]".addslashes($username)."[/color]\r\n\r\n[b]".$LAN_PROCESSWEBBAN_022." [/b][color=#990000][link=".$url."]".addslashes($bannedName)." - ".addslashes($steamId)."[/link][/color]\r\n\r\n[b]".$LAN_PROCESSWEBBAN_023." [/b]".$reasonQueries->getReason($reason)."\r\n\r\n[b]".$LAN_PROCESSWEBBAN_024." [/b]".$length->getReadable(), time(),$config);
           UpdateBanWebpage ($postId , $banId, $config);
         }
 
         if($config->sendEmails) {
           // Email
-          $subject = $LAN_PROCESSWEBBAN_001;	
+          $subject = $LAN_PROCESSWEBBAN_001." ".$username;	
 
-          $body = "<html><body>";
-          $body .= $LAN_PROCESSWEBBAN_003 . "  ". $username ." ";
+          $body = "<html><body><h2>".$LAN_PROCESSWEBBAN_001." ".$username."</h2><br/>";
+          $body .= $LAN_PROCESSWEBBAN_003." <b>". $username ."</b>";
           if($member) {
-            $body .= $LAN_PROCESSWEBBAN_004;
+            $body .= " ".$LAN_PROCESSWEBBAN_004;
           }
-          $body .= "\n\n";
-
-          // Use this to build the URL link (replace processWebBan with updateBan)
-          $url = "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-          $url = str_replace("processWebBan", "updateBan", $url);
-
-          $body .= "\n\n";
-          $body .= $LAN_PROCESSWEBBAN_005." <a href='".$url."&banId=".$banId."'>".$LAN_PROCESSWEBBAN_006."</a>";
-          $body .= "<p>".$bannedName." (".$steamId.") ".$LAN_PROCESSWEBBAN_007."</p>";  
+          $body .= ":<br/><br/><p><b>".$bannedName."</b> [".$steamId."] ".$LAN_PROCESSWEBBAN_007."</p>";  
+          $body .= "<br/>".$LAN_PROCESSWEBBAN_005." <a href='".$url."'>".$LAN_PROCESSWEBBAN_006."</a>";
           if($config->enableAutoPoste107Forum) {
-            $body .= "<p>".$LAN_PROCESSWEBBAN_008." <a href='".$config->e107Url."e107_plugins/forum/forum_viewtopic.php?".$postId."'>".$LAN_PROCESSWEBBAN_009."</a></p>";
+            $body .= "<br/><p>".$LAN_PROCESSWEBBAN_008." <a href='".$config->e107Url."e107_plugins/forum/forum_viewtopic.php?".$postId."'>".$LAN_PROCESSWEBBAN_009."</a></p>";
           }
           $body .= "</body></html>";
 

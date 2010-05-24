@@ -107,6 +107,10 @@ if(isset($_POST['submitAdd'])) {
       
       $userQueries->addUser($username, $pass, $_POST['userAccessLevel'], $steamId, $email);
       
+      // Use this to build the URL link (replace manageUsers with login)
+      $url = "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+      $url = str_replace('manageUsers&adminPage=1', 'login', $url);
+      
       // Send the email
       // To send HTML mail, the Content-type header must be set
       $headers  = "MIME-Version: 1.0" . "\r\n";
@@ -114,12 +118,12 @@ if(isset($_POST['submitAdd'])) {
       // Additional headers
       $headers .= "From: ".$config->siteName." Ban Management <".$config->emailFromHeader.">" . "\r\n";
       
-      $subject = $config->siteName." Ban Management New User Created";
+      $subject = $config->siteName." GlobalBan - Ban Management -> New User Created";
       
       $body = "<html><body>";
-      $body .= "<h2>".$config->siteName." Ban Management</h2>";
-      $body .= "<br/><p>Your username is ".$username."<br/>Your password is ".$pass."</p>";
-      $body .= "<br/><br/>Your account has now been activated, you may login in: <a href='".ROOTDIR."/index.php?page=login'>Admin Login</a>";;
+      $body .= "<h2>".$config->siteName." GlobalBan - Ban Management -> New User Created</h2>";
+      $body .= "<br/><p>Username: ".$username."<br/><br/>Password: ".$pass."</p>";
+      $body .= "<br/><br/>Your account has now been activated, you may login in: <a href='".$url."'>Admin Login</a>";
       $body .= "<br/><p>Please update your profile once logged in with a new password of your choice.</p>";
       $body .= "</body></html>";
       
