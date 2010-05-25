@@ -10,16 +10,16 @@
 +----------------------------------------------------------------------------+
 */
 
-$LAN_BANREASONS_001 = 'Wollen Sie wirklich die Gründe löschen:';
+$LAN_BANREASONS_001 = 'Wollen Sie wirklich die Grnde lschen:';
 $LAN_BANREASONS_002 = '?';
 $LAN_BANREASONS_003 = 'Bangrundliste';
 $LAN_BANREASONS_004 = 'Bangrund ID';
 $LAN_BANREASONS_005 = 'Grund';
 $LAN_BANREASONS_006 = 'Speichern';
-$LAN_BANREASONS_007 = 'Löschen';
-$LAN_BANREASONS_008 = 'Neue Gründe hinzufügen';
-$LAN_BANREASONS_009 = 'Hinzufügen';
+$LAN_BANREASONS_007 = 'Lschen';
+$LAN_BANREASONS_008 = 'Neue Grnde hinzufgen';
+$LAN_BANREASONS_009 = 'Hinzufgen';
 $LAN_BANREASONS_010 = 'Grund existiert bereits';
-$LAN_BANREASONS_011 = 'Bangründe auf dem Server speichern';
+$LAN_BANREASONS_011 = 'Bangrnde auf dem Server speichern';
 
 ?>
