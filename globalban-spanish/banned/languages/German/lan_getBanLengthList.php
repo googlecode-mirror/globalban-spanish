@@ -10,7 +10,7 @@
 +----------------------------------------------------------------------------+
 */
 
-$LANLENGTH_001 = 'Versto gegen die Server Regeln';
+$LANLENGTH_001 = 'Verstoß gegen die Server Regeln';
 $LANLENGTH_002 = 'Minute';
 $LANLENGTH_003 = 'Stunde';
 $LANLENGTH_004 = 'Tag';
