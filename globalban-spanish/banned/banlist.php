@@ -491,7 +491,7 @@ if(count($bannedUsers) > 0) {
 		  		$bannedPreviously = " (".$bannedUser->getOffenses()." ".$LAN_BANLIST_025.")";
           }
 		  if($bannedUser->getOffenses() > 0) {
-			?><span class="bannedPreviously"><?php echo $bannedPreviously ?></span><img src="images/information.png" style="cursor:help" onmouseover="Tip('<?php echo $information2?>', WIDTH, 800, SHADOW, true, FADEIN, 300, FADEOUT, 300, STICKY, 1, OFFSETX, -20, CLOSEBTN, true, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'))"><?php
+			?><div><span class="bannedPreviously"><?php echo $bannedPreviously ?></span><img src="images/information.png" style="cursor:help" onmouseover="Tip('<?php echo $information2?>', WIDTH, 800, SHADOW, true, FADEIN, 300, FADEOUT, 300, STICKY, 1, OFFSETX, -20, CLOSEBTN, true, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'))"></div><?php
 		  }
 		?>
 		</td>
