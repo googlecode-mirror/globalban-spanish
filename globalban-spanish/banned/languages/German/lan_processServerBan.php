@@ -13,9 +13,9 @@
 $LAN_PROCESSBAN_001 = 'Admin';
 $LAN_PROCESSBAN_002 = 'Gebannte Person';
 $LAN_PROCESSBAN_003 = 'Grund';
-$LAN_PROCESSBAN_004 = 'Lnge';
-$LAN_PROCESSBAN_005 = 'Ingame Ban hinzugefgt von';
-$LAN_PROCESSBAN_006 = 'Der folgende Ban wurde hinzugefgt von ';
+$LAN_PROCESSBAN_004 = 'Länge';
+$LAN_PROCESSBAN_005 = 'Ingame Ban hinzugefügt von';
+$LAN_PROCESSBAN_006 = 'Der folgende Ban wurde hinzugefügt von ';
 $LAN_PROCESSBAN_007 = 'einem Member und muss bearbeitet werden.';
 $LAN_PROCESSBAN_008 = 'ein Admin.';
 $LAN_PROCESSBAN_009 = 'Klicken Sie hier um den Ban einzusehen';
@@ -27,7 +27,7 @@ $LAN_PROCESSBAN_014 = 'GlobalBan';
 $LAN_PROCESSBAN_015 = 'wurde gebannt';
 $LAN_PROCESSBAN_016 = 'von';
 $LAN_PROCESSBAN_017 = 'mit';
-$LAN_PROCESSBAN_018 = "Keine Verbindung zur Datenbank mglich";
+$LAN_PROCESSBAN_018 = "Keine Verbindung zur Datenbank möglich";
 $LAN_PROCESSBAN_019 = "Verbindung erfolgreich!";
-$LAN_PROCESSBAN_020 = "Keine Datenbankauswahl mglich";
+$LAN_PROCESSBAN_020 = "Keine Datenbankauswahl möglich";
 ?>
