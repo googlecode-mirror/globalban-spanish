@@ -134,4 +134,5 @@ $LAN_CONFIGURATION_121 = 'Frances';
 $LAN_CONFIGURATION_122 = 'Ruso';
 $LAN_CONFIGURATION_123 = "Solo Avisar de Ex-Baneados de al menos";
 $LAN_CONFIGURATION_124 = "Permite seleccionar la duracion minima requerida de los banes sobre los que se advisara en el juego cuando entre un ex-baneado.";
+$LAN_CONFIGURATION_125 = "Aleman";
 ?>
