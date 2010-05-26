@@ -340,7 +340,7 @@ if(count($bannedUsers) > 0) {
       $information .= "<tr class='rowColor1'><td>".$LAN_BANLIST_016.":</td><td>".$length."</td></tr>";
       $information .= "<tr class='rowColor2'><td>".$LAN_BANLIST_017.":</td><td>".str_replace('"', "&#34;", $bannedUser->getBanner())."</td></tr>";
       $information .= "<tr class='rowColor1'><td>".$LAN_BANLIST_018.":</td><td>".$bannedUser->getAddDate()."</td></tr>";
-      $information .= "<tr class='rowColor2'><td>".$LAN_BANLIST_019.":</td><td>".$expireDate." ".$expireTime."</td></tr>";
+      $information .= "<tr class='rowColor2'><td>".$LAN_BANLIST_019.":</td><td>".$expireDate."  ".$expireTime."</td></tr>";
       $information .= "<tr class='rowColor1'><td>".$LAN_BANLIST_020.":</td><td>".$bannedUser->getReason()."</td></tr>";
       if($bannedUser->getServerId() != -1) {
         $information .= "<tr class='rowColor2'><td>".$LAN_BANLIST_029.":</td><td>".str_replace('"', "&#34;", $bannedUser->getServer())."</td></tr>";
@@ -371,13 +371,13 @@ if(count($bannedUsers) > 0) {
       $information2 .= "<table class='bordercolor' width='800px' cellspacing='1' cellpadding='5' border='0' style='margin-top: 1px;'>";
 
 	  $information2 .= "<tr>";
-	  $information2 .= " <th class='colColor1' align='center'>".$LAN_BANLIST_014."</th>";
-	  $information2 .= " <th class='colColor1' align='center'>".$LAN_BANLIST_020."</th>";
+	  $information2 .= " <th class='colColor1' width='1%' nowrap align='center'>".$LAN_BANLIST_014."</th>";
+	  $information2 .= " <th class='colColor1' width='1%' nowrap align='center'>".$LAN_BANLIST_020."</th>";
 	  $information2 .= " <th class='colColor2' width='1%' nowrap align='center'>".$LAN_BANLIST_016."</th>";
 	  $information2 .= " <th class='colColor1' width='1%' nowrap align='center'>".$LAN_BANLIST_017."</th>";
 	  $information2 .= " <th class='colColor2' width='1%' nowrap align='center'>".$LAN_BANLIST_018."</th>";
-	  $information2 .= " <th class='colColor1' width='1%' nowrap align='center'>".$LAN_BANLIST_019."</th>";
-	  $information2 .= " <th class='colColor2' align='center'>".$LAN_BANLIST_032."</th>";
+	  // $information2 .= " <th class='colColor1' width='1%' nowrap align='center'>".$LAN_BANLIST_019."</th>";
+	  $information2 .= " <th class='colColor2' width='1%' nowrap align='center'>".$LAN_BANLIST_032."</th>";
 	  $information2 .= " <th class='colColor1' align='center'>".$LAN_BANLIST_027."</th>";
 	  $information2 .= "</tr>";
       
@@ -386,7 +386,7 @@ if(count($bannedUsers) > 0) {
 
 	  // Loop through banned users and display them
 	  foreach($banHistory as $banHistUser) {
-	      list($expireDateHist, $expireTimeHist) = split(' ', $banHistUser->getExpireDate());
+	      // list($expireDateHist, $expireTimeHist) = split(' ', $banHistUser->getExpireDate());
 	      list($addDateHist, $addTimeHist) = split(' ', $banHistUser->getAddDate());
 	      $commentsHist = str_replace(array("\r\n", "\n", "\r"), "<br>", $banHistUser->getComments()); // Convert newlines into html line breaks
           $commentsHist = str_replace("\"", "&#34;", $commentsHist); // Replace quotes with the HTML code
@@ -394,31 +394,32 @@ if(count($bannedUsers) > 0) {
 	      $banLengthHist = new Length();
 	      $banLengthHist->setLength($banHistUser->getLength());
 	      $banLengthHist->setTimeScale($banHistUser->getTimeScale());
-	
+          
+          /*
 	      if($banHistUser->getLength() == 0) {
 	        $expireDateHist = $LAN_BANLIST_033;
 	        $expireTimeHist = "";
 	      }
-
+          
       	  if($banHistUser->getExpireDate() == 'Expired') {
 	        $expireDateHist = "<i>".$LAN_BANLIST_024."</i>";
 			$expireTimeHist = "";
     	  }
-
+          */
 		  $information2 .= " <tr>";
 		  $information2 .= "  <td class='colColor1' nowrap align='center'>".$banHistUser->getName();
           if($banHistUser->getKickCounter() > 0) {
             $information2 .= "&nbsp;<span class='kickCounter'>(".$banHistUser->getKickCounter().")</span>";
           }
           $information2 .= "</td>";
-		  $information2 .= "  <td class='colColor1' nowrap align='center'>".$banHistUser->getReason()."</td>";
+		  $information2 .= "  <td class='colColor1' align='center'>".$banHistUser->getReason()."</td>";
 		  $information2 .= "  <td class='colColor2' nowrap align='center'>".$banLengthHist->getReadable()."</td>";
 		  $information2 .= "  <td class='colColor1' nowrap align='center'>".$banHistUser->getBanner()."</td>";
-		  $information2 .= "  <td class='colColor2' nowrap align='center'>".$addDateHist." ".$addTimeHist."</td>";
-		  $information2 .= "  <td class='colColor1' nowrap align='center'>".$expireDateHist." ".$expireTimeHist."</td>";
+		  $information2 .= "  <td class='colColor2' nowrap align='center'>".$addDateHist."  ".$addTimeHist."</td>";
+		  // $information2 .= "  <td class='colColor1' nowrap align='center'>".$expireDateHist."  ".$expireTimeHist."</td>";
 
 		  if($banHistUser->getWebpage() != "") {
-		    $information2 .= "<td class='rowColor2' align='center'><a href='".$banHistUser->getWebpage()."'><img src='images/database_add.png' align='absmiddle'/></a></td>";
+		    $information2 .= "<td class='rowColor2' nowrap align='center'><a href='".$banHistUser->getWebpage()."'><img src='images/database_add.png' align='absmiddle'/></a></td>";
 		  } else {
 		    $information2 .= "<td class='rowColor2' align='center'>".$LAN_BANLIST_034."</td>";
 		  }
