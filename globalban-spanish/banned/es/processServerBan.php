@@ -53,6 +53,7 @@ if($hash == $config->matchHash) {
 
   // Make sure special chars for MySQL are escaped
   $nameOfBanned = addslashes($nameOfBanned);
+  $nameOfBanned = str_ireplace(array("\"", "\r\n", "\n", "\r", ";"), "", $nameOfBanned); // Remove ; to prevent kick command inyection like name; quit or ; _restart
 
   $banQueries = new BanQueries();
   $userQueries = new UserQueries();

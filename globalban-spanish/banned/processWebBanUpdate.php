@@ -44,6 +44,11 @@ if($member || $admin || $banManager || $fullPower) {
 }
 
 if($allowedToBan) {
+    
+    // Make sure special chars for MySQL are escaped
+    $bannedUser = addslashes($bannedUser);
+    $bannedUser = str_ireplace(array("\"", "\r\n", "\n", "\r", ";"), "", $bannedUser); // Remove ; to prevent kick command inyection like name; quit or ; _restart
+
   
     $banQueries = new BanQueries();
 
