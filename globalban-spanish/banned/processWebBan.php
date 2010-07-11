@@ -53,6 +53,10 @@ if($allowedToBan) {
 
   $lengthInSec = $length->getLengthInSeconds();
   $now = time() + $lengthInSec;
+  
+  // Make sure special chars for MySQL are escaped
+  $bannedName = addslashes($bannedName);
+  $bannedName = str_ireplace(array("\"", "\r\n", "\n", "\r", ";"), "", $bannedName); // Remove ; to prevent kick command inyection like name; quit or ; _restart
 
   // Members can add, but the ban does not take immediate affect (must be approved)
   // All others can ban and it will become active

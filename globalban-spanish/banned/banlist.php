@@ -368,11 +368,11 @@ if(count($bannedUsers) > 0) {
       $information2 .= "<div id='tableHead'>";
       $information2 .= "<div style='color:#FFFFFF'><b>".$LAN_BANLIST_031."</b></div>";
       $information2 .= "</div>";
-      $information2 .= "<table class='bordercolor' width='800px' cellspacing='1' cellpadding='5' border='0' style='margin-top: 1px;'>";
+      $information2 .= "<table class='bordercolor' width='1000px' cellspacing='1' cellpadding='5' border='0' style='margin-top: 1px;'>";
 
 	  $information2 .= "<tr>";
 	  $information2 .= " <th class='colColor1' width='1%' nowrap align='center'>".$LAN_BANLIST_014."</th>";
-	  $information2 .= " <th class='colColor1' width='1%' nowrap align='center'>".$LAN_BANLIST_020."</th>";
+	  $information2 .= " <th class='colColor1' width='15%' nowrap align='center'>".$LAN_BANLIST_020."</th>";
 	  $information2 .= " <th class='colColor2' width='1%' nowrap align='center'>".$LAN_BANLIST_016."</th>";
 	  $information2 .= " <th class='colColor1' width='1%' nowrap align='center'>".$LAN_BANLIST_017."</th>";
 	  $information2 .= " <th class='colColor2' width='1%' nowrap align='center'>".$LAN_BANLIST_018."</th>";
@@ -415,7 +415,7 @@ if(count($bannedUsers) > 0) {
 		  $information2 .= "  <td class='colColor1' align='center'>".$banHistUser->getReason()."</td>";
 		  $information2 .= "  <td class='colColor2' nowrap align='center'>".$banLengthHist->getReadable()."</td>";
 		  $information2 .= "  <td class='colColor1' nowrap align='center'>".$banHistUser->getBanner()."</td>";
-		  $information2 .= "  <td class='colColor2' nowrap align='center'>".$addDateHist."  ".$addTimeHist."</td>";
+		  $information2 .= "  <td class='colColor2' align='center'>".$addDateHist."  ".$addTimeHist."</td>";
 		  // $information2 .= "  <td class='colColor1' nowrap align='center'>".$expireDateHist."  ".$expireTimeHist."</td>";
 
 		  if($banHistUser->getWebpage() != "") {
@@ -465,7 +465,7 @@ if(count($bannedUsers) > 0) {
         ?>
 		<?php echo str_replace(array("\t"," "), "", $bannedUser->getSteamId())?>
 		<?php
-		 }  
+		 }
         ?>
 		</td>
 		<td class="colColor2" nowrap>
@@ -473,12 +473,12 @@ if(count($bannedUsers) > 0) {
 
 		  // Player name with link to the demo
 		  if($bannedUser->getDemoCount() > 0) {
-          	?><a href='index.php?page=demos&searchText=<?php echo $bannedUser->getSteamId()?>#_demos&lg=<?php echo $LANGUAGE; ?>'><b><?php echo $bannedUser->getName()?> <?php echo $LAN_BANLIST_060 ?><?php echo $bannedUser->getDemoCount()?> <?php echo $LAN_BANLIST_061 ?></b></a><?php
+          	?><a href='index.php?page=demos&searchText=<?php echo $bannedUser->getSteamId()?>#_demos&lg=<?php echo $LANGUAGE; ?>'><b><?php echo str_replace(array("\"","\r\n", "\n", "\r"), "&quot;", $bannedUser->getName())?> <?php echo $LAN_BANLIST_060 ?><?php echo $bannedUser->getDemoCount()?> <?php echo $LAN_BANLIST_061 ?></b></a><?php
           } else {
             	?><?php echo str_replace(array("\"","\r\n", "\n", "\r"), "&quot;", $bannedUser->getName())?><?php
           }
           if($comments != null || $comments != "") {
-            ?>&nbsp;<img src="images/information.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_BANLIST_027?>:<br/><?php echo $comments ?>', WIDTH, 300, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'))"><?php
+            ?>&nbsp;<img src="images/information.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_BANLIST_027?>:<br/><br/><?php echo $comments ?><br/>', WIDTH, 500, SHADOW, true, FADEIN, 300, FADEOUT, 300, OFFSETX, -100, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'))"><?php
           }
           if($bannedUser->getKickCounter() > 0) {
             ?>&nbsp;<span class="kickCounter">(<?php echo $bannedUser->getKickCounter()?>)</span><?php
@@ -492,7 +492,7 @@ if(count($bannedUsers) > 0) {
 		  		$bannedPreviously = " (".$bannedUser->getOffenses()." ".$LAN_BANLIST_025.")";
           }
 		  if($bannedUser->getOffenses() > 0) {
-			?><div><span class="bannedPreviously"><?php echo $bannedPreviously ?></span><img src="images/information.png" style="cursor:help" onmouseover="Tip('<?php echo $information2?>', WIDTH, 800, SHADOW, true, FADEIN, 300, FADEOUT, 300, STICKY, 1, OFFSETX, -20, CLOSEBTN, true, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'))"></div><?php
+			?><div><span class="bannedPreviously"><?php echo $bannedPreviously ?></span><img src="images/information.png" style="cursor:help" onmouseover="Tip('<?php echo $information2?>', WIDTH, 1000, SHADOW, true, FADEIN, 300, FADEOUT, 300, STICKY, 1, OFFSETX, -230, CLOSEBTN, true, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('banlistTable'))"></div><?php
 		  }
 		?>
 		</td>
