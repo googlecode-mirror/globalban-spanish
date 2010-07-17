@@ -442,7 +442,7 @@ if(count($bannedUsers) > 0) {
     	  }
           */
 		  $information2 .= " <tr>";
-		  $information2 .= "  <td class='colColor1' nowrap align='center'>".$banHistUser->getName();
+		  $information2 .= "  <td class='colColor1' nowrap align='center'>".str_replace('"', "&#34;", $banHistUser->getName());
           if($banHistUser->getKickCounter() > 0) {
             $information2 .= "&nbsp;<span class='kickCounter'>(".$banHistUser->getKickCounter().")</span>";
           }
