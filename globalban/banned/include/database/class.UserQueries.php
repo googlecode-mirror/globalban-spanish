@@ -639,7 +639,7 @@ class UserQueries extends Config {
                 Inner Join gban_admin_steam s ON a.admin_id = s.admin_id
                 WHERE s.active = '1' AND a.admin_id NOT IN (
                     SELECT sa.admin_id
-                    FROM gban_group_admin sa
+                    FROM gban_server_admin sa
                     WHERE server_id = '".addslashes($serverId)."'
                     )
                 ORDER BY a.name ASC";
