@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /********************************************************************
  * This is a very simplified version of PsychoQuery from            *
  * PsychoStats. Do not use it. Use the PsychoQuery Class instead    *
@@ -15,12 +15,17 @@ class LIVE {
 		$s = fsockopen("udp://".$address,$port,$errno,$errstring,1);
 		stream_set_timeout($s,1); // 1 second timeout on read/write operations
 
-		fwrite($s,"\xFF\xFF\xFF\xFF\x54Source Engine Query");
+		fwrite($s,"\xFF\xFF\xFF\xFF\x57Source Engine Query");
 
-		$packet = fread($s,1024);
+		$packet = fread($s,1260);
+		
 
+		echo ($packet);
+		
 		//Left 6 characters are the standard header
 		$parr = explode("\x00",substr($packet,6));
+		
+		print_r ($parr);
 
 		if(ord($packet[4]) == INFO_RESPONSE_HL1) {
       //HL1 Response
