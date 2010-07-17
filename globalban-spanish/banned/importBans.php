@@ -40,7 +40,7 @@ $banReasons = $reasonQueries->getReasonList();
 // If this is set, then that means a server is being added
 if(isset($_POST['submitImport'])) {  
   // Parse input and add bans
-  //$bans = $_POST['bans'];
+
   $reason = $_POST['reason']; // Reason Id
   $tempName = $_FILES['cfgfile']['tmp_name']; // Temp name of when it is uploaded
 

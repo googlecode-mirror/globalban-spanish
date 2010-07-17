@@ -41,7 +41,7 @@ $valid = array("username"=>true,
 // *********************************************
 // If the user is updating their general profile
 // *********************************************
-if(isset($_POST['generalProfile'])) {
+if(!empty($_POST['generalProfile']) && isset($_POST['generalProfile'])) {
   $generalChangesMade = false;
   $generalErrors = false;
   
@@ -118,7 +118,7 @@ if(isset($_POST['generalProfile'])) {
 // *********************************************
 // If the user is updating their password
 // *********************************************
-if(isset($_POST['updatePassword'])) {
+if(!empty($_POST['updatePassword']) && isset($_POST['updatePassword'])) {
 
   // Current password check
   if($user->getPassword() == md5($_POST['cpassword'])) {
@@ -193,14 +193,18 @@ if(isset($_POST['updatePassword'])) {
 </div>
 <?php
 // Display that the changes were successful
-if($generalChangesMade) {
+if(!empty($generalChangesMade)) {
+	if ($generalChangesMade) {
   ?><h5 class="error"><?php echo $LAN_PROFILE_012; ?></h5><?php
+	}
 }
 ?>
 <?php
 // Display an error message if there was any bad input
-if($generalErrors) {
+if(!empty($generalErrors)) {
+	if ($generalErrors) {
   ?><h5 class="error"><?php echo $LAN_PROFILE_013; ?></h5><?php
+  }
 }
 ?>
 <br/>
@@ -244,7 +248,9 @@ if($generalErrors) {
 
 <?php
 // Display that the changes were successful
-if($passwordChangesMade) {
+if(!empty($passwordChangesMade)) {
+	if($passwordChangesMade) {
   ?><h5 class="error"><?php echo $LAN_PROFILE_024; ?></h5><?php
+	}
 }
 ?>

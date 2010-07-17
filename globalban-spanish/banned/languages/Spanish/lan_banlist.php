@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /*
 + ----------------------------------------------------------------------------+
 |     esGlobalBan - Language File.
@@ -71,4 +71,6 @@ $LAN_BANLIST_058 = 'TOTAL';
 $LAN_BANLIST_059 = 'Hasta:';
 $LAN_BANLIST_060 = '(';
 $LAN_BANLIST_061 = 'demo)';
+$LAN_BANLIST_062 = '\u00BFSeguro que desea eliminar el ban de:';
+$LAN_BANLIST_063 = 'definitivamente?\n\nRecuerde que esto solo debe usarse para corregir confusiones y que lo normal para Desactivar un Ban es pulsar sobre el -Visto Bueno- correspondiente de la columna [Activo].';
 ?>

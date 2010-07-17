@@ -41,6 +41,25 @@ function deleteVerify(id, name) {
 </script>
 <?php
 
+if(!empty($_POST['username'])){
+	$username = $_POST['username']; // Search text
+}else{
+	$username = "";
+}
+if(!empty($_POST['steamId'])){
+	$steamId = $_POST['steamId']; // Search text
+}else{
+	$steamId = "";
+}
+if(!empty($_POST['userAccessLevel'])){
+	$userAccessLevel = $_POST['userAccessLevel']; // Search text
+}else{
+	$userAccessLevel = 5;
+}
+
+
+
+
 $error = false;
 $newAdminError = false;
 
@@ -138,6 +157,7 @@ if(isset($_POST['submitAdd'])) {
   }
 }
 
+$deleteError = false;
 // If a server is being deleted
 if(isset($_POST['submitDelete'])) {
   if(!$userQueries->deleteUser($_POST['userId'])) {
@@ -176,19 +196,19 @@ if($fullPower) {
           <li><a href="#fragment-5"><span>No Power</span></a></li>
       </ul>
       <div id="fragment-1">
-        <?php userTable($users, 1); ?>
+        <?php userTable($users, 1, $config); ?>
       </div>
       <div id="fragment-2">
-        <?php userTable($users, 2); ?>
+        <?php userTable($users, 2, $config); ?>
       </div>
       <div id="fragment-3">
-        <?php userTable($users, 3); ?>
+        <?php userTable($users, 3, $config); ?>
       </div>
       <div id="fragment-4">
-        <?php userTable($users, 4); ?>
+        <?php userTable($users, 4, $config); ?>
       </div>
       <div id="fragment-5">
-        <?php userTable($users, 5); ?>
+        <?php userTable($users, 5, $config); ?>
       </div>
   </div>
 
@@ -240,7 +260,7 @@ if($fullPower) {
       ?>
   		<tr>
   			<td class="rowColor2"><img src="images/bullet_star.png"/> Steam ID:</td>			
-  			<td class="rowColor2"><input name="steamId" id="steamdId" type="text" value="<?php echo $steamId?>" size="25" maxlength="25"/> (must be in <b>STEAM_X:X:XXXXXX</b> format)
+  			<td class="rowColor2"><input name="steamId" id="steamId" type="text" value="<?php echo $steamId?>" size="25" maxlength="25"/> (must be in <b>STEAM_X:X:XXXXXX</b> format)
   			<?php if(!$valid['steamId'] && !$nopost) { ?><span class="error">Steam ID not in vaild format</span><?php } ?></td>
   		</tr>
   		<?php
@@ -255,11 +275,11 @@ if($fullPower) {
   			<td class="rowColor2">Access Level:</td>
   			<td class="rowColor2">
   			 <select id="userAccessLevel" name="userAccessLevel">
-            <option value="1">Super User</option>
-            <option value="2">Ban Manager</option>
-            <option value="3">Admin</option>
-            <option value="4">Member</option>
-            <option value="5" selected>No Powers</option>
+            <option value="1"<?php if($userAccessLevel == 1) echo " selected"; ?>>Super User</option>
+            <option value="2"<?php if($userAccessLevel == 2) echo " selected"; ?>>Ban Manager</option>
+            <option value="3"<?php if($userAccessLevel == 3) echo " selected"; ?>>Admin</option>
+            <option value="4"<?php if($userAccessLevel == 4) echo " selected"; ?>>Member</option>
+            <option value="5"<?php if($userAccessLevel == 5) echo " selected"; ?>>No Powers</option>
           </select>
         </td>
   		</tr>
@@ -286,7 +306,7 @@ if($fullPower) {
 <?php
 }
 // Power is the access level
-function userTable($users, $power) {
+function userTable($users, $power, $config) {
   ?>
   <table id="adminUserTable-<?php echo $power?>" class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
     <tr>

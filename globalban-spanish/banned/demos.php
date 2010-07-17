@@ -28,62 +28,65 @@ include_once(ROOTDIR."/include/objects/class.Demo.php");
 
 
 // Page gets (for range and sorts and other things)
-$startRange = $_GET['sr']; // Start Range
-$sortBy = $_GET['sc']; // Column to sort by
-$sortDirection = $_GET['sd']; // Direction to sort by
-$searchText = $_POST['searchText']; // Search text
+if(!empty($_GET['sr'])){
+	$startRange = $_GET['sr']; // Start Range
+}else{
+	$startRange = 0;
+}
+if(!empty($_GET['sc'])){
+	$sortBy = $_GET['sc']; // Column to sort by
+}else{
+	$sortBy = "add_date";
+}
+if(!empty($_GET['sd'])){
+	$sortDirection = $_GET['sd']; // Direction to sort by
+}else{
+	$sortDirection = "DESC";
+}
+if(!empty($_POST['searchText'])){
+	$searchText = $_POST['searchText']; // Search text
+}else{
+	$searchText = "";
+}
 
 $lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_demos.php';
 include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_demos.php");
-
-
-if(!isset($_POST['searchText'])) {
-  $searchText = $_GET['searchText'];
-}
-
-if(empty($startRange)) {
-  $startRange = 0;
-}
-if(empty($sortBy)) {
-  $sortBy = "add_date";
-}
-if(empty($sortDirection)) {
-  $sortDirection = "DESC";
-}
 
 // Initialize Objects
 $serverQueries = new ServerQueries();
 $reasonQueries = new ReasonQueries();
 $demoQueries = new DemoQueries();
 
-// Submit button was pushed
-if($_POST['submitDemo']) {
-  $filename = $_FILES['file']['name']; // Get the name of the file
-  $tempName = $_FILES['file']['tmp_name']; // Temp name of when it is uploaded
-  $fileType = $_FILES['userfile']['type'];
+$success = "";
 
-  // We check for multiple page types as apache may be configured to support them
-  $filename = str_ireplace(".php", "_", $filename);
-  $filename = str_ireplace(".jsp", "_", $filename);
-  $filename = str_ireplace(".asp", "_", $filename);
-  $extension = substr($filename, strlen($filename)-3, strlen($filename));
-  $allowedExtensions = array("zip", "rar");
-  if(in_array($extension, $allowedExtensions)) {
-      if(uploadFile($filename, $tempName, $config, $demoQueries)) {
-      $success = "success";
-    } else {
-      $success = "error";
-    }
-  } else {
-    $success = "ext not allowed";
-  }
+// Submit button was pushed
+if(!empty($_POST['submitDemo']) && $_POST['submitDemo']) {
+	$filename = $_FILES['file']['name']; // Get the name of the file
+	$tempName = $_FILES['file']['tmp_name']; // Temp name of when it is uploaded
+	$fileType = $_FILES['userfile']['type'];
+
+	// We check for multiple page types as apache may be configured to support them
+	$filename = str_ireplace(".php", "_", $filename);
+	$filename = str_ireplace(".jsp", "_", $filename);
+	$filename = str_ireplace(".asp", "_", $filename);
+	$extension = substr($filename, strlen($filename)-3, strlen($filename));
+	$allowedExtensions = array("zip", "rar");
+	if(in_array($extension, $allowedExtensions)) {
+		if(uploadFile($filename, $tempName, $config, $demoQueries)) {
+			$success = "success";
+		} else {
+			$success = "error";
+		}
+	} else {
+		$success = "ext not allowed";
+	}
   
 }
 
 // Demo delete process
 if($banManager || $fullPower) {
   // A ban manager or full power admin executed a demo delete
-  if($_GET['process'] == "delete") {
+  if(!empty($_POST['process']) && $_GET['process'] == "delete") {
     if($_GET['demoId'] != null || $_GET['demoId'] != "") {
       $demoDeleted = $demoQueries->deleteDemo(ROOTDIR."/".$config->demoRootDir."/", $_GET['demoId']);
     }
@@ -176,7 +179,7 @@ else if($success == "error"){
 <?php
 }// end success else
 
-if($demoDeleted != "" || $demoDelete != null) {
+if(!empty($demoDeleted) && ($demoDeleted != "" || $demoDeleted != null)) {
 ?>
 <h5><?php echo $demoDeleted?> <?php echo $LANDEMOS_004; ?></h5>
 <?php
@@ -200,7 +203,7 @@ if($demoDeleted != "" || $demoDelete != null) {
   </tr>
   <tr>
     <td class="rowColor1" width="1%" nowrap><?php echo $LANDEMOS_011; ?></td>
-    <td class="rowColor1"><input name="uploaderName" id="uploaderName" type="text" value="" size="40" maxLength="40"/> <?php echo $LANDEMOS_012; ?></td>
+    <td class="rowColor1"><input name="uploaderName" id="uploaderName" type="text" value="<?php echo $user->getName()?>" size="40" maxLength="40"/> <?php echo $LANDEMOS_012; ?></td>
   </tr>
   <tr>
     <td class="rowColor2" width="1%" nowrap><?php echo $LANDEMOS_013; ?></td>

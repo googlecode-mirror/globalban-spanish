@@ -30,29 +30,83 @@ require_once(ROOTDIR."/include/class.rcon.php");
 
 
 // Page gets (for range and sorts and other things)
-$startRange = $_GET['sr']; // Start Range
-$sortBy = $_GET['sc']; // Column to sort by
-$sortDirection = $_GET['sd']; // Direction to sort by
-$searchText = $_GET['searchText']; // Search text
-$reasonSortBy = $_GET['rsc'];
-$reasonSortDirection = $_GET['rsd'];
-$reasonSearchText = $_GET['rst'];
-$adminSortBy = $_GET['asc'];
-$adminSortDirection = $_GET['asd'];
-$adminSearchText = $_GET['ast'];
-$bansFilter = $_GET['bf'];
-$bansReason_id = $_GET['bri'];
-$bansAdmin = $_GET['ba'];
+if(!empty($_GET['sr'])){
+	$startRange = $_GET['sr']; // Start Range
+}else{
+	$startRange = 0;
+}
 
-if(empty($startRange)) {
-  $startRange = 0;
+if(!empty($_GET['sc'])){
+	$sortBy = $_GET['sc']; // Column to sort by
+}else{
+	$sortBy = "add_date";
+}	
+
+if(!empty($_GET['sd'])){
+	$sortDirection = $_GET['sd']; // Direction to sort by
+}else{
+	$sortDirection = "DESC";
 }
-if(empty($sortBy)) {
-  $sortBy = "add_date";
+
+if(!empty($_GET['searchText'])){
+	$searchText = $_GET['searchText']; // Search text
+}else{
+	$searchText = "";
 }
-if(empty($sortDirection)) {
-  $sortDirection = "DESC";
+
+if(!empty($_GET['rsc'])){
+	$reasonSortBy = $_GET['rsc'];
+}else{
+	$reasonSortBy = "NumPermanentes";
 }
+
+if(!empty($_GET['rsd'])){
+	$reasonSortDirection = $_GET['rsd'];
+}else{
+	$reasonSortDirection = "DESC";
+}
+
+if(!empty($_GET['rst'])){
+	$reasonSearchText = $_GET['rst'];
+}else{
+	$reasonSearchText = "";
+}	
+
+if(!empty($_GET['asc'])){
+	$adminSortBy = $_GET['asc'];
+}else{
+	$adminSortBy = "NumPermanentes";
+}
+
+if(!empty($_GET['asd'])){
+	$adminSortDirection = $_GET['asd'];
+}else{
+	$adminSortDirection = "DESC";
+}
+
+if(!empty($_GET['ast'])){
+	$adminSearchText = $_GET['ast'];
+}else{
+	$adminSearchText = "";
+}
+	
+if(!empty($_GET['bf'])){
+	$bansFilter = $_GET['bf'];
+}else{
+	$bansFilter = "";
+}
+
+if(!empty($_GET['bri'])){
+	$bansReason_id = $_GET['bri'];
+}else{
+	$bansReason_id = "";
+}
+
+if(!empty($_GET['ba'])){
+	$bansAdmin = $_GET['ba'];
+}else{
+	$bansAdmin = "";
+}	
 
 $lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_banlist.php';
 include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_banlist.php");
@@ -61,14 +115,16 @@ $banQueries = new BanQueries();
 
 // Ban delete process
 if($fullPower) {
-  // A full power admin executed a ban delete
-  if($_GET['process'] == "delete") {
-    if($_GET['steamId'] != null || $_GET['steamId'] != "") {
-      $deleteBannedUser = $banQueries->getBannedUserBySteamId($_GET['steamId']);
-      unBanUser($deleteBannedUser->getSteamId(), $deleteBannedUser->getIp());
-      $banQueries->deleteBan($_GET['steamId']);
-    }
-  }
+	// A full power admin executed a ban delete
+	if(!empty($_GET['process']) && !empty($_GET['BanId'])){
+		if($_GET['process'] == "delete") {
+			if($_GET['BanId'] != null || $_GET['BanId'] != "") {
+				$deleteBannedUser = $banQueries->getBannedUser($_GET['BanId']);
+				unBanUser($deleteBannedUser->getSteamId(), $deleteBannedUser->getIp());
+				$banQueries->deleteBan($deleteBannedUser->getSteamId());
+			}
+		}
+	}
 }
 
 function unBanUser($steamId, $bannedIP) {
@@ -89,39 +145,10 @@ function unBanUser($steamId, $bannedIP) {
     }
 }
 
-if(empty($bansFilter)) {
-	$bansFilter = "";
-}
-if(empty($bansReason_id)) {
-	$bansReason_id = "";
-}
-if(empty($bansAdmin)) {
-	$bansAdmin = "";
-}
-
 // Count how many bans exist in the database
 $banCount = $banQueries->getNumberOfBans($member, $admin, $banManager, $fullPower, $searchText, $bansFilter, $bansReason_id, $bansAdmin);
 
 $bannedUsers = $banQueries->getBanList($member, $admin, $banManager, $fullPower, $startRange, $banCount, $sortBy, $sortDirection, $searchText, $bansFilter, $bansReason_id, $bansAdmin);
-
-if(empty($reasonSortBy)) {
-	$reasonSortBy = "NumPermanentes";
-}
-if(empty($reasonSortDirection)) {
-	$reasonSortDirection = "DESC";
-}
-if(empty($reasonSearchText)) {
-	$reasonSearchText = "";
-}
-if(empty($adminSortBy)) {
-	$adminSortBy = "NumPermanentes";
-}
-if(empty($adminSortDirection)) {
-	$adminSortDirection = "DESC";
-}
-if(empty($adminSearchText)) {
-	$adminSearchText = "";
-}
 
 $reasonStats = $banQueries->getReasonStats($reasonSortBy, $reasonSortDirection, $reasonSearchText);
 
@@ -155,6 +182,14 @@ if($endRange > $banCount) {
           });
       });
     });
+  </script>
+  
+  <script type="text/javascript">
+	function deleteBanVerify(BanId, Banned_Name) {
+		if(confirm("<?php echo $LAN_BANLIST_062; ?> "+Banned_Name+" <?php echo $LAN_BANLIST_063; ?>")) {
+			document.getElementById("deleteBan"+BanId).submit();
+		}
+	}
   </script>
 
   <script src="javascript/ajax.js" language="javascript" type="text/javascript"></script>
@@ -458,8 +493,8 @@ if(count($bannedUsers) > 0) {
           // Fullpower admins and Ban Mangers can modify ALL bans
           // Members and Amdins can only edit their own bans (which is matched by either banner name or banner steam id)
           if($fullPower || $banManager || 
-            (($bannedUser->getBanner() == $_SESSION['name'] && !empty($_SESSION['name'])) && ($admin || $member)) || 
-            (($bannedUser->getBannerSteamId() == $_SESSION['steamId'] && !empty($_SESSION['steamId'])) && ($admin || $member))) {
+            ( (!empty($_SESSION['name']) && $bannedUser->getBanner() == $_SESSION['name']) && ($admin || $member) ) || 
+            ( (!empty($_SESSION['steamId']) && $bannedUser->getBannerSteamId() == $_SESSION['steamId']) && ($admin || $member))) {
             ?><a href="index.php?page=updateBan&banId=<?php echo $bannedUser->getBanId()?>&lg=<?php echo $LANGUAGE; ?>"><?php echo str_replace(array("\t"," "), "", $bannedUser->getSteamId())?></a><?php
           } else {
         ?>
@@ -561,8 +596,13 @@ if(count($bannedUsers) > 0) {
 		<?php
 		if($fullPower) {
           ?>
-		  <td class="colColor2"><div align="center"><a href="index.php?page=banlist&process=delete&steamId=<?php echo $bannedUser->getSteamId() ?>&lg=<?php echo $LANGUAGE ?>" style="cursor:pointer;">
-            <img src="images/trash-full.png" align="absmiddle"/></a></div></td>
+		  <td class="colColor2" style="cursor:pointer;" onclick="deleteBanVerify('<?php echo $bannedUser->getBanId() ?>', '<?php echo str_replace('"', "&#34;", $bannedUser->getName()) ?>');">
+            <form action="index.php?page=banlist&lg=<?php echo $LANGUAGE ?>" id="deleteBan<?php echo $bannedUser->getBanId() ?>" name="deleteBan<?php echo $bannedUser->getBanId() ?>" method="GET">
+              <input type="hidden" name="BanId" id="BanId" value="<?php echo $bannedUser->getBanId() ?>"/>
+              <input type="hidden" name="process" value="delete">
+              <div align="center"><img src="images/trash-full.png" align="absmiddle"/></div>
+            </form>
+		  </td>
 		<?php
       	}
       	?>

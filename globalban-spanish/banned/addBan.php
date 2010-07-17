@@ -27,11 +27,30 @@ include_once(ROOTDIR."/include/database/class.LengthQueries.php");
 $lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_addban.php';
 include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_addban.php");
 
+if(!empty($_GET['steamId'])){
+	$steamId = $_GET['steamId'];
+}else{
+	$steamId = "";
+}
 
-$steamId = $_GET['steamId'];
-$bannedName = stripslashes($_GET['bannedName']);
-$serverId = $_GET['serverId'];
-$reasonId = $_GET['reasonId'];
+if(!empty($_GET['bannedName'])){
+	$bannedName = stripslashes($_GET['bannedName']);
+}else{
+	$bannedName = "";
+}
+
+if(!empty($_GET['serverId'])){
+	$serverId = $_GET['serverId'];
+}else{
+	$serverId = 0;
+}
+
+if(!empty($_GET['reasonId'])){
+	$reasonId = $_GET['reasonId'];
+}else{
+	$reasonId = 0;
+}
+
 
 // Initialize Objects
 $serverQueries = new ServerQueries();
@@ -91,8 +110,11 @@ function formVerifyIp() {
 }
 </script>
 <?php
-if($_GET['dupe'] == "1") {
-  ?><script type="text/javascript">alert("<?php echo $LANADDBAN_001; ?>");</script><?php
+
+if(!empty($_GET['dupe'])) {
+	if($_GET['dupe'] == "1") {
+	  ?><script type="text/javascript">alert("<?php echo $LANADDBAN_001; ?>");</script><?php
+	}
 }
 ?>
 <div class="tborder">
