@@ -908,19 +908,17 @@ class BanQueries extends Config {
 	************************************************************************/
   function getBanHistory($banId) {
     $query = "SELECT b.ban_id, h.steam_id, h.ip, h.name, h.server_id, h.kick_counter, COALESCE(s.name, h.webpage) AS servername, h.webpage, h.length,
-              h.time_scale, h.add_date, count(d.steam_id) as demo_count, 
+              h.time_scale, h.add_date,
 			  case when h.expire_date < NOW() then
       			'Expired'
     		  else
       			h.expire_date
     		  end expire_date,
 			  h.modified_by,
-              br.reason, h.banner, h.banner_steam_id, h.active, h.pending, h.name, h.comments,
-			  (SELECT count(1) FROM gban_ban_history bh WHERE bh.steam_id = b.steam_id) AS offenses
+              br.reason, h.banner, h.banner_steam_id, h.active, h.pending, h.name, h.comments
               FROM gban_ban b, gban_ban_history h
               LEFT JOIN gban_reason br ON h.reason_id = br.reason_id
               LEFT JOIN gban_servers s ON h.server_id = s.server_id
-			  LEFT JOIN gban_demo d ON b.steam_id = d.steam_id
               WHERE b.ban_id = '".$banId."'
               AND h.steam_id = b.steam_id
               ORDER BY h.add_date DESC";
@@ -954,9 +952,7 @@ class BanQueries extends Config {
       }
 	  $bannedUser->setWebpage($bannedUsersArray[$i]['webpage']);
       $bannedUser->setBannerSteamId($bannedUsersArray[$i]['banner_steam_id']);
-      $bannedUser->setDemoCount($bannedUsersArray[$i]['demo_count']);
       $bannedUser->setComments(stripslashes($bannedUsersArray[$i]['comments']));
-      $bannedUser->setOffenses($bannedUsersArray[$i]['offenses']);
 
       array_push($bannedUsers, $bannedUser); // Add the banned user object to the array
     }
