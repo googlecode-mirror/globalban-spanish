@@ -71,6 +71,27 @@ class AdminGroupQueries extends Config {
     return $groupId;
   }
 
+    /************************************************************************
+	Delete a AdminGroup
+	************************************************************************/
+	function deleteAdminGroup($id) {
+	
+		// 1º Delete fron all Server_Groups the Admins that was using this AdminGroup
+		$deleteAdminGroupQuery = "DELETE FROM `gban_group_admin` WHERE (`admin_group_id`='".$id."')";
+		$this->db->sql_query($deleteAdminGroupQuery);
+		
+		// 2º Delete Plugin and Flags that was using this AdminGroup
+		$deleteAdminGroupQuery = "DELETE FROM `gban_admin_group_flag` WHERE (`admin_group_id`='".$id."')";
+		$this->db->sql_query($deleteAdminGroupQuery);
+		
+		// 3º Delete fron all Servers (without Server_Group) the Admins that was using this AdminGroup
+		$deleteAdminGroupQuery = "DELETE FROM `gban_server_admin` WHERE (`admin_group_id`='".$id."')";
+		$this->db->sql_query($deleteAdminGroupQuery);
+		
+		// 4º Delete the AdminGroup
+		$deleteAdminGroupQuery = "DELETE FROM `gban_admin_group` WHERE (`admin_group_id`='".$id."')";
+		$this->db->sql_query($deleteAdminGroupQuery);
+	}
   /************************************************************************
 	Get the a specific admin group
 	************************************************************************/

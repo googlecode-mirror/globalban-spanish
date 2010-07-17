@@ -27,21 +27,21 @@ include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_man
 
 ?>
 <script type="text/javascript">
-function deleteVerify(serverId, serverName) {
-  if(confirm("<?php echo $LAN_MANAGEADMINGROUPS_014; ?> "+serverName+"<?php echo $LAN_MANAGEADMINGROUPS_015; ?>")) {
-    document.getElementById("deleteServer"+serverId).submit();
+function deleteGroupVerify(groupId, groupName) {
+  if(confirm("<?php echo $LAN_MANAGEADMINGROUPS_014; ?> "+groupName+"<?php echo $LAN_MANAGEADMINGROUPS_015; ?>")) {
+    document.getElementById("deleteAdminGroup:"+groupId).submit();
   }
 }
 </script>
 <?php
-// Only those with full privs can remove or add servers to the list
+// Only those with full privs can remove or add AdminGroup to the list
 if($fullPower) {
 
 $adminGroupQueries = new AdminGroupQueries();
 
 $error = false;
 
-// If this is set, then that means a server is being added
+// If this is set, then that means a AdminGroup is being added
 if(isset($_POST['submitAdd'])) {
 
   $newGroupId = $adminGroupQueries->addAdminGroup($_POST['groupName'], $_POST['description']);
@@ -51,7 +51,7 @@ if(isset($_POST['submitAdd'])) {
   }
 }
 
-// If a server is being deleted
+// If a AdminGroup is being deleted
 if(isset($_POST['deleteAdminGroup'])) {
   $adminGroupQueries->deleteAdminGroup($_POST['adminGroupId']);
 }
@@ -162,6 +162,14 @@ $groups = $adminGroupQueries->getAdminGroups();
           <tr>
             <td class="colColor1" width="1%" nowrap><?php echo $LAN_MANAGEADMINGROUPS_002; ?> <input type="text" id="groupName-<?php echo $group->getId()?>" name="groupName-<?php echo $group->getId()?>" value="<?php echo $group->getName()?>" size="40" maxlength="255"/></td>
             <td class="colColor2" width="1%" nowrap><?php echo $LAN_MANAGEADMINGROUPS_003; ?> <input type="text" id="groupDescription-<?php echo $group->getId()?>" name="groupDescription-<?php echo $group->getId()?>" value="<?php echo $group->getDescription()?>" size="40" maxlength="255"/></td>
+			<td class="colColor1" style="cursor:pointer;" onclick="deleteGroupVerify('<?php echo $group->getId()?>', '<?php echo $group->getName()?>');"
+				onmouseover="Tip('<?php echo $LAN_MANAGEADMINGROUPS_017; ?> <?php echo $group->getName()?> <?php echo $LAN_MANAGEADMINGROUPS_018; ?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('adminGroup'))">
+				<form action="index.php?page=manageAdminGroups&adminPage=1" id="deleteAdminGroup:<?php echo $group->getId()?>" name="deleteAdminGroup<?php echo $group->getId()?>" method="POST">
+				  <input type="hidden" name="adminGroupId" id="adminGroupId" value="<?php echo $group->getId()?>"/>
+				  <input type="hidden" name="deleteAdminGroup" value="1">
+				  <img src="images/trash-full.png"/>
+				</form>
+			</td>
           </tr>
         </table>
       <?php if(count($missingPlugins) > 0) { ?>
@@ -254,11 +262,11 @@ $groups = $adminGroupQueries->getAdminGroups();
         </td>
         <td class="colColor1" style="cursor:pointer;" onclick="deleteVerify('<?php echo $group->getId()?>', '<?php echo $group->getName()?>');"
             onmouseover="Tip('<?php echo $LAN_MANAGEADMINGROUPS_017; ?> <?php echo $group->getName()?> <?php echo $LAN_MANAGEADMINGROUPS_018; ?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('adminGroup'))">
-        <form action="index.php?page=manageAdminGroups&adminPage=1" id="adminGroup:<?php echo $group->getId()?>" name="deleteServer<?php echo $group->getId()?>" method="POST">
-          <input type="hidden" name="adminGroupId" id="adminGroupId" value="<?php echo $group->getId()?>"/>
-          <input type="hidden" name="deleteAdminGroup" value="1">
-          <img src="images/trash-full.png"/>
-        </form>
+			<form action="index.php?page=manageAdminGroups&adminPage=1" id="adminGroup:<?php echo $group->getId()?>" name="deleteServer<?php echo $group->getId()?>" method="POST">
+			  <input type="hidden" name="adminGroupId" id="adminGroupId" value="<?php echo $group->getId()?>"/>
+			  <input type="hidden" name="deleteAdminGroup" value="1">
+			  <img src="images/trash-full.png"/>
+			</form>
         </td>
       </tr>
       <tr>
