@@ -23,19 +23,28 @@ include_once(ROOTDIR."/include/database/class.BanQueries.php");
 include_once(ROOTDIR."/include/objects/class.BannedUser.php");
 
 // Page gets (for range and sorts and other things)
-$startRange = $_GET['sr']; // Start Range
-$sortBy = $_GET['sc']; // Column to sort by
-$sortDirection = $_GET['sd']; // Direction to sort by
-$searchText = $_POST['searchText']; // Search text
+if(!empty($_GET['sr'])){
+	$startRange = $_GET['sr']; // Start Range
+}else{
+	$startRange = 0;
+}
 
-if(empty($startRange)) {
-  $startRange = 0;
+if(!empty($_GET['sc'])){
+	$sortBy = $_GET['sc']; // Start Range
+}else{
+	$sortBy = "ip";
 }
-if(empty($sortBy)) {
-  $sortBy = "ip";
+
+if(!empty($_GET['sd'])){
+	$sortDirection = $_GET['sd']; // Start Range
+}else{
+	$sortDirection = "DESC";
 }
-if(empty($sortDirection)) {
-  $sortDirection = "DESC";
+
+if(!empty($_POST['searchText'])){
+	$searchText = $_POST['searchText']; // Start Range
+}else{
+	$searchText = "";
 }
 
 $lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_ipbanlist.php';

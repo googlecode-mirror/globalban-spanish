@@ -71,4 +71,6 @@ $LAN_BANLIST_058 = 'Alle';
 $LAN_BANLIST_059 = 'Ablaufdatum:';
 $LAN_BANLIST_060 = '(';
 $LAN_BANLIST_061 = 'Demo)';
+$LAN_BANLIST_062 = '\u00BFDo you really want to delete the ban:';
+$LAN_BANLIST_063 = 'for ever?\n\nRemember that this should only be used in case of confusion. Normal to de-activate Ban is click on the -OK- in column [Active].';
 ?>
