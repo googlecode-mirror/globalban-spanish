@@ -999,28 +999,30 @@ if(count($bannedUsers) > 0) {
     return false;
   }
   </script>
-  <div class="tborder">
-    <div id="tableHead">
-      <div><b><?php echo $LAN_BANLIST_049; ?></b></div>
-    </div>
-    <table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
-    <form action="exportBans.php" method="post" id="form" onsubmit="return formVerify();">
-    	<table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
-        <tr>
-          <td align="left" class="rowColor1">
-            <input type="checkbox" id="permaBans" name="permaBans" value="1" checked/> <?php echo $LAN_BANLIST_050; ?>
-            <input type="checkbox" id="allBans" name="allBans" value="1"/> <?php echo $LAN_BANLIST_051; ?>
-            <input type="checkbox" id="demosOnly" name="demosOnly" value="1"/> <?php echo $LAN_BANLIST_052; ?>
-            <input type="checkbox" id="saveSQL" name="saveSQL" value="1"/> <?php echo $LAN_BANLIST_053; ?>
-          </td>
-        </tr>
-    	<tr>
-    		<td align="left" class="rowColor2">
-    			<input type="submit" name="submit" value="<?php echo $LAN_BANLIST_054; ?>" class="button" /></td>
-    	</tr>
-    </form>
-    </table>
-  </div>
+	<div class="tborder">
+		<div id="tableHead">
+	      <div><b><?php echo $LAN_BANLIST_049; ?></b></div>
+	    </div>
+	    <table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
+		    <form action="exportBans.php" method="post" id="form" onsubmit="return formVerify();">
+		    	<table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
+		        <tr>
+		          <td align="left" class="rowColor1">
+		            <input type="checkbox" id="permaBans" name="permaBans" value="1" checked/> <?php echo $LAN_BANLIST_050; ?>
+		            <input type="checkbox" id="allBans" name="allBans" value="1"/> <?php echo $LAN_BANLIST_051; ?>
+		            <input type="checkbox" id="demosOnly" name="demosOnly" value="1"/> <?php echo $LAN_BANLIST_052; ?>
+		            <input type="checkbox" id="saveSQL" name="saveSQL" value="1"/> <?php echo $LAN_BANLIST_053; ?>
+		          </td>
+		        </tr>
+		    	<tr>
+		    		<td align="left" class="rowColor2">
+		    			<input type="submit" name="submit" value="<?php echo $LAN_BANLIST_054; ?>" class="button" />
+		    		</td>
+		    	</tr>
+		    	</table>
+			</form>
+		</table>
+	</div>
 <?php
   }
 } // End count banned users

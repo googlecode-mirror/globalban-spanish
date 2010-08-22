@@ -27,7 +27,7 @@ require_once(ROOTDIR."/include/class.rcon.php");
 ini_set("include_path", ini_get("include_path") . PATH_SEPARATOR .ROOTDIR."/include/steam_condenser/");
 
 require_once "InetAddress.php";
-require_once "steam/servers/GoldSrcServer.php";
+require_once "steam/servers/SourceServer.php";
 
 $lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_serverList.php';
 include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_serverList.php");
@@ -51,7 +51,7 @@ $servers = $serverQueries->getServers();
 		$serversPerRow = 3; // The number of servers to show per row
 		foreach($servers as $server) {
 			$serverIp = new InetAddress($server->getIp());
-			$serverSC = new GoldSrcServer($serverIp, $server->getPort());
+			$serverSC = new SourceServer($serverIp, $server->getPort());
 			$serverSC->initialize();
 
 			// Create an rcon object to connect to a single server on each iteration

@@ -135,4 +135,5 @@ $LAN_CONFIGURATION_122 = "Russisch";
 $LAN_CONFIGURATION_123 = "Nur Warnungen über die Banlänge.";
 $LAN_CONFIGURATION_124 = "Erlaubt Ihnen auszuwählen, wie lange jemand gebannt gewesen sein muss, damit die anderen Spieler vor diesem gewarnt werden.";
 $LAN_CONFIGURATION_125 = "German";
+$LAN_CONFIGURATION_126 = "Latvian";
 ?>

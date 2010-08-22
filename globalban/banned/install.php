@@ -958,36 +958,37 @@ function hideShowSuperUserBlock() {
   		<tr>
   			<td class="rowColor1" width="1%" nowrap>Username: <img src="images/help.png" style="cursor:help" onmouseover="Tip('This is the username you will use to log in as a super-user admin for the site.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
   			<td class="rowColor1">
-          <input type="text" name="username" id="username" value="" size="40" maxlength="40" onkeyup="removeSpecialCharacters(this)"/>
-          <img src="images/warning.png" id="usernameWarn" style="display:none"/>
-        </td>
-  		</tr>
+	          <input type="text" name="username" id="username" value="" size="40" maxlength="40" onkeyup="removeSpecialCharacters(this)"/>
+	          <img src="images/warning.png" id="usernameWarn" style="display:none"/>
+	        </td>
+	  		</tr>
   		<tr>
   			<td class="rowColor2" width="1%" nowrap>Steam ID: <img src="images/help.png" style="cursor:help" onmouseover="Tip('This is your steam ID.  If it is not valid, you will not be able to execute in-game bans.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
   			<td class="rowColor2">
-          <input name="steamId" id="steamId" type="text" value="" size="25" maxlength="25"/> (must be in <b>STEAM_X:X:XXXXXX</b> format)
-          <img src="images/warning.png" id="steamIdWarn" style="display:none"/>
-        </td>
+	          <input name="steamId" id="steamId" type="text" value="" size="25" maxlength="25"/> (must be in <b>STEAM_X:X:XXXXXX</b> format)
+	          <img src="images/warning.png" id="steamIdWarn" style="display:none"/>
+        	</td>
   		</tr>
+  		<tr>
   			<td class="rowColor1" width="1%" nowrap>Password: <img src="images/help.png" style="cursor:help" onmouseover="Tip('The password associated with your username that you will use to log in.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
   			<td class="rowColor1">
-          <input type="password" name="password" id="password" value="" size="25" maxlength="25"/>
-          <img src="images/warning.png" id="passwordWarn" style="display:none"/>
-        </td>
+	          <input type="password" name="password" id="password" value="" size="25" maxlength="25"/>
+	          <img src="images/warning.png" id="passwordWarn" style="display:none"/>
+	        </td>
   		</tr>
   		<tr>
   			<td class="rowColor2" width="1%" nowrap>Verify Password:  <img src="images/help.png" style="cursor:help" onmouseover="Tip('The password verification is to make sure you typed in your password correctly.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
   			<td class="rowColor2">
-          <input type="password" name="vpassword" id="vpassword" value="" size="25" maxlength="25"/>
-          <img src="images/warning.png" id="vpasswordWarn" style="display:none"/>
-        </td>
+	          <input type="password" name="vpassword" id="vpassword" value="" size="25" maxlength="25"/>
+	          <img src="images/warning.png" id="vpasswordWarn" style="display:none"/>
+	        </td>
   		</tr>
   		<tr>
   			<td class="rowColor1" width="1%" nowrap>Email: <img src="images/help.png" style="cursor:help" onmouseover="Tip('This email address will be used to email you your password if you ever forget it.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td></td>
   			<td class="rowColor1">
-          <input type="text" name="userEmail" id="userEmail" value="" size="60" maxlength="80" />
-          <img src="images/warning.png" id="userEmailWarn" style="display:none"/>
-        </td>
+	          <input type="text" name="userEmail" id="userEmail" value="" size="60" maxlength="80" />
+	          <img src="images/warning.png" id="userEmailWarn" style="display:none"/>
+	        </td>
   		</tr>
   	</table>
 	</div>

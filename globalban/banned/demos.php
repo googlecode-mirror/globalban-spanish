@@ -351,7 +351,7 @@ if(count($demoList) > 0) {
           if($banManager || $fullPower) {
             if(!$demo->isBanned()) { ?>
             <td class="colColor1"><a href="index.php?page=addBan&steamId=<?php echo $demo->getSteamId()?>&bannedName=<?php echo $demo->getOffenderName()?>&reasonId=<?php echo $demo->getReasonId()?>&serverId=<?php echo $demo->getServerId()?>" style="cursor:pointer;" onmouseover="Tip('<?php echo $LANDEMOS_038 ?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('demosTable'));">
-            <img src="images/database_add.png"/></td>
+            <img src="images/database_add.png"/></a></td>
             <?php } else { ?>
             <td class="colColor1"></td>
             <?php } ?>

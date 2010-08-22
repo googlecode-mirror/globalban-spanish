@@ -204,7 +204,7 @@ if($member || $admin || $banManager || $fullPower) {
               }
               ?>
             </select>
-          </td class="rowColor1">
+          </td>
         </tr>
         <tr>
           <td class="rowColor2" width="1%" nowrap><?php echo $LANUPDATEBAN_010; ?></td>
@@ -256,12 +256,10 @@ if($member || $admin || $banManager || $fullPower) {
           <td class="rowColor2" width="1%" valign="top" nowrap><?php echo $LANUPDATEBAN_014; ?></td>
           <td class="rowColor2"><textarea id="comments" name="comments" cols="80" rows="10"><?php echo $bannedUser->getComments() ?></textarea></td>
         </tr>
-        </tr>
         <tr>
           <td class="rowColor1" width="1%" nowrap><?php echo $LANUPDATEBAN_015; ?></td>
           <td class="rowColor1"><input type="text" name="bannedPost" size="100" maxlength="128" value="<?php echo $bannedUser->getWebpage(); ?>"/></td>
         </tr>
-        <tr>
         <tr>
           <td class="rowColor2" width="1%" nowrap><?php echo $LANUPDATEBAN_016; ?></td>
           <?php

@@ -177,6 +177,7 @@ if($_GET['error'] == 1) {
   			<td class="rowColor2"><input name="steamId" id="steamdId" type="text" value="<?php echo $steamId?>" size="25" maxlength="25"/> (<?php echo $LAN_NEWUSER_006; ?>)
   			<?php if(!$valid['steamId'] && !$nopost) { ?><span class="error"><?php echo $LAN_NEWUSER_007; ?></span><?php } ?></td>
   		</tr>
+  		<tr>
   			<td class="rowColor1">**<?php echo $LAN_NEWUSER_008; ?>:</td>
   			<td class="rowColor1"><input type="password" name="password" value="" size="25" maxlength="25"/>
   			<?php if(!$valid['password'] && !$nopost) { ?><span class="error"><?php echo $LAN_NEWUSER_009; ?></span><?php } ?></td>

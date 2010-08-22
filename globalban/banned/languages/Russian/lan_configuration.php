@@ -135,6 +135,5 @@ $LAN_CONFIGURATION_122 = "Русский";
 $LAN_CONFIGURATION_123 = "Минимальная длительность бана (предупреждение)";
 $LAN_CONFIGURATION_124 = "Минимальная длительность бана при которой начинает выводиться сообщение о ранее забаненном игроке.";
 $LAN_CONFIGURATION_125 = "German";
-
-
+$LAN_CONFIGURATION_126 = "Latvian";
 ?>
