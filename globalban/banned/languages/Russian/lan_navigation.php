@@ -36,4 +36,5 @@ $LANNAV_023 = 'Французский';
 $LANNAV_024 = 'Русский';
 $LANNAV_025 = 'Войти';
 $LANNAV_026 = 'German';
+$LANNAV_027 = 'Latvian';
 ?>

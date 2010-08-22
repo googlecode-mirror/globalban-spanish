@@ -155,8 +155,11 @@ if(count($bannedIps) > 0) {
     	<table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
     		<tr>
     			<td align="left" class="rowColor2">
-    				<input type="submit" name="submit" value="<?php echo $LANIPBAN_007; ?>" class="button" /></td>
+    				<input type="submit" name="submit" value="<?php echo $LANIPBAN_007; ?>" class="button" />
+    			</td>
     		</tr>
+    	</table>
+    </form>
     </table>
   </div>
 <?php

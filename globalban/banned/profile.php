@@ -174,12 +174,13 @@ if(!empty($_POST['updatePassword']) && isset($_POST['updatePassword'])) {
   			<td class="rowColor2" width="1%" nowrap><?php echo $LAN_PROFILE_004; ?></td>
   			<td class="rowColor2"><input name="steamId" id="steamdId" type="text" value="<?php echo $user->getSteamId() ?>" size="25" maxlength="25"/> <?php echo $LAN_PROFILE_005; ?>
   			<?php if(!$valid['steamId']) { ?><span class="error"><?php echo $LAN_PROFILE_006; ?></span><?php } ?></td>
+  		</tr>
   		<tr>
   			<td class="rowColor1" width="1%" nowrap><?php echo $LAN_PROFILE_007; ?></td>
   			<td class="rowColor1"><input type="text" name="email" size="60" maxlength="80" value="<?php echo $user->getEmail() ?>" />
   			<?php if(!$valid['email']) { ?><span class="error"><?php echo $LAN_PROFILE_008; ?></span><?php } ?></td>
   		</tr>
-  		</tr>
+  		<tr>
   			<td class="rowColor2" width="1%" nowrap><img src="images/bullet_star.png"/> <?php echo $LAN_PROFILE_009 ?></td>
   			<td class="rowColor2"><input type="password" name="curPassword" value="" size="25" maxlength="25"/>
   			<?php if(!$valid['curPassword']) { ?><span class="error"><?php echo $LAN_PROFILE_010; ?></span><?php } else { ?><span><?php echo $LAN_PROFILE_014; ?></span><?php } ?></td>
@@ -217,12 +218,12 @@ if(!empty($generalErrors)) {
   </div>
   <form action="index.php?page=profile" method="post" id="form">
   	<table class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
-      </tr>
+      	<tr>
   			<td class="rowColor1" width="1%" nowrap><?php echo $LAN_PROFILE_016; ?></td>
   			<td class="rowColor1"><input type="password" name="cpassword" value="" size="25" maxlength="25"/>
   			<?php if(!$valid['cpassword']) { ?><span class="error"><?php echo $LAN_PROFILE_017; ?></span><?php } ?></td>
   		</tr>
-  		</tr>
+  		<tr>
   			<td class="rowColor2" width="1%" nowrap><?php echo $LAN_PROFILE_018; ?></td>
   			<td class="rowColor2"><input type="password" name="npassword" value="" size="25" maxlength="25"/>
   			<?php if(!$valid['npassword']) { ?><span class="error"><?php echo $LAN_PROFILE_019; ?></span><?php } ?></td>

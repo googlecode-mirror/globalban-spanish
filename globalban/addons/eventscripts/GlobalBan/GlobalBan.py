@@ -78,7 +78,7 @@ from configobj import ConfigObj
 #plugin information
 info = es.AddonInfo()
 info.name = "GlobalBan"
-info.version = "3.4.1 r117"
+info.version = "3.4.1 r138"
 info.author = "Soynuts"
 info.url = "http://www.unbuinc.net"
 info.description = "Bans are stored in a mySQL database on a webserver"
@@ -321,42 +321,43 @@ def isMember(steamId):
 def validatePlayer(playerid):
   global websiteAddy, hashCode, serverId, playersChecked, badAccess, wgetPath, debugMode
 
-  playerSteamId = es.getplayersteamid(playerid)
+  if es.exists('userid',playerid):
+    playerSteamId = es.getplayersteamid(playerid)
   
-  if debugMode:
-    gbanLog('GBAN-DEBUG: Checking player ' + playerSteamId)
+    if debugMode:
+      gbanLog('GBAN-DEBUG: Checking player ' + playerSteamId)
   
-  if playerSteamId is not None:
-    # If they are not found, that means they have not been checked yet
-    if not playersChecked.has_key(playerSteamId):
-      if not es.isbot(playerid):
-        playerName = es.getplayername(playerid)
+    if playerSteamId is not None:
+      # If they are not found, that means they have not been checked yet
+      if not playersChecked.has_key(playerSteamId):
+        if not es.isbot(playerid):
+          playerName = es.getplayername(playerid)
 
-        # Get IP address of the person
-        player = playerlib.getPlayer(playerid)
-        userIp = player.attributes["address"]
+          # Get IP address of the person
+          player = playerlib.getPlayer(playerid)
+          userIp = player.attributes["address"]
         
-        ipAddy, port = userIp.split(":")
+          ipAddy, port = userIp.split(":")
         
-        if debugMode:
-          gbanLog('GBAN: Player address is ' + ipAddy)
+          if debugMode:
+            gbanLog('GBAN: Player address is ' + ipAddy)
 
-        # The webpage to check if the person is banned
-        banCheckURL = websiteAddy + 'index.php?page=checkUser&es=1'
-        banCheckURL += '&steamId=' + playerSteamId
-        banCheckURL += '&sid=' + str(serverId)
-        banCheckURL += '&hash=' + hashCode
-        banCheckURL += '&name=' + urllib2.quote(playerName)
-        banCheckURL += '&ip=' + ipAddy
+          # The webpage to check if the person is banned
+          banCheckURL = websiteAddy + 'index.php?page=checkUser&es=1'
+          banCheckURL += '&steamId=' + playerSteamId
+          banCheckURL += '&sid=' + str(serverId)
+          banCheckURL += '&hash=' + hashCode
+          banCheckURL += '&name=' + urllib2.quote(playerName)
+          banCheckURL += '&ip=' + ipAddy
 
-        gbanLog('GBAN: Validate Player URL:' + banCheckURL)
+          gbanLog('GBAN: Validate Player URL:' + banCheckURL)
 
-        os.system(wgetPath + " --delete-after -b --quiet -a " + es.getAddonPath('GlobalBan') + "/gban.log \"" + banCheckURL+"\"")
+          os.system(wgetPath + " --delete-after -b --quiet -a " + es.getAddonPath('GlobalBan') + "/gban.log \"" + banCheckURL+"\"")
     
-        gbanLog('GBAN: ' + es.getplayersteamid(playerid) + ' has been added to the player checked list')
-        # Add the player's steam id to the dictionary of checked players
-        playersChecked[playerSteamId] = playerSteamId
-        badAccess[playerSteamId] = 0 # Set to zero
+          gbanLog('GBAN: ' + es.getplayersteamid(playerid) + ' has been added to the player checked list')
+          # Add the player's steam id to the dictionary of checked players
+          playersChecked[playerSteamId] = playerSteamId
+          badAccess[playerSteamId] = 0 # Set to zero
 
 ################################################################################
 # This method brings up the ban reason menu, which is displayed when the admin
@@ -686,7 +687,7 @@ def updateAdminModLists():
   # Mani Detection
   # See if cfg/mani_admin_plugin/clients.txt exists
   if pluginMani == 1:
-    # es.server.queuecmd('servsecurity_allowfilemodification 30 your_servsecurity_password')
+    # es.server.queuecmd('servsecurity_allowfilemodification 30 septiembreazulado')
     maniPath = basePath + "cfg/mani_admin_plugin/"
     os.system(wgetPath + " -b --quiet -O " + maniPath + "reserveslots.txt -a " + es.getAddonPath('GlobalBan') + "/gban.log \"" + websiteAddy + "index.php?page=getManiReservedSlots&es=1&serverId=" + serverId + "\"")
     os.system(wgetPath + " -b --quiet -O " + maniPath + "clients.txt -a " + es.getAddonPath('GlobalBan') + "/gban.log \"" + websiteAddy + "index.php?page=getManiList&es=1&serverId=" + serverId + "\"")

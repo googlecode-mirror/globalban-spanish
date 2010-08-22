@@ -293,6 +293,7 @@ if($fullPower) {
   				<input type="submit" name="submitAdd" value="Submit" class="button" /></td>
   		</tr>
   </table>
+  </form>
 </div>
 <h5><img src="images/bullet_star.png"/> Is a required field when adding a new admin</h5>
 <?php

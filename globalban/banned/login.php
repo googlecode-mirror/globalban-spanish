@@ -121,7 +121,7 @@ if($_GET['created'] == 1) {
 </div>
 
 <p><?php echo $LANLOGINOUT_007; ?> <a href="index.php?page=newuser"><?php echo $LANLOGINOUT_008; ?></a></p>
-<p><?php echo $LANLOGINOUT_009; ?>
+<p><?php echo $LANLOGINOUT_009; ?></p>
 <form action="index.php?page=login" method="post"> <?php echo $LANLOGINOUT_010; ?><input type="text" name="email" size="60" maxlength="80"/>
 <input type="submit" name="forgotPassword" value="<?php echo $LANLOGINOUT_017; ?>" class="button">
 </form>
@@ -136,4 +136,3 @@ if(!$emailError && isset($_POST['forgotPassword'])) {
 <?php
 }
 ?>
-</p>
