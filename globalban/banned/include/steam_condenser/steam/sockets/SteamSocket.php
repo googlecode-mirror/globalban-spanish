@@ -83,7 +83,7 @@ abstract class SteamSocket
 	 */
 	public function send(SteamPacket $dataPacket)
 	{
-		trigger_error("Sending packet of type \"" . get_class($dataPacket) . "\"...");
+		// trigger_error("Sending packet of type \"" . get_class($dataPacket) . "\"...");
 
 		$this->buffer = ByteBuffer::wrap($dataPacket->__toString());
 		$this->channel->write($this->buffer);

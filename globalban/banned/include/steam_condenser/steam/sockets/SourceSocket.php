@@ -79,7 +79,7 @@ class SourceSocket extends SteamSocket
             trigger_error("Received compressed reply of type \"" . get_class($packet) . "\"");
         }
         else {
-            trigger_error("Received reply of type \"" . get_class($packet) . "\"");
+            // trigger_error("Received reply of type \"" . get_class($packet) . "\"");
         }
 
         return $packet;
