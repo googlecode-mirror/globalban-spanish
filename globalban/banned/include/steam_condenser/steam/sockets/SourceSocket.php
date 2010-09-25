@@ -11,8 +11,8 @@
  * @subpackage Sockets
  */
 
-require_once "steam/packets/SteamPacketFactory.php";
-require_once "steam/sockets/SteamSocket.php";
+require_once STEAM_CONDENSER_PATH . 'steam/packets/SteamPacketFactory.php';
+require_once STEAM_CONDENSER_PATH . 'steam/sockets/SteamSocket.php';
 
 /**
  * @package    Steam Condenser (PHP)
@@ -79,7 +79,7 @@ class SourceSocket extends SteamSocket
             trigger_error("Received compressed reply of type \"" . get_class($packet) . "\"");
         }
         else {
-            // trigger_error("Received reply of type \"" . get_class($packet) . "\"");
+            trigger_error("Received reply of type \"" . get_class($packet) . "\"");
         }
 
         return $packet;
