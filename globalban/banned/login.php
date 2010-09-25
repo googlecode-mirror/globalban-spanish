@@ -81,10 +81,11 @@ if(isset($_POST['forgotPassword'])) {
   }
 }
 
-if($_GET['created'] == 1) {
-  ?><h5><?php echo $LANLOGINOUT_001; ?></h5><?php
+if(isset($_GET['created'])) {
+	if($_GET['created'] == 1) {
+	  ?><h5><?php echo $LANLOGINOUT_001; ?></h5><?php
+	}
 }
-
 ?>
 <div class="tborder">
   <div id="tableHead">
