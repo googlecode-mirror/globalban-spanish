@@ -11,13 +11,13 @@
  * @subpackage GameServer
  */
 
-require_once "exceptions/SteamCondenserException.php";
-require_once "exceptions/TimeoutException.php";
-require_once "steam/packets/A2S_INFO_Packet.php";
-require_once "steam/packets/A2A_PING_Packet.php";
-require_once "steam/packets/A2S_PLAYER_Packet.php";
-require_once "steam/packets/A2S_RULES_Packet.php";
-require_once "steam/packets/A2S_SERVERQUERY_GETCHALLENGE_Packet.php";
+require_once STEAM_CONDENSER_PATH . 'exceptions/SteamCondenserException.php';
+require_once STEAM_CONDENSER_PATH . 'exceptions/TimeoutException.php';
+require_once STEAM_CONDENSER_PATH . 'steam/packets/A2S_INFO_Packet.php';
+require_once STEAM_CONDENSER_PATH . 'steam/packets/A2A_PING_Packet.php';
+require_once STEAM_CONDENSER_PATH . 'steam/packets/A2S_PLAYER_Packet.php';
+require_once STEAM_CONDENSER_PATH . 'steam/packets/A2S_RULES_Packet.php';
+require_once STEAM_CONDENSER_PATH . 'steam/packets/A2S_SERVERQUERY_GETCHALLENGE_Packet.php';
 
 /**
  * @package    Steam Condenser (PHP)
@@ -172,7 +172,7 @@ abstract class GameServer {
             }
 
             if(!is_a($responsePacket, $expectedResponse)) {
-                // trigger_error("Expected {$expectedResponse}, got " . get_class($responsePacket) . ".");
+                trigger_error("Expected {$expectedResponse}, got " . get_class($responsePacket) . ".");
                 if($repeatOnFailure) {
                     $this->handleResponseForRequest($requestType, false);
                 }

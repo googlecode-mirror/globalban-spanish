@@ -11,9 +11,9 @@
  * @subpackage SteamSocket
  */
 
-require_once "InetAddress.php";
-require_once "steam/packets/A2M_GET_SERVERS_BATCH2_Packet.php";
-require_once "steam/sockets/MasterServerSocket.php";
+require_once STEAM_CONDENSER_PATH . 'InetAddress.php';
+require_once STEAM_CONDENSER_PATH . 'steam/packets/A2M_GET_SERVERS_BATCH2_Packet.php';
+require_once STEAM_CONDENSER_PATH . 'steam/sockets/MasterServerSocket.php';
 
 /**
  * @package Steam Condenser (PHP)
@@ -21,7 +21,7 @@ require_once "steam/sockets/MasterServerSocket.php";
  */
 class MasterServer
 {
-	const GOLDSRC_MASTER_SERVER = "hl1master.steampowered.com:27013";
+	const GOLDSRC_MASTER_SERVER = "hl1master.steampowered.com:27010";
 	const SOURCE_MASTER_SERVER = "hl2master.steampowered.com:27011";
 
         const REGION_US_EAST_COAST = 0x00;
@@ -78,7 +78,7 @@ class MasterServer
 			}
 			catch(TimeoutException $e) {
 				$failCount ++;
-				if(failCount == 4) {
+				if($failCount == 4) {
 			    		throw $e;
 				}
 			}

@@ -11,9 +11,9 @@
  * @subpackage Steam Community
  */
 
-require_once 'exceptions/SteamCondenserException.php';
-require_once 'steam/community/GameStats.php';
-require_once 'steam/community/SteamGroup.php';
+require_once STEAM_CONDENSER_PATH . 'exceptions/SteamCondenserException.php';
+require_once STEAM_CONDENSER_PATH . 'steam/community/GameStats.php';
+require_once STEAM_CONDENSER_PATH . 'steam/community/SteamGroup.php';
 
 /**
  * @package Steam Condenser (PHP)
@@ -177,7 +177,7 @@ class SteamId {
      * Fetchs data from the Steam Community by querying the XML version of the
      * profile specified by the ID of this SteamID
      */
-    private function fetchData() {
+    public function fetchData() {
         $url = $this->getBaseUrl() . "?xml=1";
         $profile = new SimpleXMLElement(file_get_contents($url));
 

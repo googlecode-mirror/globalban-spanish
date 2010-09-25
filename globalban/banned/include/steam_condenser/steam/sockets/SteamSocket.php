@@ -11,11 +11,11 @@
  * @subpackage Sockets
  */
 
-require_once "ByteBuffer.php";
-require_once "DatagramChannel.php";
-require_once "InetAddress.php";
-require_once "exceptions/TimeoutException.php";
-require_once "steam/packets/SteamPacketFactory.php";
+require_once STEAM_CONDENSER_PATH . 'ByteBuffer.php';
+require_once STEAM_CONDENSER_PATH . 'DatagramChannel.php';
+require_once STEAM_CONDENSER_PATH . 'InetAddress.php';
+require_once STEAM_CONDENSER_PATH . 'exceptions/TimeoutException.php';
+require_once STEAM_CONDENSER_PATH . 'steam/packets/SteamPacketFactory.php';
 
 /**
  * @package    Steam Condenser (PHP)
@@ -83,7 +83,7 @@ abstract class SteamSocket
 	 */
 	public function send(SteamPacket $dataPacket)
 	{
-		// trigger_error("Sending packet of type \"" . get_class($dataPacket) . "\"...");
+		trigger_error("Sending packet of type \"" . get_class($dataPacket) . "\"...");
 
 		$this->buffer = ByteBuffer::wrap($dataPacket->__toString());
 		$this->channel->write($this->buffer);
