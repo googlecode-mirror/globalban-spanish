@@ -23,11 +23,7 @@
 require_once(ROOTDIR."/include/database/class.ServerQueries.php");
 require_once(ROOTDIR."/include/objects/class.Server.php");
 require_once(ROOTDIR."/include/class.rcon.php");
-
-ini_set("include_path", ini_get("include_path") . PATH_SEPARATOR .ROOTDIR."/include/steam_condenser/");
-
-require_once "InetAddress.php";
-require_once "steam/servers/SourceServer.php";
+require_once(ROOTDIR."/include/steam_condenser/steam-condenser.php");
 
 $lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_serverList.php';
 include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_serverList.php");
