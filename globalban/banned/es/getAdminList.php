@@ -50,8 +50,8 @@ if(count($users) < 1) {
   $users = $userQueries->getUsers();
 }
 
-echo "\"clanMembers\"";
-echo "{";
+echo "\"clanMembers\"\n";
+echo "{\n";
 
 // Cycle through each user and create the keygroup
 foreach($users as $user) {
@@ -101,8 +101,8 @@ foreach($users as $user) {
 function printUser($user) {
   if($user->getActive() == 1 && $user->getAccessLevel() != 5) {
       $admin = 0;
-      echo "  \"".$user->getSteamId()."\"";
-      echo "  {";
+      echo "\n  \"".$user->getSteamId()."\"\n";
+      echo "  {\n";
       // Determine if the user has "admin" privileges
       // 4 is member only
       if($user->getAccessLevel() == 4) {
@@ -111,12 +111,12 @@ function printUser($user) {
         $admin = 1;
       }
 
-      echo "    \"name\"      \"".$user->getName()."\"";
-      echo "    \"member\"    \"1\"";
-      echo "    \"admin\"     \"".$admin."\"";
-      echo "    \"access\"    \"".$user->getAccessLevel()."\"";
+      echo "    \"name\"      \"".$user->getName()."\"\n";
+      echo "    \"member\"    \"1\"\n";
+      echo "    \"admin\"     \"".$admin."\"\n";
+      echo "    \"access\"    \"".$user->getAccessLevel()."\"\n";
 
-      echo "  }";
+      echo "  }\n";
     }
 }
 ?>
