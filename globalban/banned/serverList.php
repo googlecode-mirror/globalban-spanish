@@ -18,6 +18,8 @@
     You should have received a copy of the GNU General Public License
     along with GlobalBan.  If not, see <http://www.gnu.org/licenses/>.
 */
+// Fix for E_NOTICE SPAM (Issue ID 18)
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
 // require_once(ROOTDIR."/include/live.class.php");
 require_once(ROOTDIR."/include/database/class.ServerQueries.php");

@@ -292,7 +292,7 @@ class BanQueries extends Config {
   function getNumberOfBans($member, $admin, $banManager, $fullPower, $searchText, $bansFilter, $bansReason_id, $bansAdmin) {
     $banCount = 0;
     
-    $searchText = trim($searchText); // Remove whitespace from search text
+    $searchText = mysql_real_escape_string(trim($searchText)); // Remove whitespace from search text
     $searchText = addslashes($searchText); // Prevent SQL Injection
     $bansFilter = addslashes($bansFilter); // Prevent SQL Injection
     $bansReason_id = addslashes($bansReason_id); // Prevent SQL Injection
@@ -580,7 +580,7 @@ class BanQueries extends Config {
     $banList .= " ORDER BY $sortBy $sortDirection";
         
     if($this->bansPerPage > 0) {
-      $banList .= " LIMIT ".$startRange.", ".$this->bansPerPage;
+      $banList .= " LIMIT ".intval($startRange).", ".$this->bansPerPage;
       $this->endRange = $startRange + $this->bansPerPage;
     }
     
