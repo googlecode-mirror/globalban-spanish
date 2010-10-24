@@ -10,7 +10,7 @@
 +----------------------------------------------------------------------------+
 */
 
-$LAN_NEWUSER_001 = 'Neuen User genereieren';
+$LAN_NEWUSER_001 = 'Neuen User generieren';
 $LAN_NEWUSER_002 = 'Datenbank Error.  Die Admin IDs zwischen der gban_admins und der gban_admin_steam Tabelle stimmen nicht überein.';
 $LAN_NEWUSER_003 = 'Username';
 $LAN_NEWUSER_004 = 'Username bereits vergeben';
