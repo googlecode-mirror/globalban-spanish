@@ -51,17 +51,20 @@ $error = false;
 // If this is set, then that means a server is being added
 if(isset($_POST['submitAdd']))
 {
-  if (!empty($_POST['groupName']) && !empty($_POST['description']))
+  if (!empty($_POST['groupName'])) // && !empty($_POST['description'])
   {
-  	$newGroupId = $serverQueries->addServerGroup($_POST['groupName'], $_POST['description']);
+	$description = '';
+	if (!empty($_POST['description'])){
+		$description = $_POST['description'];
+	}
+  	$newGroupId = $serverQueries->addServerGroup($_POST['groupName'], $description);
 
+	echo ('<br>$newGroupId: '.$newGroupId.'</br>');
   	if($newGroupId < 0)
   	{
    	 $error = true;
   	}
-  }
-  if (empty($_POST['groupName']) && empty($_POST['description']))
-  {
+  } else {
   	$error = true;
   }
 }

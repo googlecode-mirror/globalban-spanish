@@ -28,9 +28,15 @@ require_once(ROOTDIR."/include/database/class.AdminGroupQueries.php");
 // Only those with full privs can access this page
 if($fullPower) {
 
-$serverId = $_POST['serverId'];
-$groupId = $_POST['serverGroupId'];
+$serverId = 0;
+$groupId = 0;
 
+if (isset($_POST['serverId'])) {
+	$serverId = $_POST['serverId'];
+}
+if (isset($_POST['serverGroupId'])) {
+	$groupId = $_POST['serverGroupId'];
+}
 $serverQueries = new ServerQueries();
 $userQueries = new UserQueries();
 
@@ -56,9 +62,6 @@ if(isset($_POST['setGroup'])) {
 if(empty($groupId) || $groupId == -1 || isset($_POST['switchServer'])) {
   $groupId = $server->getGroupId();
 }
-
-// Get server groups
-$groups = $serverQueries->getServerGroups();
 
 if($groupId > 0) {
   $group = $serverQueries->getServerGroup($groupId);
@@ -89,8 +92,8 @@ if(isset($_POST['action'])) {
   $action = $_POST['action'];
   
   // We want to delete the selected admins
-  if($action = "deleteSelected") {
-    $admins = split(",", $_POST['admins']);
+  if($action = 'deleteSelected') {
+    $admins = explode(",", $_POST['admins']);
     
     foreach($admins as $admin) {
       $userQueries->removeAdminFromGroup($admin, $serverId, $groupId);
