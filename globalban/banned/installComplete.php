@@ -61,8 +61,9 @@ define("ROOTDIR", dirname(__FILE__)); // Global Constant of root directory
   }
 ?>
 
-<h4>Please log into the admin section and add all your servers.  After adding your servers, you MUST do a
+<h4>Please <a href="./index.php?page=login">login here</a>, go into the admin section and add all your servers.  After adding your servers, you MUST do a
 "Save Configuration" from the "Configuration" page to update the config file on all your servers.</h4>
+
 
 <div id="footer">
 Developed by <a href="mailto:soynuts@unbuinc.net">Soynuts</a> of <a href="http://unbuinc.net">UNBU Inc.</a> &copy;2007
