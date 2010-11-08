@@ -11,8 +11,8 @@
 */
 $LANLOGINOUT_001 = 'New user successfully created.  You may now log in.';
 $LANLOGINOUT_002 = 'Login';
-$LANLOGINOUT_003 = 'Username:';
-$LANLOGINOUT_004 = 'Password:';
+$LANLOGINOUT_003 = 'Username';
+$LANLOGINOUT_004 = 'Password';
 $LANLOGINOUT_005 = 'Remember Me';
 $LANLOGINOUT_006 = 'Incorrect username/password entered.';
 $LANLOGINOUT_007 = 'New User? ';

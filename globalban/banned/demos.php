@@ -69,6 +69,8 @@ if(!empty($_POST['submitDemo']) && $_POST['submitDemo']) {
 	$filename = str_ireplace(".php", "_", $filename);
 	$filename = str_ireplace(".jsp", "_", $filename);
 	$filename = str_ireplace(".asp", "_", $filename);
+	$filename = str_ireplace(".html", "_", $filename);
+	$filename = str_ireplace(".htm", "_", $filename);
 	$extension = substr($filename, strlen($filename)-3, strlen($filename));
 	$allowedExtensions = array("zip", "rar");
 	if(in_array($extension, $allowedExtensions)) {

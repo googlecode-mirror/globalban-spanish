@@ -233,7 +233,6 @@ function formVerify() {
 
 <?php
 $currentVersion = substr($version, 1);
-$currentVersionTemp = split(" ", $currentVersion);
 
 /*
 // Make sure we can read data from another URL
@@ -273,8 +272,7 @@ if(!is_writable("config/class.Config.php")) {
     <table id="settingsTable" class="bordercolor" width="100%" cellspacing="1" cellpadding="5" border="0" style="margin-top: 1px;">
       <tr>
         <?php
-          // if((float)$currentVersionTemp[0] < (float)$officialVersion) {
-          if($currentVersion <> $officialVersion) {
+        if($currentVersion <> $officialVersion) {
         ?>
         <td class="rowColor1" width="1%" nowrap><b><?php echo $LAN_CONFIGURATION_016; ?> : </b><font color="red"><?php echo $currentVersion ?></font></td>
         <?php

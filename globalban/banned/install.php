@@ -26,10 +26,10 @@
  
 define("ROOTDIR", dirname(__FILE__)); // Global Constant of root directory
 
+session_start();
+
 require_once(ROOTDIR."/include/database/class.InstallAndUpgradeQueries.php");
 require_once(ROOTDIR."/include/php4functions.php");
-
-session_start();
 
 $lan_file = ROOTDIR.'/languages/English/lan_configuration.php';
 include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_configuration.php");
@@ -261,6 +261,7 @@ class Config {
     }
   }
 }
+ob_start();
 ?>
 
 <html>
@@ -584,7 +585,7 @@ function hideShowSuperUserBlock() {
   
   <div class="tborder">
     <div id="tableHead">
-      <div><b>Full Installation Configuration</b><br/><?php echo $fileError?></div>
+      <div><b>Full Installation Configuration</b><br/><?php if(isset($fileError)) {echo $fileError; }?></div>
     </div>
   </div>
   
@@ -717,7 +718,7 @@ function hideShowSuperUserBlock() {
     </tr>
     <tr>
       <td class="rowColor1" width="1%" nowrap>Email Address of Sender <img src="images/help.png" style="cursor:help" onmouseover="Tip('This is the \'from\' address the emails below will see when they recieve an email for newly added bans or demos.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
-      <td class="rowColor1" colspan="3" nowrap><input type="text" name="senderEmail" value="<?php echo $config->emailFromHeader?>" size="40" maxlength="255"/></td>
+      <td class="rowColor1" colspan="3" nowrap><input type="text" name="senderEmail" value="" size="40" maxlength="255"/></td>
     </tr>
     <tr>
       <td class="rowColor2" width="1%" nowrap valign="top">Email Addresses to Recieve Ban and Demo Notices <img src="images/help.png" style="cursor:help" onmouseover="Tip('The email address of people you wish to recieve ban add or demo add notifications.', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
