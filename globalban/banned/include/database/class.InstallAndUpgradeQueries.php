@@ -37,10 +37,10 @@ class InstallAndUpgradeQueries {
   // Constructor that initializes the database abstraction layer
 	function __construct() {
   }
-
+/*
   function InstallAndUpgradeQueries() {
   }
-
+*/
   function setDbHost($dbHost) {
     $this->dbhost = $dbHost;
   }
