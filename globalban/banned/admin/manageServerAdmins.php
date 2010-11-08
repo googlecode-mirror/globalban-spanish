@@ -27,15 +27,20 @@ require_once(ROOTDIR."/include/database/class.AdminGroupQueries.php");
 
 // Only those with full privs can access this page
 if($fullPower) {
-
-	$serverId = $_GET['serverId'];
-	$groupId = $_GET['serverGroupId'];
-
-	if(empty($serverId)) {
-	  $serverId = $_POST['serverId'];
+	if(isset($_GET['serverId'])){
+		$serverId = $_GET['serverId'];
+	} elseif (isset($_POST['serverId'])) {
+		$serverId = $_POST['serverId'];
+	} else {
+		$serverId = 0;
 	}
-	if(empty($groupId)) {
-	  $groupId = $_POST['serverGroupId'];
+	
+	if(isset($_GET['serverGroupId'])){
+		$groupId = $_GET['serverGroupId'];
+	} elseif (isset($_POST['serverGroupId'])) {
+		$groupId = $_POST['serverGroupId'];
+	} else {
+		$groupId = 0;
 	}
 
 	$serverQueries = new ServerQueries();
@@ -157,7 +162,7 @@ if($fullPower) {
 		});
 		
 		// Now make the AJAX call to delete them and refresh the table
-		$.post("index.php?page=manageServerAdminsAjax&ajax=1", { groupId: groupId, serverId: serverId, admins: admins, action: "deleteSelected" },
+		$.post("index.php?page=manageServerAdminsAjax&ajax=1", { 'serverGroupId': groupId, 'serverId': serverId, 'admins': admins, 'action': 'deleteSelected' },
 		  function(data) {
 			$("#serverAdminsList").empty();
 			$("#serverAdminsList").append(data);
