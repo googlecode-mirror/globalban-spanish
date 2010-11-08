@@ -26,6 +26,8 @@
  
 define("ROOTDIR", dirname(__FILE__)); // Global Constant of root directory
 
+error_reporting(E_ALL&~E_STRICT);
+
 session_start();
 
 require_once(ROOTDIR."/include/database/class.InstallAndUpgradeQueries.php");
@@ -107,8 +109,9 @@ if($step == 3) {
   $fh = fopen("config/class.Config.php", 'w');
 
   if(!$fh) {
-    $fileError = true;
+    $fileError = 1;
   } else {
+	$fileError = 0;
 
     $logo = $_POST['logo'];
 
