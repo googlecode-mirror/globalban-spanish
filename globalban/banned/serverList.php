@@ -21,6 +21,9 @@
 // Fix for E_NOTICE SPAM (Issue ID 18)
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
+// For Debug please Activate this Line and disable the Line above
+// error_reporting(E_ALL & E_STRICT);
+
 // require_once(ROOTDIR."/include/live.class.php");
 require_once(ROOTDIR."/include/database/class.ServerQueries.php");
 require_once(ROOTDIR."/include/objects/class.Server.php");
