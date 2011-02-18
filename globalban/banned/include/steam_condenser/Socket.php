@@ -3,7 +3,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2009, Sebastian Staudt
+ * Copyright (c) 2008-2011, Sebastian Staudt
  *
  * @author Sebastian Staudt
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
@@ -13,11 +13,6 @@
 
 abstract class Socket
 {
-	/**
-	 * @var boolean
-	 */
-	protected $isBlocking = true;
-
 	/**
 	 * The IP address the socket is connected to
 	 * @var InetAddress
@@ -55,10 +50,14 @@ abstract class Socket
 		$this->socketsEnabled = extension_loaded("sockets");
 	}
 
-	public function __desctruct()
-	{
-		$this->close();
-	}
+    /**
+     * Destructor of this socket
+     *
+     * Automatically calls close()
+     */
+    public function __destruct() {
+        $this->close();
+    }
 
 	abstract public function connect(InetAddress $ipAddress, $portNumber);
 
@@ -69,11 +68,11 @@ abstract class Socket
 	{
 		if($this->socketsEnabled)
 		{
-			socket_close($this->socket);
+            @socket_close($this->socket);
 		}
 		else
 		{
-			fclose($this->socket);
+            @fclose($this->socket);
 		}
 	}
 
@@ -174,11 +173,11 @@ abstract class Socket
 
 		if($this->socketsEnabled)
 		{
-			$select = socket_select($read, $write, $except, $timeout);
+			$select = socket_select($read, $write, $except, 0, $timeout * 1000);
 		}
 		else
 		{
-			$select = stream_select($read, $write, $except, $timeout);
+			$select = stream_select($read, $write, $except, 0, $timeout * 1000);
 		}
 
 		return $select > 0;
@@ -202,14 +201,6 @@ abstract class Socket
 		{
 			throw new Exception("Could not send data.");
 		}
-	}
-
-	/**
-	 *
-	 */
-	public function setBlock($doBlock)
-	{
-		$this->isBlocking = $doBlock;
 	}
 
 	/**

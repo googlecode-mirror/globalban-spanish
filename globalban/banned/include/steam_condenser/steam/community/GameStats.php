@@ -38,6 +38,9 @@ class GameStats {
      */
     public static function createGameStats($steamId, $gameName) {
         switch($gameName) {
+            case 'alienswarm':
+                require_once STEAM_CONDENSER_PATH . 'steam/community/alien_swarm/AlienSwarmStats.php';
+                return new AlienSwarmStats($steamId);
             case 'cs:s':
                 require_once STEAM_CONDENSER_PATH . 'steam/community/css/CSSStats.php';
                 return new CSSStats($steamId);
@@ -68,7 +71,7 @@ class GameStats {
      * @param $gameName
      */
     protected function __construct($steamId, $gameName) {
-        $this->xmlData = new SimpleXMLElement(file_get_contents("http://www.steamcommunity.com/id/$steamId/stats/$gameName?xml=1"));
+        $this->xmlData = new SimpleXMLElement(file_get_contents("http://www.steamcommunity.com/id/$steamId/stats/$gameName?xml=all"));
 
         $this->privacyState = (string) $this->xmlData->privacyState;
         if($this->isPublic()) {
@@ -78,7 +81,7 @@ class GameStats {
             $this->gameFriendlyName = (string) $this->xmlData->game->gameFriendlyName;
             $this->gameName = (string) $this->xmlData->game->gameName;
             $this->hoursPlayed = (string) $this->xmlData->stats->hoursPlayed;
-            $this->steamId64 = (string) $this->xmlData->player->steamID64;
+            $this->steamId64 = trim((string) $this->xmlData->player->steamID64);
         }
     }
 
