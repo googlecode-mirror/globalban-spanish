@@ -35,7 +35,7 @@ require_once(ROOTDIR."/include/php4functions.php");
 // ############################### INIT #######################################
 $db = new Database(); // Just about every page makes a database call
 $config = new Config(); // All configuration variables are contained in this object
-$version = "v3.4.1 r149";
+$version = "v3.4.1 r150";
 $copyright = "Developed by <a href='mailto:lsjonasson@gmail.com'>Soynuts</a>, <a href='mailto:apadrones@gmail.com'>Odonel</a>, <a href='mailto:fantole@gmail.com'>Fantole</a> and <a href='mailto:mader6000@gmail.com'>Mader6000</a> &copy;2007-2010";
 $translators = "Translators: French by <a href='mailto:alpha.cssupport@gmail.com'>Owned</a>, Russian by <a href='http://universal-games.ru/'>Co0l</a>, Spanish by <a href='mailto:apadrones@gmail.com'>Odonel</a>, German by <a href='http://www.clan-holyshit.de/'>Neo@Bln + RST_Freak</a> and Latvian by <a href='mailto:admin@dga.lv'>Dagunchi and Foxxz</a>";
 // ############################################################################
