@@ -97,7 +97,7 @@ $servers = $serverQueries->getServers();
 						$usersOnlineTable .= $SteamPlayer->getId();
 						$usersOnlineTable .= "</td>";
 						$usersOnlineTable .= "<td>";
-						$usersOnlineTable .= $SteamPlayer->getName();
+						$usersOnlineTable .= str_replace("\"", "''",$SteamPlayer->getName());
 						$usersOnlineTable .= "</td>";
 						$usersOnlineTable .= "<td>";
 						$usersOnlineTable .= $SteamPlayer->getScore();
@@ -113,7 +113,7 @@ $servers = $serverQueries->getServers();
 					$usersOnlineTable = $LAN_SERVERLIST_006;
 				}
 				?>
-				<img src="images/group.png" onmouseover="Tip('<?php echo addslashes($usersOnlineTable) ?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, STICKY, 1, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('serverListTable'))"/><br/>
+				<img src="images/group.png" onmouseover="Tip('<?php echo addslashes($usersOnlineTable)?>', SHADOW, true, FADEIN, 300, FADEOUT, 300, STICKY, 1, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('serverListTable'))"/><br/>
 				<?php
 			} ?>
 			<?php
