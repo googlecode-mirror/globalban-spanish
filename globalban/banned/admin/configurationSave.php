@@ -25,7 +25,6 @@ if(!defined ("ROOTDIR")) {
 }
 require_once(ROOTDIR."/config/class.Config.php");
 
-
 $lan_file = ROOTDIR.'/languages/'.$LANGUAGE.'/lan_configurationSave.php';
 include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_configurationSave.php");
 
@@ -95,6 +94,8 @@ if(empty($LANGUAGE)) {
   $LANGUAGE = "English";
 }
 
+$url = "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+$url = substr($url, 0, strrpos($url, "/")) . "/";
 
 // Generate the php config file
 $configData = "<?php
