@@ -36,6 +36,10 @@ function my_explode($delim, $str, $lim = 1) {
 }
 
 $siteLogo = my_explode('.', $config->siteLogo , -2);
+if(empty($config->Style)) {
+	$config->Style='banned.css'';
+}
+ 
 ?>
   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
   <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -44,7 +48,7 @@ $siteLogo = my_explode('.', $config->siteLogo , -2);
     <title>GlobalBan: <?php echo $config->siteName ?><?php echo $LANHEAD_001; ?></title>
     <link rel="icon" href="images/favicon.ico" type="image/vnd.microsoft.icon">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/vnd.microsoft.icon">
-    <link rel="stylesheet" type="text/css" href="css/banned.css" />
+    <link rel="stylesheet" type="text/css" href="css/<?php echo $config->Style;?>" />
     <!--<link rel="stylesheet" type="text/css" href="css/print.css" media="print" /> -->
     <script src="javascript/functions.js" language="javascript" type="text/javascript"></script>
     <script src="javascript/jquery-1.2.6.min.js" language="javascript" type="text/javascript"></script>
@@ -91,7 +95,7 @@ $siteLogo = my_explode('.', $config->siteLogo , -2);
         ?>
         <script type="text/javascript" src="javascript/flash.js"></script>
         <script type="text/javascript">
-            show_flash("931", "210", "images/<?php echo $config->siteLogo?>", "", "team=Global Ban");
+            show_flash("<?php echo $config->siteLogoWith?>", "<?php echo $config->siteLogoHight?>", "images/<?php echo $config->siteLogo?>", "", "team=Global Ban");
         </script>
         <?php
     }else{

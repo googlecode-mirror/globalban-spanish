@@ -29,7 +29,7 @@ $LAN_MANAGESERVERGROUPS_016 = 'Gruppenname:';
 $LAN_MANAGESERVERGROUPS_017 = 'Beschreibung:';
 $LAN_MANAGESERVERGROUPS_018 = 'Gruppenname existiert bereits';
 $LAN_MANAGESERVERGROUPS_019 = 'Gruppe hinzufügen';
-$LAN_MANAGESERVERGROUPS_021 = 'Merke: Wenn Sie eine Gruppe hinzufügen oder löschen sollten Sie die Änderungen durch Klicken von <b>&quot;Konfiguration speichern&quot;</b> auf dewr Seite speichern ';
+$LAN_MANAGESERVERGROUPS_021 = 'Merke: Wenn Sie eine Gruppe hinzufügen oder löschen sollten Sie die Änderungen durch Klicken von <b>&quot;Konfiguration speichern&quot;</b> auf der Seite speichern ';
 $LAN_MANAGESERVERGROUPS_022 = 'Konfiguration';
 $LAN_MANAGESERVERGROUPS_023 = '.';
 

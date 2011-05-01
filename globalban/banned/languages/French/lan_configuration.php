@@ -90,7 +90,6 @@ $LAN_CONFIGURATION_077 = "Sauvegarder la Configuration";
 $LAN_CONFIGURATION_078 = "Note: La sauvegarde de la configuration sera mis à jour dans le fichier GlobalBan.cfg pour tous les serveurs actifs.";
 $LAN_CONFIGURATION_079 = "Accès refusé !";
 $LAN_CONFIGURATION_080 = "Le fichier <b>class.Config.php</b> n'a pas les droits en écriture, veuillez vérifier les permissions de ce fichier et relancer l'installation !";
-
 $LAN_CONFIGURATION_082 = "Générer Automatiquement";
 $LAN_CONFIGURATION_083 = "Afficher le lien du site";
 $LAN_CONFIGURATION_084 = "Cela va ajouter le lien de votre site.";
@@ -136,4 +135,10 @@ $LAN_CONFIGURATION_123 = "Only Warrnings Ex-Banned Min Length";
 $LAN_CONFIGURATION_124 = "Allows you to select required Min Ban Lenght to advise in game about this Ex-Banned when he joins.";
 $LAN_CONFIGURATION_125 = "German";
 $LAN_CONFIGURATION_126 = "Latvian";
+$LAN_CONFIGURATION_127 = "Largeur";
+$LAN_CONFIGURATION_128 = "Hauteur";
+$LAN_CONFIGURATION_129 = "Largeur que la SWF est affiché en pixels (default: 931)";
+$LAN_CONFIGURATION_130 = "Hauteur que la SWF est affiché en pixels (default: 231)";
+$LAN_CONFIGURATION_131 = "Style";
+$LAN_CONFIGURATION_132 = "Rechercher de la page";
 ?>

@@ -10,13 +10,13 @@
 +----------------------------------------------------------------------------+
 */
 
-$LAN_PROCESSWEBBANUPDATE_001 = 'Ban Updated für ';
-$LAN_PROCESSWEBBANUPDATE_002 = 'Der folgende Ban wurde bearbeitet von';
+$LAN_PROCESSWEBBANUPDATE_001 = 'Bann upgedated für ';
+$LAN_PROCESSWEBBANUPDATE_002 = 'Der folgende Bann wurde bearbeitet von';
 $LAN_PROCESSWEBBANUPDATE_003 = 'einem Member:';
 $LAN_PROCESSWEBBANUPDATE_004 = "einem Admin:";
-$LAN_PROCESSWEBBANUPDATE_005 = "einem Ban Manager:";
+$LAN_PROCESSWEBBANUPDATE_005 = "einem Bann Manager:";
 $LAN_PROCESSWEBBANUPDATE_006 = 'Klicken Sie auf den folgenden Link um die vorgenommenen Veränderungen einzusehen:';
-$LAN_PROCESSWEBBANUPDATE_007 = 'Bearbeiteter Ban';
-$LAN_PROCESSWEBBANUPDATE_008 = 'Ban Management';
-$LAN_PROCESSWEBBANUPDATE_009 = "Sie haben nicht die erforderlichen Rechte um diesen Ban zu bearbeiten.";
+$LAN_PROCESSWEBBANUPDATE_007 = 'Bearbeiteter Bann';
+$LAN_PROCESSWEBBANUPDATE_008 = 'Bann Management';
+$LAN_PROCESSWEBBANUPDATE_009 = "Sie haben nicht die erforderlichen Rechte um diesen Bann zu bearbeiten.";
 ?>

@@ -134,6 +134,13 @@ $LAN_CONFIGURATION_121 = "Французский";
 $LAN_CONFIGURATION_122 = "Русский";
 $LAN_CONFIGURATION_123 = "Минимальная длительность бана (предупреждение)";
 $LAN_CONFIGURATION_124 = "Минимальная длительность бана при которой начинает выводиться сообщение о ранее забаненном игроке.";
-$LAN_CONFIGURATION_125 = "German";
-$LAN_CONFIGURATION_126 = "Latvian";
+$LAN_CONFIGURATION_125 = "Немецкий";
+$LAN_CONFIGURATION_126 = "Латышский";
+$LAN_CONFIGURATION_127 = "Ширина";
+$LAN_CONFIGURATION_128 = "Высота";
+$LAN_CONFIGURATION_129 = "Ширина как SWF отображается (по умолчанию: 931) в пикселях";
+$LAN_CONFIGURATION_130 = "Высота как SWF отображается (по умолчанию: 231) в пикселях";
+$LAN_CONFIGURATION_131 = "Стиль";
+$LAN_CONFIGURATION_132 = "Посмотрите на этой странице";
+?>
 ?>

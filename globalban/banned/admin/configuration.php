@@ -300,6 +300,10 @@ if(!is_writable("config/class.Config.php")) {
       <td class="rowColor1" width="1%" nowrap><input type="text" name="siteName" value="<?php echo $config->siteName ?>" size="40" maxlength="255" onkeyup="removeSpecialCharacters(this)"/></td>
       <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_020; ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_021; ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor1" width="1%" nowrap><input type="text" name="logo" value="<?php echo $config->siteLogo ?>" size="40" maxlength="100"/></td>
+      <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_127; ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_129; ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" nowrap><input type="text" name="siteLogoWith" value="<?php echo $config->siteLogoWith ?>" size="4" maxlength="4" onkeyup="removeCharacters(this)"/></td>
+      <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_128; ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_130; ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" nowrap><input type="text" name="siteLogoHight" value="<?php echo $config->siteLogoHight ?>" size="4" maxlength="4" onkeyup="removeCharacters(this)"/></td>
     </tr>
     <tr>
       <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_083; ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_084; ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
@@ -311,6 +315,7 @@ if(!is_writable("config/class.Config.php")) {
       </td>
       <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_085; ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_086; ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor2" width="1%" nowrap><input type="text" name="webUrl" value="<?php echo $config->webUrl ?>" size="40" maxlength="255"/></td>
+	  <td class="rowColor2" width="1%" colspan="4" nowrap></td>
     </tr>
     <tr>
       <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_023; ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_024; ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
@@ -321,7 +326,8 @@ if(!is_writable("config/class.Config.php")) {
         </select>
       </td>
       <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_027; ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_028; ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
-      <td class="rowColor1" width="1%" nowrap><input type="text" name="forumURL" value="<?php echo $config->forumURL ?>" size="40" maxlength="255"/></td>
+      <td class="rowColor1" width="1%" nowrap><input type="text" name="forumURL" value="<?php echo $config->forumURL ?>" size="20" maxlength="80"/></td>
+	  <td class="rowColor1" width="1%" colspan="4" nowrap></td>
     </tr>
     <tr>
       <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_087; ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_088; ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
@@ -333,12 +339,14 @@ if(!is_writable("config/class.Config.php")) {
       </td>
       <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_089; ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_090; ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor2" width="1%" nowrap><input type="text" name="HLstatsUrl" value="<?php echo $config->HLstatsUrl ?>" size="40" maxlength="255"/></td>
+	  <td class="rowColor2" width="1%" colspan="4" nowrap></td>
     </tr>
     <tr>
       <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_029; ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_030; ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor1" width="1%" nowrap><input type="text" name="bansPerPage" value="<?php echo $config->bansPerPage ?>" size="5" maxlength="3" onkeyup="removeCharacters(this)"/></td>
       <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_031; ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_032; ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
       <td class="rowColor1" width="1%" nowrap><input type="text" name="numPageLinks" value="<?php echo $config->maxPageLinks ?>" size="3" maxlength="2" onkeyup="removeCharacters(this)"/></td>
+	  <td class="rowColor1" width="1%" colspan="4" nowrap></td>
     </tr>
     <tr>
       <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_033; ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_034; ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
@@ -351,6 +359,7 @@ if(!is_writable("config/class.Config.php")) {
         <input type="text" id="demoSizeLimit" name="demoSizeLimit" value="<?php echo $config->demoSizeLimit ?>" size="3" maxlength="3" onkeyup="removeCharacters(this)"/><?php echo " post_max_size: ".ini_get("post_max_size")." and upload_max_filesize: ".ini_get("upload_max_filesize"); ?>
         <img src="images/warning.png" id="demoSizeLimitWarn" style="display:none"/>
       </td>
+	  <td class="rowColor2" width="1%" colspan="4" nowrap></td>
     </tr>
     <tr>
       <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_037 ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_038; ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
@@ -369,6 +378,7 @@ if(!is_writable("config/class.Config.php")) {
 		  <option value="Latvian"<?php if($config->LANGUAGE == "Latvian") echo " selected"; ?>><?php echo $LAN_CONFIGURATION_126; ?></option>
         </select>
       </td>
+	  <td class="rowColor1" width="1%" colspan="4" nowrap></td>
     </tr>
     <tr>
       <td class="rowColor2" width="1%" nowrap><?php echo $LAN_CONFIGURATION_039; ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_040 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
@@ -385,10 +395,45 @@ if(!is_writable("config/class.Config.php")) {
           <option value="false"<?php if(!$config->sendDemoEmails) echo " selected"; ?>><?php echo $LAN_CONFIGURATION_026; ?></option>
         </select>
       </td>
+	  <td class="rowColor2" width="1%" colspan="4" nowrap></td>
     </tr>
     <tr>
       <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_043; ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_044 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
-      <td class="rowColor1" width="1%" colspan="3" nowrap><input type="text" name="senderEmail" value="<?php echo $config->emailFromHeader ?>" size="40" maxlength="255"/></td>
+      <td class="rowColor1" width="1%" nowrap><input type="text" name="senderEmail" value="<?php echo $config->emailFromHeader ?>" size="40" maxlength="255"/></td>
+      <td class="rowColor1" width="1%" nowrap><?php echo $LAN_CONFIGURATION_131; ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_132 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
+      <td class="rowColor1" width="1%" colspan="5" nowrap><?php
+	  // open the the css directory
+	  $dhandle = opendir('css');
+	  // define an array to hold the files
+	  $files = array();
+	  if ($dhandle) 
+	  {
+   		// loop through all of the files
+   		while (false !== ($fname = readdir($dhandle))) 
+   		{
+      		// if the file is not this file, and does not start with a '.' or '..' or '.svn' or 'style.css' or 'tabs.css',
+      		// then store it for later display
+      		if (($fname != '.') && ($fname != '..') && ($fname != '.svn') && ($fname != 'tabs.css') && ($fname != 'style.css') && 
+          	($fname != basename($_SERVER['PHP_SELF']))) 
+          	{
+          		// store the filename
+          		$files[] = (is_dir( "./$fname" )) ? "(Dir) {$fname}" : $fname;
+      		}
+   		}
+   		// close the directory
+   	  	closedir($dhandle);
+	  }
+	  echo "<select name='Style'>";
+	  // Default Style from config
+	  ?><option value=<?php echo $config->Style ?>><?php echo $config->Style ?></option>
+	  // Now loop through the files, echoing out a new select option for each one
+	  <?php
+	  foreach( $files as $fname )
+	  {
+	  	echo "<option>{$fname}</option>\n";
+	  }
+	  echo "</select>\n";?> 
+     </td>
     </tr>
     <tr>
       <td class="rowColor2" width="1%" nowrap valign="top"><?php echo $LAN_CONFIGURATION_045; ?> <img src="images/help.png" style="cursor:help" onmouseover="Tip('<?php echo $LAN_CONFIGURATION_046 ?>', WIDTH, 400, SHADOW, true, FADEIN, 300, FADEOUT, 300, CLICKCLOSE, true, BGCOLOR, getStyleBackgroundColor('container'), BORDERCOLOR, getStyleBackgroundColor('settingsTable'))"/>:</td>
@@ -414,6 +459,7 @@ if(!is_writable("config/class.Config.php")) {
             }
           ?></textarea>
       </td>
+	  <td class="rowColor2" width="1%" colspan="4" nowrap></td>
     </tr>
     </table>
   </div>

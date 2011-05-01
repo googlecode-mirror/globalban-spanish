@@ -136,4 +136,10 @@ $LAN_CONFIGURATION_123 = "Only Warrnings Ex-Banned Min Length";
 $LAN_CONFIGURATION_124 = "Allows you to select required Min Ban Lenght to advise in game about this Ex-Banned when he joins.";
 $LAN_CONFIGURATION_125 = "German";
 $LAN_CONFIGURATION_126 = "Latvian";
+$LAN_CONFIGURATION_127 = "With";
+$LAN_CONFIGURATION_128 = "Hight";
+$LAN_CONFIGURATION_129 = "Width as the SWF is displayed in pixels (default: 931)";
+$LAN_CONFIGURATION_130 = "Hight as the SWF is displayed in pixels (default: 231)";
+$LAN_CONFIGURATION_131 = "Style";
+$LAN_CONFIGURATION_132 = "Look of the page";
 ?>

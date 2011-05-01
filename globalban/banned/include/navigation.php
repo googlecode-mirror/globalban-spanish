@@ -161,7 +161,7 @@ include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_nav
       style="opacity:100;filter:alpha(opacity=100)"
         onmouseover="this.style.opacity=0.4;this.filters.alpha.opacity=40"
         onmouseout="this.style.opacity=1;this.filters.alpha.opacity=100" /></a>
-	<a href="index.php?page=<?php echo $page.$adPage ?>&lg=Latvian"><img src="images/flags/lv_large.png" width="32" height="19" alt="<?php echo $LANNAV_026; ?>"
+	<a href="index.php?page=<?php echo $page.$adPage ?>&lg=Latvian"><img src="images/flags/lv_large.png" width="32" height="19" alt="<?php echo $LANNAV_027; ?>"
       style="opacity:100;filter:alpha(opacity=100)"
         onmouseover="this.style.opacity=0.4;this.filters.alpha.opacity=40"
         onmouseout="this.style.opacity=1;this.filters.alpha.opacity=100" /></a>

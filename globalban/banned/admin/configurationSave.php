@@ -76,7 +76,7 @@ if(empty($adviseInGame)) {
 
 $adviseInGameLenght = $_POST['adviseInGameLenght'];
 if(empty($adviseInGameLenght)) {
-  $adviseInGame = 3600*6; // By default Min 6 hours
+  $adviseInGameLenght = 3600*6; // By default Min 6 hours
 }
 
 $enableWebLink = $_POST['enableWebLink'];
@@ -94,9 +94,19 @@ if(empty($LANGUAGE)) {
   $LANGUAGE = "English";
 }
 
+$siteLogoWith = $_POST['siteLogoWith'];
+if(empty($siteLogoWith)) {
+$siteLogoWith = 931;
+}
+
+$siteLogoHight = $_POST['siteLogoHight'];
+if(empty($siteLogoHight)) {
+$siteLogoHight = 231;
+}
+
 $url = "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
 $url = substr($url, 0, strrpos($url, "/")) . "/";
-
+  
 // Generate the php config file
 $configData = "<?php
 /**
@@ -123,7 +133,10 @@ class Config {
   var $"."siteName = \"".str_replace("$", "\\$", $_POST['siteName'])."\"; // The name of your website
   var $"."siteUrl = \"".$url."\"; // Your clan/server's home page
   var $"."siteLogo = \"".$logo."\"; // Found in images directory; you must save your logo to the images dir!!
-
+  var $"."siteLogoWith = ".$siteLogoWith.";
+  var $"."siteLogoHight = ".$siteLogoHight.";
+  var $"."Style = \"".$_POST['Style']."\"; // Style
+  
   /**
    * SMF integration settings
    * The gban tables MUST be installed in your SMF database ($"."dbName = \"YOUR_SMF_DB\")

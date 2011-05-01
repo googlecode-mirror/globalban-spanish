@@ -43,6 +43,9 @@ class Config {
   var $siteName = "GlobalBan"; // The name of your website
   var $siteUrl = "http://localhost/banned/"; // Your clan/server's home page
   var $siteLogo = "logo.png"; // Found in images directory; you must save your logo to the images dir!!
+  var $siteLogoWith = 931 // SWF Logo With px
+  var $siteLogoHight = 210 // SWF Logo Hight px
+  var $Style = "banned.css"; // Style
 
   /**
    * SMF integration settings
