@@ -136,4 +136,10 @@ $LAN_CONFIGURATION_123 = "Solo Avisar de Ex-Baneados de al menos";
 $LAN_CONFIGURATION_124 = "Permite seleccionar la duracion minima requerida de los banes sobre los que se advisara en el juego cuando entre un ex-baneado.";
 $LAN_CONFIGURATION_125 = "Aleman";
 $LAN_CONFIGURATION_126 = "Letón";
+$LAN_CONFIGURATION_127 = "MANGA";
+$LAN_CONFIGURATION_128 = "SUPERIOR";
+$LAN_CONFIGURATION_129 = "Ancho como SFW se muestra (por defecto: 931) en píxeles";
+$LAN_CONFIGURATION_130 = "Altura como SFW se muestra (por defecto: 231) en píxeles";
+$LAN_CONFIGURATION_131 = "Estilo";
+$LAN_CONFIGURATION_132 = "Aspecto de la página";
 ?>

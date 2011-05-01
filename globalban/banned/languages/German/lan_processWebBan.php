@@ -10,17 +10,17 @@
 +----------------------------------------------------------------------------+
 */
 
-$LAN_PROCESSWEBBAN_001 = 'Ban hinzugefügt durch Web App';
+$LAN_PROCESSWEBBAN_001 = 'Bann hinzugefügt durch Web App';
 
-$LAN_PROCESSWEBBAN_003 = 'Der folgende Ban wurde hinzugefügt von';
+$LAN_PROCESSWEBBAN_003 = 'Der folgende Bann wurde hinzugefügt von';
 $LAN_PROCESSWEBBAN_004 = "und MUSS bearbeitet werden.";
-$LAN_PROCESSWEBBAN_005 = "Klicken Sie auf den folgenden Link um den Ban einzusehen:";
-$LAN_PROCESSWEBBAN_006 = 'Neuer Ban';
+$LAN_PROCESSWEBBAN_005 = "Klicken Sie auf den folgenden Link um den Bann einzusehen:";
+$LAN_PROCESSWEBBAN_006 = 'Neuer Bann';
 $LAN_PROCESSWEBBAN_007 = 'wurde von ALLEN Servern gebannt.';
 $LAN_PROCESSWEBBAN_008 = 'Forum Post:';
 $LAN_PROCESSWEBBAN_009 = 'Link';
 
-$LAN_PROCESSWEBBAN_011 = 'Ban Management';
+$LAN_PROCESSWEBBAN_011 = 'Bann Management';
 $LAN_PROCESSWEBBAN_012 = 'Konnte keine Verbindung zur e107 Datenbank herstellen';
 $LAN_PROCESSWEBBAN_013 = 'Konnte e107 Datenbank auswählen';
 

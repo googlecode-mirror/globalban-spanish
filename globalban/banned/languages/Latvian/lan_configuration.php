@@ -133,8 +133,14 @@ $LAN_CONFIGURATION_119 = "Angļu";
 $LAN_CONFIGURATION_120 = "Spāņu";
 $LAN_CONFIGURATION_121 = "Franču";
 $LAN_CONFIGURATION_122 = "Krievu";
-$LAN_CONFIGURATION_123 = "Only Warrnings Ex-Banned Min Length";
-$LAN_CONFIGURATION_124 = "Allows you to select required Min Ban Lenght to advise in game about this Ex-Banned when he joins.";
+$LAN_CONFIGURATION_123 = "Tikai Warrnings Ex-Banned Min garums";
+$LAN_CONFIGURATION_124 = "Jūs varat izvēlēties nepieciešamo Min aizlieguma ilgums, lai konsultētu spēlē par šo Ex-Aizliegumu, kad viņš pievienojas.";
 $LAN_CONFIGURATION_125 = "German";
 $LAN_CONFIGURATION_126 = "Latvian";
+$LAN_CONFIGURATION_127 = "Platums";
+$LAN_CONFIGURATION_128 = "Augstums";
+$LAN_CONFIGURATION_129 = "Platums SWF tiek parādīts (default: 931) pikseļos";
+$LAN_CONFIGURATION_130 = "Augstumā kā SWF tiek parādīts (default: 231) pikseļos";
+$LAN_CONFIGURATION_131 = "Stils";
+$LAN_CONFIGURATION_132 = "Izskatu lapas";
 ?>

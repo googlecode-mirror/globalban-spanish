@@ -72,7 +72,7 @@ if(!empty($_POST['submitDemo']) && $_POST['submitDemo']) {
 	$filename = str_ireplace(".html", "_", $filename);
 	$filename = str_ireplace(".htm", "_", $filename);
 	$extension = substr($filename, strlen($filename)-4, strlen($filename));
-	$allowedExtensions = array(".zip", ".rar");
+	$allowedExtensions = array(".zip", ".rar"); 
 	if(in_array($extension, $allowedExtensions)) {
 		if(uploadFile($filename, $tempName, $config, $demoQueries)) {
 			$success = "success";

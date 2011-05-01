@@ -11,7 +11,7 @@
 */
 
 $LAN_BADNAMES_001 = 'Neues zu bannendes Wort oder Namen hinzufügen';
-$LAN_BADNAMES_002 = 'Überprüfen Sie ob dieser Name oder dieses Wort von der Banliste und den Demoseiten gefiltert werden soll.';
+$LAN_BADNAMES_002 = 'Überprüfen Sie ob dieser Name oder dieses Wort von der Bannliste und den Demoseiten gefiltert werden soll.';
 $LAN_BADNAMES_003 = 'Filter';
 $LAN_BADNAMES_004 = 'Überprüfen Sie ob jemand gekickt werden soll, der dieses Wort in seinem Namen hat.';
 $LAN_BADNAMES_005 = 'Kick';
@@ -19,7 +19,7 @@ $LAN_BADNAMES_006 = 'Hinzufügen';
 $LAN_BADNAMES_007 = 'Gebannte Namen oder Wörter';
 $LAN_BADNAMES_008 = 'Name/Wort';
 $LAN_BADNAMES_009 = 'Löschen';
-$LAN_BADNAMES_010 = 'Klicken um Filterung dieses Namen oder wortes zu stoppen';
+$LAN_BADNAMES_010 = 'Klicken um Filterung dieses Namen oder Wortes zu stoppen';
 $LAN_BADNAMES_011 = 'Klicken um Filterung dieses Namen oder Wortes zu starten.';
 $LAN_BADNAMES_012 = 'Klicken um das Kicken von Spieler mit diesem Namen zu stoppen.';
 $LAN_BADNAMES_013 = 'Klicken um das Kicken von Spielern mit diesem Namen zu starten.';
