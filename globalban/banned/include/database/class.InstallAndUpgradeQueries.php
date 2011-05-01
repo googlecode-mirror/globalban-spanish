@@ -401,14 +401,14 @@ class InstallAndUpgradeQueries {
     $this->sql_query($sql);
 
     $sql = "CREATE TABLE `gban_plugin_flag` (
-            `plugin_flag_id` int(11) NOT NULL auto_increment,
+            `plugin_flag_id` int(11) unsigned NOT NULL auto_increment,
             `plugin` varchar(50) NOT NULL,
-            `flag` varchar(25) NOT NULL,
+            `flag` varbinary(25) NOT NULL,
             `description` varchar(255) default NULL,
             PRIMARY KEY  (`plugin_flag_id`),
-            KEY `plugin` (`plugin`,`flag`)
+            UNIQUE KEY `plugin` (`plugin`,`flag`)
           ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;";
-
+		  
     $this->sql_query($sql);
 
     $sql = "CREATE TABLE `gban_admin_group` (
@@ -451,7 +451,6 @@ class InstallAndUpgradeQueries {
     
     $sql = "-- Mani Flags
             INSERT INTO `gban_plugin_flag` (`plugin`, `flag`, `description`) VALUES
-            ('mani', 'j', 'Gimp obsolete < Mani 1.2T'),
             ('mani', 'k', 'Kick'),
             ('mani', 'r', 'Rcon'),
             ('mani', 'q', 'Rcon Menu Level 1'),
@@ -506,8 +505,7 @@ class InstallAndUpgradeQueries {
             ('mani', 'client', 'Create Clients and Set Powers'),
             ('mani', 'pban', 'Permanent Ban'),
             ('mani', 'spray', 'Spray Tag Tracking'),
-            ('mani', 'grav', 'Adjust Player Gravity'),
-            ('mani', 'reserved', 'Reserved Slot obsolete < Mani 1.2T');";
+            ('mani', 'grav', 'Adjust Player Gravity');";
             
       $this->sql_query($sql);
       $sql = "-- Sourcemod flags
@@ -536,7 +534,6 @@ class InstallAndUpgradeQueries {
       $this->sql_query($sql);
       
       $sql = "INSERT INTO `gban_plugin_flag` (`plugin`, `flag`, `description`) VALUES
-            ('mani-immunity', 'j', 'Gimp Immunity obsolete < Mani 1.2T'),
             ('mani-immunity', 'k', 'Kick Immunity'),
             ('mani-immunity', 'm', 'Slay Immunity'),
             ('mani-immunity', 'b', 'Ban Immunity'),
@@ -561,7 +558,6 @@ class InstallAndUpgradeQueries {
             ('mani-immunity', 'v', 'Ghost Immunity'),
             ('mani-immunity', 'w', 'Give Item Immunity'),
             ('mani-immunity', 'y', 'Color Change Immunity'),
-            ('mani-immunity', 'Immunity', 'Basic Immunity obsolete < Mani 1.2T'),
             ('mani-immunity', 'grav', 'Per Player Gravity Immunity'),
             ('mani-immunity', 'autojoin', 'Autojoin Immunity'),
             ('mani-immunity', 'afk', 'AFK Kick Immunity'),
@@ -742,7 +738,6 @@ class InstallAndUpgradeQueries {
     
     $sql = "-- Mani Flags
             INSERT INTO `gban_plugin_flag` (`plugin`, `flag`, `description`) VALUES
-            ('mani', 'j', 'Gimp obsolete < Mani 1.2T'),
             ('mani', 'k', 'Kick'),
             ('mani', 'r', 'Rcon'),
             ('mani', 'q', 'Rcon Menu Level 1'),
@@ -797,8 +792,7 @@ class InstallAndUpgradeQueries {
             ('mani', 'client', 'Create Clients and Set Powers'),
             ('mani', 'pban', 'Permanent Ban'),
             ('mani', 'spray', 'Spray Tag Tracking'),
-            ('mani', 'grav', 'Adjust Player Gravity'),
-            ('mani', 'reserved', 'Reserved Slot obsolete < Mani 1.2T');";
+            ('mani', 'grav', 'Adjust Player Gravity');";
             
       $this->sql_query($sql);
       $sql = "-- Sourcemod flags
@@ -827,7 +821,6 @@ class InstallAndUpgradeQueries {
       $this->sql_query($sql);
       
       $sql = "INSERT INTO `gban_plugin_flag` (`plugin`, `flag`, `description`) VALUES
-            ('mani-immunity', 'j', 'Gimp Immunity obsolete < Mani 1.2T'),
             ('mani-immunity', 'k', 'Kick Immunity'),
             ('mani-immunity', 'm', 'Slay Immunity'),
             ('mani-immunity', 'b', 'Ban Immunity'),
@@ -852,7 +845,6 @@ class InstallAndUpgradeQueries {
             ('mani-immunity', 'v', 'Ghost Immunity'),
             ('mani-immunity', 'w', 'Give Item Immunity'),
             ('mani-immunity', 'y', 'Color Change Immunity'),
-            ('mani-immunity', 'Immunity', 'Basic Immunity obsolete < Mani 1.2T'),
             ('mani-immunity', 'grav', 'Per Player Gravity Immunity'),
             ('mani-immunity', 'autojoin', 'Autojoin Immunity'),
             ('mani-immunity', 'afk', 'AFK Kick Immunity'),
@@ -898,5 +890,45 @@ class InstallAndUpgradeQueries {
 
 	$this->sql_query($sql);
   }
+  
+  
+  function upgradeThreePointFourToOdonelPointTwo() {
+  
+	$sql = "DELETE FROM gban_plugin_flag WHERE (`plugin` = 'mani' AND `flag` = 'j');";
+
+	$this->sql_query($sql);
+	
+	$sql = "DELETE FROM gban_plugin_flag WHERE (`plugin` = 'mani' AND `flag` = 'reserved');";
+
+	$this->sql_query($sql);
+	
+	$sql = "DELETE FROM gban_plugin_flag WHERE (`plugin` = 'mani-immunity' AND `flag` = 'j');";
+
+	$this->sql_query($sql);
+
+	$sql = "DELETE FROM gban_plugin_flag WHERE (`plugin` = 'mani-immunity' AND `flag` = 'Immunity');";
+
+	$this->sql_query($sql);
+	
+	$sql = "DELETE FROM gban_plugin_flag WHERE (`plugin_flag_id` > 105);";
+
+	$this->sql_query($sql);
+  
+    $sql = "DELETE FROM gban_admin_group_flag
+			WHERE plugin_flag_id NOT IN
+				(SELECT
+				gban_plugin_flag.plugin_flag_id
+				FROM
+				gban_plugin_flag);";
+
+	$this->sql_query($sql);
+  
+	// ALTER column `flag` FROM varchar TO varbinary BECAUSE SENSITIVE UNIQUE KEY IS REQUIRED
+	$sql =	"ALTER TABLE `gban_plugin_flag`
+			 MODIFY COLUMN `flag`  varbinary(25) NOT NULL AFTER `plugin`,
+			 DROP INDEX `plugin` ,
+			 ADD UNIQUE INDEX `plugin_flag` USING BTREE (`plugin`, `flag`) ;";
+
+	$this->sql_query($sql);
 }
 ?>
