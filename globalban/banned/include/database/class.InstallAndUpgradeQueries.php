@@ -930,5 +930,6 @@ class InstallAndUpgradeQueries {
 			 ADD UNIQUE INDEX `plugin_flag` USING BTREE (`plugin`, `flag`) ;";
 
 	$this->sql_query($sql);
+  }
 }
 ?>

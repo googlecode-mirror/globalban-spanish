@@ -37,7 +37,7 @@ function my_explode($delim, $str, $lim = 1) {
 
 $siteLogo = my_explode('.', $config->siteLogo , -2);
 if(empty($config->Style)) {
-	$config->Style='banned.css'';
+	$config->Style='banned.css';
 }
  
 ?>
