@@ -44,7 +44,8 @@ if($hash == $config->matchHash) {
   $badNameQueries = new BadNameQueries();
   
   $kickedByName = false;
-  
+  // Security Fix for Issue 24
+  $nameOfBanned = str_ireplace(array("\"", "\r\n", "\n", "\r", ";"), "", $nameOfBanned); 
   $messageTOserver = "#multi #lightgreen GB: #green ".$LANCHECKUSER_004 ." #lightgreen ". $nameOfBanned ." #green ". $LANCHECKUSER_005 ." #lightgreen \"".$steamId."\" #green !!!";
   
   $namesToKick = $badNameQueries->getKickNames();
@@ -123,7 +124,7 @@ if($hash == $config->matchHash) {
             $server = $serverQueries->getServer($serverId);
             $r = new rcon($server->getIp(),$server->getPort(),$server->getRcon());
             $r->Auth();
-            if($config->adviseInGame < 4) {
+            if($config->adviseInGame < 4) { 
                 $r->sendRconCommand("ma_chat ".$LANCHECKUSER_006.": ".$nameOfBanned." - \"".$steamId."\" | ".$bannedUser->getName()." | ".$LANCHECKUSER_007.": ".$reasonQueries->getReason($bannedUser->getReasonId()));
                 $r->sendRconCommand("ma_chat ".$LANCHECKUSER_008.": ".$bannedUser->getBanner()." | ".$LANCHECKUSER_009.": ".$length->getReadable()." | ".$LANCHECKUSER_010.": ".gmdate('d M Y H:i:s', $bannedUser->getAddDate()));
             }

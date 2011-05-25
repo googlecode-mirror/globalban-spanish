@@ -143,4 +143,3 @@ $LAN_CONFIGURATION_130 = "Высота как SWF отображается (по
 $LAN_CONFIGURATION_131 = "Стиль";
 $LAN_CONFIGURATION_132 = "Посмотрите на этой странице";
 ?>
-?>
