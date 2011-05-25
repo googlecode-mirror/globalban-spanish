@@ -137,9 +137,9 @@ $LAN_CONFIGURATION_124 = "Permite seleccionar la duracion minima requerida de lo
 $LAN_CONFIGURATION_125 = "Aleman";
 $LAN_CONFIGURATION_126 = "Letón";
 $LAN_CONFIGURATION_127 = "MANGA";
-$LAN_CONFIGURATION_128 = "SUPERIOR";
+$LAN_CONFIGURATION_128 = "Alto";
 $LAN_CONFIGURATION_129 = "Ancho como SFW se muestra (por defecto: 931) en píxeles";
-$LAN_CONFIGURATION_130 = "Altura como SFW se muestra (por defecto: 231) en píxeles";
+$LAN_CONFIGURATION_130 = "Alto como SFW se muestra (por defecto: 231) en píxeles";
 $LAN_CONFIGURATION_131 = "Estilo";
 $LAN_CONFIGURATION_132 = "Aspecto de la página";
 ?>

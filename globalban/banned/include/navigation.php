@@ -102,16 +102,16 @@ include(file_exists($lan_file) ? $lan_file : ROOTDIR."/languages/English/lan_nav
   // Menu for full power admins only
   if($fullPower) {
     ?>
-    <li style="width:10em;"><div align="center"><a href="#"><?php echo $LANNAV_019 ?></a></div>
+    <li style="width:12em;"><div align="center"><a href="#"><?php echo $LANNAV_019 ?></a></div>
       <ul>
-        <li style="width:10em;"><a href="index.php?page=configuration&adminPage=1&lg=<?php echo $LANGUAGE; ?>"><?php echo $LANNAV_009; ?></a></li>
-        <li style="width:10em;"><a href="index.php?page=banReasons&adminPage=1&lg=<?php echo $LANGUAGE; ?>"><?php echo $LANNAV_010; ?></a></li>
-        <li style="width:10em;"><a href="index.php?page=banLengths&adminPage=1&lg=<?php echo $LANGUAGE; ?>"><?php echo $LANNAV_011; ?></a></li>
-        <li style="width:10em;"><a href="index.php?page=badNames&adminPage=1&lg=<?php echo $LANGUAGE; ?>"><?php echo $LANNAV_012; ?></a></li>
-        <li style="width:10em;"><a href="index.php?page=manageServers&adminPage=1&lg=<?php echo $LANGUAGE; ?>"><?php echo $LANNAV_013; ?></a></li>
-        <li style="width:10em;"><a href="index.php?page=manageServerGroups&adminPage=1&lg=<?php echo $LANGUAGE; ?>"><?php echo $LANNAV_014; ?></a></li>
-        <li style="width:10em;"><a href="index.php?page=manageAdminGroups&adminPage=1&lg=<?php echo $LANGUAGE; ?>"><?php echo $LANNAV_015; ?></a></li>
-        <li style="width:10em;"><a href="index.php?page=manageUsers&adminPage=1&lg=<?php echo $LANGUAGE; ?>"><?php echo $LANNAV_016; ?></a></li>
+        <li style="width:12em;"><a href="index.php?page=configuration&adminPage=1&lg=<?php echo $LANGUAGE; ?>"><?php echo $LANNAV_009; ?></a></li>
+        <li style="width:12em;"><a href="index.php?page=banReasons&adminPage=1&lg=<?php echo $LANGUAGE; ?>"><?php echo $LANNAV_010; ?></a></li>
+        <li style="width:12em;"><a href="index.php?page=banLengths&adminPage=1&lg=<?php echo $LANGUAGE; ?>"><?php echo $LANNAV_011; ?></a></li>
+        <li style="width:12em;"><a href="index.php?page=badNames&adminPage=1&lg=<?php echo $LANGUAGE; ?>"><?php echo $LANNAV_012; ?></a></li>
+        <li style="width:12em;"><a href="index.php?page=manageServers&adminPage=1&lg=<?php echo $LANGUAGE; ?>"><?php echo $LANNAV_013; ?></a></li>
+        <li style="width:12em;"><a href="index.php?page=manageServerGroups&adminPage=1&lg=<?php echo $LANGUAGE; ?>"><?php echo $LANNAV_014; ?></a></li>
+        <li style="width:12em;"><a href="index.php?page=manageAdminGroups&adminPage=1&lg=<?php echo $LANGUAGE; ?>"><?php echo $LANNAV_015; ?></a></li>
+        <li style="width:12em;"><a href="index.php?page=manageUsers&adminPage=1&lg=<?php echo $LANGUAGE; ?>"><?php echo $LANNAV_016; ?></a></li>
       </ul>
     </li>
     <?php
